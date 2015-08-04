@@ -1,50 +1,81 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/**
+ * Filename: FlingObject.cs \n
+ * Author: Michael Gonzalez \n
+ * Contributing Authors: N/A \n
+ * Date Drafted: ??? (Sometime during finals Spring Quarter '15) \n
+ * Description: This script translate specific user mouse movement into an 
+ *              impulse vector that flings the parent object through 2D space.
+ *              This impulse vector is constructed by recording where the user 
+ *              clicks and releases their mouse.
+ */
 public class FlingObject : MonoBehaviour {
-
-    public GameObject obj;
-    public float forceScalar = 1;
-    public float yScalar = 1;
-    public float piScalar;
-    public Vector3 initalVector, finalVector, deltaVector;
+    /** This field scales the impulse vector */
+    public float impulseScalar = -0.03f;
+    /** This caps the absolute max speed the object may fling in the x 
+     *  direction */
+    public float maxXSpeed = 25;
+    /** This caps the absolute max speed the object may fling in the y 
+     *  direction */
+    public float maxYSpeed = 25;
+    /** Set true to see debugging information */
+    public bool isDebugging = false;
+    private Vector2 initalVector, finalVector, deltaVector;
+    private Rigidbody2D rigidBody; 
+    /** Saves a reference to the object's 2D Rigidbody.\n
+     *  Will throw a NullReferenceExcepetion if this method cannot find a 2D
+     *  Rigidbody. */
 	void Start () {
-	
+        rigidBody = this.GetComponent<Rigidbody2D>();
+        if (rigidBody == null)
+        {
+            Debug.LogError("Null Reference Exception: No 2D Rigidbody found on " + this);
+        }
 	}
-	
+    /** Awaits a user's mouse clicks; saves their clicks as vectors; and calls 
+     *  Fling() when the user releases their mouse */
 	void Update () {
         if (Input.GetMouseButtonDown(0))
         {
             initalVector = Input.mousePosition;
+            if (isDebugging)
+            {
+                Debug.Log("Mouse Down at: " + initalVector);
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
             finalVector = Input.mousePosition;
+            deltaVector = initalVector - finalVector;
+            if (isDebugging)
+            {
+                Debug.Log("Mouse Released at: " + finalVector);
+
+                Debug.Log("Fling Vector: " + deltaVector.normalized);
+            }
             Fling();
         }
 	}
-
+    /** Constructs the impulse vector and applies this as a force to the 
+     *  parent object. This method also will play a jump sound! */
     private void Fling()
     {
         // Calculate the delta vector
         deltaVector = finalVector - initalVector;
-        deltaVector *= forceScalar;
-        // We want to know the parent object's y rotation in radians
-        float yDirection = transform.rotation.eulerAngles.y * Mathf.PI / 180;
-        yDirection -= (Mathf.PI * piScalar);
-        float forceMagnitude = deltaVector.magnitude;
-        // To make the vector definition cleaner, temporary variables are used
-        float x = Mathf.Sin(yDirection) * forceMagnitude;
-        float z = Mathf.Cos(yDirection) * forceMagnitude;
-        //yDirection += (Mathf.PI * piScalar);
-        Vector3 forceVector = new Vector3(x, forceMagnitude, z);
-        // Instantiate the game object to be flung
-        GameObject objRuntime = (GameObject)GameObject.Instantiate(obj);
-        objRuntime.transform.position = transform.position;
-        // Add the rigid body to the object if it doesn't exist
-        Rigidbody rigidBody = objRuntime.GetComponent<Rigidbody>();
-        if (rigidBody == null)
-            rigidBody = objRuntime.AddComponent<Rigidbody>();
-        rigidBody.AddForce(forceVector, ForceMode.Impulse);
+        deltaVector *= impulseScalar;
+        // Cap the x and y speeds by their max speeds
+        if (deltaVector.x > maxXSpeed)
+            deltaVector.x = maxXSpeed;
+        if (deltaVector.x < -1 * maxXSpeed)
+            deltaVector.x = -1 * maxXSpeed;
+        if (deltaVector.y > maxYSpeed)
+            deltaVector.y = maxYSpeed;
+        if (deltaVector.y < -1 * maxYSpeed)
+            deltaVector.y = -1 * maxYSpeed;
+        rigidBody.AddForce(deltaVector, ForceMode2D.Impulse);
+        // To make this method more abstract, this has to be moved...
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
     }
 }

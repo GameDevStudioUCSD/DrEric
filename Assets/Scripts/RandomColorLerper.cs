@@ -65,10 +65,11 @@ public class RandomColorLerper : MonoBehaviour {
     public static Color GetRandomColor()
     {
         const float MAXRGB = 255;
+        const float MINRGB = 64;
         float r, g, b;
-        r = Random.Range(0, MAXRGB)/MAXRGB;
-        g = Random.Range(0, MAXRGB)/MAXRGB;
-        b = Random.Range(0, MAXRGB)/MAXRGB;
+        r = Random.Range(MINRGB, MAXRGB)/MAXRGB;
+        g = Random.Range(MINRGB, MAXRGB)/MAXRGB;
+        b = Random.Range(MINRGB, MAXRGB)/MAXRGB;
         return new Color(r,g,b);
     }
 }

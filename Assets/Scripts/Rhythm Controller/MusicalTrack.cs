@@ -20,10 +20,9 @@ public class MusicalTrack : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
 	}
 
-    void Play()
+ /*   void Play()
     {
         //two parameters - please add
         song.PlayOneShot();
@@ -34,4 +33,4 @@ public class MusicalTrack : MonoBehaviour
         double time;
         song.PlayScheduled(time);
     }
-}
+}*/

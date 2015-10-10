@@ -34,7 +34,7 @@ public class RhythmController : MonoBehaviour {
 	}
 
 	void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
-		musicList[track].playAt(measure, beat);
+		//musicList[track].PlayAt(measure, beat);
 		currentTrack = musicList[track];
 	}
 

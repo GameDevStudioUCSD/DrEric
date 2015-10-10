@@ -25,12 +25,13 @@ public class MusicalTrack : MonoBehaviour
 
     void Play()
     {
+        //two parameters - please add
         song.PlayOneShot();
     }
 
     void PlayAt(int measure, int beat)
     {
-        
-        song.PlayOneshot();
+        double time;
+        song.PlayScheduled(time);
     }
 }

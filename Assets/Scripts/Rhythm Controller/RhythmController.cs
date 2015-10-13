@@ -29,26 +29,37 @@ public class RhythmController : MonoBehaviour {
 	/*Internals*/
 	MusicalTrack currentTrack;
 
+	double startTime;
+
 	// Use this for initialization
 	void Start () {
-	
+		startTime = AudioSettings.dspTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-
+/*
 	void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
-		//musicList[track].PlayAt(measure, beat);
+		musicList[track].PlayAt(measure, beat);
 		currentTrack = musicList[track];
+		startTime = AudioSettings.dspTime;
+	}
+*/
+	public int[] ConvertToSongPosition(float time){
+		int bpm = currentTrack.bpm;
+		double current = currentTrack.source.time;
+		int[] output = new int[2];
+		output[0] = current*bpm/240f;
+		output[1] = (current*bpm % 240f)*bpm/60f;
 	}
 
 	/**
 	 * Function Signature: void SetCurrentMeasure(int measure);
      * Description: Setter method for variable currentMeasure.
      */
-	void SetCurrentMeasure(int measure){
+	public void SetCurrentMeasure(int measure){
 		currentMeasure = measure;
 	}
 
@@ -56,7 +67,7 @@ public class RhythmController : MonoBehaviour {
 	 * Function Signature: void SetCurrentBeat(int beat);
      * Description: Setter method for variable currentBeat.
      */
-	void SetCurrentBeat(int beat){
+	public void SetCurrentBeat(int beat){
 		currentBeat = beat;
 	}
 
@@ -64,7 +75,7 @@ public class RhythmController : MonoBehaviour {
 	 * Function Signature: int GetCurrentMeasure();
      * Description: Getter method for currentMeasure.
      */
-	int GetCurrentMeasure(){
+	public int GetCurrentMeasure(){
 		return currentMeasure;
 	}
 
@@ -72,7 +83,7 @@ public class RhythmController : MonoBehaviour {
 	 * Function Signature: int GetCurrentBeat();
      * Description: Getter method for currentBeat.
      */
-	int GetCurrentBeat(){
+	public int GetCurrentBeat(){
 		return currentBeat;
 	}
 }

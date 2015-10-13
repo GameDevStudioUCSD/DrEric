@@ -9,7 +9,9 @@ public class MusicalTrack : MonoBehaviour
     public int bpm;
     public int timeSigUpper;
     public int timeSigLower;
-    public AudioSource song;
+    public AudioSource source;
+    public AudioClip song;
+    private int measures;
 
     // Use this for initialization
     void Start()
@@ -22,17 +24,4 @@ public class MusicalTrack : MonoBehaviour
     {
 
     }
-
-    /*   void Play()
-       {
-           //two parameters - please add
-           song.PlayOneShot();
-       }
-
-       void PlayAt(int measure, int beat)
-       {
-           double time;
-           song.PlayScheduled(time);
-       }
-   }*/
 }

@@ -38,7 +38,7 @@ public class RhythmController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 /*
 	void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
@@ -53,6 +53,7 @@ public class RhythmController : MonoBehaviour {
 		int[] output = new int[2];
 		output[0] = current*bpm/240f;
 		output[1] = (current*bpm % 240f)*bpm/60f;
+		return output;
 	}
 
 	/**

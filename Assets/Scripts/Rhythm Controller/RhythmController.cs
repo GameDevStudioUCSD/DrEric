@@ -11,6 +11,12 @@ using System.Collections;
  */
 public class RhythmController : MonoBehaviour {
 
+	public const float quarterNote = 24f;
+	public const float halfNote = 48f;
+	public const float wholeNote = 96f;
+	public const float eigthNote = 12f;
+	public const float tripleEigthNote = 8f;
+
 	/*Need MusicalTrack.cs*/
 	public MusicalTrack[] musicList;
 

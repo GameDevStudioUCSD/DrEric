@@ -32,5 +32,5 @@ interface RhythmEvent {
 	/**
      * Description: to be implemented, does whatever event needs to do
      */
-	void triggerEvent();
+	void TriggerEvent();
 }

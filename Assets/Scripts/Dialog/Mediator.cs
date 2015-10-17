@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Mediator : MonoBehaviour {
 
-	private static GUIController controller;
-	private Conversation conversation;
+    private static GUIController controller;
+    private IDictionary<string, Conversation> conversations;
+    private Conversation currentConversation;
 
 	private float previousTime;
 	private int conversationTurn = 0;
+
+    //private DialogState dialogState;
 
 	void Awake() {
 		controller = GameObject.Find ("Canvas").GetComponent<GUIController> ();
@@ -15,32 +19,69 @@ public class Mediator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		conversation = new Conversation("dialogs.json");
+		
+        conversations = new Dictionary<string, Conversation>();
+        //parse dialogs.json into conversations
+        //conversations[json.conversationName] = new Conversation(dialogs.json, json.conversationName);
 
-		conversation.add (new Dialog("Hello right", new Character()), true);
-		conversation.add (new Dialog("Hello left", new Character()), false);
-		conversation.add (new Dialog("How's it going right", new Character()), true);
-		conversation.add (new Dialog("Fantastic left", new Character()), false);
-		conversation.add (new Dialog("Great weather we're having right", new Character()), true);
-		conversation.add (new Dialog("No, I hate the humidity, left", new Character()), false);
-
+        conversations["name_of_convo1"] = new Conversation("dialogs/test", "name_of_convo1");
+        loadConversation("name_of_convo1");
+      
 		previousTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - previousTime > 1) {
-			if (conversationTurn % 2 == 0) {
-				Dialog nextDialogLeft = conversation.getNextLeft();
-				controller.setLeftText(nextDialogLeft.getText ());
-			}
-			else {
-				Dialog nextDialogRight = conversation.getNextRight();
-				controller.setRightText(nextDialogRight.getText ());
-			}
-			previousTime = Time.time;
-			conversationTurn++;
-
-		}
+        if (Time.time - previousTime > 0.5)
+        {
+            advanceConversation();
+            previousTime = Time.time;
+        }
 	}
+
+    public void loadConversation(string conversationName)
+    {
+        currentConversation = conversations[conversationName];
+    }
+
+    public void advanceConversation()
+    {
+        if (currentConversation == null)
+        {
+            Debug.Log("Tried to read from a null conversation. "
+                + "You're not assigning currentConversation somewhere. "
+                + "Try calling loadConversation([conversationName]) as "
+                + "specified in the json.");
+            return;
+        }
+
+        if (conversationTurn % 2 == 0)
+        {
+            Dialog nextDialogLeft = currentConversation.getNextLeft();
+            if (nextDialogLeft == null)
+            {
+                endConversation();
+                return;
+            }
+            controller.leftSay(nextDialogLeft.getText());
+        }
+        else
+        {
+            Dialog nextDialogRight = currentConversation.getNextRight();
+            if (nextDialogRight == null)
+            {
+                endConversation();
+                return;
+            }
+            controller.rightSay(nextDialogRight.getText());
+        }
+        previousTime = Time.time;
+        conversationTurn++;
+    }
+
+    private void endConversation()
+    {
+        //dialogState.conversationEnded();
+        currentConversation = null;
+    }
 }

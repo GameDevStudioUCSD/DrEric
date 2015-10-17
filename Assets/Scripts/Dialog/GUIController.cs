@@ -24,11 +24,15 @@ public class GUIController : MonoBehaviour {
 	
 	}
 
-	public void setLeftText(string text) {
+	public void leftSay(string text) {
+        rightText.enabled = false;
+        leftText.enabled = true;
 		leftText.text = text;
 	}
 
-	public void setRightText(string text) {
+	public void rightSay(string text) {
+        leftText.enabled = false;
+        rightText.enabled = true;
 		rightText.text = text;
 	}
 }

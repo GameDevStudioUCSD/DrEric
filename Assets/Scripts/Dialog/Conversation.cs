@@ -15,6 +15,7 @@ public class Conversation
 
 	public Conversation(string jsonFilename, string conversationName)
 	{
+<<<<<<< HEAD
         TextAsset jsonAsset = Resources.Load(@jsonFilename) as TextAsset;
         string json = jsonAsset.text;
 
@@ -45,6 +46,12 @@ public class Conversation
             //string rightPortrait = conversations[i]["right_portrait"];
             //TODO PORTRAITS NULL CHARACTESR
         }
+=======
+        dynamic d = JSONParser.parseFile(filename);
+
+		leftDialogs = new List<Dialog> ();
+		rightDialogs = new List<Dialog> ();
+>>>>>>> origin/Dialog
 	}
 	
 	private void add(Dialog dialog, bool left)

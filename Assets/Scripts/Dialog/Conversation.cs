@@ -45,7 +45,7 @@ public class Conversation
             //string rightPortrait = conversations[i]["right_portrait"];
             //TODO PORTRAITS NULL CHARACTESR
         }
-        JSObject d = JSONParser.parseFile(filename);
+        //JSObject d = JSONParser.parseFile(filename);
 
 		leftDialogs = new List<Dialog> ();
 		rightDialogs = new List<Dialog> ();

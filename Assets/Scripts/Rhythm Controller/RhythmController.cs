@@ -31,6 +31,10 @@ public class RhythmController : MonoBehaviour {
 
 	double startTime;
 
+    public RhythmController() {
+           
+    }
+
 	// Use this for initialization
 	void Start () {
 		startTime = AudioSettings.dspTime;

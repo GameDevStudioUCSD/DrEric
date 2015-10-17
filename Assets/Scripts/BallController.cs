@@ -14,7 +14,7 @@ using System.Collections;
  */
 public class BallController : MonoBehaviour {
     public AudioClip landSound;
-    AudioSource audio;
+    public AudioSource audio;
     /**
      * Description: This method currently sets up a reference to the ball's 
      *              AudioSource

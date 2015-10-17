@@ -20,14 +20,19 @@ public class MainMenuControl : MonoBehaviour {
         Application.Quit();
     }
 
-    public void loadLevel(string levelName)
+    public void loadLevel()
     {
         //This may seem redundant, but it may be useful for debugging later.
-        Application.LoadLevel(levelName);
+        Application.LoadLevel("");
     }
 
-    public void startGame()
+    public void startNewGame()
     {
-        loadLevel("whoa");
+        Application.LoadLevel("whoa");
+    }
+
+    public void loadOptions()
+    {
+        Application.LoadLevel("");
     }
 }

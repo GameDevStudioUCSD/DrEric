@@ -11,17 +11,21 @@ using System.Collections;
  */
 public class RhythmController : MonoBehaviour {
 
-	public const float quarterNote = 24f;
-	public const float halfNote = 48f;
-	public const float wholeNote = 96f;
-	public const float eigthNote = 12f;
-	public const float tripleEigthNote = 8f;
+	private float quarterNote;
+	private float halfNote;
+	private float wholeNote;
+	private float eigthNote;
+    private float tripleEigthNote;
 
 	/*Need MusicalTrack.cs*/
 	public MusicalTrack[] musicList;
 
+    public int songIndex = 0;
+
 	/*Need RhythmEvent.cs*/
 	RhythmEvent[] eventList;
+
+    static RhythmController singleton;
 
 	int currentMeasure;
 	int currentBeat;
@@ -31,30 +35,64 @@ public class RhythmController : MonoBehaviour {
 
 	double startTime;
 
+
+    /**
+	 * Function Signature: void Awake();
+     * Description: Ensures that there is only one RhythmController.
+     */
+    void Awake() {
+        if (singleton == null || singleton == this){
+            Destroy(this.gameObject);
+            return;
+        } else {
+            singleton = this;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
 	// Use this for initialization
 	void Start () {
 		startTime = AudioSettings.dspTime;
+        currentTrack = musicList[songIndex];
+        SetNoteLengths();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
+	}
 
-	}
-/*
-	void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
-		musicList[track].PlayAt(measure, beat);
-		currentTrack = musicList[track];
-		startTime = AudioSettings.dspTime;
-	}
-*/
-	public int[] ConvertToSongPosition(float time){
+    void SetNoteLengths() {
+        quarterNote = 60f / currentTrack.bpm;
+        halfNote = 60f / currentTrack.bpm * 2;
+        eigthNote = 60f / currentTrack.bpm / 2;
+        wholeNote = 60f / currentTrack.bpm * 4;
+        tripleEigthNote = 60f / currentTrack.bpm / 3;
+    }
+    /*
+        void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
+            musicList[track].PlayAt(measure, beat);
+            currentTrack = musicList[track];
+            startTime = AudioSettings.dspTime;
+        }
+    */
+    /**
+     * OUTDATED
+	 * Function Signature: int[] ConvertToSongPosition(float time);
+     * Description: Converts the current time into the song into the number of
+     * measures and beats into the song.
+     * Returns:     int[] of size 2 that contains the measure and beat.
+     *              int[0] contains the measure.
+     *              int[1] contains the beat.
+     */
+    /*public int[] ConvertToSongPosition(float time){
 		int bpm = currentTrack.bpm;
 		double current = currentTrack.source.time;
 		int[] output = new int[2];
 		output[0] = (int)(current*bpm/240f);
 		output[1] = (int)((current*bpm % 240f)*bpm/60f);
 		return output;
-	}
+	}*/
 
 	/**
 	 * Function Signature: void SetCurrentMeasure(int measure);

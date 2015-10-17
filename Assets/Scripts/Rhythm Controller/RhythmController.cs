@@ -23,6 +23,8 @@ public class RhythmController : MonoBehaviour {
 	/*Need RhythmEvent.cs*/
 	RhythmEvent[] eventList;
 
+    static RhythmController singleton;
+
 	int currentMeasure;
 	int currentBeat;
 
@@ -31,8 +33,19 @@ public class RhythmController : MonoBehaviour {
 
 	double startTime;
 
-    public RhythmController() {
-           
+
+    /**
+	 * Function Signature: void Awake();
+     * Description: Ensures that there is only one RhythmController.
+     */
+    void Awake() {
+        if (singleton == null || singleton == this){
+            Destroy(this.gameObject);
+            return;
+        } else {
+            singleton = this;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
 	// Use this for initialization

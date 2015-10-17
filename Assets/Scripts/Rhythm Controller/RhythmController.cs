@@ -40,14 +40,22 @@ public class RhythmController : MonoBehaviour {
 	void Update () {
 
 	}
-/*
-	void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
-		musicList[track].PlayAt(measure, beat);
-		currentTrack = musicList[track];
-		startTime = AudioSettings.dspTime;
-	}
-*/
-	public int[] ConvertToSongPosition(float time){
+    /*
+        void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
+            musicList[track].PlayAt(measure, beat);
+            currentTrack = musicList[track];
+            startTime = AudioSettings.dspTime;
+        }
+    */
+    /**
+	 * Function Signature: int[] ConvertToSongPosition(float time);
+     * Description: Converts the current time into the song into the number of
+     * measures and beats into the song.
+     * Returns:     int[] of size 2 that contains the measure and beat.
+     *              int[0] contains the measure.
+     *              int[1] contains the beat.
+     */
+    public int[] ConvertToSongPosition(float time){
 		int bpm = currentTrack.bpm;
 		double current = currentTrack.source.time;
 		int[] output = new int[2];

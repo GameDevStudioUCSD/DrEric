@@ -51,8 +51,8 @@ public class RhythmController : MonoBehaviour {
 		int bpm = currentTrack.bpm;
 		double current = currentTrack.source.time;
 		int[] output = new int[2];
-		output[0] = current*bpm/240f;
-		output[1] = (current*bpm % 240f)*bpm/60f;
+		output[0] = (int)(current*bpm/240f);
+		output[1] = (int)((current*bpm % 240f)*bpm/60f);
 		return output;
 	}
 

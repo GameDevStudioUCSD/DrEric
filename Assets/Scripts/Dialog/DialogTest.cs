@@ -12,6 +12,6 @@ public class DialogTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		conversation.getNext ().display ();
+        conversation.getNext ().display ();
 	}
 }

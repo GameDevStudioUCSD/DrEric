@@ -41,7 +41,7 @@ public class RhythmController : MonoBehaviour {
      * Description: Ensures that there is only one RhythmController.
      */
     void Awake() {
-        if (singleton == null || singleton == this){
+        if (singleton != null){
             Destroy(this.gameObject);
             return;
         } else {
@@ -55,6 +55,7 @@ public class RhythmController : MonoBehaviour {
 		startTime = AudioSettings.dspTime;
         currentTrack = musicList[songIndex];
         SetNoteLengths();
+		DebugLengths ();
 	}
 	
 	// Update is called once per frame
@@ -62,13 +63,29 @@ public class RhythmController : MonoBehaviour {
         
 	}
 
-    void SetNoteLengths() {
-        quarterNote = 60f / currentTrack.bpm;
-        halfNote = 60f / currentTrack.bpm * 2;
-        eigthNote = 60f / currentTrack.bpm / 2;
-        wholeNote = 60f / currentTrack.bpm * 4;
-        tripleEigthNote = 60f / currentTrack.bpm / 3;
+    void SetNoteLengths() { /*multiply by 1000 to convert to milliseconds*/
+        quarterNote = 60f * 1000f / currentTrack.bpm;
+        halfNote = 60f * 1000f / currentTrack.bpm * 2;
+        eigthNote = 60f * 1000f / currentTrack.bpm / 2;
+        wholeNote = 60f * 1000f / currentTrack.bpm * 4;
+        tripleEigthNote = 60f * 1000f / currentTrack.bpm / 3;
     }
+
+	void DebugLengths(){
+		Debug.Log ("quarter note " + quarterNote);
+		Debug.Log ("half note " + halfNote);
+		Debug.Log ("eigth note " + eigthNote);
+		Debug.Log ("whole note " + wholeNote);
+		Debug.Log ("triple eigth note" + tripleEigthNote);
+		Debug.Log ((300000%tripleEigthNote));
+		Debug.Log (WithinErrorMargin (300000 % tripleEigthNote, tripleEigthNote));
+	}
+	bool WithinErrorMargin( float modResult, float noteLength ){
+		if (modResult < 1 || noteLength - modResult < 1) {
+			return true;
+		}
+		return false;
+	}
     /*
         void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
             musicList[track].PlayAt(measure, beat);

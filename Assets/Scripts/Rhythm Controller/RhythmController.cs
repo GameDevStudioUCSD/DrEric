@@ -10,7 +10,7 @@ using System.Collections;
  * 				the RhythmEvents.
  */
 public class RhythmController : MonoBehaviour {
-
+	
 	private float quarterNote;
 	private float halfNote;
 	private float wholeNote;
@@ -63,7 +63,7 @@ public class RhythmController : MonoBehaviour {
         
 	}
 
-    void SetNoteLengths() { /*multiply by 1000 to convert to milliseconds*/
+    void SetNoteLengths() { /** multiply by 1000 to convert to milliseconds*/
         quarterNote = 60f * 1000f / currentTrack.bpm;
         halfNote = 60f * 1000f / currentTrack.bpm * 2;
         eigthNote = 60f * 1000f / currentTrack.bpm / 2;
@@ -80,6 +80,7 @@ public class RhythmController : MonoBehaviour {
 		Debug.Log ((300000%tripleEigthNote));
 		Debug.Log (WithinErrorMargin (300000 % tripleEigthNote, tripleEigthNote));
 	}
+	/** workaround to margins of error involving modulo with floating point numbers*/
 	bool WithinErrorMargin( float modResult, float noteLength ){
 		if (modResult < 1 || noteLength - modResult < 1) {
 			return true;

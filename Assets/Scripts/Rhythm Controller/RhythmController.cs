@@ -11,11 +11,11 @@ using System.Collections;
  */
 public class RhythmController : MonoBehaviour {
 
-	public const float quarterNote = 24f;
-	public const float halfNote = 48f;
-	public const float wholeNote = 96f;
-	public const float eigthNote = 12f;
-	public const float tripleEigthNote = 8f;
+	private float quarterNote;
+	private float halfNote;
+	private float wholeNote;
+	private float eigthNote;
+    private float tripleEigthNote;
 
 	/*Need MusicalTrack.cs*/
 	public MusicalTrack[] musicList;
@@ -51,12 +51,21 @@ public class RhythmController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startTime = AudioSettings.dspTime;
+        SetNoteLengths();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 	}
+
+    void SetNoteLengths() {
+        quarterNote = 60f / currentTrack.bpm;
+        halfNote = 60f / currentTrack.bpm * 2;
+        eigthNote = 60f / currentTrack.bpm / 2;
+        wholeNote = 60f / currentTrack.bpm * 4;
+        tripleEigthNote = 60f / currentTrack.bpm / 3;
+    }
     /*
         void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
             musicList[track].PlayAt(measure, beat);

@@ -16,14 +16,14 @@ using System.Diagnostics;
 /// JSON can otherwise be slightly invalid, but results could be unreliable if so (such as elements after error not being parsed, etc).
 /// Keep in mind that in JSON anything in double quotes are strings, so only primitives outside quotes are converted to correct type.</para>
 /// 
-/// <para>All objects are converted to Dictionary{string, dynamic}, all arrays are converted to List{dynamic}, and all doubles are converted to floats
+/// <para>All objects are converted to Dictionary{string, JSObject}, all arrays are converted to List{JSObject}, and all doubles are converted to floats
 /// 
 /// The default debugger (Unity or System.Diagnostics) is invoked on error when debugging, but no exceptions are intentionally thrown at run time.
 /// 
-/// Implemented using the 'JSONObject' library and my 'dynamic' library (both included in project)</para>
+/// Implemented using the 'JSONObject' library and my 'JSObject' library (both included in project)</para>
 /// 
 /// <para>Usage: Standard square bracket syntax for dictionary, lists. </para>
-/// <para>    dynamic c = parse(JSONString);      </para>
+/// <para>    JSObject c = parse(JSONString);      </para>
 /// <para>    c["character_name"];                                //Objects access using field name </para>
 /// <para>    c["expressions_list"]["exp_default"];               //Read JSON file to see format.         </para>
 /// <para>    c["expressions_list"]["exp_angry"][0];               </para>
@@ -33,18 +33,18 @@ using System.Diagnostics;
 /// <para>    c.Keys; </para>
 /// <para>    ... </para>
 /// 
-/// <para>    Dictionary{string, dynamic} dict = c;               //Assign to actual type for other methods and uses (foreach uses c.GetEnumerator()) </para>
-/// <para>    foreach (dynamic d in dict){ ... }                   </para>
+/// <para>    Dictionary{string, JSObject} dict = c;               //Assign to actual type for other methods and uses (foreach uses c.GetEnumerator()) </para>
+/// <para>    foreach (JSObject d in dict){ ... }                   </para>
 /// </summary>
 public class JSONParser
 {
 
     /// <summary>
-    /// Recursively parses JSON in given file, returning a dynamic object containing Dictionary<string, dynamic>, List<dynamic>, string, int, float, bool and null objects.
+    /// Recursively parses JSON in given file, returning a JSObject object containing Dictionary<string, JSObject>, List<JSObject>, string, int, float, bool and null objects.
     /// </summary>
     /// <param name="filePath"></param>
-    /// <returns>A dynamic object representing the JSON data. </returns>
-    public static dynamic parseFile(string filePath)
+    /// <returns>A JSObject object representing the JSON data. </returns>
+    public static JSObject parseFile(string filePath)
     {
         try
         {
@@ -63,11 +63,11 @@ public class JSONParser
     }
 
     /// <summary>
-    /// Recursively parses given JSONString, returning a dynamic object containing Dictionary<string, dynamic>, List<dynamic>, string, int, float, bool and null objects.
+    /// Recursively parses given JSONString, returning a JSObject object containing Dictionary<string, JSObject>, List<JSObject>, string, int, float, bool and null objects.
     /// </summary>
     /// <param name="filePath"></param>
-    /// <returns>A dynamic object representing the JSON data. </returns>
-    public static dynamic parse(string JSONString)
+    /// <returns>A JSObject object representing the JSON data. </returns>
+    public static JSObject parse(string JSONString)
     {
         try
         {
@@ -87,25 +87,25 @@ public class JSONParser
     }
 
     /// <summary>
-    /// Recursively parses given JSONObject, returning a dynamic object containing Dictionary<string, dynamic>, List<dynamic>, string, int, float, bool and null objects.
+    /// Recursively parses given JSONObject, returning a JSObject object containing Dictionary<string, JSObject>, List<JSObject>, string, int, float, bool and null objects.
     /// </summary>
     /// <param name="filePath"></param>
-    /// <returns>A dynamic object representing the JSON data. </returns>
-    public static dynamic parse(JSONObject obj)
+    /// <returns>A JSObject object representing the JSON data. </returns>
+    public static JSObject parse(JSONObject obj)
     {
         try
         {
             switch (obj.type)
             {
                 case JSONObject.Type.OBJECT:
-                    Dictionary<string, dynamic> d = new Dictionary<string, dynamic>();
+                    Dictionary<string, JSObject> d = new Dictionary<string, JSObject>();
                     for (int i = 0; i < obj.list.Count; i++)
                     {
                         d.Add(obj.keys[i], parse(obj.list[i]));
                     }
                     return d;
                 case JSONObject.Type.ARRAY:
-                    List<dynamic> l = new List<dynamic>();
+                    List<JSObject> l = new List<JSObject>();
                     foreach (JSONObject j in obj.list)
                     {
                         l.Add(parse(j));

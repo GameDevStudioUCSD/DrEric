@@ -12,6 +12,8 @@ public class Conversation
 	
 	public Conversation(string filename)
 	{
+        dynamic d = JSONParser.parseFile(filename);
+
 		leftDialogs = new List<Dialog> ();
 		rightDialogs = new List<Dialog> ();
 	}

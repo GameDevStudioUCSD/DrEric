@@ -7,9 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
 
-
 /// <summary>
-/// <para>A dynamic type implementation for Unity (with mono 2.0)
+/// <para>A dynamic type implementation for JavaScript style objects in Unity C# (with no System.Dynamic support) 
 /// 
 ///       Implements some functionality of a dynamic type with the class dynamic since Unity does not support dynamic types. 
 ///       Designed to work with JSONParser (JSONObject parser specifically) as is, but expandable.
@@ -47,127 +46,8 @@ public class dynamic
     private readonly List<dynamic> listValue;
     private readonly Dictionary<string, dynamic> dictionaryValue;
 
-    public Dictionary<string, dynamic>.KeyCollection Keys
-    {
-        get
-        {
-            if (type == Type.DICTIONARY_STRING_DYNAMIC)
-            {
-                return dictionaryValue.Keys;
-            }
-            else
-            {
-                throw new ArgumentException("Incompatible types");
-            }
-        }
-    }
 
-    public bool ContainsKey(string key)
-    {
-        if (type == Type.DICTIONARY_STRING_DYNAMIC)
-        {
-            return dictionaryValue.ContainsKey(key);
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible types");
-        }
-    }
-
-    public bool ContainsValue(dynamic value)
-    {
-        if (type == Type.DICTIONARY_STRING_DYNAMIC)
-        {
-            return dictionaryValue.ContainsValue(value);
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible types");
-        }
-    }
-
-    public bool Contains(dynamic value)
-    {
-        if (type == Type.LIST_DYNAMIC)
-        {
-            return listValue.Contains(value);
-        }
-        else
-        {
-            throw new ArgumentException("Incompatible types");
-        }
-    }
-
-    public dynamic this[string key]
-    {
-        get
-        {
-            if (type == Type.DICTIONARY_STRING_DYNAMIC)
-            {
-                return dictionaryValue[key];
-            }
-            else
-            {
-                throw new ArgumentException("Incompatible types");
-            }
-        }
-        set
-        {
-            if (type == Type.DICTIONARY_STRING_DYNAMIC)
-            {
-                dictionaryValue[key] = value;
-            }
-            else
-            {
-                throw new ArgumentException("Incompatible types");
-            }
-        }
-    }
-
-    public dynamic this[int key]
-    {
-        get
-        {
-            if (type == Type.LIST_DYNAMIC)
-            {
-                return listValue[key];
-            }
-            else
-            {
-                throw new ArgumentException("Incompatible types");
-            }
-        }
-        set
-        {
-            if (type == Type.LIST_DYNAMIC)
-            {
-                listValue[key] = value;
-            }
-            else
-            {
-                throw new ArgumentException("Incompatible types");
-            }
-        }
-    }
-
-    public int Count
-    {
-        get
-        {
-            if (type == Type.LIST_DYNAMIC)
-            {
-                return listValue.Count;
-            }
-            else if (type == Type.DICTIONARY_STRING_DYNAMIC)
-            {
-                return dictionaryValue.Count;
-            }
-            else
-            {
-                throw new ArgumentException("Incompatible types");
-            }
-        }
-    }
+    //Constructors
 
     public dynamic(double value)
     {
@@ -240,6 +120,8 @@ public class dynamic
         dictionaryValue = value;
     }
 
+    //Implicit setters
+
     public static implicit operator dynamic(double value) { return new dynamic(value); }
     public static implicit operator dynamic(string value) { return new dynamic(value); }
     public static implicit operator dynamic(float value) { return new dynamic(value); }
@@ -248,6 +130,8 @@ public class dynamic
     public static implicit operator dynamic(List<dynamic> value) { return new dynamic(value); }
     public static implicit operator dynamic(Dictionary<string, dynamic> value) { return new dynamic(value); }
 
+
+    //Implicit getters
 
     public static implicit operator string (dynamic v)
     {
@@ -269,19 +153,7 @@ public class dynamic
     public static implicit operator Dictionary<string, dynamic>(dynamic v) { if (v.type == Type.DICTIONARY_STRING_DYNAMIC) return v.dictionaryValue; else throw new InvalidCastException(); }
 
 
-    public override string ToString()
-    {
-        switch (type)
-        {
-            case Type.STRING: return stringValue.ToString();
-            case Type.FLOAT: return floatValue.ToString();
-            case Type.INT: return intValue.ToString();
-            case Type.BOOL: return boolValue.ToString();
-            case Type.LIST_DYNAMIC: return listValue.ToString();
-            case Type.DICTIONARY_STRING_DYNAMIC: return dictionaryValue.ToString();
-            default: return "Error";
-        }
-    }
+    //Operators override
 
     public static dynamic operator +(dynamic first, dynamic second)
     {
@@ -436,22 +308,156 @@ public class dynamic
         }
     }
 
-    /*
-     * Same as ==, checks value equality for value types and references for objects.
-     */
+
+    //Shared methods
+
+    public override string ToString()
+    {
+        switch (type)
+        {
+            case Type.STRING: return stringValue.ToString();
+            case Type.FLOAT: return floatValue.ToString();
+            case Type.INT: return intValue.ToString();
+            case Type.BOOL: return boolValue.ToString();
+            case Type.LIST_DYNAMIC: return listValue.ToString();
+            case Type.DICTIONARY_STRING_DYNAMIC: return dictionaryValue.ToString();
+            default: return "Error";
+        }
+    }
+
+    /// <summary>
+    /// Same as ==, checks value equality for value types and references for objects.
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     public override bool Equals(object obj)
     {
         return this == (dynamic)obj;
     }
 
-    /*
-     * Inherited from object
-     */
     public override int GetHashCode()
     {
         return base.GetHashCode();
     }
 
+
+    //List and Dictionary method
+
+    public int Count
+    {
+        get
+        {
+            if (type == Type.LIST_DYNAMIC)
+            {
+                return listValue.Count;
+            }
+            else if (type == Type.DICTIONARY_STRING_DYNAMIC)
+            {
+                return dictionaryValue.Count;
+            }
+            else
+            {
+                throw new ArgumentException("Incompatible types");
+            }
+        }
+    }
+
+
+    //List<dynamic> properties and methods
+
+    public void Add(dynamic value)
+    {
+        if (type == Type.LIST_DYNAMIC)
+        {
+            listValue.Add(value);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible types");
+        }
+    }
+
+    public dynamic this[int key]
+    {
+        get
+        {
+            if (type == Type.LIST_DYNAMIC)
+            {
+                return listValue[key];
+            }
+            else
+            {
+                throw new ArgumentException("Incompatible types");
+            }
+        }
+        set
+        {
+            if (type == Type.LIST_DYNAMIC)
+            {
+                listValue[key] = value;
+            }
+            else
+            {
+                throw new ArgumentException("Incompatible types");
+            }
+        }
+    }
+
+    public bool Contains(dynamic value)
+    {
+        if (type == Type.LIST_DYNAMIC)
+        {
+            return listValue.Contains(value);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible types");
+        }
+    }
+
+
+    //Dictionary properties and methods
+
+    public Dictionary<string, dynamic>.KeyCollection Keys
+    {
+        get
+        {
+            if (type == Type.DICTIONARY_STRING_DYNAMIC)
+            {
+                return dictionaryValue.Keys;
+            }
+            else
+            {
+                throw new ArgumentException("Incompatible types");
+            }
+        }
+    }
+
+    public dynamic this[string key]
+    {
+        get
+        {
+            if (type == Type.DICTIONARY_STRING_DYNAMIC)
+            {
+                return dictionaryValue[key];
+            }
+            else
+            {
+                throw new ArgumentException("Incompatible types");
+            }
+        }
+        set
+        {
+            if (type == Type.DICTIONARY_STRING_DYNAMIC)
+            {
+                dictionaryValue[key] = value;
+            }
+            else
+            {
+                throw new ArgumentException("Incompatible types");
+            }
+        }
+    }
 
     public void Add(string key, dynamic value)
     {
@@ -465,11 +471,23 @@ public class dynamic
         }
     }
 
-    public void Add(dynamic value)
+    public bool ContainsKey(string key)
     {
-        if (type == Type.LIST_DYNAMIC)
+        if (type == Type.DICTIONARY_STRING_DYNAMIC)
         {
-            listValue.Add(value);
+            return dictionaryValue.ContainsKey(key);
+        }
+        else
+        {
+            throw new ArgumentException("Incompatible types");
+        }
+    }
+
+    public bool ContainsValue(dynamic value)
+    {
+        if (type == Type.DICTIONARY_STRING_DYNAMIC)
+        {
+            return dictionaryValue.ContainsValue(value);
         }
         else
         {

@@ -15,12 +15,11 @@ public class Conversation
 
 	public Conversation(string jsonFilename, string conversationName)
 	{
-<<<<<<< HEAD
         TextAsset jsonAsset = Resources.Load(@jsonFilename) as TextAsset;
         string json = jsonAsset.text;
 
-        dynamic parsed = JSONParser.parse(json);
-        dynamic conversations = parsed["conversations"];
+        JSObject parsed = JSONParser.parse(json);
+        JSObject conversations = parsed["conversations"];
 
         leftDialogs = new List<Dialog>();
         rightDialogs = new List<Dialog>();
@@ -30,13 +29,13 @@ public class Conversation
             string name = conversations[i]["name"];
             if (!name.Equals(conversationName)) continue;
 
-            dynamic left_strings = conversations[i]["left_strings"];
+            JSObject left_strings = conversations[i]["left_strings"];
             for (int j = 0; j < left_strings.Count; j++)
             {
                 leftDialogs.Add(new Dialog(left_strings[j], null));
         
             }
-            dynamic right_strings = conversations[i]["right_strings"];
+            JSObject right_strings = conversations[i]["right_strings"];
             for (int j = 0; j < right_strings.Count; j++)
             {
                 rightDialogs.Add(new Dialog(right_strings[j], null));
@@ -46,12 +45,10 @@ public class Conversation
             //string rightPortrait = conversations[i]["right_portrait"];
             //TODO PORTRAITS NULL CHARACTESR
         }
-=======
-        dynamic d = JSONParser.parseFile(filename);
+        JSObject d = JSONParser.parseFile(filename);
 
 		leftDialogs = new List<Dialog> ();
 		rightDialogs = new List<Dialog> ();
->>>>>>> origin/Dialog
 	}
 	
 	private void add(Dialog dialog, bool left)

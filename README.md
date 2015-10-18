@@ -1,5 +1,4 @@
 # DrEric
-(An edit to test refresh.)
 
 Dr. Eric’s Psychedelic Wonderland
 

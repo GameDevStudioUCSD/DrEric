@@ -25,7 +25,7 @@ public class RhythmController : MonoBehaviour {
 	/*Need RhythmEvent.cs*/
 	RhythmEvent[] eventList;
 
-    static RhythmController singleton;
+    static RhythmController singleton = null;
 
 	int currentMeasure;
 	int currentBeat;
@@ -41,7 +41,7 @@ public class RhythmController : MonoBehaviour {
      * Description: Ensures that there is only one RhythmController.
      */
     void Awake() {
-        if (singleton != null){
+        if (singleton != null && singleton != this){
             Destroy(this.gameObject);
             return;
         } else {

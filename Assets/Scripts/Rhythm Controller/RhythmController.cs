@@ -21,6 +21,7 @@ public class RhythmController : MonoBehaviour {
 	public MusicalTrack[] musicList;
 
     public int songIndex = 0;
+    public float errorMargin = 1f;
 
 	/*Need RhythmEvent.cs*/
 	RhythmEvent[] eventList;
@@ -82,7 +83,7 @@ public class RhythmController : MonoBehaviour {
 	}
 	/** workaround to margins of error involving modulo with floating point numbers*/
 	bool WithinErrorMargin( float modResult, float noteLength ){
-		if (modResult < 1 || noteLength - modResult < 1) {
+		if (modResult < errorMargin || noteLength - modResult < errorMargin) {
 			return true;
 		}
 		return false;

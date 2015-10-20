@@ -11,12 +11,16 @@ public class GUIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Text[] texts = this.GetComponentsInChildren<Text> ();
-		leftText = texts[0];
-		rightText = texts [1];
-		Image[] images = this.GetComponentsInChildren<Image> ();
-		leftImage = images [0];
-		rightImage = images [1];
+        GameObject canvasObject = GameObject.Find("Canvas");
+        Transform textLeftTr = canvasObject.transform.Find("LeftText");
+        Transform textRightTr = canvasObject.transform.Find("RightText");
+		leftText = textLeftTr.GetComponent<Text>();
+		rightText = textRightTr.GetComponent<Text>(); 
+        
+        Transform imageLeftTr = canvasObject.transform.Find("LeftImage");
+        Transform imageRightTr = canvasObject.transform.Find("RightImage");
+        leftImage = imageLeftTr.GetComponent<Image>();
+		rightImage = imageRightTr.GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
@@ -35,4 +39,12 @@ public class GUIController : MonoBehaviour {
         rightText.enabled = true;
 		rightText.text = text;
 	}
+
+    public void endSpeech()
+    {
+        rightText.enabled = false;
+        leftText.enabled = false;
+        leftImage.enabled = false;
+        rightImage.enabled = false;
+    }
 }

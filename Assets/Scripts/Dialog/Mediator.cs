@@ -32,16 +32,14 @@ public class Mediator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time - previousTime > 0.5)
-        {
+        if (currentConversation != null&&Input.GetMouseButtonDown(0))
             advanceConversation();
-            previousTime = Time.time;
-        }
 	}
 
     public void loadConversation(string conversationName)
     {
         currentConversation = conversations[conversationName];
+        Debug.Log(currentConversation.getNextLeft());
     }
 
     public void advanceConversation()
@@ -55,25 +53,23 @@ public class Mediator : MonoBehaviour {
             return;
         }
 
-        if (conversationTurn % 2 == 0)
+        if (conversationTurn % 2 == 0 && currentConversation.hasNextLeft())
         {
             Dialog nextDialogLeft = currentConversation.getNextLeft();
-            if (nextDialogLeft == null)
-            {
-                endConversation();
-                return;
-            }
             controller.leftSay(nextDialogLeft.getText());
         }
         else
         {
-            Dialog nextDialogRight = currentConversation.getNextRight();
-            if (nextDialogRight == null)
+            if(currentConversation.hasNextRight())
+            { 
+                Dialog nextDialogRight = currentConversation.getNextRight();
+                controller.rightSay(nextDialogRight.getText());
+            }
+            else if(!currentConversation.hasNextRight()&&!currentConversation.hasNextLeft())
             {
                 endConversation();
                 return;
             }
-            controller.rightSay(nextDialogRight.getText());
         }
         previousTime = Time.time;
         conversationTurn++;
@@ -82,6 +78,7 @@ public class Mediator : MonoBehaviour {
     private void endConversation()
     {
         //dialogState.conversationEnded();
+        controller.endSpeech();
         currentConversation = null;
     }
 }

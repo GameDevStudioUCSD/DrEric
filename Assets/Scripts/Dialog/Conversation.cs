@@ -33,7 +33,6 @@ public class Conversation
             for (int j = 0; j < left_strings.Count; j++)
             {
                 leftDialogs.Add(new Dialog(left_strings[j], null));
-        
             }
             JSObject right_strings = conversations[i]["right_strings"];
             for (int j = 0; j < right_strings.Count; j++)
@@ -46,9 +45,6 @@ public class Conversation
             //TODO PORTRAITS NULL CHARACTESR
         }
         //JSObject d = JSONParser.parseFile(filename);
-
-		leftDialogs = new List<Dialog> ();
-		rightDialogs = new List<Dialog> ();
 	}
 	
 	private void add(Dialog dialog, bool left)
@@ -74,4 +70,13 @@ public class Conversation
 
 		return rightDialogs[rightIndex++];
 	}
+    public bool hasNextLeft()
+    {
+        return leftIndex < leftDialogs.Count;
+    }
+
+    public bool hasNextRight()
+    {
+        return rightIndex < rightDialogs.Count;
+    }
 }

@@ -6,9 +6,8 @@ using System.Collections;
  * Author: Sean Wenzel \n
  * Contributing Authors: N/A \n
  * Date Drafted: 10/10/2015 \n
- * Description:  Event that is “observing” the clock for a call. Interface
- * cannot implement data fields, so the fields from the UML are implemented
- * as C# Properties.
+ * Description:  Event that is “observing” the clock for a call. 
+ * Data fields from the UML are implemented as C# Properties.
  */
 
 interface RhythmEvent {
@@ -30,7 +29,8 @@ interface RhythmEvent {
 	}
 	
 	/**
-     * Description: to be implemented, does whatever event needs to do
+     * Description: The event that occurs when an object triggers it in gameplay.
+     * To be implemented by the object that triggers the event.
      */
 	void TriggerEvent();
 }

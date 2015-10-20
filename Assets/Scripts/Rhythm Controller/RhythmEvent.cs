@@ -1,17 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.Events; // We want the event system built into Unity!
 using System.Collections;
 
 /**
  * Filename: RhythmEvent.cs \n
  * Author: Sean Wenzel \n
- * Contributing Authors: N/A \n
+ * Contributing Authors: Michael Gonzalez \n
  * Date Drafted: 10/10/2015 \n
  * Description:  Event that is “observing” the clock for a call. 
  * Data fields from the UML are implemented as C# Properties.
  */
 
-interface RhythmEvent {
+class RhythmEvent : MonoBehaviour{
+    public UnityEvent m_MyEvent;
 
+    void Start()
+    {
+        if (m_MyEvent == null)
+            m_MyEvent = new UnityEvent();
+
+        //m_MyEvent.AddListener(TriggerEvent);
+    }
 	// the specified measures of a measure cycle that contains the event
 	int[] specifiedMeasures {
 		get;
@@ -32,5 +41,5 @@ interface RhythmEvent {
      * Description: The event that occurs when an object triggers it in gameplay.
      * To be implemented by the object that triggers the event.
      */
-	void TriggerEvent();
+	//void TriggerEvent();
 }

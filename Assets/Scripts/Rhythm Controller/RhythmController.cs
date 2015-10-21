@@ -2,12 +2,12 @@
 using System.Collections;
 
 /**
- * Filename: RhythmController.cs
- * Author: Jason Wu
- * Contributing Authors: N/A
- * Date Drafted: 10/10/2015
- * Description: Plays and monitors the MusicalTrack, and calls
- * 				the RhythmEvents.
+ * Filename: RhythmController.cs \n
+ * Author: Jason Wu \n
+ * Contributing Authors: N/A \n
+ * Date Drafted: 10/10/2015 \n
+ * Description: Plays and monitors the MusicalTrack, and calls \n
+ * 				the RhythmEvents. \n
  */
 public class RhythmController : MonoBehaviour {
 	

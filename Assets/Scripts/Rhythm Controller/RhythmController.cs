@@ -11,10 +11,14 @@ using System.Collections;
  */
 public class RhythmController : MonoBehaviour {
 	
-	private float quarterNote;
-	private float halfNote;
 	private float wholeNote;
+	private float halfNote;
+	private float quarterNote;
 	private float eigthNote;
+    private float sixteenthNote;
+    private float tripleWholeNote;
+    private float tripleHalfNote;
+    private float tripleQuarterNote;
     private float tripleEigthNote;
 
 	/*Need MusicalTrack.cs*/
@@ -65,11 +69,15 @@ public class RhythmController : MonoBehaviour {
 	}
 
     void SetNoteLengths() { /** multiply by 1000 to convert to milliseconds*/
-        quarterNote = 60f * 1000f / currentTrack.bpm;
-        halfNote = 60f * 1000f / currentTrack.bpm * 2;
-        eigthNote = 60f * 1000f / currentTrack.bpm / 2;
         wholeNote = 60f * 1000f / currentTrack.bpm * 4;
-        tripleEigthNote = 60f * 1000f / currentTrack.bpm / 3;
+        halfNote = 60f * 1000f / currentTrack.bpm * 2;
+        quarterNote = 60f * 1000f / currentTrack.bpm;
+        eigthNote = 60f * 1000f / currentTrack.bpm / 2;
+        sixteenthNote = 60f * 1000f / currentTrack.bpm / 4;
+        tripleWholeNote = 60f * 1000f / currentTrack.bpm * 4 / 3;
+        tripleHalfNote = 60f * 1000f / currentTrack.bpm * 2 / 3;
+        tripleQuarterNote = 60f * 1000f / currentTrack.bpm / 3;
+        tripleEigthNote = 60f * 1000f / currentTrack.bpm / 6;
     }
 
 	void DebugLengths(){

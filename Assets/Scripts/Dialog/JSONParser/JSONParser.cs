@@ -40,7 +40,7 @@ public class JSONParser
 {
 
     /// <summary>
-    /// Recursively parses JSON in given file, returning a JSObject object containing Dictionary<string, JSObject>, List<JSObject>, string, int, float, bool and null objects.
+    /// Recursively parses JSON in given file, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
     /// </summary>
     /// <param name="filePath"></param>
     /// <returns>A JSObject object representing the JSON data. </returns>
@@ -63,9 +63,9 @@ public class JSONParser
     }
 
     /// <summary>
-    /// Recursively parses given JSONString, returning a JSObject object containing Dictionary<string, JSObject>, List<JSObject>, string, int, float, bool and null objects.
+    /// Recursively parses given JSONString, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
     /// </summary>
-    /// <param name="filePath"></param>
+    /// <param name="JSONString"></param>
     /// <returns>A JSObject object representing the JSON data. </returns>
     public static JSObject parse(string JSONString)
     {
@@ -87,9 +87,9 @@ public class JSONParser
     }
 
     /// <summary>
-    /// Recursively parses given JSONObject, returning a JSObject object containing Dictionary<string, JSObject>, List<JSObject>, string, int, float, bool and null objects.
+    /// Recursively parses given JSONObject, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
     /// </summary>
-    /// <param name="filePath"></param>
+    /// <param name="obj"></param>
     /// <returns>A JSObject object representing the JSON data. </returns>
     public static JSObject parse(JSONObject obj)
     {

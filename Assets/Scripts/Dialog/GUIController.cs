@@ -10,6 +10,10 @@ public class GUIController : MonoBehaviour {
 	private Image rightImage;
 
 	// Use this for initialization
+
+        /** 
+         * Initialize the GUI controllers. 
+         */
 	void Start () {
         GameObject canvasObject = GameObject.Find("Canvas");
         Transform textLeftTr = canvasObject.transform.Find("LeftText");
@@ -28,6 +32,10 @@ public class GUIController : MonoBehaviour {
 	
 	}
 
+    /**
+     * Determines who's turn for dialog and display. 
+     * @param dialog the dialog that will be displayed. 
+     */
 	public void say(Dialog dialog) {
         rightText.enabled = false;
         leftText.enabled = true;
@@ -48,6 +56,9 @@ public class GUIController : MonoBehaviour {
 
     }
 
+    /** 
+     * Close all dialogson screen.
+     */
     public void endSpeech()
     {
         rightText.enabled = false;

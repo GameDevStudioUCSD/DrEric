@@ -46,7 +46,7 @@ public class Conversation
     /**  
      *  Determines whether there's dialog remaining in the conversation.
      *  
-     *  @return true if there is dialog remaining.
+     *  @return A boolean representing if there is dialog remaining or not.
      */
     public bool hasNext()
     {

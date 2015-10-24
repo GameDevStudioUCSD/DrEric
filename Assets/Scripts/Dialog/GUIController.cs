@@ -10,6 +10,10 @@ public class GUIController : MonoBehaviour {
 	private Image rightImage;
 
 	// Use this for initialization
+
+        /** 
+         * Initialize the GUI controllers. 
+         */
 	void Start () {
         GameObject canvasObject = GameObject.Find("Canvas");
         Transform textLeftTr = canvasObject.transform.Find("LeftText");
@@ -27,11 +31,11 @@ public class GUIController : MonoBehaviour {
 	void Update () {
 	
 	}
-
+    
     /**  
      *  Recursively parses given JSONString, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
-     *  
-     *  @param dialog
+     *  This determines who's turn for dialog and display.
+     *  @param dialog, the dialog that will be displayed
      */
     public void say(Dialog dialog) {
         rightText.enabled = false;
@@ -52,9 +56,10 @@ public class GUIController : MonoBehaviour {
         }
 
     }
+    
 
     /**  
-     *  It hides all the text. 
+     *  Hides all the text and image portraits pertaining to the current conversation. 
      */
     public void endSpeech()
     {

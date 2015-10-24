@@ -23,5 +23,11 @@ public class Dialog
      *  @return A string object representing the Dialog data. 
      */
     public string getText() { return text; }
+
+    /**  
+     *  Determines if the next dialogue is left oriented.
+     *  
+     *  @return A boolean representing if the dialog is left positioned or not. 
+     */
     public bool getIsLeft() { return left; }
 }

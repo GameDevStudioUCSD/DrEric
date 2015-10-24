@@ -13,11 +13,16 @@ public class Mediator : MonoBehaviour {
 
     //private DialogState dialogState;
 
+    /** 
+     * gets the refernce to the GUI controller from teh canvas. 
+     */
 	void Awake() {
 		controller = GameObject.Find ("Canvas").GetComponent<GUIController> ();
 	}
 
-	// Use this for initialization
+    /**
+     * Initializlization
+     */
 	void Start () {
 		
         conversations = new Dictionary<string, Conversation>();
@@ -31,6 +36,11 @@ public class Mediator : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
+        /** 
+         * Update the conversation once per frame. 
+         */
+
 	void Update () {
         if (currentConversation != null && Input.GetMouseButtonDown(0))
             advanceConversation();

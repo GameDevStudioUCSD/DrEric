@@ -13,11 +13,16 @@ public class Mediator : MonoBehaviour {
 
     //private DialogState dialogState;
 
+    /** 
+     * gets the refernce to the GUI controller from teh canvas. 
+     */
 	void Awake() {
 		controller = GameObject.Find ("Canvas").GetComponent<GUIController> ();
 	}
 
-	// Use this for initialization
+    /**
+     * Initializlization
+     */
 	void Start () {
 		
         conversations = new Dictionary<string, Conversation>();
@@ -31,16 +36,29 @@ public class Mediator : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
+        /** 
+         * Update the conversation once per frame. 
+         */
+
 	void Update () {
         if (currentConversation != null && Input.GetMouseButtonDown(0))
             advanceConversation();
 	}
 
+    /**  
+     *  Loads conversation from the conversation's dictionary.
+     *  
+     *  @param conversationName 
+     */
     public void loadConversation(string conversationName)
     {
         currentConversation = conversations[conversationName];
     }
 
+    /**  
+     *  Moves the conversation to the next dialog.
+     */
     public void advanceConversation()
     {
         if (currentConversation == null)
@@ -64,6 +82,9 @@ public class Mediator : MonoBehaviour {
         conversationTurn++;
     }
 
+    /**  
+     *  This method should be called when reach the end of the conversation. It hides all the text.
+     */
     private void endConversation()
     {
         //dialogState.conversationEnded();

@@ -67,7 +67,7 @@ public class JSONParser
      *  Recursively parses given JSONString, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
      *  
      *  @param JSONString
-     *  @returnA JSObject object representing the JSON data. 
+     *  @return JSObject object representing the JSON data. 
      */
     public static JSObject parse(string JSONString)
     {
@@ -92,7 +92,7 @@ public class JSONParser
      *  Recursively parses given JSONObject, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
      *  
      *  @param obj
-     *  @returnA JSObject object representing the JSON data. 
+     *  @return JSObject object representing the JSON data. 
      */
     public static JSObject parse(JSONObject obj)
     {

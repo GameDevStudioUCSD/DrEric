@@ -489,11 +489,6 @@ public class JSObject : IEnumerable
         }
     }
 
-     *  <summary>
-     *  Same as ==, checks value equality for value types and references for objects.
-     *  </summary>
-     *  <param name="obj"></param>
-     *  <returns></returns>
     public override bool Equals(object obj)
     {
         return this == (JSObject)obj;

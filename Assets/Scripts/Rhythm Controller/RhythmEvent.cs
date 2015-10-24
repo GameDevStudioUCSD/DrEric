@@ -18,10 +18,10 @@ class RhythmEvent : MonoBehaviour{
 	
     void Start()
     {
+        RhythmController controller = RhythmController.GetController();
         if (m_MyEvent == null)
             m_MyEvent = new UnityEvent();
 
-        //m_MyEvent.AddListener(TriggerEvent);
     }
 	
 	/**

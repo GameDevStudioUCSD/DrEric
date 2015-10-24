@@ -10,7 +10,7 @@ using System.Collections;
  * 				the RhythmEvents. \n
  */
 public class RhythmController : MonoBehaviour {
-	
+    private static const string NAME = "RhythmController";
 	private float wholeNote;
 	private float halfNote;
 	private float quarterNote;
@@ -41,6 +41,11 @@ public class RhythmController : MonoBehaviour {
 	double startTime;
 
 
+    public static RhythmController GetController()
+    {
+        GameObject controller = GameObject.Find(NAME);
+        return controller.GetComponent<RhythmController>();
+    }
     /**
 	 * Function Signature: void Awake();
      * Description: Ensures that there is only one RhythmController.
@@ -61,6 +66,7 @@ public class RhythmController : MonoBehaviour {
         currentTrack = musicList[songIndex];
         SetNoteLengths();
 		DebugLengths ();
+        this.name = NAME;
 	}
 	
 	// Update is called once per frame

@@ -10,4 +10,14 @@ using System.Collections;
  * Quarter Note, Whole Note Tripplet, etc.
  */
 public enum NoteDivision {
+	sixteenthNote,
+	eighthNote,
+	quarterNote,
+	halfNote,
+	wholeNote,
+	tripleWholeNote,
+	tripleHalfNote,
+	tripleQuarterNote,
+	tripleEigthNote
 }
+

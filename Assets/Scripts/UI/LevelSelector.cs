@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-//hey
+//hey hey there
 public class LevelSelector: MonoBehaviour { 
     //changed target type from transform to vector3 and added new in front of vector3
 	public Vector3 target = new Vector3(348f,0f,0f);

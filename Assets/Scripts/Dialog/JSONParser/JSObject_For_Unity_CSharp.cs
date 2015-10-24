@@ -7,33 +7,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// <para>A dynamic type implementation for JavaScript style objects and primitives in Unity C# (with no System.dynamic support) 
-/// 
-///       Implements some functionality of a dynamic type with the class JSObject since Unity does not support dynamic types. 
-///       Designed to work with JSONParser (JSONObject parser specifically) as is, but is expandable.
-/// 
-///       Supports string, float, int, bool, List{JSObject} and List{string, JSObject}. Doubles are automatically converted to floats. Nests infinitely. </para>
-/// <para>Usage: </para>
-/// <para>Values or references can be directly assigned from or to this JSObject object. Loosely typed, so most cast errors only show up at run time as an exception. </para>
-/// <para>    JSObject d = "squid"; </para>
-/// <para>    string s = d;                    //No cast necessary </para>
-/// <para>    d = 1;                           //Converted to int </para>
-/// <para>    s = (d + 4) % 5;                 //Supports standard math and string operations + - * / % and +(concat) </para>
-/// <para>    float f = d * 5;                 //and type conversions </para>
-/// <para>    Console.Write(d.ToString());     //Unfortunately ToString() is necessary due to a C# bug in Console. Other uses, like Debug.Log(d), Debug.Write(d), work perfectly. </para>
-/// 
-/// <para> Some common methods and properties are implemented for List and Dictionary. The rest can be accessed by assigning it to a correct type reference. </para>
-/// <para>     JSObject d = new Dictionary{string, JSObject}();                   </para>
-/// <para>     d.Add("key", new List{JSObject});                                 </para>
-/// <para>     d["key"].Count;                                          //0  Gets the Count for the list </para>
-/// <para>     d.ContainsKey("key");                                    //true </para>
-/// <para>     d["key"] = 15;                                           //Converts the list in the dictionary to int with value 15 </para>
-/// 
-/// <para>     Dictionary{string, JSObject}.KeyCollection keys = d.Keys; //Gets the usual list of keys </para>
-/// <para>     Dictionary{string, JSObject} dict = d;                    //Gets the actual dictionary </para>
-/// <para>     //Additional methods available after conversion </para>
-/// </summary>
+/**
+ * A dynamic type implementation for JavaScript style objects and primitives in Unity C# (with no System.dynamic support) 
+ * https://github.com/SouICry/JSObject_For_Unity_CSharp
+ *  
+ * Implements some functionality of a dynamic type with the class JSObject since Unity does not support dynamic types. 
+ * Designed to work with JSONParser (JSONObject parser specifically) as is, but is expandable.
+ *  
+ * Supports string, float, int, bool, List{JSObject} and List{string, JSObject}. Doubles are automatically converted to floats. Nests infinitely. 
+ * 
+ * Usage: 
+ * Values or references can be directly assigned from or to this JSObject object. Loosely typed, so most cast errors only show up at run time as an exception. 
+ *      JSObject d = "squid"; 
+ *      string s = d;                    //No cast necessary 
+ *      d = 1;                           //Converted to int 
+ *      s = (d + 4) % 5;                 //Supports standard math and string operations + - * / % and +(concat) 
+ *      float f = d * 5;                 //and type conversions 
+ *      Console.Write(d.ToString());     //Unfortunately ToString() is necessary due to a C# bug in Console. Other uses, like Debug.Log(d), Debug.Write(d), work perfectly. 
+ *  
+ * Some common methods and properties are implemented for List and Dictionary. The rest can be accessed by assigning it to a correct type reference. 
+ *      JSObject d = new Dictionary{string, JSObject}();                   
+ *      d.Add("key", new List{JSObject});                                 
+ *      d["key"].Count;                                          //0  Gets the Count for the list 
+ *      d.ContainsKey("key");                                    //true 
+ *      d["key"] = 15;                                           //Converts the list in the dictionary to int with value 15 
+ *  
+ *      Dictionary{string, JSObject}.KeyCollection keys = d.Keys; //Gets the usual list of keys 
+ *      Dictionary{string, JSObject} dict = d;                    //Gets the actual dictionary 
+ *      //Additional methods available after conversion 
+*/
+
 
 public class JSObject : IEnumerable
 {
@@ -486,11 +489,11 @@ public class JSObject : IEnumerable
         }
     }
 
-    /// <summary>
-    /// Same as ==, checks value equality for value types and references for objects.
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <returns></returns>
+     *  <summary>
+     *  Same as ==, checks value equality for value types and references for objects.
+     *  </summary>
+     *  <param name="obj"></param>
+     *  <returns></returns>
     public override bool Equals(object obj)
     {
         return this == (JSObject)obj;

@@ -21,8 +21,19 @@ public class Dialog
 		this.character = character;
         left = isLeft;
 	}
-	
-	public string getText() { return text; }
+
+    /**  
+     *  Returns the text of the dialog.
+     *  
+     *  @return A string object representing the Dialog data. 
+     */
+    public string getText() { return text; }
+
+    /**  
+     *  Determines if the next dialogue is left oriented.
+     *  
+     *  @return A boolean representing if the dialog is left positioned or not. 
+     */
     public bool getIsLeft() { return left; }
     public Sprite getPortrait() { return character.getPortrait(expression); }
 }

@@ -18,6 +18,7 @@ public class Dialog
 	}
 	
 	public string getText() { return text; }
+
     /**  
      *  Determines if the next dialogue is left oriented.
      *  

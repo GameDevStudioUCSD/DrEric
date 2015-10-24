@@ -43,6 +43,11 @@ public class Conversation
 		return dialogs[index++];
 	}
 
+    /**  
+     *  Determines whether there's dialog remaining in the conversation.
+     *  
+     *  @return true if there is dialog remaining.
+     */
     public bool hasNext()
     {
         return index < dialogs.Count;

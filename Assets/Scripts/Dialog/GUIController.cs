@@ -28,7 +28,12 @@ public class GUIController : MonoBehaviour {
 	
 	}
 
-	public void say(Dialog dialog) {
+    /**  
+     *  Recursively parses given JSONString, returning a JSObject object containing Dictionary{string, JSObject}, List{JSObject}, string, int, float, bool and null objects.
+     *  
+     *  @param dialog
+     */
+    public void say(Dialog dialog) {
         rightText.enabled = false;
         leftText.enabled = true;
 		leftText.text = dialog.getText();
@@ -48,6 +53,9 @@ public class GUIController : MonoBehaviour {
 
     }
 
+    /**  
+     *  It hides all the text. 
+     */
     public void endSpeech()
     {
         rightText.enabled = false;

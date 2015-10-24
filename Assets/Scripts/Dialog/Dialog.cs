@@ -16,7 +16,12 @@ public class Dialog
 		portrait = -1;
         left = isLeft;
 	}
-	
-	public string getText() { return text; }
+
+    /**  
+     *  Returns the text of the dialog.
+     *  
+     *  @return A string object representing the Dialog data. 
+     */
+    public string getText() { return text; }
     public bool getIsLeft() { return left; }
 }

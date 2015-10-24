@@ -36,11 +36,19 @@ public class Mediator : MonoBehaviour {
             advanceConversation();
 	}
 
+    /**  
+     *  Loads conversation from the conversation's dictionary.
+     *  
+     *  @param conversationName 
+     */
     public void loadConversation(string conversationName)
     {
         currentConversation = conversations[conversationName];
     }
 
+    /**  
+     *  Moves the conversation to the next dialog.
+     */
     public void advanceConversation()
     {
         if (currentConversation == null)
@@ -64,6 +72,9 @@ public class Mediator : MonoBehaviour {
         conversationTurn++;
     }
 
+    /**  
+     *  This method should be called when reach the end of the conversation. It hides all the text.
+     */
     private void endConversation()
     {
         //dialogState.conversationEnded();

@@ -28,17 +28,25 @@ public class GUIController : MonoBehaviour {
 	
 	}
 
-	public void leftSay(string text) {
+	public void say(Dialog dialog) {
         rightText.enabled = false;
         leftText.enabled = true;
-		leftText.text = text;
-	}
+		leftText.text = dialog.getText();
 
-	public void rightSay(string text) {
-        leftText.enabled = false;
-        rightText.enabled = true;
-		rightText.text = text;
-	}
+        if (dialog.getIsLeft())
+        {
+            leftText.enabled = true;
+            rightText.enabled = false;
+            leftText.text = dialog.getText();
+        }
+        else
+        {
+            leftText.enabled = false;
+            rightText.enabled = true;
+            rightText.text = dialog.getText();
+        }
+
+    }
 
     public void endSpeech()
     {

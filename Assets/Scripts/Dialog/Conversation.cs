@@ -5,11 +5,8 @@ using System.IO;
 
 public class Conversation 
 {
-	private List<Dialog> leftDialogs;
-	private List<Dialog> rightDialogs;
-
-    private int leftIndex;
-	private int rightIndex;
+    private List<Dialog> dialogs;
+    private int index;
 
     private string conversationName;
 
@@ -21,62 +18,33 @@ public class Conversation
         JSObject parsed = JSONParser.parse(json);
         JSObject conversations = parsed["conversations"];
 
-        leftDialogs = new List<Dialog>();
-        rightDialogs = new List<Dialog>();
+        dialogs = new List<Dialog>();
 
-        for (int i = 0; i < conversations.Count; i++)
+        JSObject raw_dialogs = conversations[conversationName];
+
+        foreach (JSObject raw_dialog in raw_dialogs)
         {
-            string name = conversations[i]["name"];
-            if (!name.Equals(conversationName)) continue;
-
-            JSObject left_strings = conversations[i]["left_strings"];
-            for (int j = 0; j < left_strings.Count; j++)
-            {
-                leftDialogs.Add(new Dialog(left_strings[j], null));
-            }
-            JSObject right_strings = conversations[i]["right_strings"];
-            for (int j = 0; j < right_strings.Count; j++)
-            {
-                rightDialogs.Add(new Dialog(right_strings[j], null));
-            }
-
-            //string leftPortrait = conversations[i]["left_portrait"];
-            //string rightPortrait = conversations[i]["right_portrait"];
-            //TODO PORTRAITS NULL CHARACTESR
+            Debug.Log(raw_dialog["text"]);
+            dialogs.Add(
+                new Dialog(
+                    raw_dialog["text"]
+                  , null //implement the character class
+                  , raw_dialog["isLeft"]
+                )
+            );
         }
-        //JSObject d = JSONParser.parseFile(filename);
 	}
 	
-	private void add(Dialog dialog, bool left)
+	public Dialog getNext()
 	{
-		if (left)
-			leftDialogs.Add (dialog);
-		else
-			rightDialogs.Add (dialog);
-	}
-	
-	public Dialog getNextLeft()
-	{
-        if (leftIndex >= leftDialogs.Count)
+        if (index >= dialogs.Count)
             return null;
 
-		return leftDialogs [leftIndex++];
+		return dialogs[index++];
 	}
 
-	public Dialog getNextRight()
-	{
-        if (rightIndex >= rightDialogs.Count)
-            return null;
-
-		return rightDialogs[rightIndex++];
-	}
-    public bool hasNextLeft()
+    public bool hasNext()
     {
-        return leftIndex < leftDialogs.Count;
-    }
-
-    public bool hasNextRight()
-    {
-        return rightIndex < rightDialogs.Count;
+        return index < dialogs.Count;
     }
 }

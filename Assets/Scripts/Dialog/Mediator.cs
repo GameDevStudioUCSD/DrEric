@@ -24,7 +24,7 @@ public class Mediator : MonoBehaviour {
         //parse dialogs.json into conversations
         //conversations[json.conversationName] = new Conversation(dialogs.json, json.conversationName);
 
-        conversations["name_of_convo1"] = new Conversation("dialogs/test", "name_of_convo1");
+        conversations["name_of_convo1"] = new Conversation("dialogs/test1", "name_of_convo1");
         loadConversation("name_of_convo1");
       
 		previousTime = Time.time;
@@ -32,14 +32,13 @@ public class Mediator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (currentConversation != null&&Input.GetMouseButtonDown(0))
+        if (currentConversation != null && Input.GetMouseButtonDown(0))
             advanceConversation();
 	}
 
     public void loadConversation(string conversationName)
     {
         currentConversation = conversations[conversationName];
-        Debug.Log(currentConversation.getNextLeft());
     }
 
     public void advanceConversation()
@@ -53,25 +52,15 @@ public class Mediator : MonoBehaviour {
             return;
         }
 
-        if (conversationTurn % 2 == 0 && currentConversation.hasNextLeft())
+        if (currentConversation.hasNext())
         {
-            Dialog nextDialogLeft = currentConversation.getNextLeft();
-            controller.leftSay(nextDialogLeft.getText());
+            controller.say(currentConversation.getNext());
         }
         else
         {
-            if(currentConversation.hasNextRight())
-            { 
-                Dialog nextDialogRight = currentConversation.getNextRight();
-                controller.rightSay(nextDialogRight.getText());
-            }
-            else if(!currentConversation.hasNextRight()&&!currentConversation.hasNextLeft())
-            {
-                endConversation();
-                return;
-            }
+            endConversation();
         }
-        previousTime = Time.time;
+
         conversationTurn++;
     }
 

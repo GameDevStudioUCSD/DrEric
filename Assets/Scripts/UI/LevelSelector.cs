@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class LevelSelector: MonoBehaviour {
-	public Transform target = Vector3(348f,0f,0f);
+public class LevelSelector: MonoBehaviour { 
+    //changed target type from transform to vector3 and added new in front of vector3
+	public Vector3 target = new Vector3(348f,0f,0f);
 	public float speed = 200f;
 
 	public LevelSelector () {
@@ -36,6 +37,7 @@ public class LevelSelector: MonoBehaviour {
 
 	public void moveCameraRight() {
 		float step = speed * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        //changed 3rd parameter of MoveTowards from target.position to target
+		transform.position = Vector3.MoveTowards(transform.position, target, step);
 	}
 }

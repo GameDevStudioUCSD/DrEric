@@ -38,12 +38,14 @@ public class GUIController : MonoBehaviour {
             leftText.enabled = true;
             rightText.enabled = false;
             leftText.text = dialog.getText();
+            leftImage.sprite = dialog.getPortrait();
         }
         else
         {
             leftText.enabled = false;
             rightText.enabled = true;
             rightText.text = dialog.getText();
+            rightImage.sprite = dialog.getPortrait();
         }
 
     }

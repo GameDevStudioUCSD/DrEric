@@ -24,14 +24,14 @@ public class Conversation
 
         foreach (JSObject raw_dialog in raw_dialogs)
         {
-            Debug.Log(raw_dialog["text"]);
-            dialogs.Add(
-                new Dialog(
-                    raw_dialog["text"]
-                  , null //implement the character class
-                  , raw_dialog["isLeft"]
-                )
-            );
+            string text = raw_dialog["text"];
+            string characterName = raw_dialog["character"];
+            bool isLeft = raw_dialog["isLeft"];
+
+            //TODO character should be loading from somewhere that instantiates all the characters to a lookup table
+            Character character = CharacterTable.Instance.getCharacter("john");
+
+            dialogs.Add(new Dialog(text, character, isLeft));
         }
 	}
 	

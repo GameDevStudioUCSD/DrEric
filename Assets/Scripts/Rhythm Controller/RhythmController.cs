@@ -10,7 +10,7 @@ using System.Collections;
  * 				the RhythmEvents. \n
  */
 public class RhythmController : MonoBehaviour {
-    private static const string NAME = "RhythmController";
+    private const string NAME = "RhythmController";
 	private float wholeNote;
 	private float halfNote;
 	private float quarterNote;

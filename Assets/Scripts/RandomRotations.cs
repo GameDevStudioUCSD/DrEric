@@ -23,15 +23,19 @@ public class RandomRotations : MonoBehaviour {
 	
     /** Every update frame, shake the object! */
 	void Update () {
+        RandomlyRotate();
+	}
+    public void RandomlyRotate()
+    {
         // First, set up the actual ranges
         float rangeXMin = xOffset - range;
         float rangeXMax = xOffset + range;
         float rangeYMin = yOffset - range;
         float rangeYMax = yOffset + range;
         // Second, determine the random x and y values
-        float xVal = Random.Range( rangeXMin, rangeXMax);
-        float yVal = Random.Range( rangeYMin, rangeYMax);
+        float xVal = Random.Range(rangeXMin, rangeXMax);
+        float yVal = Random.Range(rangeYMin, rangeYMax);
         // Finally, rotate!
         transform.rotation = Quaternion.Euler(xVal, yVal, 0);
-	}
+    }
 }

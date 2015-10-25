@@ -21,6 +21,7 @@ public class RhythmController : MonoBehaviour {
     private float tripleHalfNote;
     private float tripleQuarterNote;
     private float tripleEigthNote;
+    private float measureLength;
 
 	/*Need MusicalTrack.cs*/
 	public MusicalTrack[] musicList;
@@ -32,6 +33,7 @@ public class RhythmController : MonoBehaviour {
     private List<int> measureKeys;
     private SortedDictionary<int, List<float>> measureTimeKeys;
     private SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>> events;
+    private AudioSource audioSource;
 
     static RhythmController singleton = null;
 
@@ -70,16 +72,38 @@ public class RhythmController : MonoBehaviour {
         measureTimeKeys = new SortedDictionary<int, List<float>>();
         events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
 
-		startTime = AudioSettings.dspTime;
+		//startTime = AudioSettings.dspTime;
         currentTrack = musicList[songIndex];
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = currentTrack.song;
         SetNoteLengths();
 		DebugLengths ();
         this.name = NAME;
+        audioSource.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+        foreach (int measure in measureKeys)
+        {
+            float t = audioSource.time * 1000; // t == time
+            //Debug.Log(t);
+            if ((int)(t / measureLength) % measure == 0)
+            { // We know that we're in an appropriate measure to call methods on
+                List<float> timeKeys = measureTimeKeys[measure];
+                SortedDictionary<float, List<RhythmEvent>> eventMap = events[measure];
+                foreach (float timeKey in timeKeys)
+                {
+                    if (WithinErrorMargin(t % timeKey, timeKey)) {
+                        List<RhythmEvent> eventList = eventMap[timeKey];
+                        foreach (RhythmEvent e in eventList)
+                        {
+                            e.m_MyEvent.Invoke();
+                        }
+                    }
+                }
+            }
+        }
 	}
 
     void SetNoteLengths() { /** multiply by 1000 to convert to milliseconds*/
@@ -92,6 +116,7 @@ public class RhythmController : MonoBehaviour {
         tripleHalfNote = 60f * 1000f / currentTrack.bpm * 2 / 3;
         tripleQuarterNote = 60f * 1000f / currentTrack.bpm / 3;
         tripleEigthNote = 60f * 1000f / currentTrack.bpm / 6;
+        measureLength = quarterNote * currentTrack.timeSigUpper;
     }
 
 	void DebugLengths(){
@@ -150,6 +175,8 @@ public class RhythmController : MonoBehaviour {
                 return halfNote;
             case NoteDivision.quarterNote:
                 return quarterNote;
+            case NoteDivision.wholeNote:
+                return wholeNote;
             case NoteDivision.sixteenthNote:
                 return sixteenthNote;
             case NoteDivision.tripleEigthNote:
@@ -161,6 +188,7 @@ public class RhythmController : MonoBehaviour {
             case NoteDivision.tripleWholeNote:
                 return tripleWholeNote;
         }
+        Debug.LogError("Check the GetNoteLength Function");
         return -1; // something really bad happened if we get here
     }
     /*

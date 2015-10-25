@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * Filename: RhythmController.cs \n
@@ -28,7 +29,9 @@ public class RhythmController : MonoBehaviour {
     public float errorMargin = 1f;
 
 	/*Need RhythmEvent.cs*/
-	RhythmEvent[] eventList;
+    private List<int> measureKeys;
+    private SortedDictionary<int, List<float>> measureTimeKeys;
+    private SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>> events;
 
     static RhythmController singleton = null;
 
@@ -62,6 +65,10 @@ public class RhythmController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        // Create collection objects
+        measureTimeKeys = new SortedDictionary<int, List<float>>();
+        events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
+
 		startTime = AudioSettings.dspTime;
         currentTrack = musicList[songIndex];
         SetNoteLengths();
@@ -102,6 +109,47 @@ public class RhythmController : MonoBehaviour {
 		}
 		return false;
 	}
+    void RegisterEvent(RhythmEvent e)
+    {
+        float noteLength = GetNoteLength(e.noteDivision);
+        int measure = e.measureSeparation;
+        // Add measure key to measure list
+        if (!measureKeys.Contains(measure)) {
+            measureKeys.Add(measure);
+        }
+        List<float> timeKeysList = measureTimeKeys[measure];
+        // Instantiate potentially null containers
+        if (timeKeysList == null) {
+            timeKeysList = new List<float>();
+        }
+        // Associate timekey to a measure
+        if (!timeKeysList.Contains(noteLength)) {
+            timeKeysList.Add(noteLength);
+        }
+    }
+    float GetNoteLength(NoteDivision note)
+    {
+        switch (note)
+        {
+            case NoteDivision.eighthNote:
+                return eigthNote;
+            case NoteDivision.halfNote:
+                return halfNote;
+            case NoteDivision.quarterNote:
+                return quarterNote;
+            case NoteDivision.sixteenthNote:
+                return sixteenthNote;
+            case NoteDivision.tripleEigthNote:
+                return tripleEigthNote;
+            case NoteDivision.tripleQuarterNote:
+                return tripleQuarterNote;
+            case NoteDivision.tripleHalfNote:
+                return tripleHalfNote;
+            case NoteDivision.tripleWholeNote:
+                return tripleWholeNote;
+        }
+        return -1; // something really bad happened if we get here
+    }
     /*
         void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
             musicList[track].PlayAt(measure, beat);
@@ -109,29 +157,7 @@ public class RhythmController : MonoBehaviour {
             startTime = AudioSettings.dspTime;
         }
     */
-    /**
-     * OUTDATED
-	 * Function Signature: int[] ConvertToSongPosition(float time);
-     * Description: Converts the current time into the song into the number of
-     * measures and beats into the song.
-     * Returns:     int[] of size 2 that contains the measure and beat.
-     *              int[0] contains the measure.
-     *              int[1] contains the beat.
-     */
-    /*public int[] ConvertToSongPosition(float time){
-		int bpm = currentTrack.bpm;
-		double current = currentTrack.source.time;
-		int[] output = new int[2];
-		output[0] = (int)(current*bpm/240f);
-		output[1] = (int)((current*bpm % 240f)*bpm/60f);
-		return output;
-	}*/
-
-	/**
-	 * Function Signature: void SetCurrentMeasure(int measure);
-     * Description: Setter method for variable currentMeasure.
-     */
-	public void SetCurrentMeasure(int measure){
+    	public void SetCurrentMeasure(int measure){
 		currentMeasure = measure;
 	}
 

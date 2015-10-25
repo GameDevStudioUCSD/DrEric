@@ -12,6 +12,7 @@ using System.Collections;
 
 class RhythmEvent : MonoBehaviour{
 	public NoteDivision noteDivision; // selection of note value for event to occur on
+    public NoteDivision noteOffset;
 	public int noteSeparation = 1; // the note distance between events
 	public int measureSeparation = 1; // the measure distance between events
     public UnityEvent m_MyEvent;

@@ -66,6 +66,7 @@ public class RhythmController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Create collection objects
+        measureKeys = new List<int>();
         measureTimeKeys = new SortedDictionary<int, List<float>>();
         events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
 
@@ -109,7 +110,7 @@ public class RhythmController : MonoBehaviour {
 		}
 		return false;
 	}
-    void RegisterEvent(RhythmEvent e)
+    public void RegisterEvent(RhythmEvent e)
     {
         float noteLength = GetNoteLength(e.noteDivision);
         int measure = e.measureSeparation;
@@ -117,15 +118,27 @@ public class RhythmController : MonoBehaviour {
         if (!measureKeys.Contains(measure)) {
             measureKeys.Add(measure);
         }
-        List<float> timeKeysList = measureTimeKeys[measure];
         // Instantiate potentially null containers
-        if (timeKeysList == null) {
-            timeKeysList = new List<float>();
+        if (!measureTimeKeys.ContainsKey(measure) ) {
+            measureTimeKeys[measure] = new List<float>();
         }
+        List<float> timeKeysList = measureTimeKeys[measure];
         // Associate timekey to a measure
         if (!timeKeysList.Contains(noteLength)) {
             timeKeysList.Add(noteLength);
         }
+        // Instantiate potentially null containers
+        if (!events.ContainsKey(measure)) {
+            events[measure] = new SortedDictionary<float, List<RhythmEvent>>();
+        }
+        SortedDictionary<float, List<RhythmEvent>> eventsAtMeasure = events[measure];
+        if (!eventsAtMeasure.ContainsKey(noteLength)) {
+            eventsAtMeasure[noteLength] = new List<RhythmEvent>();
+        }
+        List<RhythmEvent> eventList = eventsAtMeasure[noteLength];
+        // Finally, we add the event
+        eventList.Add(e);
+
     }
     float GetNoteLength(NoteDivision note)
     {

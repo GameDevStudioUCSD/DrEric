@@ -10,19 +10,30 @@ using System.Collections;
  * Description:  Event that is “observing” the clock for a call. 
  */
 
-class RhythmEvent : MonoBehaviour{
+public class RhythmEvent : MonoBehaviour{
 	public NoteDivision noteDivision; // selection of note value for event to occur on
     public NoteDivision noteOffset;
 	public int noteSeparation = 1; // the note distance between events
 	public int measureSeparation = 1; // the measure distance between events
     public UnityEvent m_MyEvent;
-	
+
+    private RhythmController controller;
     void Start()
     {
-        RhythmController controller = RhythmController.GetController();
         if (m_MyEvent == null)
             m_MyEvent = new UnityEvent();
 
+    }
+    void Update()
+    {
+        if (controller == null)
+        {
+            controller = RhythmController.GetController();
+            if (controller != null)
+            {
+                controller.RegisterEvent(this);
+            }
+        }
     }
 	
 	/**

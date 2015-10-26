@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /**
  * Filename: RhythmController.cs \n
  * Author: Jason Wu \n
- * Contributing Authors: N/A \n
+ * Contributing Authors: Michael Gonzalez and Sean Wenzel \n
  * Date Drafted: 10/10/2015 \n
  * Description: Plays and monitors the MusicalTrack, and calls \n
  * 				the RhythmEvents. \n
@@ -28,6 +28,7 @@ public class RhythmController : MonoBehaviour {
 
     public int songIndex = 0;
     public float errorMargin = 1f;
+    public bool isDebugging;
 
 	/*Need RhythmEvent.cs*/
     private List<int> measureKeys;
@@ -77,7 +78,8 @@ public class RhythmController : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = currentTrack.song;
         SetNoteLengths();
-		DebugLengths ();
+        if(isDebugging)
+		    DebugLengths ();
         this.name = NAME;
         audioSource.Play();
 	}
@@ -98,7 +100,7 @@ public class RhythmController : MonoBehaviour {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            e.m_MyEvent.Invoke();
+                            e.OnEvent.Invoke();
                         }
                     }
                 }

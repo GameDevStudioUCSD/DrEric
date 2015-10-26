@@ -14,14 +14,15 @@ public class RhythmEvent : MonoBehaviour{
 	public NoteDivision noteDivision; // selection of note value for event to occur on
     //public NoteDivision noteOffset;
 	//public int noteSeparation = 1; // the note distance between events
+    [Range(1,20)]
 	public int measureSeparation = 1; // the measure distance between events
-    public UnityEvent m_MyEvent;
+    public UnityEvent OnEvent;
 
     private RhythmController controller;
     void Start()
     {
-        if (m_MyEvent == null)
-            m_MyEvent = new UnityEvent();
+        if (OnEvent == null)
+            OnEvent = new UnityEvent();
 
     }
     void Update()

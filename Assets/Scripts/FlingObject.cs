@@ -85,6 +85,15 @@ public class FlingObject : MonoBehaviour {
         // To make this method more abstract, this has to be moved...
         AudioSource audio = GetComponent<AudioSource>();
         audio.Play();
+        testAnimation();
+    }
+    private void testAnimation()
+    {
+        foreach(Transform t in transform)
+        {
+            Animator animator = t.gameObject.GetComponent<Animator>();
+            animator.SetBool("IsFlying", !animator.GetBool("IsFlying"));
+        }
     }
 
 

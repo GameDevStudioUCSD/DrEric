@@ -3,7 +3,7 @@ using System.Collections;
 /**
  * Filename: FlingObject.cs \n
  * Author: Michael Gonzalez \n
- * Contributing Authors: N/A \n
+ * Contributing Authors: Daniel Griffiths \n
  * Date Drafted: ??? (Sometime during finals Spring Quarter '15) \n
  * Description: This script translate specific user mouse movement into an 
  *              impulse vector that flings the parent object through 2D space.
@@ -21,7 +21,7 @@ public class FlingObject : MonoBehaviour {
     public float maxYSpeed = 25;
     /** Set true to see debugging information */
     public bool isDebugging = false;
-    private Vector2 initalVector, finalVector, deltaVector;
+    private Vector2 initialVector, finalVector, deltaVector;
     private Rigidbody2D rigidBody;
     public bool isReverseControl;
     /** Saves a reference to the object's 2D Rigidbody.\n
@@ -38,49 +38,51 @@ public class FlingObject : MonoBehaviour {
     /** Awaits a user's mouse clicks; saves their clicks as vectors; and calls 
      *  Fling() when the user releases their mouse */
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
-        {
-            initalVector = Input.mousePosition;
-            if (isDebugging)
-            {
-                Debug.Log("Mouse Down at: " + initalVector);
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            finalVector = Input.mousePosition;
-            deltaVector = initalVector - finalVector;
-            if (isDebugging)
-            {
-                Debug.Log("Mouse Released at: " + finalVector);
-
-                Debug.Log("Fling Vector: " + deltaVector.normalized);
-            }
-            Fling();
-        }
+		if (transform.parent == null) {
+			if (Input.GetMouseButtonDown (0)) {
+				initialVector = Input.mousePosition;
+				if (isDebugging) {
+					Debug.Log ("Mouse Down at: " + initialVector);
+				}
+			}
+			if (Input.GetMouseButtonUp (0)) {
+				finalVector = Input.mousePosition;
+				deltaVector = CalculateDelta (initialVector, finalVector);
+				if (isDebugging) {
+					Debug.Log ("Mouse Released at: " + finalVector);
+				
+					Debug.Log ("Fling Vector: " + deltaVector.normalized);
+				}
+				Fling (deltaVector);
+			}
+		}
 	}
-    /** Constructs the impulse vector and applies this as a force to the 
-     *  parent object. This method also will play a jump sound! */
-    private void Fling()
+	/** Constructs the impulse vector */
+	public Vector2 CalculateDelta(Vector2 initialVector, Vector2 finalVector) {
+		// Calculate the delta vector
+		deltaVector = finalVector - initialVector;
+		
+		if (isReverseControl)
+		{
+			deltaVector = -deltaVector;         //use jointly with ReverseControl method
+		}
+		
+		deltaVector *= impulseScalar;
+		// Cap the x and y speeds by their max speeds
+		if (deltaVector.x > maxXSpeed)
+			deltaVector.x = maxXSpeed;
+		if (deltaVector.x < -1 * maxXSpeed)
+			deltaVector.x = -1 * maxXSpeed;
+		if (deltaVector.y > maxYSpeed)
+			deltaVector.y = maxYSpeed;
+		if (deltaVector.y < -1 * maxYSpeed)
+			deltaVector.y = -1 * maxYSpeed;
+		return deltaVector;
+	}
+    /** Applies vector as a force to the parent object. This method also will
+     *  play a jump sound! */
+    public void Fling(Vector2 deltaVector)
     {
-        // Calculate the delta vector
-        deltaVector = finalVector - initalVector;
-
-        if (isReverseControl)
-        {
-            deltaVector = -deltaVector;         //use jointly with ReverseControl method
-        }
-
-        deltaVector *= impulseScalar;
-        // Cap the x and y speeds by their max speeds
-        if (deltaVector.x > maxXSpeed)
-            deltaVector.x = maxXSpeed;
-        if (deltaVector.x < -1 * maxXSpeed)
-            deltaVector.x = -1 * maxXSpeed;
-        if (deltaVector.y > maxYSpeed)
-            deltaVector.y = maxYSpeed;
-        if (deltaVector.y < -1 * maxYSpeed)
-            deltaVector.y = -1 * maxYSpeed;
         rigidBody.AddForce(deltaVector, ForceMode2D.Impulse);
         // To make this method more abstract, this has to be moved...
         AudioSource audio = GetComponent<AudioSource>();

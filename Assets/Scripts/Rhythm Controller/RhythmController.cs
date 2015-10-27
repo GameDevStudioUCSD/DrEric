@@ -100,7 +100,11 @@ public class RhythmController : MonoBehaviour {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            e.OnEvent.Invoke();
+                            if(t - e.GetLastInvokeTime() > errorMargin * 5)
+                            {
+                                e.OnEvent.Invoke();
+                                e.SetLastInvokeTime(t); 
+                            }
                         }
                     }
                 }
@@ -193,38 +197,9 @@ public class RhythmController : MonoBehaviour {
         Debug.LogError("Check the GetNoteLength Function");
         return -1; // something really bad happened if we get here
     }
-    /*
-        void PlayMusicalTrack(int track, int measure = 0, int beat = 0){
-            musicList[track].PlayAt(measure, beat);
-            currentTrack = musicList[track];
-            startTime = AudioSettings.dspTime;
-        }
-    */
-    	public void SetCurrentMeasure(int measure){
-		currentMeasure = measure;
-	}
-
-	/**
-	 * Function Signature: void SetCurrentBeat(int beat);
-     * Description: Setter method for variable currentBeat.
-     */
-	public void SetCurrentBeat(int beat){
-		currentBeat = beat;
-	}
-
-	/**
-	 * Function Signature: int GetCurrentMeasure();
-     * Description: Getter method for currentMeasure.
-     */
-	public int GetCurrentMeasure(){
-		return currentMeasure;
-	}
-
-	/**
-	 * Function Signature: int GetCurrentBeat();
-     * Description: Getter method for currentBeat.
-     */
-	public int GetCurrentBeat(){
-		return currentBeat;
-	}
+    void OnLevelWasLoaded(int level)
+    {
+        audioSource.Stop();
+    }
+  
 }

@@ -7,14 +7,21 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	private Vector3 direction;
 	private float delta;
+    private float startTime;
+    [Range(.1f, 10)]
+    public float destroyAfterNSeconds = 1;
 
 	// Use this for initialization
 	void Start () {
-	
+        startTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.time - startTime > destroyAfterNSeconds)
+        {
+            GameObject.Destroy(this.gameObject);
+        }
 		transform.position += delta * direction;
 	}
 

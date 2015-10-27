@@ -32,4 +32,5 @@ public class Cannon : MonoBehaviour {
 			curTime = time;
 		}
 	}
+ 
 }

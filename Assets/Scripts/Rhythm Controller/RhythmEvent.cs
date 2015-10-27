@@ -19,6 +19,7 @@ public class RhythmEvent : MonoBehaviour{
     public UnityEvent OnEvent;
 
     private RhythmController controller;
+    private float lastInvokeTime = 0;
     void Start()
     {
         if (OnEvent == null)
@@ -39,6 +40,14 @@ public class RhythmEvent : MonoBehaviour{
     public void TestEvent()
     {
         Debug.Log("I'm an event!");
+    }
+    public float GetLastInvokeTime()
+    {
+        return lastInvokeTime;
+    }
+    public void SetLastInvokeTime(float t)
+    {
+        lastInvokeTime = t;
     }
 	
 	/**

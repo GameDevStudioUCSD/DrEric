@@ -100,7 +100,11 @@ public class RhythmController : MonoBehaviour {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            e.OnEvent.Invoke();
+                            if(t - e.GetLastInvokeTime() > errorMargin * 5)
+                            {
+                                e.OnEvent.Invoke();
+                                e.SetLastInvokeTime(t); 
+                            }
                         }
                     }
                 }

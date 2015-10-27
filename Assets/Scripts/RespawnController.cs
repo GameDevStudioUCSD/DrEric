@@ -45,7 +45,7 @@ public class RespawnController : MonoBehaviour {
 	public void respawn() {
 		if (currentPlayer == null) { //DrEric must not already exist
 			isDead = false;
-			currentPlayer = (GameObject)Instantiate (player, transform.position, Quaternion.identity);
+			currentPlayer = (GameObject)Instantiate (player, transform.position, transform.rotation);
 			Debug.Log ("DrEric has spawned");
 		}
 	}

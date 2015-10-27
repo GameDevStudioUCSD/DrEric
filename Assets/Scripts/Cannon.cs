@@ -21,15 +21,18 @@ public class Cannon : MonoBehaviour {
 		curTime -= 1;
 		if (curTime == 0) {
 			//creating bullet
-			GameObject myBullet = (GameObject) GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
-			Bullet thisBullet = myBullet.GetComponent<Bullet>();
-
-			//setting bullet properties
-			thisBullet.setDirection(direction);
-			thisBullet.setDelta(delta);
-
+            FireBullet();
 			//prepare for next shot
 			curTime = time;
 		}
 	}
+    public void FireBullet()
+    {
+        GameObject myBullet = (GameObject)GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
+        Bullet thisBullet = myBullet.GetComponent<Bullet>();
+        //setting bullet properties
+        thisBullet.setDirection(direction);
+        thisBullet.setDelta(delta);
+
+    }
 }

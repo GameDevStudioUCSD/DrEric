@@ -148,7 +148,6 @@ public class RhythmController : MonoBehaviour {
                 SortedDictionary<float, List<RhythmEvent>> eventMap = events[measure];
                 foreach (float timeKey in timeKeys)
                 {
-                    Debug.Log("I'm important!");
                     if (WithinErrorMargin(t % timeKey, timeKey)) {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)

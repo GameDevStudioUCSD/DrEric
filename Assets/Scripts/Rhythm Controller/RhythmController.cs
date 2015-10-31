@@ -102,7 +102,7 @@ public class RhythmController : MonoBehaviour {
                 channel1.volume = Mathf.Lerp(0f, 1f, 1f-lerpVal);
             }
         }
-        else if (Time.time > finishSwap) {
+        else if (Time.time > finishSwap && channel1 != null && channel2 != null) {
             if (currentChannel == 1)
                 channel2.volume = 0;
             else
@@ -253,8 +253,10 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
-        channel1.Stop();
-		channel2.Stop();
+        if(channel1 != null)
+            channel1.Stop();
+        if(channel2 != null)
+		    channel2.Stop();
     }
   
 }

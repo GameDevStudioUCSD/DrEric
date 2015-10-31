@@ -141,18 +141,19 @@ public class RhythmController : MonoBehaviour {
         foreach (int measure in measureKeys)
         {
             float t = channel1.time * 1000; // t == time
-            //Debug.Log(t);
+
             if ((int)(t / measureLength) % measure == 0)
             { // We know that we're in an appropriate measure to call methods on
                 List<float> timeKeys = measureTimeKeys[measure];
                 SortedDictionary<float, List<RhythmEvent>> eventMap = events[measure];
                 foreach (float timeKey in timeKeys)
                 {
+                    Debug.Log("I'm important!");
                     if (WithinErrorMargin(t % timeKey, timeKey)) {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            if(t - e.GetLastInvokeTime() > errorMargin * 5)
+                            if(t - e.GetLastInvokeTime() > errorMargin * 5 || e.GetLastInvokeTime() > t)
                             {
                                 e.OnEvent.Invoke();
                                 e.SetLastInvokeTime(t); 

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /**
@@ -23,28 +22,33 @@ public class RhythmController : MonoBehaviour {
     private float tripleEigthNote;
     private float measureLength;
 
-	/*Need MusicalTrack.cs*/
-	public MusicalTrack[] musicList;
+	public MusicalTrack[] channel1TrackList;
+	public MusicalTrack[] channel2TrackList;
 
+    
+    [Range(0,2)]
     public int songIndex = 0;
     public float errorMargin = 1f;
     public bool isDebugging;
 
-	/*Need RhythmEvent.cs*/
     private List<int> measureKeys;
     private SortedDictionary<int, List<float>> measureTimeKeys;
     private SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>> events;
-    private AudioSource audioSource;
+    private AudioSource channel1;
+	private AudioSource channel2;
 
     static RhythmController singleton = null;
 
 	int currentMeasure;
 	int currentBeat;
+    int currentChannel = 1;
+    float startSwap = 0f;
+    float finishSwap = 0f;
 
 	/*Internals*/
 	MusicalTrack currentTrack;
 
-	double startTime;
+	float startTime;
 
 
     public static RhythmController GetController()
@@ -65,31 +69,81 @@ public class RhythmController : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
     }
+    /**
+     * Function Name: SwapChannel()
+     * Description: This function will tell the rhythm controller to switch the
+     *              channel it is currently playing music on. This allows us to
+     *              use dynamic music. 
+     */
+    public void SwapChannel()
+    {
+        if (currentChannel == 1)
+            currentChannel = 2;
+        else
+            currentChannel = 1;
+        startSwap = Time.time;
+        finishSwap = Time.time + (wholeNote/1000);
+    }
+    /**
+     * Function Name: ChannelLerp() \n
+     * Description: This function will smoothly fade between the two channels
+     *              on the rhythm controller. It should be called at the top of
+     *              update to work correctly
+     */
+    void ChannelLerp() {
+        if( Time.time < finishSwap ) {
+            float lerpVal = (Time.time - startSwap)/(wholeNote/1000);
+            if( currentChannel == 1) {
+                channel1.volume = Mathf.Lerp(0f, 1f, lerpVal);
+                channel2.volume = Mathf.Lerp(0f, 1f, 1f-lerpVal);
+            }
+            if( currentChannel == 2) {
+                channel2.volume = Mathf.Lerp(0f, 1f, lerpVal);
+                channel1.volume = Mathf.Lerp(0f, 1f, 1f-lerpVal);
+            }
+        }
+        else if (Time.time > finishSwap && channel1 != null && channel2 != null) {
+            if (currentChannel == 1)
+                channel2.volume = 0;
+            else
+                channel1.volume = 0;
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
         // Create collection objects
+        ChannelLerp();
         measureKeys = new List<int>();
         measureTimeKeys = new SortedDictionary<int, List<float>>();
         events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
 
-		//startTime = AudioSettings.dspTime;
-        currentTrack = musicList[songIndex];
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = currentTrack.song;
-        SetNoteLengths();
+		foreach( Transform channel in transform) {
+			if(channel.gameObject.name == "Channel 1")
+				channel1 = channel.gameObject.GetComponent<AudioSource>();
+			if(channel.gameObject.name == "Channel 2")
+				channel2 = channel.gameObject.GetComponent<AudioSource>();
+		}
+
+        
+		currentTrack = channel1TrackList[songIndex];
+		channel1.clip = currentTrack.song;
+		channel2.clip = channel2TrackList[songIndex].song;
+        channel1.Play();
+		channel2.volume = 0f;
+		channel2.Play();
+		SetNoteLengths();
         if(isDebugging)
 		    DebugLengths ();
-        this.name = NAME;
-        audioSource.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        ChannelLerp(); 
         foreach (int measure in measureKeys)
         {
-            float t = audioSource.time * 1000; // t == time
-            //Debug.Log(t);
+            float t = channel1.time * 1000; // t == time
+
             if ((int)(t / measureLength) % measure == 0)
             { // We know that we're in an appropriate measure to call methods on
                 List<float> timeKeys = measureTimeKeys[measure];
@@ -100,7 +154,7 @@ public class RhythmController : MonoBehaviour {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            if(t - e.GetLastInvokeTime() > errorMargin * 5)
+                            if(t - e.GetLastInvokeTime() > errorMargin * 5 || e.GetLastInvokeTime() > t)
                             {
                                 e.OnEvent.Invoke();
                                 e.SetLastInvokeTime(t); 
@@ -199,7 +253,10 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
-        audioSource.Stop();
+        if(channel1 != null)
+            channel1.Stop();
+        if(channel2 != null)
+		    channel2.Stop();
     }
   
 }

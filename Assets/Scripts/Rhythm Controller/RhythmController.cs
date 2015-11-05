@@ -139,6 +139,8 @@ public class RhythmController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (channel1 == null)
+            return;
         ChannelLerp(); 
         foreach (int measure in measureKeys)
         {

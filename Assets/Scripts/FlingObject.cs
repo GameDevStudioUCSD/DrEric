@@ -94,7 +94,8 @@ public class FlingObject : MonoBehaviour {
         foreach(Transform t in transform)
         {
             Animator animator = t.gameObject.GetComponent<Animator>();
-            animator.SetBool("IsFlying", !animator.GetBool("IsFlying"));
+            if(animator != null)
+                animator.SetBool("IsFlying", !animator.GetBool("IsFlying"));
         }
     }
 

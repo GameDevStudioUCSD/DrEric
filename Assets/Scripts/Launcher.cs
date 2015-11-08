@@ -17,6 +17,7 @@ public class Launcher : MonoBehaviour {
 	private Vector2 direction;
 	private bool gotDrEric;
 	private GameObject drEric = null;
+	private Quaternion storedOrientation;
 
     /** unused */
 	void Start () {}
@@ -33,6 +34,7 @@ public class Launcher : MonoBehaviour {
 			drEric.transform.localScale = Vector3.one; //TODO corrects for bug after launch; see OnTriggerEnter2D
 			//Restores independent movement
 			drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
+			drEric.transform.rotation = storedOrientation;
 			drEric.GetComponent<FlingObject>().Fling (CalculateLaunch ());
 			//Clears stored reference
 			drEric = null;
@@ -42,6 +44,8 @@ public class Launcher : MonoBehaviour {
 	/** Grabs DrEric on contact */
 	void OnTriggerEnter2D(Collider2D other) {
 		if (!gotDrEric && other.CompareTag("Player")) {
+			Quaternion quar = other.transform.rotation;
+			storedOrientation = new Quaternion( quar.x, quar.y, quar.z, quar.w);
 			gotDrEric = true;
 			drEric = other.gameObject;
 			//Takes DrEric into the launcher

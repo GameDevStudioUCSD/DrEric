@@ -16,8 +16,6 @@ public class Cannon : MonoBehaviour {
 	public float fireAngle; //Cannon fires every n degrees; disabled if 0
 	private float curRot; //running count of degrees until next shot
 
-	private float debugRot = 0;
-
 	// Use this for initialization
 	void Start () {
 		curTime = time;
@@ -28,10 +26,7 @@ public class Cannon : MonoBehaviour {
 	void Update () {
 		curTime -= 1;
 		this.transform.Rotate (0,0,rotation);
-		debugRot += rotation;
 		curRot -= rotation;
-		Debug.Log ("Debug: " + debugRot);
-		Debug.Log ("Current: " + curRot);
 		if (fireOnUpdate && time != 0 && curTime <= 0) {
 			//creating bullet
             FireBullet();
@@ -46,11 +41,9 @@ public class Cannon : MonoBehaviour {
     public void FireBullet()
     {
         GameObject myBullet = (GameObject)GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
-        myBullet.transform.parent = transform; // This keeps the file hierarchy clean
         Bullet thisBullet = myBullet.GetComponent<Bullet>();
         //setting bullet properties
 		thisBullet.setDirection(this.transform.eulerAngles.z);
         thisBullet.setDelta(bulletSpeed);
-
     }
 }

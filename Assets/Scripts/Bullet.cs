@@ -5,7 +5,7 @@ using System.Collections;
  * The script for cannon bullets. Bullets move with direction and speed determined by the cannon.
  */
 public class Bullet : MonoBehaviour {
-	private Vector3 direction;
+	private float angle;
 	private float delta;
     private float startTime;
     [Range(.1f, 10)]
@@ -13,7 +13,10 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        startTime = Time.time;
+		startTime = Time.time;
+		Vector2 direction = new Vector2 (delta * Mathf.Cos (angle * Mathf.Deg2Rad),
+		                                delta * Mathf.Sin (angle * Mathf.Deg2Rad));
+		this.GetComponent<Rigidbody2D> ().AddForce (direction, ForceMode2D.Impulse);
 	}
 	
 	// Update is called once per frame
@@ -22,17 +25,16 @@ public class Bullet : MonoBehaviour {
         {
             GameObject.Destroy(this.gameObject);
         }
-		transform.position += delta * direction;
 	}
 
 	/**
 	 * Changes the direction the cannonball travels in
 	 * Called by the cannon that fires it
 	 * 
-	 * @param directionPar the direction to point the cannonball
+	 * @param anglePar the angle to point the cannonball
 	 */
-	public void setDirection(Vector3 directionPar) {
-		direction = directionPar;
+	public void setDirection(float anglePar) {
+		angle = anglePar;
 	}
 
 	/**

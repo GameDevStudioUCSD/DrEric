@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GravityReverseScript : MonoBehaviour {
 
+    public Vector2 Gravity = (-9.8f) * Vector2.down;
 	// Use this for initialization
 	void Start () {
         Debug.Log("Trigger: ");
@@ -17,8 +18,7 @@ public class GravityReverseScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Trigger: ");
-            Physics2D.gravity = new Vector2(0,9);
+            Physics2D.gravity = Gravity;
         }
     }
 }

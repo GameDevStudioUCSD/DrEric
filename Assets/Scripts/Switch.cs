@@ -18,7 +18,7 @@ public class Switch : MonoBehaviour {
         act = new Activator[objectToBeActivated.Length];
         for (int i = 0; i < objectToBeActivated.Length; i++)
         {
-           int hash = objectToBeActivated[0].transform.GetHashCode();
+           //int hash = objectToBeActivated[0].transform.GetHashCode();
            // Debug.Log("Activator " + i + " hashcode: " + hash);
             act[i] = (objectToBeActivated[i]).GetComponent<Activator>() as Activator;
         }

@@ -24,8 +24,4 @@ public class ShiftCamera : MonoBehaviour {
 		menuState--;
 	}
 
-	public void destroyPanel()
-	{
-		Destroy(GameObject.FindGameObjectsWithTag ("TitleScreen")[0]);
-	}
 }

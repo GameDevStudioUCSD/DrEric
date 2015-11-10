@@ -28,13 +28,13 @@ public class SwitchScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-        	if (!isPressed) {
+        	if (!isPressed) {//upressed to pressed
 	    		if (isDebugging)
            		 	Debug.Log("Switch Pressed");
             	pressEvent.Invoke();
             	isPressed = !isPressed;
         	}
-        	else if (isPressed) {
+        	else if (isPressed) {//pressed to unpressed
         		if (isDebugging)
         			Debug.Log("Switch unpressed");
         		unPressEvent.Invoke();

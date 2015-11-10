@@ -2,7 +2,12 @@
 using System.Collections;
 
 public class GateScript : MonoBehaviour {
-
+/** Filename: GateScript.cs \n
+ * Author: James Allen \n
+ * Contributing authors: ^ \n 
+ * Date Drafted: 11/9/2015 \n
+ * Description:  checks for player collision and key number \n
+ */
 	// Use this for initialization
 	void Start () {
 	

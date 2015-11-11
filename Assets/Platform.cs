@@ -25,9 +25,11 @@ public class Platform : MonoBehaviour {
     public Vector2 endVector = new Vector2(2, 1);
     /** This is the amount of time in seconds that it takes the game object to 
       * move from startVector to endVector */
+    [Tooltip("This is the amount of time in seconds that it takes the game object to move from startVector to endVector")]
     public float movementTime = 2;
     /** This is the amount of time in seconds that the platform waits upon 
       * reaching startVector or endVector. */ 
+    [Tooltip("This is the amount of time in seconds that the platform waits upon reaching startVector or endVector")]
     public float waitTime = 1;
     /** If true, then this platform will be sticky */
     public bool isSticky = true;

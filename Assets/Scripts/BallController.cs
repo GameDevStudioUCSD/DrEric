@@ -17,7 +17,7 @@ public class BallController : MonoBehaviour {
     public AudioClip landSound;
     public AudioSource audio;
     public State state = State.IDLE;
-    public StickyPlatform controllingPlatform;
+    public Platform controllingPlatform;
     /**
      * Description: This method currently sets up a reference to the ball's 
      *              AudioSource

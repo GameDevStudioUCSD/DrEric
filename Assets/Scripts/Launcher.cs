@@ -18,9 +18,13 @@ public class Launcher : MonoBehaviour {
 	private bool gotDrEric;
 	private GameObject drEric = null;
 	private Quaternion storedOrientation;
+    
 
     /** unused */
-	void Start () {}
+	void Start () {
+      
+    }
+
 	
 	/** Rotates the launcher. When DrEric is held by the launcher and the mouse
 	 *  is released, launches him. */

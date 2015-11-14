@@ -13,8 +13,11 @@ using System.Collections;
  *              object collider.
  */
 public class BallController : MonoBehaviour {
+    public enum State { IDLE, STUCK, LAUNCHING }
     public AudioClip landSound;
     public AudioSource audio;
+    public State state = State.IDLE;
+    public Platform controllingPlatform;
     /**
      * Description: This method currently sets up a reference to the ball's 
      *              AudioSource
@@ -31,5 +34,14 @@ public class BallController : MonoBehaviour {
     {
         if(audio != null)
             audio.PlayOneShot(landSound, 1f);
+    }
+    void Update()
+    {
+        switch(state)
+        {
+            case State.LAUNCHING:
+                controllingPlatform = null;
+                break;
+        }
     }
 }

@@ -2,7 +2,13 @@
 using System.Collections;
 
 public class KeyScript : MonoBehaviour {
-	// Use this for initialization
+	/** Filename: KeyScript.cs \n
+ * Author: James Allen \n
+ * Contributing authors: ^ \n 
+ * Date Drafted: 11/9/2015 \n
+ * Description: determines key collision \n
+ */
+    // Use this for initialization
 	void Start () {
 	
 	}

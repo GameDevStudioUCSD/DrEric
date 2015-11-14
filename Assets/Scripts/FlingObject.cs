@@ -23,13 +23,15 @@ public class FlingObject : MonoBehaviour {
     public bool isDebugging = false;
     private Vector2 initialVector, finalVector, deltaVector;
     private Rigidbody2D rigidBody;
+    private BallController playerController;
     public bool isReverseControl;
     /** Saves a reference to the object's 2D Rigidbody.\n
      *  Will throw a NullReferenceExcepetion if this method cannot find a 2D
      *  Rigidbody. */
 	void Start () {
         isReverseControl = false;
-        rigidBody = this.GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        playerController = GetComponent<BallController>();
         if (rigidBody == null)
         {
             Debug.LogError("Null Reference Exception: No 2D Rigidbody found on " + this);
@@ -88,6 +90,7 @@ public class FlingObject : MonoBehaviour {
         AudioSource audio = GetComponent<AudioSource>();
         audio.Play();
         testAnimation();
+        playerController.state = BallController.State.LAUNCHING;
     }
     private void testAnimation()
     {

@@ -2,12 +2,21 @@
 using UnityEngine.Events;
 using System.Collections;
 
+/** Filename: Switchscript.cs \n
+ * Author: James Allen \n
+ * Contributing authors: ^ \n 
+ * Date Drafted: 11/9/2015 \n
+ * Description: controlls switch pressing and events \n
+ */
 public class SwitchScript : MonoBehaviour {
 
-    public UnityEvent Event;
+    public UnityEvent pressEvent;
+    public UnityEvent unPressEvent;
+	public bool isDebugging;
+	private bool isPressed;
 	// Use this for initialization
 	void Start () {
-        Event.AddListener(doSomething);
+		isPressed = false;
 	}
 	
 	// Update is called once per frame
@@ -19,12 +28,25 @@ public class SwitchScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Switch triggered");
-            Event.Invoke();
+        	if (!isPressed) {//upressed to pressed
+	    		if (isDebugging)
+           		 	Debug.Log("Switch Pressed");
+            	pressEvent.Invoke();
+            	isPressed = !isPressed;
+        	}
+        	else if (isPressed) {//pressed to unpressed
+        		if (isDebugging)
+        			Debug.Log("Switch unpressed");
+        		unPressEvent.Invoke();
+        		isPressed = !isPressed;
+        	}
         }
     }
-    void doSomething()
-    {
-        Debug.Log("somethng");
+
+    public void SetPressed(bool x) {
+    	isPressed = x;
+    }
+    public bool GetPressed(){
+    	return isPressed;
     }
 }

@@ -14,9 +14,11 @@ public class SwitchScript : MonoBehaviour {
     public UnityEvent unPressEvent;
 	public bool isDebugging;
 	private bool isPressed;
+    private Animator animator;
 	// Use this for initialization
 	void Start () {
 		isPressed = false;
+        animator = this.gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -33,12 +35,14 @@ public class SwitchScript : MonoBehaviour {
            		 	Debug.Log("Switch Pressed");
             	pressEvent.Invoke();
             	isPressed = !isPressed;
+                animator.SetBool("IsPressed", true);
         	}
         	else if (isPressed) {//pressed to unpressed
         		if (isDebugging)
         			Debug.Log("Switch unpressed");
         		unPressEvent.Invoke();
         		isPressed = !isPressed;
+                animator.SetBool("IsPressed",false);
         	}
         }
     }

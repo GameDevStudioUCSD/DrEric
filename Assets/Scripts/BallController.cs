@@ -18,12 +18,17 @@ public class BallController : MonoBehaviour {
     public AudioSource audio;
     public State state = State.IDLE;
     public Platform controllingPlatform;
+    private Vector2 gravity;
+    private Quaternion destRotation;
+    public float rotationScaler = 5;
     /**
      * Description: This method currently sets up a reference to the ball's 
      *              AudioSource
      */
     void Start()
     {
+        gravity = 9.81f * Vector2.down;
+        destRotation = transform.rotation;
         audio = GetComponent<AudioSource>();
     }
     /**
@@ -37,11 +42,30 @@ public class BallController : MonoBehaviour {
     }
     void Update()
     {
+        CheckOrientation();
         switch(state)
         {
             case State.LAUNCHING:
                 controllingPlatform = null;
                 break;
+        }
+    }
+    void CheckOrientation()
+    {
+        if (Physics2D.gravity != gravity)
+        {
+            // rotates object in relation to gravity
+            gravity = Physics2D.gravity;
+            float x = gravity.x;
+            float y = gravity.y;
+
+            float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg * -1;
+            destRotation = Quaternion.Euler(angle - 90, 90, 0);
+
+        }
+        if (transform.rotation != destRotation)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, destRotation, Time.deltaTime * rotationScaler);
         }
     }
 }

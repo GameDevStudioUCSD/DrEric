@@ -60,6 +60,8 @@ public class Launcher : MonoBehaviour {
 			drEric.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 			drEric.GetComponent<Rigidbody2D>().gravityScale = 0;
 			drEric.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            // Set Dr. Eric's state
+            drEric.GetComponent<BallController>().state = BallController.State.STUCK;
 		}
 	}
 

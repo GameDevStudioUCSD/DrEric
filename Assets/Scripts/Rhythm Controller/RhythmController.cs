@@ -161,7 +161,6 @@ public class RhythmController : MonoBehaviour {
         foreach (int measure in measureKeys)
         {
             float t = channel1.time * 1000 * activeChannel.pitch; // t == time
-
             if ((int)(t / measureLength) % measure == 0)
             { // We know that we're in an appropriate measure to call methods on
                 List<float> timeKeys = measureTimeKeys[measure];
@@ -172,10 +171,11 @@ public class RhythmController : MonoBehaviour {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            if(t - e.GetLastInvokeTime() > errorMargin * 5 || e.GetLastInvokeTime() > t)
+                            float ms = t / activeChannel.pitch;
+                            if(ms - e.GetLastInvokeTime() > errorMargin * 5 || e.GetLastInvokeTime() > ms)
                             {
                                 e.OnEvent.Invoke();
-                                e.SetLastInvokeTime(t); 
+                                e.SetLastInvokeTime(ms); 
                             }
                         }
                     }

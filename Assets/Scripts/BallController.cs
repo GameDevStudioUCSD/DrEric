@@ -42,11 +42,14 @@ public class BallController : MonoBehaviour {
     }
     void Update()
     {
-        CheckOrientation();
         switch(state)
         {
+            case State.IDLE:
+                CheckOrientation();
+                break;
             case State.LAUNCHING:
                 controllingPlatform = null;
+                CheckOrientation();
                 break;
         }
     }

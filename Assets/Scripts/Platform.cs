@@ -44,7 +44,12 @@ public class Platform : MonoBehaviour {
     private State state = State.WAITING;
     private BallController playerController;
     private Transform drEricTrans;
+    private RhythmController rhythmController;
 	
+    void Start()
+    {
+        rhythmController = RhythmController.GetController();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         // This method only matters if this object is a sticky platform
@@ -102,7 +107,7 @@ public class Platform : MonoBehaviour {
      *  between the startVector and endVector in movementTime seconds*/
     void Lerping()
     {
-        if(Time.time - startTime > movementTime)
+        if(Time.time - startTime > movementTime/rhythmController.GetPitch())
         {
             startTime = Time.time;
             Vector2 swapVector = startVector;
@@ -112,7 +117,7 @@ public class Platform : MonoBehaviour {
         }
         else
         {
-            float lerpVal = (Time.time - startTime) / (movementTime );
+            float lerpVal = (Time.time - startTime) / (movementTime/rhythmController.GetPitch());
             transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
         }
     }

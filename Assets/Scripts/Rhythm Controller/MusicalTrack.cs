@@ -9,6 +9,7 @@ public class MusicalTrack : MonoBehaviour
     public int bpm = 120;
     public int timeSigUpper = 4;
     public int timeSigLower = 4;
+    public float pitch = 1f;
     public AudioClip song;
     private int measures;
 

@@ -18,18 +18,19 @@ public class Launcher : MonoBehaviour {
 	private bool gotDrEric;
 	private GameObject drEric = null;
 	private Quaternion storedOrientation;
+    private RhythmController rhythmController;
     
 
-    /** unused */
 	void Start () {
-      
+        rhythmController = RhythmController.GetController();
     }
 
 	
 	/** Rotates the launcher. When DrEric is held by the launcher and the mouse
 	 *  is released, launches him. */
 	void Update () {
-		transform.Rotate (Vector3.forward * rotationSpeed * Time.deltaTime);
+        float speed = rotationSpeed * rhythmController.GetPitch();
+		transform.Rotate (Vector3.forward * speed * Time.deltaTime);
 		/** Releases and launches DrEric using his Fling() method */
 		if (gotDrEric && Input.GetMouseButtonUp (0)) {
 			//Releases DrEric from the launcher

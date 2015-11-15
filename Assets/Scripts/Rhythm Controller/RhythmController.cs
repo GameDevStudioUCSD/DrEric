@@ -29,6 +29,7 @@ public class RhythmController : MonoBehaviour {
     [Range(0,2)]
     public int songIndex = 0;
     public float errorMargin = 1f;
+    public float swapSpeed = 5f;
     public bool isDebugging;
 
     private List<int> measureKeys;
@@ -36,6 +37,7 @@ public class RhythmController : MonoBehaviour {
     private SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>> events;
     private AudioSource channel1;
 	private AudioSource channel2;
+	private AudioSource activeChannel;
 
     static RhythmController singleton = null;
 
@@ -49,6 +51,7 @@ public class RhythmController : MonoBehaviour {
 	MusicalTrack currentTrack;
 
 	float startTime;
+    float destPitch;
 
 
     public static RhythmController GetController()
@@ -77,12 +80,32 @@ public class RhythmController : MonoBehaviour {
      */
     public void SwapChannel()
     {
-        if (currentChannel == 1)
-            currentChannel = 2;
+        if (activeChannel == channel1)
+        {
+            activeChannel = channel2;
+            destPitch = channel2TrackList[songIndex].pitch;
+        }
         else
-            currentChannel = 1;
-        startSwap = Time.time;
-        finishSwap = Time.time + (wholeNote/1000);
+        {
+            activeChannel = channel1;
+            destPitch = channel1TrackList[songIndex].pitch;
+        }
+    }
+    public void SwitchToChannel( int channel )
+    {
+        if( channel == 1 )
+        {
+            if (activeChannel == channel2)
+                SwapChannel();
+        }
+        else if( activeChannel == channel1 )
+        {
+            SwapChannel();
+        }
+    }
+    public float GetPitch()
+    {
+        return activeChannel.pitch;
     }
     /**
      * Function Name: ChannelLerp() \n
@@ -91,29 +114,21 @@ public class RhythmController : MonoBehaviour {
      *              update to work correctly
      */
     void ChannelLerp() {
-        if( Time.time < finishSwap ) {
-            float lerpVal = (Time.time - startSwap)/(wholeNote/1000);
-            if( currentChannel == 1) {
-                channel1.volume = Mathf.Lerp(0f, 1f, lerpVal);
-                channel2.volume = Mathf.Lerp(0f, 1f, 1f-lerpVal);
+            if( activeChannel == channel1) {
+                channel1.volume = Mathf.Lerp(channel1.volume, 1f, swapSpeed * Time.deltaTime);
+                channel2.volume = Mathf.Lerp(channel2.volume, 0f, swapSpeed * Time.deltaTime);
             }
-            if( currentChannel == 2) {
-                channel2.volume = Mathf.Lerp(0f, 1f, lerpVal);
-                channel1.volume = Mathf.Lerp(0f, 1f, 1f-lerpVal);
+            if( activeChannel == channel2) {
+                channel1.volume = Mathf.Lerp(channel1.volume, 0f, swapSpeed * Time.deltaTime);
+                channel2.volume = Mathf.Lerp(channel2.volume, 1f, swapSpeed * Time.deltaTime);
             }
-        }
-        else if (Time.time > finishSwap && channel1 != null && channel2 != null) {
-            if (currentChannel == 1)
-                channel2.volume = 0;
-            else
-                channel1.volume = 0;
-        }
+        channel1.pitch = Mathf.Lerp(activeChannel.pitch, destPitch, swapSpeed * Time.deltaTime);
+        channel2.pitch = Mathf.Lerp(activeChannel.pitch, destPitch, swapSpeed * Time.deltaTime);
     }
 
 	// Use this for initialization
 	void Start () {
         // Create collection objects
-        ChannelLerp();
         measureKeys = new List<int>();
         measureTimeKeys = new SortedDictionary<int, List<float>>();
         events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
@@ -124,15 +139,16 @@ public class RhythmController : MonoBehaviour {
 			if(channel.gameObject.name == "Channel 2")
 				channel2 = channel.gameObject.GetComponent<AudioSource>();
 		}
-
-        
 		currentTrack = channel1TrackList[songIndex];
 		channel1.clip = currentTrack.song;
 		channel2.clip = channel2TrackList[songIndex].song;
+        channel1.pitch = channel1TrackList[songIndex].pitch;
+        destPitch = channel1.pitch;
         channel1.Play();
 		channel2.volume = 0f;
 		channel2.Play();
 		SetNoteLengths();
+        activeChannel = channel1;
         if(isDebugging)
 		    DebugLengths ();
 	}
@@ -144,7 +160,7 @@ public class RhythmController : MonoBehaviour {
         ChannelLerp(); 
         foreach (int measure in measureKeys)
         {
-            float t = channel1.time * 1000; // t == time
+            float t = channel1.time * 1000 * activeChannel.pitch; // t == time
 
             if ((int)(t / measureLength) % measure == 0)
             { // We know that we're in an appropriate measure to call methods on

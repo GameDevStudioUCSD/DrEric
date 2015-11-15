@@ -15,8 +15,10 @@ public class VictoryController : MonoBehaviour {
     /** Spawns a victory screen when an object collides with this */
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(victoryScreen);
-        Invoke("nextLevel", 2.0f);
+            if (collision.gameObject.tag == "Player"){
+            Instantiate(victoryScreen);
+            Invoke("nextLevel", 2.0f);
+        }
     }
 
     void nextLevel()

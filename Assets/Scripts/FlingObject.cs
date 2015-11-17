@@ -89,13 +89,12 @@ public class FlingObject : MonoBehaviour {
      *  play a jump sound! */
     public void Fling(Vector2 deltaVector)
     {
-        float rotationAngle = -1 * (transform.rotation.eulerAngles.x ) * Mathf.Deg2Rad;
+        float rotationAngle = -1 * (transform.rotation.eulerAngles.z + transform.rotation.eulerAngles.x) * Mathf.Deg2Rad;
         float sinAngle = Mathf.Sin(rotationAngle);
         float cosAngle = Mathf.Cos(rotationAngle);
         float rotatedX = ((deltaVector.x * cosAngle) - (deltaVector.y * sinAngle));
         float rotatedY = ((deltaVector.x * sinAngle) + (deltaVector.y * cosAngle));
         Vector2 rotatedVector = new Vector2(rotatedX, rotatedY);
-        Debug.Log(rotatedVector);
         rigidBody.AddForce(rotatedVector, ForceMode2D.Impulse);
         // To make this method more abstract, this has to be moved...
         AudioSource audio = GetComponent<AudioSource>();

@@ -1,11 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Filename: OrientWithGravity.cs \n
+ * Author: Michael Gonzalez \n
+ * Contributing Authors: N/A \n
+ * Date Drafted: 11/16/2015 \n
+ * Description: This script will orient a GameObject with the direction of 
+ *              gravity. You need to grab a reference to this script and call
+ *              CheckOrientation() inside of the update script of some 
+ *              controlling script.  
+ */
 public class OrientWithGravity : MonoBehaviour {
     private Vector2 gravity;
     private Quaternion destRotation;
     public float rotationScaler = 5;
-    // Use this for initialization
+    [Tooltip("If this value is true, then this script will try to orient the GameObject with gravity on each update frame")]
+    public bool callOnUpdate = false;
     void Start () {
         gravity = 9.81f * Vector2.down;
         destRotation = transform.rotation;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GravityReverseScript : MonoBehaviour {
+public class ChangeGravity : MonoBehaviour {
 
     public Vector2 Gravity = (-9.8f) * Vector2.down;
 	// Use this for initialization

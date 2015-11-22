@@ -8,6 +8,9 @@ public class GateScript : MonoBehaviour {
  * Date Drafted: 11/9/2015 \n
  * Description:  checks for player collision and key number \n
  */
+
+	public int keyCount;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -26,7 +29,7 @@ public class GateScript : MonoBehaviour {
             KeyControllerScript KCS =
                 (KeyControllerScript)go.GetComponent(typeof(KeyControllerScript));
             Debug.Log("Gate Touched");
-            if (KCS.keys_collected >= 0)
+            if (KCS.keys_collected >= keyCount)
             {
                 KCS.keys_collected--;
                 Destroy(this.gameObject, 0);

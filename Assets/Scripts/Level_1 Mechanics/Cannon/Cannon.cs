@@ -42,8 +42,18 @@ public class Cannon : MonoBehaviour {
     {
         GameObject myBullet = (GameObject)GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
         Bullet thisBullet = myBullet.GetComponent<Bullet>();
+        float angle = this.transform.eulerAngles.z;
+        if(myBullet.GetComponent<Rigidbody2D>() == null)
+        {
+            myBullet.AddComponent<Rigidbody2D>();
+        }
+        if(thisBullet == null )
+        {
+            thisBullet = myBullet.AddComponent<Bullet>();
+            Debug.Log("Adding: " + thisBullet);
+        }
         //setting bullet properties
-		thisBullet.setDirection(this.transform.eulerAngles.z);
+        thisBullet.setDirection(angle);
         thisBullet.setDelta(bulletSpeed);
     }
 }

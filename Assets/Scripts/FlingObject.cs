@@ -40,7 +40,7 @@ public class FlingObject : MonoBehaviour {
     /** Awaits a user's mouse clicks; saves their clicks as vectors; and calls 
      *  Fling() when the user releases their mouse */
 	void Update () {
-        //Debug.Log(transform.rotation.eulerAngles.normalized);
+        /*//Debug.Log(transform.rotation.eulerAngles.normalized);
 		if (transform.parent == null) {
 			if (Input.GetMouseButtonDown (0)) {
 				initialVector = Input.mousePosition;
@@ -58,7 +58,7 @@ public class FlingObject : MonoBehaviour {
 				}
 				Fling (deltaVector);
 			}
-		}
+		}*/
 	}
 	/** Constructs the impulse vector */
 	public Vector2 CalculateDelta(Vector2 initialVector, Vector2 finalVector) {

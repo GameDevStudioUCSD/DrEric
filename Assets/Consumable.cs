@@ -6,6 +6,7 @@ public class Consumable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(this.gameObject);
+        if(other.gameObject.tag == "Player")
+            Destroy(this.gameObject);
     }
 }

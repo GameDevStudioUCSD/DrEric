@@ -15,12 +15,10 @@ public class SliderText : MonoBehaviour {
 	
 	}
 
-    public Text value;
-    public Slider volumeSlider;
-
-    public void textUpdate()
+    public void textUpdate(Slider slider)
     {
-        value.text = "" + (int)(volumeSlider.value*20);
+		Text sliderText = (GameObject.FindWithTag(slider.GetComponent<Text> ().text)).GetComponent<Text>();
+		sliderText.text = "" + (int)(slider.value * 20);
     }
 
 

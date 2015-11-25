@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* James Allen
+ * Boss 1 Script: code for boss and interaction with switches
+ * nov 20ish
+ */
 public class Boss1 : MonoBehaviour {
     public enum Direction { DOWN, UP, LEFT, RIGHT}
     enum STATE { LERPING_AWAY, LERPING_BACK,IDLE,NOTHING}
 
+    //check if switches have been pressed
 	public bool topSwitch, leftSwitch, rightSwitch, bottomSwitch;
     public float moveFactor = 3f;
 
@@ -36,8 +41,8 @@ public class Boss1 : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if (needToPickASwitch) PickASwitch();
+	void Update () {//right now it just lerps in a random direction every 2 seconds
+        if (needToPickASwitch) PickASwitch();//neccesary because pickaswitch cannot be called in start
         if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp(currentDirection);
         if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
@@ -45,11 +50,11 @@ public class Boss1 : MonoBehaviour {
         }
     }
 
-    void Lerp(Direction direction)
+    void Lerp(Direction direction)//lerp function
     {
-        if (state == STATE.LERPING_AWAY)
+        if (state == STATE.LERPING_AWAY)//if boss is going away from center
         {
-            if (Time.time - startTime < endTime)
+            if (Time.time - startTime < endTime)//lerp
             {
                 //Debug.Log(Time.time - startTime);
                 float Lerpval = (Time.time - startTime) / endTime;
@@ -57,12 +62,12 @@ public class Boss1 : MonoBehaviour {
                 transform.position = Vector2.Lerp(startVector, endVector, Lerpval);
             }
             else
-            {
+            {//once boss is done going away, it lerps towards center
                 startTime = Time.time;
                 state = STATE.LERPING_BACK;
             }
         }
-        else if (state == STATE.LERPING_BACK)
+        else if (state == STATE.LERPING_BACK)//when boss is lerping to center
         {
             if (Time.time - startTime < endTime)
             {
@@ -71,14 +76,14 @@ public class Boss1 : MonoBehaviour {
                 transform.position = Vector2.Lerp(endVector, startVector, Lerpval);
             }
             else
-            {
+            {//idle once done going to center
                 startTime = Time.time;
                 state = STATE.IDLE;
             }
         }
     }
 
-	void BodySlam(Direction direction){
+	void BodySlam(Direction direction){//initializes lerp and other variables
         startTime = Time.time;
         Vector2 tempVector = Vector2.down;
         if (direction == Direction.DOWN)
@@ -101,7 +106,7 @@ public class Boss1 : MonoBehaviour {
             currentDirection = Direction.RIGHT;
             tempVector = Vector2.right * moveFactor;
         }
-
+        //set end vector based on direction
         endVector = startVector + tempVector;
         state = STATE.LERPING_AWAY;
 
@@ -111,6 +116,7 @@ public class Boss1 : MonoBehaviour {
 
 	}
 
+    //methods called when switch is pressed
 	public void FlipRightSwitch(){
 		rightSwitch = true;
         Switch currentswitch = transform.FindChild(RIGHTSWITCH).gameObject.GetComponent<Switch>();

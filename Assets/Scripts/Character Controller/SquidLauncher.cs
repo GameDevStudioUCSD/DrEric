@@ -58,7 +58,7 @@ public class SquidLauncher : MonoBehaviour {
         {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
-            DrEric = GameObject.Find("DrEric(Clone)"); //TODO: Remove magic string
+            DrEric = GameObject.Find(Names.DRERIC); //TODO: Remove magic string
         }
         else
         {

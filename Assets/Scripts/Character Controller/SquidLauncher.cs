@@ -60,7 +60,7 @@ public class SquidLauncher : MonoBehaviour {
             grabbing = false;
             grabbed = false;
             releasing = true;
-            DrEric = GameObject.Find("DrEric(Clone)");
+            DrEric = GameObject.Find(Names.DRERIC);
         }
         else
         {

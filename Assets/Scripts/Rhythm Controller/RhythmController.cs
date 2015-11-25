@@ -10,7 +10,6 @@ using System.Collections.Generic;
  * 				the RhythmEvents. \n
  */
 public class RhythmController : MonoBehaviour {
-    private const string NAME = "RhythmController";
 	private float wholeNote;
 	private float halfNote;
 	private float quarterNote;
@@ -56,7 +55,7 @@ public class RhythmController : MonoBehaviour {
 
     public static RhythmController GetController()
     {
-        GameObject controller = GameObject.Find(NAME);
+        GameObject controller = GameObject.Find(Names.RHYTHMCONTROLLER);
         return controller.GetComponent<RhythmController>();
     }
     /**

@@ -37,28 +37,6 @@ public class FlingObject : MonoBehaviour {
             Debug.LogError("Null Reference Exception: No 2D Rigidbody found on " + this);
         }
 	}
-    /** Awaits a user's mouse clicks; saves their clicks as vectors; and calls 
-     *  Fling() when the user releases their mouse */
-	void Update () { //implementation replaced by SquidLauncher. Uncomment to restore independent launching.
-        /*if (transform.parent == null) {
-			if (Input.GetMouseButtonDown (0)) {
-				initialVector = Input.mousePosition;
-				if (isDebugging) {
-					Debug.Log ("Mouse Down at: " + initialVector);
-				}
-			}
-			if (Input.GetMouseButtonUp (0)) {
-				finalVector = Input.mousePosition;
-				deltaVector = CalculateDelta (initialVector, finalVector);
-				if (isDebugging) {
-					Debug.Log ("Mouse Released at: " + finalVector);
-				
-					Debug.Log ("Fling Vector: " + deltaVector.normalized);
-				}
-				Fling (deltaVector);
-			}
-		}*/
-	}
 	/** Constructs the impulse vector */
 	public Vector2 CalculateDelta(Vector2 initialVector, Vector2 finalVector) {
         // Calculate the delta vector

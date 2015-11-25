@@ -30,9 +30,8 @@ public class SquidLauncher : MonoBehaviour {
 	private Vector2 finalVector;
 	private Vector2 deltaVector;
 
-	private bool grabbing = false;
-	private bool grabbed = false;
-	private bool releasing = false;
+    private enum State {NORMAL, GRABBING, GRABBED, RELEASING};
+    private State state = State.NORMAL;
 	private int spriteCounter = 0;
 
     private Vector2 gravity;
@@ -49,18 +48,17 @@ public class SquidLauncher : MonoBehaviour {
 		launchingSprite = transform.Find ("Launching Sprite");
     }
 
-	void Update () {
+    void Update() {
         //Unless the squid is currently grabbing DrEric, it should orient itself to gravity.
-        if (!grabbed)
+        if (state != State.GRABBED)
             CheckOrientation();
 
         //Identifies DrEric, which is not a constant object. Checks every frame until found.
         if (DrEric == null)
         {
-            grabbing = false;
-            grabbed = false;
-            releasing = true;
-            DrEric = GameObject.Find("DrEric(Clone)");
+            if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
+                state = State.RELEASING;
+            DrEric = GameObject.Find("DrEric(Clone)"); //TODO: Remove magic string
         }
         else
         {
@@ -69,26 +67,24 @@ public class SquidLauncher : MonoBehaviour {
             //Check prevents launching while in Launcher or other objects which should override standard movement
             if (DrEric.transform.parent == null)
             {
-                if (!grabbing && !grabbed && Input.GetMouseButton(0) && canGrab()) //Grabs anytime mouse is pressed while within range
+                //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
+                if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && canGrab())
                 {
                     initialVector = Input.mousePosition; //Initial click point used for movement calculations
-                    grab();
+                    reach();
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
                     //if grabbing animation has concluded, launch
-                    if (grabbed)
+                    if (state == State.GRABBED)
                         launch();
                     //stop grabbing animation partway through
                     else
-                    {
-                        grabbing = false;
-                        releasing = true;
-                    }
+                        state = State.RELEASING;
                 }
             }
             animateSprite();
-            if (DrEric != null && grabbed)
+            if (DrEric != null && state == State.GRABBED)
             {
                 rotate(); //rotation around DrEric while grabbed
             }
@@ -140,19 +136,27 @@ public class SquidLauncher : MonoBehaviour {
      * Begins squid grabbing animation
      * TODO: Will probably be changed or removed with proper animations
      */
-	private void grab() {
+	private void reach() {
 		idleSprite.GetComponent<SpriteRenderer> ().enabled = false;
 		launchingSprite.GetComponent<SpriteRenderer> ().enabled = true;
-		grabbing = true;
+        state = State.GRABBING;
 	}
 
+    private void grab()
+    {
+        DrEric.GetComponent<Rigidbody2D>().gravityScale = 0;
+        DrEric.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        DrEric.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        state = State.GRABBED;
+    }
+
     /*
-     * Manually switches sprites for grabbing and releasing animation. Toggles grab variable.
-     * TODO: Will be replaced with proper animations; will need to handle grabbed bool
+     * Manually switches sprites for grabbing and releasing animation. Modifies state.
+     * TODO: Will be replaced with proper animations; will need to handle state modifications.
      */
     private void animateSprite()
     {
-        if (grabbing)
+        if (state == State.GRABBING)
         {
             SpriteRenderer sprite = launchingSprite.GetComponent<SpriteRenderer>();
             if (spriteCounter == 0)
@@ -187,11 +191,10 @@ public class SquidLauncher : MonoBehaviour {
             }
             else if (spriteCounter == 6)
             {
-                grabbing = false;
-                grabbed = true;
+                grab();
             }
         }
-        if (releasing)
+        if (state == State.RELEASING)
         {
             SpriteRenderer sprite = launchingSprite.GetComponent<SpriteRenderer>();
             if (spriteCounter == 6)
@@ -228,7 +231,7 @@ public class SquidLauncher : MonoBehaviour {
             {
                 launchingSprite.GetComponent<SpriteRenderer>().enabled = false;
                 idleSprite.GetComponent<SpriteRenderer>().enabled = true;
-                releasing = false;
+                state = State.NORMAL;
             }
         }
     }
@@ -259,10 +262,10 @@ public class SquidLauncher : MonoBehaviour {
      */
 	private void launch()
     {
+        DrEric.GetComponent<Rigidbody2D>().gravityScale = 1;
         finalVector = Input.mousePosition;
         deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, finalVector);
         DrEric.GetComponent<FlingObject>().Fling (deltaVector);
-		grabbed = false;
-		releasing = true;
+        state = State.RELEASING;
 	}
 }

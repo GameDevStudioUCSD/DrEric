@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
 	private float angle;
 	private float delta;
     private float startTime;
+    public Transform spriteTransform;
     [Range(.1f, 10)]
     public float destroyAfterNSeconds = 1;
 
@@ -17,6 +18,10 @@ public class Bullet : MonoBehaviour {
 		Vector2 direction = new Vector2 (delta * Mathf.Cos (angle * Mathf.Deg2Rad),
 		                                delta * Mathf.Sin (angle * Mathf.Deg2Rad));
 		this.GetComponent<Rigidbody2D> ().AddForce (direction, ForceMode2D.Impulse);
+        if( spriteTransform == null )
+        {
+            spriteTransform = transform;
+        }
 	}
 	
 	// Update is called once per frame
@@ -35,6 +40,8 @@ public class Bullet : MonoBehaviour {
 	 */
 	public void setDirection(float anglePar) {
 		angle = anglePar;
+        if(spriteTransform != null)
+            spriteTransform.Rotate(new Vector3(0, 0, angle));
 	}
 
 	/**

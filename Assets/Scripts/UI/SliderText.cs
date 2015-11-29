@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class SliderText : MonoBehaviour {
 
+	Text text;
+	public Slider slider;
+
 	// Use this for initialization
 	void Start () {
-	
+		text = slider.gameObject.GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame
@@ -15,10 +18,9 @@ public class SliderText : MonoBehaviour {
 	
 	}
 
-    public void textUpdate(Slider slider)
+    public void textUpdate()
     {
-		Text sliderText = (GameObject.FindWithTag(slider.GetComponent<Text> ().text)).GetComponent<Text>();
-		sliderText.text = "" + (int)(slider.value * 20);
+		text.text = "" + (int)(slider.value * 20);
     }
 
 

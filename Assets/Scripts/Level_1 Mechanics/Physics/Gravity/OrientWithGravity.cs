@@ -3,8 +3,8 @@ using System.Collections;
 
 /**
  * Filename: OrientWithGravity.cs \n
- * Author: Michael Gonzalez \n
- * Contributing Authors: N/A \n
+ * Author: Steve Wang \n
+ * Contributing Authors: Michael Gonzalez \n
  * Date Drafted: 11/16/2015 \n
  * Description: This script will orient a GameObject with the direction of 
  *              gravity. You need to grab a reference to this script and call

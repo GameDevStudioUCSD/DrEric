@@ -38,7 +38,7 @@ public class Switch : MonoBehaviour {
                 {//upressed to pressed
                     if (isDebugging)
                         Debug.Log("Switch Pressed");
-                    pressEvent.Invoke();
+                    pressEvent.Invoke(); //threw an ArgumentOutOfRangeException, boss disappeared
                     isPressed = !isPressed;
                     animator.SetBool("IsPressed", true);
                 }

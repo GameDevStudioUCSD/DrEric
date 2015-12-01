@@ -37,20 +37,20 @@ public class Boss1 : MonoBehaviour {
         needToPickASwitch = true;
         state = STATE.IDLE;
         startVector = transform.position;
-        startTime = Time.time+1;
+        startTime = Time.time-1;
     }
 	
 	// Update is called once per frame
 	void Update () {//right now it just lerps in a random direction every 2 seconds
         if (needToPickASwitch) PickASwitch();//neccesary because pickaswitch cannot be called in start
-        if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp(currentDirection);
+        if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp();
         if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
-            BodySlam((Direction)Random.Range(0,3));
+            BodySlam((Direction)Random.Range(0,4));
         }
     }
 
-    void Lerp(Direction direction)//lerp function
+    void Lerp()//lerp function
     {
         if (state == STATE.LERPING_AWAY)//if boss is going away from center
         {

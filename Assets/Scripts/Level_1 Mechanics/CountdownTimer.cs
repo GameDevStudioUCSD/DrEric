@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class CountdownTimer : MonoBehaviour {
@@ -10,6 +11,7 @@ public class CountdownTimer : MonoBehaviour {
     public int rand2;
     public enum State { START, IDLE, COUNTING, FINISHED }
     public State state = State.START;
+    public UnityEvent fireOnFinish;
     private float endTime = 0;
 	void Start () {
 	
@@ -52,6 +54,7 @@ public class CountdownTimer : MonoBehaviour {
     void Finish()
     {
         tensPlace = onesPlace = rand1 = rand2 = 0;
+        fireOnFinish.Invoke();
     }
     void CalculateTime( float currTime )
     {

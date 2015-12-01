@@ -1,19 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* James Allen
+ * Boss 1 Script: code for boss and interaction with switches
+ * nov 20ish
+ */
 public class Boss1 : MonoBehaviour {
     public enum Direction { DOWN, UP, LEFT, RIGHT}
+    enum STATE { LERPING_AWAY, LERPING_BACK,IDLE,NOTHING}
 
+    //check if switches have been pressed
 	public bool topSwitch, leftSwitch, rightSwitch, bottomSwitch;
+    public float moveFactor = 3f;
+
+
     private bool needToPickASwitch;
+    public string TOPSWITCH = "TopSwitch";
+    public string BOTTOMSWITCH = "BottomSwitch";
+    public string RIGHTSWITCH = "RightSwitch";
+    public string LEFTSWITCH = "LeftSwitch";
 
-    public bool currentlyAttacking;
 
-    private bool currentlyLerping;
-    private bool goingAway;
     private float startTime;
-    private float endTime;
+    private float endTime = 1;
     private Direction currentDirection;
+    private STATE state;
+    private Vector2 startVector = Vector2.down;//default value
+    private Vector2 endVector = Vector2.down;
     
 	// Use this for initialization
 	void Start () {
@@ -22,94 +35,109 @@ public class Boss1 : MonoBehaviour {
 		rightSwitch = false;
 		bottomSwitch = false;
         needToPickASwitch = true;
-        goingAway = false;
-        endTime = 1;
+        state = STATE.IDLE;
+        startVector = transform.position;
+        startTime = Time.time+1;
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if (needToPickASwitch) PickASwitch();
-        if (currentlyLerping) Lerp(currentDirection);
-        if (!currentlyAttacking)
+	void Update () {//right now it just lerps in a random direction every 2 seconds
+        if (needToPickASwitch) PickASwitch();//neccesary because pickaswitch cannot be called in start
+        if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp(currentDirection);
+        if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
-            BodySlam(Direction.DOWN);
+            BodySlam((Direction)Random.Range(0,3));
         }
-
-        
     }
 
-    void Lerp(Direction direction)
+    void Lerp(Direction direction)//lerp function
     {
-        Vector2 startVector = transform.position;
-        Vector2 endVector = Vector2.down;//default val
-        if (direction == Direction.DOWN)
+        if (state == STATE.LERPING_AWAY)//if boss is going away from center
         {
-            endVector = transform.position + .13f * Vector3.down;
-        }
-        if (goingAway)
-        {
-            if (Time.time - startTime < endTime)
+            if (Time.time - startTime < endTime)//lerp
             {
                 //Debug.Log(Time.time - startTime);
                 float Lerpval = (Time.time - startTime) / endTime;
-            Debug.Log(Lerpval);
+                //Debug.Log(Lerpval);
                 transform.position = Vector2.Lerp(startVector, endVector, Lerpval);
             }
             else
-            {
+            {//once boss is done going away, it lerps towards center
                 startTime = Time.time;
-                goingAway = false;
+                state = STATE.LERPING_BACK;
             }
         }
-        else if (!goingAway)
+        else if (state == STATE.LERPING_BACK)//when boss is lerping to center
         {
             if (Time.time - startTime < endTime)
             {
-                //calculate opposite end vector
-                Vector2 tempV = endVector - startVector;
-                endVector = startVector - tempV;
                 //Debug.Log(Time.time - startTime);
                 float Lerpval = (Time.time - startTime) / endTime;
-                transform.position = Vector2.Lerp(startVector, endVector, Lerpval);
+                transform.position = Vector2.Lerp(endVector, startVector, Lerpval);
             }
-            else currentlyLerping = false;
+            else
+            {//idle once done going to center
+                startTime = Time.time;
+                state = STATE.IDLE;
+            }
         }
     }
 
-	void BodySlam(Direction direction){
-        currentlyAttacking = true;
+	void BodySlam(Direction direction){//initializes lerp and other variables
         startTime = Time.time;
+        Vector2 tempVector = Vector2.down;
         if (direction == Direction.DOWN)
+        {
             currentDirection = Direction.DOWN;
-        currentlyLerping = true;
-        goingAway = true;
+            tempVector = Vector2.down * moveFactor;
+        }
+        if (direction == Direction.UP)
+        {
+            currentDirection = Direction.UP;
+            tempVector = Vector2.up * moveFactor;
+        }
+        if (direction == Direction.LEFT)
+        {
+            currentDirection = Direction.LEFT;
+            tempVector = Vector2.left * moveFactor;
+        }
+        if (direction == Direction.RIGHT)
+        {
+            currentDirection = Direction.RIGHT;
+            tempVector = Vector2.right * moveFactor;
+        }
+        //set end vector based on direction
+        endVector = startVector + tempVector;
+        state = STATE.LERPING_AWAY;
+
 	}
 
 	void Attack2() {
 
 	}
 
+    //methods called when switch is pressed
 	public void FlipRightSwitch(){
 		rightSwitch = true;
-        Switch currentswitch = transform.FindChild("RightSwitch").gameObject.GetComponent<Switch>();
+        Switch currentswitch = transform.FindChild(RIGHTSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
         PickASwitch();
     }
 	public void FlipTopSwitch(){
 		topSwitch = true;
-        Switch currentswitch = transform.FindChild("TopSwitch").gameObject.GetComponent<Switch>();
+        Switch currentswitch = transform.FindChild(TOPSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
         PickASwitch();
     }
 	public void FlipLeftSwitch(){
 		leftSwitch = true;
-        Switch currentswitch = transform.FindChild("LeftSwitch").gameObject.GetComponent<Switch>();
+        Switch currentswitch = transform.FindChild(LEFTSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
         PickASwitch();
     }
 	public void FlipBottomSwitch(){
 		bottomSwitch = true;
-        Switch currentswitch = transform.FindChild("BottomSwitch").gameObject.GetComponent<Switch>();
+        Switch currentswitch = transform.FindChild(BOTTOMSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
         PickASwitch();
     }
@@ -128,10 +156,10 @@ public class Boss1 : MonoBehaviour {
         }
         //assign all unpressed switches to list
         ArrayList list = new ArrayList();
-        if (!topSwitch) list.Add(transform.FindChild("TopSwitch"));
-        if (!bottomSwitch) list.Add(transform.FindChild("BottomSwitch"));
-        if (!rightSwitch) list.Add(transform.FindChild("RightSwitch"));
-        if (!leftSwitch) list.Add(transform.FindChild("LeftSwitch"));
+        if (!topSwitch) list.Add(transform.FindChild(TOPSWITCH));
+        if (!bottomSwitch) list.Add(transform.FindChild(BOTTOMSWITCH));
+        if (!rightSwitch) list.Add(transform.FindChild(RIGHTSWITCH));
+        if (!leftSwitch) list.Add(transform.FindChild(LEFTSWITCH));
         //disable all the switches
         for (int forloopindex = 0; forloopindex < list.Count; forloopindex++)
         {

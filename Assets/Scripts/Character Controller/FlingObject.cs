@@ -41,7 +41,6 @@ public class FlingObject : MonoBehaviour {
 	public Vector2 CalculateDelta(Vector2 initialVector, Vector2 finalVector) {
         // Calculate the delta vector
 		deltaVector = finalVector - initialVector;
-        Debug.Log("Original Delta Vector: " +deltaVector);
         deltaVector.x = -1 * deltaVector.x;
         deltaVector.y = -1 * deltaVector.y;
 		

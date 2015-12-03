@@ -22,7 +22,9 @@ public class Boss1 : MonoBehaviour {
 
 
     private float startTime;
-    private float endTime = 1;
+    private SpriteRenderer spriterenderer;
+    private BoxCollider2D boxcollider2d;
+    private float endTime = 3;
     private Direction currentDirection;
     private STATE state;
     private Vector2 startVector = Vector2.down;//default value
@@ -46,7 +48,7 @@ public class Boss1 : MonoBehaviour {
         if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp();
         if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
-            BodySlam((Direction)Random.Range(0,4));
+            //BodySlam((Direction)Random.Range(0,4));
         }
     }
 
@@ -160,16 +162,21 @@ public class Boss1 : MonoBehaviour {
         if (!bottomSwitch) list.Add(transform.FindChild(BOTTOMSWITCH));
         if (!rightSwitch) list.Add(transform.FindChild(RIGHTSWITCH));
         if (!leftSwitch) list.Add(transform.FindChild(LEFTSWITCH));
-        //disable all the switches
+        //disable all the switches and make them visible
         for (int forloopindex = 0; forloopindex < list.Count; forloopindex++)
         {
             Transform currenttransform = (Transform)list[forloopindex];
             Switch currentswitch =  currenttransform.gameObject.GetComponent<Switch>();
             //Debug.Log(currenttransform.gameObject);
             currentswitch.isEnabled = false;
+            spriterenderer = currentswitch.GetComponentInChildren<SpriteRenderer>();
+            spriterenderer.enabled = false;
+            boxcollider2d = currentswitch.GetComponentInChildren<BoxCollider2D>();
+            boxcollider2d.enabled = false;
         }
         //choose a switch at random 
         int size = list.Count;
+        if (size == 0) return;
         int index = Random.Range(0, size);
 
         //select and enable a switch
@@ -177,6 +184,20 @@ public class Boss1 : MonoBehaviour {
         Switch currentSwitch = currentTransform.gameObject.GetComponent<Switch>();
         Debug.Log(currentTransform.gameObject + " ENABLED");
         currentSwitch.isEnabled = true;
+        //make 
+        for (int forloopindex = 0; forloopindex < list.Count; forloopindex++)
+        {
+            Transform currenttransform2 = (Transform)list[forloopindex];
+            Switch currentswitch2 = currenttransform2.gameObject.GetComponent<Switch>();
+            //Debug.Log(currenttransform.gameObject);
+            if (currentswitch2 == currentSwitch)
+            {
+                spriterenderer = currentswitch2.GetComponentInChildren<SpriteRenderer>();
+                spriterenderer.enabled = true;
+                boxcollider2d = currentswitch2.GetComponentInChildren<BoxCollider2D>();
+                boxcollider2d.enabled = true;
+            }
+        }
 
         needToPickASwitch = false;
     }

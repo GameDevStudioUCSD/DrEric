@@ -13,6 +13,13 @@ public class SquidLauncher : MonoBehaviour {
     public float grabRange = 2;
     public float rotationSpeed = 5;
 
+    public int maxJumps = 2;
+    public float maxGrabTime = 3; //seconds
+
+    private int jumpCount = 0;
+    private float grabTime = 0;
+    private bool alreadyGrabbed = false;
+
     private GameObject DrEric = null;
 	private Transform idleSprite;
 	private Transform launchingSprite;
@@ -27,7 +34,6 @@ public class SquidLauncher : MonoBehaviour {
 	public Sprite launchSprite6;
 
 	private Vector2 initialVector;
-	private Vector2 finalVector;
 	private Vector2 deltaVector;
 
     private enum State {NORMAL, GRABBING, GRABBED, RELEASING};
@@ -75,9 +81,10 @@ public class SquidLauncher : MonoBehaviour {
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
+                    alreadyGrabbed = false;
                     //if grabbing animation has concluded, launch
                     if (state == State.GRABBED)
-                        launch();
+                        launch(Input.mousePosition);
                     //stop grabbing animation partway through
                     else
                         state = State.RELEASING;
@@ -87,6 +94,8 @@ public class SquidLauncher : MonoBehaviour {
             if (DrEric != null && state == State.GRABBED)
             {
                 rotate(); //rotation around DrEric while grabbed
+                if (Time.time >= grabTime + maxGrabTime)
+                    launch(initialVector); //release without applying force
             }
         }
     }
@@ -121,15 +130,18 @@ public class SquidLauncher : MonoBehaviour {
 	}
 	
     /*
-     * Checks if the squid's grabbing point (bottom of fully-extended tentacles) is within grabRange of DrEric
+     * Checks if the squid's grabbing point (bottom of fully-extended tentacles) is within grabRange of DrEric and the
+     * maximum number of jumps has not been exceeded.
      *
      * @return true if DrEric is in range
      */
 	private bool canGrab() {
-        if (Vector3.Distance(transform.position, DrEric.transform.position) <= grabRange)
-            return true;
-        else
-            return false;
+        if (Vector3.Distance(transform.position, DrEric.transform.position) <= grabRange && !alreadyGrabbed)
+        {
+            //if (jumpCount < maxJumps)
+                return true;
+        }
+        return false;
 	}
 	
     /*
@@ -148,6 +160,8 @@ public class SquidLauncher : MonoBehaviour {
         DrEric.GetComponent<Rigidbody2D>().angularVelocity = 0;
         DrEric.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         state = State.GRABBED;
+        grabTime = Time.time;
+        alreadyGrabbed = true;
     }
 
     /*
@@ -194,7 +208,7 @@ public class SquidLauncher : MonoBehaviour {
                 grab();
             }
         }
-        if (state == State.RELEASING)
+        else if (state == State.RELEASING)
         {
             SpriteRenderer sprite = launchingSprite.GetComponent<SpriteRenderer>();
             if (spriteCounter == 6)
@@ -242,8 +256,7 @@ public class SquidLauncher : MonoBehaviour {
      */
     private void rotate()
     {
-        finalVector = Input.mousePosition;
-        deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, finalVector); //TODO
+        deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg;
         float gravityOffset = Mathf.Atan2(gravity.y, gravity.x) * Mathf.Rad2Deg;
@@ -259,13 +272,25 @@ public class SquidLauncher : MonoBehaviour {
      * Squid releases DrEric with the direction and speed indicated by deltaVector. Upon release, squid will rotate to
      * face gravity again.
      * TODO: SquidLauncher should absorb FlingObject completely, not call its methods.
+     *
+     * @param finalVector the vector where the mouse is released
      */
-	private void launch()
+	private void launch(Vector2 finalVector)
     {
         DrEric.GetComponent<Rigidbody2D>().gravityScale = 1;
-        finalVector = Input.mousePosition;
         deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, finalVector);
         DrEric.GetComponent<FlingObject>().Fling (deltaVector);
         state = State.RELEASING;
+        jumpCount++;
 	}
+
+    /*
+     * Determines dynamically if the player has collided with the ground, which will cause jumpCount to reset to 0
+     *
+     * TODO: Not currently implemented
+     */
+    void checkGround()
+    {
+        
+    }
 }

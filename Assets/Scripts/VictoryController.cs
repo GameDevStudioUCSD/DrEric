@@ -11,7 +11,12 @@ using UnityEngine.UI;
  *              instantiate a copy of the victory screen when another object
  *              collides with this one.
  */
-public class VictoryController : MonoBehaviour {
+public class VictoryController : MonoBehaviour
+{
+    /** The world where the level is in */
+    public World world = World.Space;
+    /** The level to load when the player hits this controller */
+    public Level nextLevel = Level.One;
     /** The victory screen prefab */
     public GameObject victoryScreen;
     /** Spawns a victory screen when an object collides with this */
@@ -27,6 +32,7 @@ public class VictoryController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+<<<<<<< HEAD
         Instantiate(victoryScreen);
         Invoke("nextLevel", 2.0f);
 
@@ -60,4 +66,13 @@ public class VictoryController : MonoBehaviour {
 		PlayerPrefs.Save ();
 
 	}
+=======
+        if (collision.gameObject.tag == "Player")
+        {
+            Instantiate(victoryScreen);
+            LevelLoader.LoadLevel(world, nextLevel);
+        }
+    }
+
+>>>>>>> Mechanics2
 }

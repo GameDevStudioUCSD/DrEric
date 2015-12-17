@@ -35,6 +35,7 @@ public class SquidLauncher : MonoBehaviour {
 
 	private Vector2 initialVector;
 	private Vector2 deltaVector;
+    private Vector2 centerOfScreen;
 
     private enum State {NORMAL, GRABBING, GRABBED, RELEASING};
     private State state = State.NORMAL;
@@ -52,6 +53,10 @@ public class SquidLauncher : MonoBehaviour {
         destRotation = transform.rotation;
         idleSprite = transform.Find ("Idle Sprite");
 		launchingSprite = transform.Find ("Launching Sprite");
+<<<<<<< HEAD
+=======
+        centerOfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
+>>>>>>> Mechanics2
     }
 
     void Update() {
@@ -256,6 +261,7 @@ public class SquidLauncher : MonoBehaviour {
      */
     private void rotate()
     {
+        initialVector = centerOfScreen; //TODO OPTIMIZE
         deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg;

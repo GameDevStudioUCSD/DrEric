@@ -25,7 +25,7 @@ public class RhythmController : MonoBehaviour {
 	public MusicalTrack[] channel2TrackList;
 
     
-    [Range(0,2)]
+    [Range(0,3)]
     public int songIndex = 0;
     public float errorMargin = 1f;
     public float swapSpeed = 5f;
@@ -69,7 +69,6 @@ public class RhythmController : MonoBehaviour {
         } else {
             singleton = this;
         }
-        DontDestroyOnLoad(gameObject);
     }
     /**
      * Function Name: SwapChannel()

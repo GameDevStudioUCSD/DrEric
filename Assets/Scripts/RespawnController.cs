@@ -11,9 +11,11 @@ public class RespawnController : MonoBehaviour {
 	public double respawnTime;
 	public GameObject player;
 	private GameObject currentPlayer = null;
+    protected RhythmController rhythmController;
 
 	// Use this for initialization
 	void Start () {
+        rhythmController = RhythmController.GetController();
 		respawnTimer = 0;
 		respawn(); //initial creation of DrEric
 	}
@@ -35,6 +37,7 @@ public class RespawnController : MonoBehaviour {
 			Destroy (currentPlayer.gameObject);
 			isDead = true;
 			respawnTimer = 0;
+            rhythmController.SwitchToChannel(2);
 			Debug.Log ("DrEric has died");
 		}
 	}
@@ -46,6 +49,7 @@ public class RespawnController : MonoBehaviour {
 		if (currentPlayer == null) { //DrEric must not already exist
 			isDead = false;
 			currentPlayer = (GameObject)Instantiate (player, transform.position, transform.rotation);
+            rhythmController.SwitchToChannel(1);
 			Debug.Log ("DrEric has spawned");
 		}
 	}

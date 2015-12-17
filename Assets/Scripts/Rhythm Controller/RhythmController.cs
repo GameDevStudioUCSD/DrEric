@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /**
@@ -11,7 +10,6 @@ using System.Collections.Generic;
  * 				the RhythmEvents. \n
  */
 public class RhythmController : MonoBehaviour {
-    private const string NAME = "RhythmController";
 	private float wholeNote;
 	private float halfNote;
 	private float quarterNote;
@@ -23,33 +21,41 @@ public class RhythmController : MonoBehaviour {
     private float tripleEigthNote;
     private float measureLength;
 
-	/*Need MusicalTrack.cs*/
-	public MusicalTrack[] musicList;
+	public MusicalTrack[] channel1TrackList;
+	public MusicalTrack[] channel2TrackList;
 
+    
+    [Range(0,2)]
     public int songIndex = 0;
     public float errorMargin = 1f;
+    public float swapSpeed = 5f;
     public bool isDebugging;
 
-	/*Need RhythmEvent.cs*/
     private List<int> measureKeys;
     private SortedDictionary<int, List<float>> measureTimeKeys;
     private SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>> events;
-    private AudioSource audioSource;
+    private AudioSource channel1;
+	private AudioSource channel2;
+	private AudioSource activeChannel;
 
     static RhythmController singleton = null;
 
 	int currentMeasure;
 	int currentBeat;
+    int currentChannel = 1;
+    float startSwap = 0f;
+    float finishSwap = 0f;
 
 	/*Internals*/
 	MusicalTrack currentTrack;
 
-	double startTime;
+	float startTime;
+    float destPitch;
 
 
     public static RhythmController GetController()
     {
-        GameObject controller = GameObject.Find(NAME);
+        GameObject controller = GameObject.Find(Names.RHYTHMCONTROLLER);
         return controller.GetComponent<RhythmController>();
     }
     /**
@@ -65,6 +71,59 @@ public class RhythmController : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
     }
+    /**
+     * Function Name: SwapChannel()
+     * Description: This function will tell the rhythm controller to switch the
+     *              channel it is currently playing music on. This allows us to
+     *              use dynamic music. 
+     */
+    public void SwapChannel()
+    {
+        if (activeChannel == channel1)
+        {
+            activeChannel = channel2;
+            destPitch = channel2TrackList[songIndex].pitch;
+        }
+        else
+        {
+            activeChannel = channel1;
+            destPitch = channel1TrackList[songIndex].pitch;
+        }
+    }
+    public void SwitchToChannel( int channel )
+    {
+        if( channel == 1 )
+        {
+            if (activeChannel == channel2)
+                SwapChannel();
+        }
+        else if( activeChannel == channel1 )
+        {
+            SwapChannel();
+        }
+    }
+    public float GetPitch()
+    {
+        return activeChannel.pitch;
+    }
+    /**
+     * Function Name: ChannelLerp() \n
+     * Description: This function will smoothly fade between the two channels
+     *              on the rhythm controller. It should be called at the top of
+     *              update to work correctly
+     */
+    void ChannelLerp() {
+            if( activeChannel == channel1) {
+                channel1.volume = Mathf.Lerp(channel1.volume, 1f, swapSpeed * Time.deltaTime);
+                channel2.volume = Mathf.Lerp(channel2.volume, 0f, swapSpeed * Time.deltaTime);
+            }
+            if( activeChannel == channel2) {
+                channel1.volume = Mathf.Lerp(channel1.volume, 0f, swapSpeed * Time.deltaTime);
+                channel2.volume = Mathf.Lerp(channel2.volume, 1f, swapSpeed * Time.deltaTime);
+            }
+        channel1.pitch = Mathf.Lerp(activeChannel.pitch, destPitch, swapSpeed * Time.deltaTime);
+        channel2.pitch = Mathf.Lerp(activeChannel.pitch, destPitch, swapSpeed * Time.deltaTime);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -73,23 +132,34 @@ public class RhythmController : MonoBehaviour {
         measureTimeKeys = new SortedDictionary<int, List<float>>();
         events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
 
-		//startTime = AudioSettings.dspTime;
-        currentTrack = musicList[songIndex];
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = currentTrack.song;
-        SetNoteLengths();
+		foreach( Transform channel in transform) {
+			if(channel.gameObject.name == "Channel 1")
+				channel1 = channel.gameObject.GetComponent<AudioSource>();
+			if(channel.gameObject.name == "Channel 2")
+				channel2 = channel.gameObject.GetComponent<AudioSource>();
+		}
+		currentTrack = channel1TrackList[songIndex];
+		channel1.clip = currentTrack.song;
+		channel2.clip = channel2TrackList[songIndex].song;
+        channel1.pitch = channel1TrackList[songIndex].pitch;
+        destPitch = channel1.pitch;
+        channel1.Play();
+		channel2.volume = 0f;
+		channel2.Play();
+		SetNoteLengths();
+        activeChannel = channel1;
         if(isDebugging)
 		    DebugLengths ();
-        this.name = NAME;
-        audioSource.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (channel1 == null)
+            return;
+        ChannelLerp(); 
         foreach (int measure in measureKeys)
         {
-            float t = audioSource.time * 1000; // t == time
-            //Debug.Log(t);
+            float t = channel1.time * 1000 * activeChannel.pitch; // t == time
             if ((int)(t / measureLength) % measure == 0)
             { // We know that we're in an appropriate measure to call methods on
                 List<float> timeKeys = measureTimeKeys[measure];
@@ -100,10 +170,11 @@ public class RhythmController : MonoBehaviour {
                         List<RhythmEvent> eventList = eventMap[timeKey];
                         foreach (RhythmEvent e in eventList)
                         {
-                            if(t - e.GetLastInvokeTime() > errorMargin * 5)
+                            float ms = t / activeChannel.pitch;
+                            if(ms - e.GetLastInvokeTime() > errorMargin * 5 || e.GetLastInvokeTime() > ms)
                             {
                                 e.OnEvent.Invoke();
-                                e.SetLastInvokeTime(t); 
+                                e.SetLastInvokeTime(ms); 
                             }
                         }
                     }
@@ -199,7 +270,10 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
-        audioSource.Stop();
+        if(channel1 != null)
+            channel1.Stop();
+        if(channel2 != null)
+		    channel2.Stop();
     }
   
 }

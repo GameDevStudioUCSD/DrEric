@@ -37,7 +37,10 @@ public class VictoryController : MonoBehaviour {
 		saveCheckpoint ();
 
 		//END TEST
-
+            if (collision.gameObject.tag == "Player"){
+            Instantiate(victoryScreen);
+            Invoke("nextLevel", 2.0f);
+        }
     }
 
     void nextLevel()

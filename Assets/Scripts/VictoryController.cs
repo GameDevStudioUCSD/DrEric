@@ -32,9 +32,8 @@ public class VictoryController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-<<<<<<< HEAD
         Instantiate(victoryScreen);
-        Invoke("nextLevel", 2.0f);
+        Invoke("LoadNextLevel", 2.0f);
 
 		//TESTING PERSISTENT DATA
 
@@ -49,9 +48,9 @@ public class VictoryController : MonoBehaviour
         }
     }
 
-    void nextLevel()
+    void LoadNextLevel()
     {
-        Application.LoadLevel(Application.loadedLevel + 1);
+        LevelLoader.LoadLevel(world, nextLevel);
     }
 
 	void saveCheckpoint()
@@ -65,14 +64,6 @@ public class VictoryController : MonoBehaviour
 		// - Unity API Ref
 		PlayerPrefs.Save ();
 
-	}
-=======
-        if (collision.gameObject.tag == "Player")
-        {
-            Instantiate(victoryScreen);
-            LevelLoader.LoadLevel(world, nextLevel);
-        }
     }
 
->>>>>>> Mechanics2
 }

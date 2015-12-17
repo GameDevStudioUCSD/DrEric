@@ -53,10 +53,7 @@ public class SquidLauncher : MonoBehaviour {
         destRotation = transform.rotation;
         idleSprite = transform.Find ("Idle Sprite");
 		launchingSprite = transform.Find ("Launching Sprite");
-<<<<<<< HEAD
-=======
         centerOfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
->>>>>>> Mechanics2
     }
 
     void Update() {

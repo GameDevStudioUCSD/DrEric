@@ -32,19 +32,24 @@ public class VictoryController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(victoryScreen);
-        Invoke("LoadNextLevel", 2.0f);
+        //Instantiate(victoryScreen);
+        //Invoke("LoadNextLevel", 2.0f);
 
-		//TESTING PERSISTENT DATA
+        //TESTING PERSISTENT DATA
 
-		Debug.Log (count);
-		countOut.text = "" + count;
-		saveCheckpoint ();
+        if (countOut != null)
+        {
+            Debug.Log(count);
+            countOut.text = "" + count;
+        }
+        else
+            Debug.LogError("AnhQuan, fix this NullReference exception please");
+        saveCheckpoint();
 
 		//END TEST
             if (collision.gameObject.tag == "Player"){
             Instantiate(victoryScreen);
-            Invoke("nextLevel", 2.0f);
+            Invoke("LoadNextLevel", 2.0f);
         }
     }
 

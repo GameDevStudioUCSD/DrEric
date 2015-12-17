@@ -15,11 +15,17 @@ using System.Collections;
  */
 public class LevelLoader : MonoBehaviour {
 
-    public const int SPACE_2 = 2;
-    public const int SPACE_3 = 3;
-    public const int SPACE_4 = 4;
-    public const int SPACE_BOSS = 5;
+    private const int SPACE_2 = 2;
+    private const int SPACE_3 = 3;
+    private const int SPACE_4 = 4;
+    private const int SPACE_BOSS = 5;
 
+    public World world;
+    public Level level;
+    public void LoadLevel()
+    {
+        LoadLevel(world, level);
+    }
     /**
      * Function Name: LoadLevel() \n
      * This function will load Level level of World world

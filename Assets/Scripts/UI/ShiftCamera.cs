@@ -18,7 +18,7 @@ public class ShiftCamera : MonoBehaviour {
 		if (levelState < MAX_LEVEL) {
 			animation.Play ("levelTransitionRight" + levelState);
 			levelState++;
-			Debug.Log ("Shit");
+			Debug.Log ("Shifting screens");
 		} else {
 			Debug.Log ("No shit");
 		}

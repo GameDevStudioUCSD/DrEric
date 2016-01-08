@@ -5,6 +5,10 @@ using System.Collections;
 public class CountdownTimer : MonoBehaviour {
 
     public float timerVal = 24;
+    public GameObject tensObj;
+    public GameObject onesObj;
+    public GameObject tenthObj;
+    public GameObject hundrethObj;
     public int tensPlace;
     public int onesPlace;
     public int rand1;
@@ -50,17 +54,28 @@ public class CountdownTimer : MonoBehaviour {
             return;
         }
         CalculateTime(currTime);
+        SetDigits();
     }
     void Finish()
     {
         tensPlace = onesPlace = rand1 = rand2 = 0;
+        SetDigits();
         fireOnFinish.Invoke();
     }
     void CalculateTime( float currTime )
     {
         tensPlace = (int)(currTime / 10);
         onesPlace = (int)(currTime % 10);
+        //rand1 = (int)((currTime % 100)*10);
+        //rand2 = (int)((currTime % 1000)*100);
         rand1 = Random.Range(0, 9);
         rand2 = Random.Range(0, 9);
+    }
+    void SetDigits()
+    {
+        tensObj.GetComponent<Animator>().SetInteger("Digit", tensPlace);
+        onesObj.GetComponent<Animator>().SetInteger("Digit", onesPlace);
+        tenthObj.GetComponent<Animator>().SetInteger("Digit", rand1);
+        hundrethObj.GetComponent<Animator>().SetInteger("Digit", rand2);
     }
 }

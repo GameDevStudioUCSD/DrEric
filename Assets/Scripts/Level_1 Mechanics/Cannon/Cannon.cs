@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 /**
  * Script for Cannon objects. Controls cannonball generation.
@@ -15,6 +16,7 @@ public class Cannon : MonoBehaviour {
 	public float rotation; //Amount the cannon rotates each frame
 	public float fireAngle; //Cannon fires every n degrees; disabled if 0
 	private float curRot; //running count of degrees until next shot
+	public SpriteRenderer skin;
 
 	// Use this for initialization
 	void Start () {

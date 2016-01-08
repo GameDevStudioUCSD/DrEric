@@ -39,7 +39,7 @@ public class VictoryController : MonoBehaviour
 
         if (countOut != null)
         {
-            Debug.Log(count);
+            Debug.Log("This is temporarily fixed.");
             countOut.text = "" + count;
         }
         else

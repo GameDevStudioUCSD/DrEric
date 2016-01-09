@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class LaserCannon : MonoBehaviour {
-
-    private RespawnController respawner;
+    
     /** State definitions for Platform.cs */
     enum STATE {WAITING, SEARCHING, BLOATING, FIRING, RETURNING }
     /** This is the starting vector of this game object*/
@@ -14,64 +13,123 @@ public class LaserCannon : MonoBehaviour {
       * move from startVector to endVector */
     [Tooltip("This is the amount of time in seconds that it takes the game object to move from startVector to endVector")]
     public float movementTime = 2;
-
+    public bool firing = false;
+    public float Bloattime = 1;//time it takes to bloat
+    public float bloatScaleInc = .01F;//bloat scale per tic
+    public float FiringTime = 1;//time firing
     // Private variables
     private float startTime = 0;
-    private State state = State.WAITING;
+    private STATE state = STATE.WAITING;
     private RhythmController rhythmController;
+    private Vector2 currentVector;
+    private Vector3 originalScale;
+    private RespawnController respawner;
 
     void Start()
-    {
-        respawner = GameObject.Find("Respawner").GetComponent<RespawnController>();
+    {//initialize stuff
         rhythmController = RhythmController.GetController();
+        originalScale = transform.localScale;
+        respawner = GameObject.Find("Respawner").GetComponent<RespawnController>();
     }
-    void OnTriggerEnter2D(Collider2D other)
+
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (state = STATE.FIRING)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
+            if (state == STATE.SEARCHING)//stop and start firing when player is found
+            {
+                startTime = Time.time;
+                state = STATE.BLOATING;
+            }
+            else if (state == STATE.FIRING)//kill when firing
             {
                 respawner.kill();
+                Debug.Log("DIE");
             }
         }
     }
     void Update()
     {
-        MoveDrEric();
-        switch (state)
+        switch (state)//determine behavior
         {
             case STATE.WAITING:
                 Waiting();
                 break;
             case STATE.SEARCHING:
-                Lerping();
+                Searching();
                 break;
             case STATE.BLOATING:
+                Bloating();
                 break;
             case STATE.FIRING:
+                Firing();
                 break;
             case STATE.RETURNING:
+                Returning();
                 break;
         }
     }
 
-
-    /** This method uses the lerp function to smoothly move the platform 
-     *  between the startVector and endVector in movementTime seconds*/
-    void Lerping()
+    void Waiting()//wait until boss1 tells cannons to fire
     {
-        if (Time.time - startTime > movementTime / rhythmController.GetPitch())
+        if (firing == true)
         {
+            state = STATE.SEARCHING;
             startTime = Time.time;
-            Vector2 swapVector = startVector;
-            startVector = endVector;
-            endVector = swapVector;
-            state = State.WAITING;
+        }
+    }
+
+    void Searching()//move right until player found
+    {
+        float lerpVal = (Time.time - startTime) / (movementTime);
+        transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
+        if (lerpVal == 1)//if player isn't found, go back
+        {
+            currentVector = transform.position;
+            state = STATE.RETURNING;
+        }
+    }
+
+    void Bloating()
+    {
+        currentVector = transform.position;
+        if (Time.time - startTime <= Bloattime)//bloat to charge up lazor
+        {
+            transform.localScale += new Vector3(0, bloatScaleInc, 0);
         }
         else
         {
-            float lerpVal = (Time.time - startTime) / (movementTime / rhythmController.GetPitch());
-            transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
+            transform.localScale = originalScale;//go back to original scale
+            startTime = Time.time;
+            state = STATE.FIRING;
+        }
+    
+    }
+
+    void Firing()//no animation, kill frames activated
+    {
+        if (Time.time - startTime <= FiringTime)
+        {
+            //animation stuff
+        }
+        else
+        {
+            startTime = Time.time;
+            state = STATE.RETURNING;
         }
     }
-}
+
+    void Returning()//go back to original position
+    {
+        if (Time.time - startTime <= movementTime)
+        {
+            float lerpVal = (Time.time - startTime) / (movementTime / rhythmController.GetPitch());
+            transform.position = Vector2.Lerp(currentVector, startVector, lerpVal);
+            
+        }
+        else
+        {
+            firing = false;
+            state = STATE.WAITING;
+        }
+    }

@@ -42,6 +42,7 @@ public class SquidLauncher : MonoBehaviour {
 	private int spriteCounter = 0;
 
     private Vector2 gravity;
+    private Vector2 startPos;
     private Quaternion destRotation;
 
     /*
@@ -54,6 +55,7 @@ public class SquidLauncher : MonoBehaviour {
         idleSprite = transform.Find ("Idle Sprite");
 		launchingSprite = transform.Find ("Launching Sprite");
         centerOfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
+        startPos = transform.position;
     }
 
     void Update() {
@@ -67,10 +69,12 @@ public class SquidLauncher : MonoBehaviour {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
             DrEric = GameObject.Find(Names.DRERIC); //TODO: Remove magic string
+            moveToward(startPos);
         }
         else
         {
-            moveToward(); //Squid always seeks DrEric
+            Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
+            moveToward(drEricPos); //Squid always seeks DrEric
 
             //Check prevents launching while in Launcher or other objects which should override standard movement
             if (DrEric.transform.parent == null)
@@ -122,12 +126,11 @@ public class SquidLauncher : MonoBehaviour {
      * Constant movement toward DrEric. MoveTowards is similar to linear interpolation, but uses a constant speed.
      * Done in two dimensions so the SquidLauncher remains on top.
      */
-    private void moveToward() {
+    private void moveToward(Vector2 destination) {
         Vector2 position = new Vector2(transform.position.x, transform.position.y);
-        Vector2 ericPosition = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
 
         transform.position = Vector2.MoveTowards(position,
-		                                         ericPosition,
+		                                         destination,
 		                                         movementSpeed * Time.deltaTime);
 	}
 	

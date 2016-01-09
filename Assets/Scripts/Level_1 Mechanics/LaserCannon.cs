@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LaserCannon : MonoBehaviour {
-    
+public class LaserCannon : MonoBehaviour
+{
+
     /** State definitions for Platform.cs */
-    enum STATE {WAITING, SEARCHING, BLOATING, FIRING, RETURNING }
+    enum STATE { WAITING, SEARCHING, BLOATING, FIRING, RETURNING }
     /** This is the starting vector of this game object*/
     public Vector2 startVector = new Vector2(1, 1);
     /** This is the end vector of the object's path */
@@ -103,7 +104,7 @@ public class LaserCannon : MonoBehaviour {
             startTime = Time.time;
             state = STATE.FIRING;
         }
-    
+
     }
 
     void Firing()//no animation, kill frames activated
@@ -125,7 +126,7 @@ public class LaserCannon : MonoBehaviour {
         {
             float lerpVal = (Time.time - startTime) / (movementTime / rhythmController.GetPitch());
             transform.position = Vector2.Lerp(currentVector, startVector, lerpVal);
-            
+
         }
         else
         {
@@ -133,3 +134,4 @@ public class LaserCannon : MonoBehaviour {
             state = STATE.WAITING;
         }
     }
+}

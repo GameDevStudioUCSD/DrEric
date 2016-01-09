@@ -10,6 +10,7 @@ public class AccelerationLauncher : MonoBehaviour {
  */
 
  public Vector2 acceleration;
+    public float forceScalar = .1f;
  private Rigidbody2D rigidBody;
 	// Use this for initialization
 	void Start () {
@@ -27,13 +28,15 @@ public class AccelerationLauncher : MonoBehaviour {
         	//other.gameObject.tag == "")
 		{	
         	rigidBody = other.GetComponent<Rigidbody2D>();
+            float forceScalar = this.forceScalar * rigidBody.velocity.magnitude;
+            rigidBody.velocity = Vector2.zero;
         	if (rigidBody == null)
         	{
             	Debug.LogError("Null Reference Exception: No 2D Rigidbody found on " + this);
         	}
         	else {
 
-        		rigidBody.AddForce(acceleration, ForceMode2D.Impulse);
+        		rigidBody.AddForce(forceScalar * acceleration, ForceMode2D.Impulse);
         	}
             
         }

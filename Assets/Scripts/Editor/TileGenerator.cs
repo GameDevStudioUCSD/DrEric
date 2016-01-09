@@ -20,7 +20,7 @@ public class TileGenerator : MonoBehaviour {
 			go.GetComponent<SpriteRenderer>().sprite = sprite;
 			go.GetComponent<BoxCollider2D>().size = go.GetComponent<SpriteRenderer>().bounds.size;
 			go.transform.parent = t;
-			go.transform.localPosition = isVertical? new Vector2(0,i*0.13f):new Vector2(i*0.16f,0);
+			go.transform.localPosition = isVertical? new Vector2(0,i*1.0f):new Vector2(i*1.0f,0);
 		}
 	}
 

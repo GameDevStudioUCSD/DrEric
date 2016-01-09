@@ -29,12 +29,14 @@ public class Cannon : MonoBehaviour {
 		curTime -= 1;
 		this.transform.Rotate (0,0,rotation);
 		curRot -= rotation;
+
 		if (fireOnUpdate && time != 0 && curTime <= 0) {
 			//creating bullet
             FireBullet();
 			//prepare for next shot
 			curTime = time;
 		}
+
 		if (fireOnUpdate && fireAngle != 0 && curRot <= 0) {
 			FireBullet ();
 			curRot = fireAngle;
@@ -58,4 +60,14 @@ public class Cannon : MonoBehaviour {
         thisBullet.setDirection(angle);
         thisBullet.setDelta(bulletSpeed);
     }
+
+	/* Called by the rhythm controller */
+	public void Rotate() {
+		this.transform.Rotate (0, 0, rotation);
+		curRot -= rotation;
+		if (curRot <= 0) {
+			FireBullet ();
+			curRot = fireAngle;
+		}
+	}
 }

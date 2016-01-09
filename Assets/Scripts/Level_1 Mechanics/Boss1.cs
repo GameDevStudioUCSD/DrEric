@@ -48,7 +48,7 @@ public class Boss1 : MonoBehaviour {
         if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp();
         if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
-            //BodySlam((Direction)Random.Range(0,4));
+            BodySlam((Direction)Random.Range(0,4));
         }
     }
 

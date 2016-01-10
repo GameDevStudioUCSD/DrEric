@@ -11,6 +11,8 @@ public class RespawnController : MonoBehaviour {
 	public double respawnTime;
 	public GameObject player;
 	private GameObject currentPlayer = null;
+    private GameObject playerHolder;
+    private GameObject squidLauncher;
     protected RhythmController rhythmController;
 
 	// Use this for initialization
@@ -18,6 +20,13 @@ public class RespawnController : MonoBehaviour {
         rhythmController = RhythmController.GetController();
 		respawnTimer = 0;
 		respawn(); //initial creation of DrEric
+        playerHolder = GameObject.Find(Names.PLAYERHOLDER);
+        squidLauncher = playerHolder.transform.Find(Names.SQUIDLAUNCHER).gameObject;
+        if (playerHolder == null)
+        {
+            throw new System.Exception("No Player Holder!");
+        }
+        playerHolder.transform.position = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +46,12 @@ public class RespawnController : MonoBehaviour {
 			Destroy (currentPlayer.gameObject);
 			isDead = true;
 			respawnTimer = 0;
+
+            //return camera to original position
+            Vector3 squidPos = squidLauncher.transform.position;
+            playerHolder.transform.position = transform.position;
+            squidLauncher.transform.position = squidPos;
+
             rhythmController.SwitchToChannel(2);
 			Debug.Log ("DrEric has died");
 		}
@@ -48,9 +63,15 @@ public class RespawnController : MonoBehaviour {
 	public void respawn() {
 		if (currentPlayer == null) { //DrEric must not already exist
 			isDead = false;
-			currentPlayer = (GameObject)Instantiate (player, transform.position, transform.rotation);
+			currentPlayer = (GameObject)Instantiate (player, transform.position, Quaternion.identity);
             rhythmController.SwitchToChannel(1);
 			Debug.Log ("DrEric has spawned");
-		}
-	}
+            GameObject playerHolder = GameObject.Find("Player Holder");
+            if (playerHolder != null)
+            {
+                currentPlayer.transform.parent = playerHolder.transform;
+                currentPlayer.transform.localPosition = Vector3.zero;
+            }
+        }
+    }
 }

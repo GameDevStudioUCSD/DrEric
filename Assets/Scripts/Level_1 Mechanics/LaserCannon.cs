@@ -15,7 +15,7 @@ public class LaserCannon : MonoBehaviour
     [Tooltip("This is the amount of time in seconds that it takes the game object to move from startVector to endVector")]
     public float movementTime = 2;
     public bool firing = false;
-    public float Bloattime = 1;//time it takes to bloat
+    public float Bloattime = 5;//time it takes to bloat
     public float bloatScaleInc = .01F;//bloat scale per tic
     public float FiringTime = 1;//time firing
     // Private variables
@@ -31,6 +31,7 @@ public class LaserCannon : MonoBehaviour
         rhythmController = RhythmController.GetController();
         originalScale = transform.localScale;
         respawner = GameObject.Find("Respawner").GetComponent<RespawnController>();
+        transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -102,6 +103,7 @@ public class LaserCannon : MonoBehaviour
         {
             transform.localScale = originalScale;//go back to original scale
             startTime = Time.time;
+            transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = true;
             state = STATE.FIRING;
         }
 
@@ -111,12 +113,12 @@ public class LaserCannon : MonoBehaviour
     {
         if (Time.time - startTime <= FiringTime)
         {
-            //animation stuff
         }
         else
         {
             startTime = Time.time;
             state = STATE.RETURNING;
+            transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

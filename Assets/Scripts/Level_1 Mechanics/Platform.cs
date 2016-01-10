@@ -18,7 +18,7 @@ using System;
  */
 public class Platform : MonoBehaviour {
     /** State definitions for Platform.cs */
-    enum State { LERPING, WAITING }
+    public enum State { LERPING, WAITING, STOP }
     /** This is the starting vector of this game object*/
     public Vector2 startVector = new Vector2(1, 1);
     /** This is the end vector of the object's path */
@@ -39,15 +39,21 @@ public class Platform : MonoBehaviour {
     /** This is the speed Dr. Eric gravitates towards this platform */
     public float stickSpeed = 1;
 
+    public State startState = State.WAITING;
+    public bool oscillate = true;
+
+
     // Private variables
     private float startTime = 0;
-    private State state = State.WAITING;
+    public State state ;
     private BallController playerController;
     private Transform drEricTrans;
     private RhythmController rhythmController;
 	
     void Start()
     {
+        startTime = Time.time;
+        state = startState;
         rhythmController = RhythmController.GetController();
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -78,6 +84,7 @@ public class Platform : MonoBehaviour {
             case State.LERPING:
                 Lerping();
                 break;
+
         }
 	}
 
@@ -110,15 +117,35 @@ public class Platform : MonoBehaviour {
         if(Time.time - startTime > movementTime/rhythmController.GetPitch())
         {
             startTime = Time.time;
-            Vector2 swapVector = startVector;
-            startVector = endVector;
-            endVector = swapVector;
-            state = State.WAITING;
+            if (oscillate)
+            {
+                SwapVector();
+                state = State.WAITING;
+            }
+            else
+            {
+                state = State.STOP;
+            }
         }
         else
         {
             float lerpVal = (Time.time - startTime) / (movementTime/rhythmController.GetPitch());
             transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
         }
+    }
+
+    void SwapVector()
+    {
+        Vector2 swapVector = startVector;
+        startVector = endVector;
+        endVector = swapVector;
+    }
+    public void SwapStates()
+    {
+        startTime = Time.time;
+        if (state == State.WAITING)
+            state = State.LERPING;
+        else if (state == State.LERPING)
+            state = State.WAITING;
     }
 }

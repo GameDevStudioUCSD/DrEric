@@ -15,7 +15,7 @@ public class SpikeGenerator : MonoBehaviour {
 		int spikeCount = (int) (size.x / spikeWidth);
 
 		for (int i = 0; i < spikeCount; i++) {
-			GameObject cspike = (GameObject)GameObject.Instantiate (spike, new Vector3(left + (i + 0.5f) * spikeWidth, top + spikeSize.y / 2, this.transform.position.z), Quaternion.identity);
+			GameObject cspike = (GameObject)GameObject.Instantiate (spike, new Vector3(left + (i + 0.5f) * spikeWidth, top + spikeSize.y, this.transform.position.z), Quaternion.identity);
             cspike.transform.parent = transform;
 		}
 	}

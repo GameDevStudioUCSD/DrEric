@@ -11,21 +11,22 @@ public class StagePanelGenerator : MonoBehaviour {
 	static void GeneratePanels() {
 		Transform t = Selection.activeTransform;
 		StageDetails stageDetails = t.gameObject.GetComponent<StageDetails> ();
-		int i = stageDetails.numberOfStage;
 		GameObject prefab = stageDetails.panelPrefab;
-		for(;i > 0; i--)
+        
+        for (int i = 0;i < stageDetails.numberOfStage; i++)
 		{
 			GameObject stagePanel = Instantiate (prefab);
 			stagePanel.transform.localPosition = new Vector2(i*panelSpacing,0);
 			stagePanel.transform.parent = t;
 
-			// Set the name of the stage
-			GameObject nameTransform = GameObject.FindGameObjectWithTag("StageName");
-			Text stageName = nameTransform.GetComponent<Text> ();
-			stageName.text = stageDetails.stageName[i];
+            GameObject subPanel = stagePanel.transform.Find("SubPanelTitle").gameObject;
+            // Set the name of the stage
+            GameObject nameTransform = subPanel.transform.Find("StageName").gameObject;
+            Text stageName = nameTransform.GetComponent<Text>();
+            stageName.text = stageDetails.stageName[i];
 
 			// Set the score of the stage
-			GameObject scoreTransform = GameObject.FindGameObjectWithTag("StageScore");
+			GameObject scoreTransform = subPanel.transform.Find("HiScoreValue").gameObject;
 			Text scoreValue = scoreTransform.GetComponent<Text> ();
 			scoreValue.text = ""+stageDetails.stageScore[i];
 		}

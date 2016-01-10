@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 /**
- * Filename: Launcher.cs \n
+ * Filename: SquidLauncher.cs \n
  * Author: Daniel Griffiths \n
  * Contributing Authors: None \n
  * Date Drafted: November 14, 2015 \n
@@ -9,7 +9,6 @@ using System.Collections;
  *              for sending DrEric flying around the map.
  */
 public class SquidLauncher : MonoBehaviour {
-	public float movementSpeed = 10;
     public float grabRange = 2;
     public float rotationSpeed = 5;
 
@@ -23,6 +22,7 @@ public class SquidLauncher : MonoBehaviour {
     private bool alreadyGrabbed = false;
 
     private GameObject DrEric = null;
+    private OrientWithGravity orient;
 	private Transform idleSprite;
 	private Transform launchingSprite;
     private Transform directionPointer;
@@ -58,12 +58,13 @@ public class SquidLauncher : MonoBehaviour {
 		launchingSprite = transform.Find ("Launching Sprite");
         centerOfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
         startPos = transform.position;
+        orient = GetComponent<OrientWithGravity>();
     }
 
     void Update() {
         //Unless the squid is currently grabbing DrEric, it should orient itself to gravity.
         if (state != State.GRABBED)
-            CheckOrientation();
+            orient.CheckOrientation();
 
         //Identifies DrEric, which is not a constant object. Checks every frame until found.
         if (DrEric == null)
@@ -71,12 +72,11 @@ public class SquidLauncher : MonoBehaviour {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
             DrEric = GameObject.Find(Names.DRERIC); //TODO: Remove magic string
-            MoveToward(startPos);
+            GetComponent<FollowObject>().followTarget = DrEric;
         }
         else
         {
             Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
-            MoveToward(drEricPos); //Squid always seeks DrEric
 
             //Check prevents launching while in Launcher or other objects which should override standard movement
             if (DrEric.transform.parent == null)
@@ -107,34 +107,6 @@ public class SquidLauncher : MonoBehaviour {
             }
         }
     }
-
-    /*
-     * Rotates squid to face the direction of gravity by linear interpolation.
-     */
-    private void CheckOrientation()
-    {
-        //Rotates object in relation to gravity
-        gravity = Physics2D.gravity;
-        float x = gravity.x;
-        float y = gravity.y;
-        float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg * -1;
-        destRotation = Quaternion.Euler(0, 0, 90 - angle);
-        if (transform.rotation != destRotation)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, destRotation, Time.deltaTime * rotationSpeed);
-        }
-    }
-    /*
-     * Constant movement toward DrEric. MoveTowards is similar to linear interpolation, but uses a constant speed.
-     * Done in two dimensions so the SquidLauncher remains on top.
-     */
-    private void MoveToward(Vector2 destination) {
-        Vector2 position = new Vector2(transform.position.x, transform.position.y);
-
-        transform.position = Vector2.MoveTowards(position,
-		                                         destination,
-		                                         movementSpeed * Time.deltaTime);
-	}
 	
     /*
      * Checks if the squid's grabbing point (bottom of fully-extended tentacles) is within grabRange of DrEric and the

@@ -25,6 +25,7 @@ public class VictoryController : MonoBehaviour
 	private int count;
 	public Text countOut;
 
+    bool hasWon = false;
 	void Start() {
 		count = PlayerPrefs.GetInt ("Count", 0);
 	}
@@ -48,8 +49,10 @@ public class VictoryController : MonoBehaviour
 
 		//END TEST
             if (collision.gameObject.tag == "Player"){
-            Instantiate(victoryScreen);
+            if(!hasWon)
+                Instantiate(victoryScreen);
             Invoke("LoadNextLevel", 2.0f);
+            hasWon = true;
         }
     }
 

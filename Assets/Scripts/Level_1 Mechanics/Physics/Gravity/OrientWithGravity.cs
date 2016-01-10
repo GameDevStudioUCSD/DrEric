@@ -15,7 +15,6 @@ public class OrientWithGravity : MonoBehaviour {
     private Vector2 gravity;
     private Quaternion destRotation;
     public float rotationScaler = 5;
-    public float rotationY = 90;
 
     [Tooltip("If this value is true, then this script will try to orient the GameObject with gravity on each update frame")]
     public bool callOnUpdate = false;
@@ -33,8 +32,8 @@ public class OrientWithGravity : MonoBehaviour {
             float x = gravity.x;
             float y = gravity.y;
 
-            float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg * -1;
-            destRotation = Quaternion.Euler(0, 0, 90 - angle);
+            float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+            destRotation = Quaternion.Euler(0, 0, angle + 90);
 
         }
         if (transform.rotation != destRotation)

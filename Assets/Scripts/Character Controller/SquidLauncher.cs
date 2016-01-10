@@ -71,15 +71,20 @@ public class SquidLauncher : MonoBehaviour {
         {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
-            DrEric = GameObject.Find(Names.DRERIC); //TODO: Remove magic string
-            GetComponent<FollowObject>().followTarget = DrEric;
+            try {
+                DrEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
+            }
+            catch
+            {}
+            if (DrEric != null) GetComponent<FollowObject>().followTarget = DrEric;
+            else GetComponent<FollowObject>().followTarget = transform.parent.gameObject;
         }
         else
         {
             Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
 
-            //Check prevents launching while in Launcher or other objects which should override standard movement
-            if (DrEric.transform.parent == null)
+            //Check prevents launching while in Launcher, which should override standard movement
+            if (!(DrEric.transform.parent.parent.gameObject is Launcher))
             {
                 //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
                 if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())
@@ -272,5 +277,10 @@ public class SquidLauncher : MonoBehaviour {
     void CheckGround()
     {
         throw new System.Exception("Not implemented");
+    }
+
+    public GameObject getDrEric()
+    {
+        return DrEric;
     }
 }

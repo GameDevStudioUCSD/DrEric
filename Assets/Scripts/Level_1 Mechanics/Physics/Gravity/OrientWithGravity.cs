@@ -34,7 +34,7 @@ public class OrientWithGravity : MonoBehaviour {
             float y = gravity.y;
 
             float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg * -1;
-            destRotation = Quaternion.Euler(angle - 90, rotationY, 0);
+            destRotation = Quaternion.Euler(0, 0, 90 - angle);
 
         }
         if (transform.rotation != destRotation)

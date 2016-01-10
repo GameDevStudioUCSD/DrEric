@@ -65,7 +65,8 @@ public class FlingObject : MonoBehaviour {
      *  play a jump sound! */
     public void Fling(Vector2 deltaVector)
     {
-        float rotationAngle = -1 * (transform.rotation.eulerAngles.z + transform.rotation.eulerAngles.x) * Mathf.Deg2Rad;
+        float ericObjectiveAngle = Mathf.Atan2(Physics2D.gravity.y, -Physics2D.gravity.x) * Mathf.Rad2Deg + 90;
+        float rotationAngle = -1 * ericObjectiveAngle * Mathf.Deg2Rad;
         float sinAngle = Mathf.Sin(rotationAngle);
         float cosAngle = Mathf.Cos(rotationAngle);
         float rotatedX = ((deltaVector.x * cosAngle) - (deltaVector.y * sinAngle));

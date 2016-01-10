@@ -42,8 +42,7 @@ public class SquidLauncher : MonoBehaviour {
     private enum State {NORMAL, GRABBING, GRABBED, RELEASING};
     private State state = State.NORMAL;
 	private int spriteCounter = 0;
-
-    private Vector2 gravity;
+    
     private Vector2 startPos;
     private Quaternion destRotation;
 
@@ -52,7 +51,6 @@ public class SquidLauncher : MonoBehaviour {
      */
     void Start ()
     {
-        gravity = 9.81f * Vector2.down;
         destRotation = transform.rotation;
         idleSprite = transform.Find ("Idle Sprite");
 		launchingSprite = transform.Find ("Launching Sprite");
@@ -71,14 +69,18 @@ public class SquidLauncher : MonoBehaviour {
         {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
+
+            //error suprression
             try {
                 DrEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
             }
             catch
             {}
+
             if (DrEric != null) GetComponent<FollowObject>().followTarget = DrEric;
             else GetComponent<FollowObject>().followTarget = transform.parent.gameObject;
         }
+
         else
         {
             Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
@@ -244,7 +246,7 @@ public class SquidLauncher : MonoBehaviour {
         deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;
-        float gravityOffset = Mathf.Atan2(gravity.y, gravity.x) * Mathf.Rad2Deg;
+        float gravityOffset = Mathf.Atan2(Physics2D.gravity.y, Physics2D.gravity.x) * Mathf.Rad2Deg;
         destRotation = Quaternion.Euler(0, 0, angle + gravityOffset);
 
         if (transform.rotation != destRotation)

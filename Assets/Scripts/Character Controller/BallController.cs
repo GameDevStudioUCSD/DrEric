@@ -43,11 +43,11 @@ public class BallController : MonoBehaviour {
         switch(state)
         {
             case State.IDLE:
-                orientor.CheckOrientation();
+                //orientor.CheckOrientation();
                 break;
             case State.LAUNCHING:
                 controllingPlatform = null;
-                orientor.CheckOrientation();
+                //orientor.CheckOrientation();
                 break;
         }
     }

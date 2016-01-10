@@ -20,9 +20,9 @@ public class Platform : MonoBehaviour {
     /** State definitions for Platform.cs */
     public enum State { LERPING, WAITING, STOP }
     /** This is the starting vector of this game object*/
-    public Vector2 startVector = new Vector2(1, 1);
+    public Vector3 startVector = new Vector2(1, 1);
     /** This is the end vector of the object's path */
-    public Vector2 endVector = new Vector2(2, 1);
+    public Vector3 endVector = new Vector2(2, 1);
     /** This is the amount of time in seconds that it takes the game object to 
       * move from startVector to endVector */
     [Tooltip("This is the amount of time in seconds that it takes the game object to move from startVector to endVector")]
@@ -130,13 +130,13 @@ public class Platform : MonoBehaviour {
         else
         {
             float lerpVal = (Time.time - startTime) / (movementTime/rhythmController.GetPitch());
-            transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
+            transform.position = Vector3.Lerp(startVector, endVector, lerpVal);
         }
     }
 
     void SwapVector()
     {
-        Vector2 swapVector = startVector;
+        Vector3 swapVector = startVector;
         startVector = endVector;
         endVector = swapVector;
     }

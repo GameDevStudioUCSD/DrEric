@@ -17,12 +17,14 @@ public class Launcher : MonoBehaviour {
 	private Vector2 direction;
 	private bool gotDrEric;
 	private GameObject drEric = null;
+    private GameObject playerHolder;
 	private Quaternion storedOrientation;
     private RhythmController rhythmController;
     
 
 	void Start () {
         rhythmController = RhythmController.GetController();
+        playerHolder = GameObject.Find(Names.PLAYERHOLDER);
     }
 
 	
@@ -35,7 +37,7 @@ public class Launcher : MonoBehaviour {
 		if (gotDrEric && Input.GetMouseButtonUp (0)) {
 			//Releases DrEric from the launcher
 			gotDrEric = false;
-			drEric.transform.parent = null;
+			drEric.transform.parent = playerHolder.transform;
 			drEric.transform.localScale = Vector3.one; //TODO corrects for bug after launch; see OnTriggerEnter2D
 			//Restores independent movement
 			drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -66,9 +68,13 @@ public class Launcher : MonoBehaviour {
 	}
 
 	/** Determines the appropriate velocity at which to launch DrEric */
-	private Vector2 CalculateLaunch() {
-		float x = launchSpeed * Mathf.Cos (transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
-		float y = launchSpeed * Mathf.Sin (transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
-		return new Vector2 (x, y);
+	private Vector2 CalculateLaunch()
+    {
+        float gravityOffset = Mathf.Atan2(Physics2D.gravity.y, -Physics2D.gravity.x) * Mathf.Rad2Deg + 90;
+
+        float x = launchSpeed * Mathf.Cos((transform.rotation.eulerAngles.z + gravityOffset) * Mathf.Deg2Rad);
+		float y = launchSpeed * Mathf.Sin((transform.rotation.eulerAngles.z + gravityOffset) * Mathf.Deg2Rad);
+        Vector2 output = new Vector2(x, y);
+        return new Vector2 (x, y);
 	}
 }

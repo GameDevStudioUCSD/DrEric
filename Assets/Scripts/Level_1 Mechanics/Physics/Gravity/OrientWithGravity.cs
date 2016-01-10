@@ -25,7 +25,7 @@ public class OrientWithGravity : MonoBehaviour {
 	
     public void CheckOrientation()
     {
-        if (Physics2D.gravity != gravity)
+        if (Physics2D.gravity != gravity && Physics2D.gravity != Vector2.zero)
         {
             // rotates object in relation to gravity
             gravity = Physics2D.gravity;

@@ -86,7 +86,7 @@ public class SquidLauncher : MonoBehaviour {
             Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
 
             //Check prevents launching while in Launcher, which should override standard movement
-            if (!(DrEric.transform.parent.parent.gameObject is Launcher))
+            if (!(DrEric.transform.parent.tag == "Launcher"))
             {
                 //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
                 if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())

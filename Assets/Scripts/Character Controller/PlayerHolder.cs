@@ -22,8 +22,10 @@ public class PlayerHolder : MonoBehaviour {
         if (drEric == null)
             drEric = squidLauncher.GetComponent<SquidLauncher>().getDrEric();
         if (drEric != null) {
+            Vector3 squidPos = squidLauncher.transform.position;
             transform.position = drEric.transform.position;
             drEric.transform.localPosition = Vector3.zero;
+            squidLauncher.transform.position = squidPos;
         }
 	}
 }

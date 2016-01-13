@@ -13,6 +13,7 @@ public class AccelerationLauncher : MonoBehaviour
     public Vector2 acceleration;
     public float forceScalar = .1f;
     public float maxVelocity = 50;
+    public float minVelocity = 10;
     private Rigidbody2D rigidBody;
     // Use this for initialization
     void Start()
@@ -33,7 +34,10 @@ public class AccelerationLauncher : MonoBehaviour
         {
             rigidBody = other.GetComponent<Rigidbody2D>();
             float forceScalar = this.forceScalar;
-            if(rigidBody.velocity.magnitude < maxVelocity)
+            if(rigidBody.velocity.magnitude < minVelocity)
+                forceScalar = this.forceScalar * minVelocity;
+                
+            else if(rigidBody.velocity.magnitude < maxVelocity)
                 forceScalar = this.forceScalar * rigidBody.velocity.magnitude;
             else
                 forceScalar =  rigidBody.velocity.magnitude;

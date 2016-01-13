@@ -7,6 +7,7 @@ public class TileGenerator : MonoBehaviour {
 
 	[MenuItem("CONTEXT/Wall/GenerateTiles")]
 	static void GenerateTiles() {
+        DeleteTiles();
 		Transform t = Selection.activeTransform;
 		Wall wall = t.gameObject.GetComponent<Wall> ();
 		bool isVertical = wall.isVertical;

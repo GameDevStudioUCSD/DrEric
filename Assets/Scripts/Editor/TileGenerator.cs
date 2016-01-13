@@ -17,7 +17,8 @@ public class TileGenerator : MonoBehaviour {
 		t.gameObject.AddComponent<BoxCollider2D> ();
 		t.gameObject.GetComponent<BoxCollider2D> ().size
 			= isVertical? new Vector2(spriteSize.x,spriteSize.y*i):new Vector2(spriteSize.x*i,spriteSize.y);
-		//t.gameObject.GetComponent<BoxCollider2D>().
+		t.gameObject.GetComponent<BoxCollider2D> ().offset
+			= isVertical? new Vector2(0,(float)spriteSize.y*i/2+0.5f):new Vector2((float)spriteSize.x*i/2+0.5f,0);
 
 		for(;i > 0; i--)
 		{
@@ -25,7 +26,7 @@ public class TileGenerator : MonoBehaviour {
 			go.AddComponent<SpriteRenderer>();
 			go.GetComponent<SpriteRenderer>().sprite = sprite;
 			go.transform.parent = t;
-			go.transform.localPosition = isVertical? new Vector2(0,(i-2)*1.0f):new Vector2((i-2)*1.0f,0);
+			go.transform.localPosition = isVertical? new Vector2(0,i*1.0f):new Vector2(i*1.0f,0);
 		}
 	}
 

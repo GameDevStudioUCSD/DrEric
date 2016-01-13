@@ -19,6 +19,7 @@ public class LevelLoader : MonoBehaviour {
     private const int SPACE_3 = 3;
     private const int SPACE_4 = 4;
     private const int SPACE_BOSS = 5;
+    private const int SPACE_BONUS = 1;
 
     public World world;
     public Level level;
@@ -57,6 +58,9 @@ public class LevelLoader : MonoBehaviour {
                 break;
             case Level.Boss:
                 Application.LoadLevel(SPACE_BOSS);
+                break;
+            case Level.Bonus:
+                Application.LoadLevel(SPACE_BONUS);
                 break;
             default:
                 Debug.LogError("Tried to load a Space level that has not been implemented!");

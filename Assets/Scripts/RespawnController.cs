@@ -31,7 +31,7 @@ public class RespawnController : MonoBehaviour {
             throw new System.Exception("No Player Holder!");
         }
         playerHolder.transform.position = transform.position;
-        eventList.Add(deathEvents);
+        RegisterDeathEvent(deathEvents);
 	}
 	
 	// Update is called once per frame
@@ -77,6 +77,7 @@ public class RespawnController : MonoBehaviour {
                 currentPlayer.transform.parent = playerHolder.transform;
                 currentPlayer.transform.localPosition = Vector3.zero;
             }
+            if(eventList != null)
             foreach (UnityEvent e in eventList)
             {
                 e.Invoke();

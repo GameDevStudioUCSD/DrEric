@@ -12,11 +12,13 @@ public class RespawnController : MonoBehaviour {
 	private double respawnTimer;
 	public double respawnTime;
 	public GameObject player;
+    public UnityEvent spawnEvents;
     public UnityEvent deathEvents;
 	private GameObject currentPlayer = null;
     private GameObject playerHolder;
     private GameObject squidLauncher;
-    private List<UnityEvent> eventList;
+    private List<UnityEvent> onSpawnList;
+    private List<UnityEvent> onDeathList;
     protected RhythmController rhythmController;
 
 	// Use this for initialization
@@ -31,6 +33,7 @@ public class RespawnController : MonoBehaviour {
             throw new System.Exception("No Player Holder!");
         }
         playerHolder.transform.position = transform.position;
+        RegisterSpawnEvent(spawnEvents);
         RegisterDeathEvent(deathEvents);
 	}
 	
@@ -58,6 +61,11 @@ public class RespawnController : MonoBehaviour {
             squidLauncher.transform.position = squidPos;
 
             rhythmController.SwitchToChannel(2);
+            if (onDeathList != null)
+            {
+                foreach (UnityEvent e in onDeathList)
+                    e.Invoke();
+            }
 			Debug.Log ("DrEric has died");
 		}
 	}
@@ -77,8 +85,8 @@ public class RespawnController : MonoBehaviour {
                 currentPlayer.transform.parent = playerHolder.transform;
                 currentPlayer.transform.localPosition = Vector3.zero;
             }
-            if(eventList != null)
-            foreach (UnityEvent e in eventList)
+            if(onSpawnList != null)
+            foreach (UnityEvent e in onSpawnList)
             {
                 e.Invoke();
             }
@@ -86,8 +94,15 @@ public class RespawnController : MonoBehaviour {
     }
     public void RegisterDeathEvent( UnityEvent e )
     {
-        if (eventList == null)
-            eventList = new List<UnityEvent>();
-        eventList.Add(e);
+        if (onDeathList == null)
+            onDeathList = new List<UnityEvent>();
+        onDeathList.Add(e);
+    }
+
+    public void RegisterSpawnEvent( UnityEvent e )
+    {
+        if (onSpawnList == null)
+            onSpawnList = new List<UnityEvent>();
+        onSpawnList.Add(e);
     }
 }

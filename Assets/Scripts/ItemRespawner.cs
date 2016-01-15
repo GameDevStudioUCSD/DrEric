@@ -21,11 +21,11 @@ public class ItemRespawner : MonoBehaviour {
 
     private void RegisterWithRespawner()
     {
-        GameObject respawner = GameObject.Find("Respawner");
+        GameObject respawner = GameObject.Find("Respawner/Spawner");
         RespawnController rs = respawner.GetComponent<RespawnController>();
         UnityEngine.Events.UnityEvent e = new UnityEngine.Events.UnityEvent();
         e.AddListener(Respawn);
-        rs.RegisterDeathEvent(e);
+        rs.RegisterSpawnEvent(e);
     }
     void Respawn()
     {

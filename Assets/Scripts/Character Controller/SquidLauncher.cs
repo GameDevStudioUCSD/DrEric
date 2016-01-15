@@ -180,7 +180,6 @@ public class SquidLauncher : MonoBehaviour {
         deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition);
         float magnitude = deltaVector.magnitude;
         int numOfSprites = 6;
-        Debug.Log("Delta Vector Magnitude: " + magnitude);
         for (int i = 1; i <= numOfSprites; i++)
         {
             if (magnitude >= (i * maxSpeed) / numOfSprites)
@@ -192,7 +191,6 @@ public class SquidLauncher : MonoBehaviour {
     private void AnimateSprite()
     {
         SetSpriteCounter();
-        Debug.Log(spriteCounter);
         if (state == State.GRABBING || state == State.GRABBED)
         {
             SpriteRenderer sprite = launchingSprite.GetComponent<SpriteRenderer>();

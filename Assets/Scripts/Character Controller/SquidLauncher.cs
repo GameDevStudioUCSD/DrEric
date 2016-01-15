@@ -86,25 +86,7 @@ public class SquidLauncher : MonoBehaviour {
             Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
 
             //Check prevents launching while in Launcher, which should override standard movement
-            if (!(DrEric.transform.parent.tag == "Launcher"))
-            {
-                //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
-                if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())
-                {
-                    initialVector = Input.mousePosition; //Initial click point used for movement calculations
-                    AnimateGrab();
-                }
-                if (Input.GetMouseButtonUp(0))
-                {
-                    alreadyGrabbed = false;
-                    //if grabbing animation has concluded, launch
-                    if (state == State.GRABBED)
-                        Launch(Input.mousePosition);
-                    //stop grabbing animation partway through
-                    else
-                        state = State.RELEASING;
-                }
-            }
+            
             AnimateSprite();
             if (DrEric != null && state == State.GRABBED)
             {
@@ -112,7 +94,31 @@ public class SquidLauncher : MonoBehaviour {
                 if (Time.time >= grabTime + maxGrabTime)
                     Launch(initialVector); //release without applying force
             }
+            if (Input.GetMouseButtonUp(0))
+            {
+                alreadyGrabbed = false;
+                //if grabbing animation has concluded, launch
+                if (state == State.GRABBED)
+                    Launch(Input.mousePosition);
+                //stop grabbing animation partway through
+                else
+                    state = State.RELEASING;
+            }
         }
+    }
+
+    void OnMouseOver() {
+        if (DrEric != null && !(DrEric.transform.parent.tag == "Launcher"))
+        {
+            //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
+            if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())
+            {
+                initialVector = Input.mousePosition; //Initial click point used for movement calculations
+                AnimateGrab();
+            }
+            
+        }
+        
     }
 	
     /*

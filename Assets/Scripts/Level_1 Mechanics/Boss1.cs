@@ -20,6 +20,7 @@ public class Boss1 : MonoBehaviour {
     private string RIGHTSWITCH = "RightSwitch";
     private string LEFTSWITCH = "LeftSwitch";
     public LaserCannon TopCannon, BottomCannon;
+    public VictoryController victoryController;
 
 
     private float startTime;
@@ -42,6 +43,8 @@ public class Boss1 : MonoBehaviour {
         state = STATE.IDLE;
         startVector = transform.position;
         startTime = Time.time-1;
+        victoryController.GetComponentInParent<SpriteRenderer>().enabled = false;
+        victoryController.GetComponentInParent<BoxCollider2D>().enabled = false;
     }
 	
 	// Update is called once per frame
@@ -166,7 +169,9 @@ public class Boss1 : MonoBehaviour {
     }
 
 	void Death() {
-		Destroy(this.gameObject);  
+        victoryController.GetComponentInParent<SpriteRenderer>().enabled = true;
+        victoryController.GetComponentInParent<BoxCollider2D>().enabled = true;
+        Destroy(this.gameObject);  
 	}
 
 	void PickASwitch()

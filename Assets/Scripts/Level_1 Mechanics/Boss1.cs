@@ -7,7 +7,7 @@ using System.Collections;
  */
 public class Boss1 : MonoBehaviour {
     public enum Direction { DOWN, UP, LEFT, RIGHT}
-    enum STATE { LERPING_AWAY, LERPING_BACK,IDLE,NOTHING}
+    enum STATE { LERPING_AWAY, LERPING_BACK,IDLE, FIRELASER}
 
     //check if switches have been pressed
 	public bool topSwitch, leftSwitch, rightSwitch, bottomSwitch;
@@ -15,10 +15,11 @@ public class Boss1 : MonoBehaviour {
 
 
     private bool needToPickASwitch;
-    public string TOPSWITCH = "TopSwitch";
-    public string BOTTOMSWITCH = "BottomSwitch";
-    public string RIGHTSWITCH = "RightSwitch";
-    public string LEFTSWITCH = "LeftSwitch";
+    private string TOPSWITCH = "TopSwitch";
+    private string BOTTOMSWITCH = "BottomSwitch";
+    private string RIGHTSWITCH = "RightSwitch";
+    private string LEFTSWITCH = "LeftSwitch";
+    public LaserCannon TopCannon, BottomCannon;
 
 
     private float startTime;
@@ -29,6 +30,7 @@ public class Boss1 : MonoBehaviour {
     private STATE state;
     private Vector2 startVector = Vector2.down;//default value
     private Vector2 endVector = Vector2.down;
+    private int lasercounter = 0;//makes lazer cycle between top and bottom.
     
 	// Use this for initialization
 	void Start () {
@@ -40,6 +42,7 @@ public class Boss1 : MonoBehaviour {
         state = STATE.IDLE;
         startVector = transform.position;
         startTime = Time.time-1;
+        
     }
 	
 	// Update is called once per frame
@@ -114,38 +117,57 @@ public class Boss1 : MonoBehaviour {
 
 	}
 
-	void Attack2() {
-
-	}
+	void FireLasers()
+    {
+        if (lasercounter % 2 == 0)
+        {
+            if (TopCannon.firing == false)
+            {
+                TopCannon.firing = true;
+            }
+        }
+        else
+        {
+            if (BottomCannon.firing == false)
+            {
+                BottomCannon.firing = true;
+            }
+        }
+        lasercounter++;
+    }
 
     //methods called when switch is pressed
 	public void FlipRightSwitch(){
 		rightSwitch = true;
         Switch currentswitch = transform.FindChild(RIGHTSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
+        FireLasers();
         PickASwitch();
     }
 	public void FlipTopSwitch(){
 		topSwitch = true;
         Switch currentswitch = transform.FindChild(TOPSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
+        FireLasers();
         PickASwitch();
     }
 	public void FlipLeftSwitch(){
 		leftSwitch = true;
         Switch currentswitch = transform.FindChild(LEFTSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
+        FireLasers();
         PickASwitch();
     }
 	public void FlipBottomSwitch(){
 		bottomSwitch = true;
         Switch currentswitch = transform.FindChild(BOTTOMSWITCH).gameObject.GetComponent<Switch>();
         currentswitch.isEnabled = false;
+        FireLasers();
         PickASwitch();
     }
 
 	void Death() {
-		Destroy(this.gameObject);
+		Destroy(this.gameObject);  
 	}
 
 	void PickASwitch()

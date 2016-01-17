@@ -20,6 +20,7 @@ public class Boss1 : MonoBehaviour {
     private string RIGHTSWITCH = "RightSwitch";
     private string LEFTSWITCH = "LeftSwitch";
     public LaserCannon TopCannon, BottomCannon;
+    public VictoryController victorycontroller;
 
 
     private float startTime;
@@ -42,16 +43,30 @@ public class Boss1 : MonoBehaviour {
         state = STATE.IDLE;
         startVector = transform.position;
         startTime = Time.time-1;
-        
+        victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
+        victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
     }
-	
+
+    public void respawn()
+    {
+        topSwitch = false;
+        leftSwitch = false;
+        rightSwitch = false;
+        bottomSwitch = false;
+        needToPickASwitch = true;
+        state = STATE.IDLE;
+        transform.position = startVector;
+        victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
+        victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
 	// Update is called once per frame
 	void Update () {//right now it just lerps in a random direction every 2 seconds
         if (needToPickASwitch) PickASwitch();//neccesary because pickaswitch cannot be called in start
         if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp();
         if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
-            //BodySlam((Direction)Random.Range(0,4));
+             BodySlam((Direction)Random.Range(0,4));
         }
     }
 
@@ -167,7 +182,9 @@ public class Boss1 : MonoBehaviour {
     }
 
 	void Death() {
-		Destroy(this.gameObject);  
+        victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = true;
+        victorycontroller.GetComponent<BoxCollider2D>().enabled = true;
+        Destroy(this.gameObject);  
 	}
 
 	void PickASwitch()

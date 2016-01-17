@@ -24,13 +24,12 @@ public class LaserCannon : MonoBehaviour
     private RhythmController rhythmController;
     private Vector2 currentVector;
     private Vector3 originalScale;
-    private RespawnController respawner;
+    public RespawnController respawner;
 
     void Start()
     {//initialize stuff
         rhythmController = RhythmController.GetController();
         originalScale = transform.localScale;
-        respawner = GameObject.Find("Respawner").GetComponent<RespawnController>();
         transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = false;
     }
 

@@ -49,7 +49,7 @@ public class JSONParser
     {
         try
         {
-            return parse(File.ReadAllText(filePath));
+            //return parse(File.ReadAllText(filePath));
         }
         catch (Exception)
         {

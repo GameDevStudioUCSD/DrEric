@@ -11,6 +11,11 @@ public class Bullet : MonoBehaviour {
     public Transform spriteTransform;
     [Range(.1f, 10)]
     public float destroyAfterNSeconds = 1;
+    public bool destroyAfterCollision = false;
+
+
+    // The tag the collider will look for if the bullet should die after collision
+    private const string COLLISION_TAG = "Wall";
 
 	// Use this for initialization
 	void Start () {
@@ -53,4 +58,20 @@ public class Bullet : MonoBehaviour {
 	public void setDelta(float deltaPar) {
 		delta = deltaPar;
 	}
+
+    /**
+	 * Destroys the bullet if it collides with specified collider tag
+	 * 
+	 * @param collision info about 
+	 */
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(destroyAfterCollision)
+        {
+            if(collider.gameObject.tag == COLLISION_TAG)
+            {
+                GameObject.Destroy(this.gameObject);
+            }
+        }
+    }
 }

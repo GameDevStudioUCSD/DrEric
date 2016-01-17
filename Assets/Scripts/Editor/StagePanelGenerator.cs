@@ -9,13 +9,16 @@ public class StagePanelGenerator : MonoBehaviour {
 
 	[MenuItem("CONTEXT/StageDetails/GeneratePanels")]
 	static void GeneratePanels() {
+		DeletePanels ();
 		Transform t = Selection.activeTransform;
 		StageDetails stageDetails = t.gameObject.GetComponent<StageDetails> ();
 		GameObject prefab = stageDetails.panelPrefab;
         
         for (int i = 0;i < stageDetails.numberOfStage; i++)
 		{
+			// Copy prefab
 			GameObject stagePanel = Instantiate (prefab);
+			stagePanel.name = "Stage " + (i + 1);
 			stagePanel.transform.localPosition = new Vector2(i*panelSpacing,0);
 			stagePanel.transform.parent = t;
 

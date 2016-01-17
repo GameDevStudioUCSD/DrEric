@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerHolder : MonoBehaviour {
+    public bool enableDrEricCamera = true;
     private GameObject drEric;
     private GameObject squidLauncher;
     private GameObject gameCamera;
@@ -13,6 +14,10 @@ public class PlayerHolder : MonoBehaviour {
         gameCamera = transform.Find(Names.CAMERA).gameObject;
         drEric = squidLauncher.GetComponent<SquidLauncher>().getDrEric();
         cameraOrienter = gameCamera.GetComponent<OrientWithGravity>();
+        if (!enableDrEricCamera)
+        {
+            gameCamera.GetComponent<Camera>().enabled = false;
+        }
     }
 	
 	// Update is called once per frame
@@ -26,6 +31,7 @@ public class PlayerHolder : MonoBehaviour {
             transform.position = drEric.transform.position;
             drEric.transform.localPosition = Vector3.zero;
             squidLauncher.transform.position = squidPos;
+            ///drEric.transform.position = squidPos;
         }
 	}
 }

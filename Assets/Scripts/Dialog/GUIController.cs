@@ -21,7 +21,7 @@ public class GUIController : MonoBehaviour {
      */
     void Start()
     {
-        GameObject canvasObject = GameObject.Find("Canvas");
+        GameObject canvasObject = GameObject.Find(Names.DIALOGWINDOW);
         textLeftTr = (RectTransform)canvasObject.transform.Find("LeftText");
         textRightTr = (RectTransform)canvasObject.transform.Find("RightText");
 

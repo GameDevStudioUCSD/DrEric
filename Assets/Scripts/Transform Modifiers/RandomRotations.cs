@@ -20,6 +20,7 @@ public class RandomRotations : MonoBehaviour {
     public float yOffset = 0;
     /** The yOffset shifts the x origin by this amount */
     public float xOffset = 0;
+    public float zOffset = 0;
 	
     /** Every update frame, shake the object! */
 	void Update () {
@@ -36,6 +37,6 @@ public class RandomRotations : MonoBehaviour {
         float xVal = Random.Range(rangeXMin, rangeXMax);
         float yVal = Random.Range(rangeYMin, rangeYMax);
         // Finally, rotate!
-        transform.rotation = Quaternion.Euler(xVal, yVal, 0);
+        transform.rotation = Quaternion.Euler(xVal, yVal, zOffset);
     }
 }

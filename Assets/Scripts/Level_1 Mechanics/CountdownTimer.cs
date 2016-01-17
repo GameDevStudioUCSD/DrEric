@@ -13,7 +13,7 @@ public class CountdownTimer : MonoBehaviour {
     public int onesPlace;
     public int rand1;
     public int rand2;
-    public enum State { START, IDLE, COUNTING, FINISHED }
+    public enum State { START, IDLE, COUNTING, FINISHING, FINISHED }
     public State state = State.START;
     public UnityEvent fireOnFinish;
     private float endTime = 0;
@@ -31,7 +31,7 @@ public class CountdownTimer : MonoBehaviour {
             case State.COUNTING:
                 Count();
                 break;
-            case State.FINISHED:
+            case State.FINISHING:
                 Finish();
                 break;
         }
@@ -50,7 +50,7 @@ public class CountdownTimer : MonoBehaviour {
         float currTime = endTime - Time.time;
         if(currTime <= 0 )
         {
-            state = State.FINISHED;
+            state = State.FINISHING;
             return;
         }
         CalculateTime(currTime);
@@ -61,6 +61,7 @@ public class CountdownTimer : MonoBehaviour {
         tensPlace = onesPlace = rand1 = rand2 = 0;
         SetDigits();
         fireOnFinish.Invoke();
+        state = State.FINISHED;
     }
     void CalculateTime( float currTime )
     {

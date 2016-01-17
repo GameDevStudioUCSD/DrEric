@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
 /**
  * Handles DrEric's death and respawning. Should be on the Respawner object.
@@ -10,16 +12,20 @@ public class RespawnController : MonoBehaviour {
 	private double respawnTimer;
 	public double respawnTime;
 	public GameObject player;
+    public UnityEvent spawnEvents;
+    public UnityEvent deathEvents;
 	private GameObject currentPlayer = null;
     private GameObject playerHolder;
     private GameObject squidLauncher;
+    private List<UnityEvent> onSpawnList;
+    private List<UnityEvent> onDeathList;
     protected RhythmController rhythmController;
 
 	// Use this for initialization
 	void Start () {
         rhythmController = RhythmController.GetController();
 		respawnTimer = 0;
-		respawn(); //initial creation of DrEric
+		Respawn(); //initial creation of DrEric
         playerHolder = GameObject.Find(Names.PLAYERHOLDER);
         squidLauncher = playerHolder.transform.Find(Names.SQUIDLAUNCHER).gameObject;
         if (playerHolder == null)
@@ -27,6 +33,8 @@ public class RespawnController : MonoBehaviour {
             throw new System.Exception("No Player Holder!");
         }
         playerHolder.transform.position = transform.position;
+        RegisterSpawnEvent(spawnEvents);
+        RegisterDeathEvent(deathEvents);
 	}
 	
 	// Update is called once per frame
@@ -34,7 +42,7 @@ public class RespawnController : MonoBehaviour {
 		if (isDead) {
 			respawnTimer += Time.deltaTime;
 			if (respawnTimer >= respawnTime) {
-				respawn ();
+				Respawn ();
 			}
 		}
 	}
@@ -53,6 +61,11 @@ public class RespawnController : MonoBehaviour {
             squidLauncher.transform.position = squidPos;
 
             rhythmController.SwitchToChannel(2);
+            if (onDeathList != null)
+            {
+                foreach (UnityEvent e in onDeathList)
+                    e.Invoke();
+            }
 			Debug.Log ("DrEric has died");
 		}
 	}
@@ -60,7 +73,7 @@ public class RespawnController : MonoBehaviour {
 	/*
 	 * Spawns a new DrEric for the player to control. Only one DrEric can exist at once.
 	 */
-	public void respawn() {
+	public void Respawn() {
 		if (currentPlayer == null) { //DrEric must not already exist
 			isDead = false;
 			currentPlayer = (GameObject)Instantiate (player, transform.position, Quaternion.identity);
@@ -72,6 +85,24 @@ public class RespawnController : MonoBehaviour {
                 currentPlayer.transform.parent = playerHolder.transform;
                 currentPlayer.transform.localPosition = Vector3.zero;
             }
+            if(onSpawnList != null)
+            foreach (UnityEvent e in onSpawnList)
+            {
+                e.Invoke();
+            }
         }
+    }
+    public void RegisterDeathEvent( UnityEvent e )
+    {
+        if (onDeathList == null)
+            onDeathList = new List<UnityEvent>();
+        onDeathList.Add(e);
+    }
+
+    public void RegisterSpawnEvent( UnityEvent e )
+    {
+        if (onSpawnList == null)
+            onSpawnList = new List<UnityEvent>();
+        onSpawnList.Add(e);
     }
 }

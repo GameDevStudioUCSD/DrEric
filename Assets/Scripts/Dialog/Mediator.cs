@@ -17,7 +17,7 @@ public class Mediator : MonoBehaviour {
      * gets the refernce to the GUI controller from teh canvas. 
      */
 	void Awake() {
-		controller = GameObject.Find ("Canvas").GetComponent<GUIController> ();
+		controller = GameObject.Find (Names.DIALOGWINDOW).GetComponent<GUIController> ();
 	}
 
     /**

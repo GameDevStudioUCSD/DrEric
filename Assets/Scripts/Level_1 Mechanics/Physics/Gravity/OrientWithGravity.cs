@@ -22,6 +22,11 @@ public class OrientWithGravity : MonoBehaviour {
         gravity = 9.81f * Vector2.down;
         destRotation = transform.rotation;
     }
+    void Update()
+    {
+        if (callOnUpdate)
+            CheckOrientation();
+    }
 	
     public void CheckOrientation()
     {

@@ -44,7 +44,9 @@ public class SquidLauncher : MonoBehaviour {
 	private int spriteCounter = 0;
     
     private Vector2 startPos;
+    private float launcherXOffset = -.03f;
     private Quaternion destRotation;
+    private float maxSpeed;
 
     /*
      * Initialization. Identifies sprites for manual animations and initializes physics.
@@ -58,25 +60,38 @@ public class SquidLauncher : MonoBehaviour {
         startPos = transform.position;
         orient = GetComponent<OrientWithGravity>();
     }
-
+    void CalculateMaxSpeed()
+    {
+        FlingObject fo = DrEric.GetComponent<FlingObject>();
+        float x = fo.maxXSpeed;
+        float y = fo.maxYSpeed;
+        maxSpeed = new Vector2(x, y).magnitude;
+        Debug.Log(maxSpeed);
+    }
     void Update() {
         //Unless the squid is currently grabbing DrEric, it should orient itself to gravity.
         if (state != State.GRABBED)
             orient.CheckOrientation();
+        // If we're realeasing, then we need to return to the idle animation
+        if (state == State.RELEASING)
+        {
+            idleSprite.GetComponent<SpriteRenderer>().enabled = true;
+            launchingSprite.GetComponent<SpriteRenderer>().enabled = false;
+            state = State.NORMAL;
+        }
 
         //Identifies DrEric, which is not a constant object. Checks every frame until found.
         if (DrEric == null)
         {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
-
             //error suprression
             try {
                 DrEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
+                CalculateMaxSpeed();
             }
             catch
             {}
-
             if (DrEric != null) GetComponent<FollowObject>().followTarget = DrEric;
             else GetComponent<FollowObject>().followTarget = transform.parent.gameObject;
         }
@@ -86,25 +101,7 @@ public class SquidLauncher : MonoBehaviour {
             Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
 
             //Check prevents launching while in Launcher, which should override standard movement
-            if (!(DrEric.transform.parent.tag == "Launcher"))
-            {
-                //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
-                if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())
-                {
-                    initialVector = Input.mousePosition; //Initial click point used for movement calculations
-                    AnimateGrab();
-                }
-                if (Input.GetMouseButtonUp(0))
-                {
-                    alreadyGrabbed = false;
-                    //if grabbing animation has concluded, launch
-                    if (state == State.GRABBED)
-                        Launch(Input.mousePosition);
-                    //stop grabbing animation partway through
-                    else
-                        state = State.RELEASING;
-                }
-            }
+            
             AnimateSprite();
             if (DrEric != null && state == State.GRABBED)
             {
@@ -112,7 +109,31 @@ public class SquidLauncher : MonoBehaviour {
                 if (Time.time >= grabTime + maxGrabTime)
                     Launch(initialVector); //release without applying force
             }
+            if (Input.GetMouseButtonUp(0))
+            {
+                alreadyGrabbed = false;
+                //if grabbing animation has concluded, launch
+                if (state == State.GRABBED)
+                    Launch(Input.mousePosition);
+                //stop grabbing animation partway through
+                else
+                    state = State.RELEASING;
+            }
         }
+    }
+
+    void OnMouseOver() {
+        if (DrEric != null && !(DrEric.transform.parent.tag == "Launcher"))
+        {
+            //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
+            if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())
+            {
+                initialVector = Input.mousePosition; //Initial click point used for movement calculations
+                AnimateGrab();
+            }
+            
+        }
+        
     }
 	
     /*
@@ -154,86 +175,55 @@ public class SquidLauncher : MonoBehaviour {
      * Manually switches sprites for grabbing and releasing animation. Modifies state.
      * TODO: Will be replaced with proper animations; will need to handle state modifications.
      */
+    private void SetSpriteCounter()
+    {
+        deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition);
+        float magnitude = deltaVector.magnitude;
+        int numOfSprites = 6;
+        for (int i = 1; i <= numOfSprites; i++)
+        {
+            if (magnitude >= (i * maxSpeed) / numOfSprites)
+            {
+                spriteCounter = i;
+            }
+        }
+    }
     private void AnimateSprite()
     {
-        if (state == State.GRABBING)
+        SetSpriteCounter();
+        if (state == State.GRABBING || state == State.GRABBED)
         {
             SpriteRenderer sprite = launchingSprite.GetComponent<SpriteRenderer>();
-            if (spriteCounter == 0)
+            switch (spriteCounter)
             {
-                sprite.sprite = launchSprite1;
-                spriteCounter++;
+                case 1:
+                    sprite.sprite = launchSprite1;
+                    launchingSprite.localPosition = new Vector3(launcherXOffset, .64f, 0);
+                    break;
+                case 2:
+                    sprite.sprite = launchSprite2;
+                    launchingSprite.localPosition = new Vector3(launcherXOffset, 1.13f, 0);
+                    break;
+                case 3:
+                    sprite.sprite = launchSprite3;
+                    launchingSprite.localPosition = new Vector3(launcherXOffset, 1.62f, 0);
+                    break;
+                case 4:
+                    sprite.sprite = launchSprite4;
+                    launchingSprite.localPosition = new Vector3(launcherXOffset, 2.41f, 0);
+                    break;
+                case 5:
+                    sprite.sprite = launchSprite5;
+                    launchingSprite.localPosition = new Vector3(launcherXOffset, 3.39f, 0);
+                    break;
+                case 6:
+                    sprite.sprite = launchSprite6;
+                    launchingSprite.localPosition = new Vector3(launcherXOffset, 4.20f, 0);
+                    break;
             }
-            else if (spriteCounter == 1)
-            {
-                sprite.sprite = launchSprite2;
-                spriteCounter++;
-            }
-            else if (spriteCounter == 2)
-            {
-                sprite.sprite = launchSprite3;
-                spriteCounter++;
-            }
-            else if (spriteCounter == 3)
-            {
-                sprite.sprite = launchSprite4;
-                spriteCounter++;
-            }
-            else if (spriteCounter == 4)
-            {
-                sprite.sprite = launchSprite5;
-                spriteCounter++;
-            }
-            else if (spriteCounter == 5)
-            {
-                sprite.sprite = launchSprite6;
-                spriteCounter++;
-            }
-            else if (spriteCounter == 6)
-            {
-                GrabDrEric();
-            }
+            GrabDrEric();
         }
-        else if (state == State.RELEASING)
-        {
-            SpriteRenderer sprite = launchingSprite.GetComponent<SpriteRenderer>();
-            if (spriteCounter == 6)
-            {
-                sprite.sprite = launchSprite5;
-                spriteCounter--;
-            }
-            else if (spriteCounter == 5)
-            {
-                sprite.sprite = launchSprite4;
-                spriteCounter--;
-            }
-            else if (spriteCounter == 4)
-            {
-                sprite.sprite = launchSprite3;
-                spriteCounter--;
-            }
-            else if (spriteCounter == 3)
-            {
-                sprite.sprite = launchSprite2;
-                spriteCounter--;
-            }
-            else if (spriteCounter == 2)
-            {
-                sprite.sprite = launchSprite1;
-                spriteCounter--;
-            }
-            else if (spriteCounter == 1)
-            {
-                sprite.sprite = launchSprite0;
-                spriteCounter--;
-            }
-            else if (spriteCounter == 0)
-            {
-                launchingSprite.GetComponent<SpriteRenderer>().enabled = false;
-                idleSprite.GetComponent<SpriteRenderer>().enabled = true;
-                state = State.NORMAL;
-            }
-        }
+        
     }
 
     /*
@@ -265,7 +255,6 @@ public class SquidLauncher : MonoBehaviour {
 	private void Launch(Vector2 finalVector)
     {
         DrEric.GetComponent<Rigidbody2D>().gravityScale = 1;
-        deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, finalVector);
         DrEric.GetComponent<FlingObject>().Fling (deltaVector);
         state = State.RELEASING;
         jumpCount++;

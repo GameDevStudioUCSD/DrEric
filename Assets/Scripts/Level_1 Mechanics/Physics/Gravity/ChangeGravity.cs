@@ -4,6 +4,7 @@ using System.Collections;
 public class ChangeGravity : MonoBehaviour {
 
     public Vector2 Gravity = (-9.8f) * Vector2.down;
+    public bool redirectMomentum = true;
 	// Use this for initialization
 	void Start () {
     }
@@ -15,9 +16,17 @@ public class ChangeGravity : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        GameObject go = other.gameObject;
+        if (go.tag == "Player")
         {
             Physics2D.gravity = Gravity;
+            if(redirectMomentum)
+                RedirectMomentum.Redirect(go.GetComponent<Rigidbody2D>(), Gravity);
         }
+    }
+
+    public void ResetGravity()
+    {
+        Physics2D.gravity = -9.81f * Vector2.up;
     }
 }

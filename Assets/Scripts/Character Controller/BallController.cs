@@ -13,12 +13,15 @@ using System.Collections;
  *              object collider.
  */
 public class BallController : MonoBehaviour {
-    public enum State { IDLE, STUCK, LAUNCHING }
+    public enum State { IDLE, STUCK, LAUNCHING, LANDING }
     public AudioClip landSound;
     public AudioSource audio;
     public State state = State.IDLE;
     public Platform controllingPlatform;
     private OrientWithGravity orientor;
+    private Rigidbody2D rb;
+    private float lastHit;
+    private float bounceBufferPeriod = .2f;
     
     /**
      * Description: This method currently sets up a reference to the ball's 
@@ -28,6 +31,7 @@ public class BallController : MonoBehaviour {
     {
         orientor = GetComponent<OrientWithGravity>();
         audio = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody2D>();
     }
     /**
      * Description: This method currently will only play the landing sound when
@@ -37,6 +41,8 @@ public class BallController : MonoBehaviour {
     {
         if(audio != null)
             audio.PlayOneShot(landSound, 1f);
+        state = State.LANDING;
+        lastHit = Time.time;
     }
     void Update()
     {
@@ -49,6 +55,22 @@ public class BallController : MonoBehaviour {
                 controllingPlatform = null;
                 //orientor.CheckOrientation();
                 break;
+            case State.LANDING:
+                hasLanded();
+                break;
+        }
+    }
+    void hasLanded()
+    {
+        if (Time.time - lastHit < bounceBufferPeriod)
+            return;
+        Vector3 gravity = Physics2D.gravity;
+        Vector3 velocityProjG = Vector3.Project(rb.velocity, gravity);
+        Vector3 condition = (velocityProjG + gravity);
+        if (condition.magnitude < gravity.magnitude)
+        {
+            Debug.Log("You just landed!");
+            state = State.IDLE;
         }
     }
     

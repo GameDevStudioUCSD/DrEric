@@ -21,7 +21,7 @@ public class SquidLauncher : MonoBehaviour {
     private float grabTime = 0;
     private bool alreadyGrabbed = false;
 
-    private GameObject DrEric = null;
+    private GameObject drEric = null;
     private OrientWithGravity orient;
 	private Transform idleSprite;
 	private Transform launchingSprite;
@@ -47,6 +47,7 @@ public class SquidLauncher : MonoBehaviour {
     private float launcherXOffset = -.03f;
     private Quaternion destRotation;
     private float maxSpeed;
+    private BallController ballController;
 
     /*
      * Initialization. Identifies sprites for manual animations and initializes physics.
@@ -62,11 +63,22 @@ public class SquidLauncher : MonoBehaviour {
     }
     void CalculateMaxSpeed()
     {
-        FlingObject fo = DrEric.GetComponent<FlingObject>();
+        FlingObject fo = drEric.GetComponent<FlingObject>();
         float x = fo.maxXSpeed;
         float y = fo.maxYSpeed;
         maxSpeed = new Vector2(x, y).magnitude;
         Debug.Log(maxSpeed);
+    }
+    void GetDrEric()
+    {
+        try
+        {
+            drEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
+            ballController = drEric.GetComponent<BallController>();
+            CalculateMaxSpeed();
+        }
+        catch
+        { }
     }
     void Update() {
         //Unless the squid is currently grabbing DrEric, it should orient itself to gravity.
@@ -81,29 +93,24 @@ public class SquidLauncher : MonoBehaviour {
         }
 
         //Identifies DrEric, which is not a constant object. Checks every frame until found.
-        if (DrEric == null)
+        if (drEric == null)
         {
             if (state == State.GRABBING || state == State.GRABBED) //Releases grip if DrEric is destroyed while grabbed
                 state = State.RELEASING;
             //error suprression
-            try {
-                DrEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
-                CalculateMaxSpeed();
-            }
-            catch
-            {}
-            if (DrEric != null) GetComponent<FollowObject>().followTarget = DrEric;
+            GetDrEric();
+            if (drEric != null) GetComponent<FollowObject>().followTarget = drEric;
             else GetComponent<FollowObject>().followTarget = transform.parent.gameObject;
         }
 
         else
         {
-            Vector2 drEricPos = new Vector2(DrEric.transform.position.x, DrEric.transform.position.y);
+            Vector2 drEricPos = new Vector2(drEric.transform.position.x, drEric.transform.position.y);
 
             //Check prevents launching while in Launcher, which should override standard movement
             
             AnimateSprite();
-            if (DrEric != null && state == State.GRABBED)
+            if (drEric != null && state == State.GRABBED)
             {
                 Rotate(); //rotation around DrEric while grabbed
                 if (Time.time >= grabTime + maxGrabTime)
@@ -123,7 +130,9 @@ public class SquidLauncher : MonoBehaviour {
     }
 
     void OnMouseOver() {
-        if (DrEric != null && !(DrEric.transform.parent.tag == "Launcher"))
+        if (ballController.state != BallController.State.IDLE)
+            return;
+        if (drEric != null && !(drEric.transform.parent.tag == "Launcher") )
         {
             //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
             if ((state == State.NORMAL || state == State.RELEASING) && Input.GetMouseButton(0) && IsGrabbable())
@@ -143,7 +152,7 @@ public class SquidLauncher : MonoBehaviour {
      * @return true if DrEric is in range
      */
 	private bool IsGrabbable() {
-        if (Vector3.Distance(transform.position, DrEric.transform.position) <= grabRange && !alreadyGrabbed)
+        if (Vector3.Distance(transform.position, drEric.transform.position) <= grabRange && !alreadyGrabbed)
         {
             //if (jumpCount < maxJumps)
                 return true;
@@ -163,9 +172,9 @@ public class SquidLauncher : MonoBehaviour {
 
     private void GrabDrEric()
     {
-        DrEric.GetComponent<Rigidbody2D>().gravityScale = 0;
-        DrEric.GetComponent<Rigidbody2D>().angularVelocity = 0;
-        DrEric.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        drEric.GetComponent<Rigidbody2D>().gravityScale = 0;
+        drEric.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        drEric.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         state = State.GRABBED;
         grabTime = Time.time;
         alreadyGrabbed = true;
@@ -177,7 +186,7 @@ public class SquidLauncher : MonoBehaviour {
      */
     private void SetSpriteCounter()
     {
-        deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition);
+        deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition);
         float magnitude = deltaVector.magnitude;
         int numOfSprites = 6;
         for (int i = 1; i <= numOfSprites; i++)
@@ -233,7 +242,7 @@ public class SquidLauncher : MonoBehaviour {
     private void Rotate()
     {
         initialVector = centerOfScreen; //TODO OPTIMIZE
-        deltaVector = DrEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
+        deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;
         float gravityOffset = Mathf.Atan2(Physics2D.gravity.y, Physics2D.gravity.x) * Mathf.Rad2Deg;
@@ -254,8 +263,8 @@ public class SquidLauncher : MonoBehaviour {
      */
 	private void Launch(Vector2 finalVector)
     {
-        DrEric.GetComponent<Rigidbody2D>().gravityScale = 1;
-        DrEric.GetComponent<FlingObject>().Fling (deltaVector);
+        drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
+        drEric.GetComponent<FlingObject>().Fling (deltaVector);
         state = State.RELEASING;
         jumpCount++;
 	}
@@ -272,6 +281,6 @@ public class SquidLauncher : MonoBehaviour {
 
     public GameObject getDrEric()
     {
-        return DrEric;
+        return drEric;
     }
 }

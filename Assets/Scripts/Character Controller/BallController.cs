@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour {
     private OrientWithGravity orientor;
     private Rigidbody2D rb;
     private float lastHit;
-    private float bounceBufferPeriod = .2f;
+    private float bounceBufferPeriod = .4f;
     
     /**
      * Description: This method currently sets up a reference to the ball's 
@@ -41,7 +41,8 @@ public class BallController : MonoBehaviour {
     {
         if(audio != null)
             audio.PlayOneShot(landSound, 1f);
-        state = State.LANDING;
+        if (state == State.LAUNCHING)
+            state = State.LANDING;
         lastHit = Time.time;
     }
     void Update()
@@ -49,27 +50,23 @@ public class BallController : MonoBehaviour {
         switch(state)
         {
             case State.IDLE:
-                //orientor.CheckOrientation();
                 break;
             case State.LAUNCHING:
                 controllingPlatform = null;
-                //orientor.CheckOrientation();
                 break;
             case State.LANDING:
-                hasLanded();
+                HasLanded();
                 break;
         }
     }
-    void hasLanded()
+    void HasLanded()
     {
         if (Time.time - lastHit < bounceBufferPeriod)
             return;
         Vector3 gravity = Physics2D.gravity;
         Vector3 velocityProjG = Vector3.Project(rb.velocity, gravity);
-        Vector3 condition = (velocityProjG + gravity);
-        if (condition.magnitude < gravity.magnitude)
+        if ((velocityProjG+gravity).magnitude < gravity.magnitude)
         {
-            Debug.Log("You just landed!");
             state = State.IDLE;
         }
     }

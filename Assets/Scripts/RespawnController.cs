@@ -9,8 +9,9 @@ using System.Collections.Generic;
  */
 public class RespawnController : MonoBehaviour {
 	private bool isDead;
-	private double respawnTimer;
-	public double respawnTime;
+	private float respawnTimer;
+	public float respawnTime;
+    public float deathSpeedBoost = 2;
 	public GameObject player;
     public UnityEvent spawnEvents;
     public UnityEvent deathEvents;
@@ -25,9 +26,10 @@ public class RespawnController : MonoBehaviour {
 	void Start () {
         rhythmController = RhythmController.GetController();
 		respawnTimer = 0;
-		Respawn(); //initial creation of DrEric
         playerHolder = GameObject.Find(Names.PLAYERHOLDER);
         squidLauncher = playerHolder.transform.Find(Names.SQUIDLAUNCHER).gameObject;
+        squidLauncher.GetComponent<FollowObject>().movementSpeed *= deathSpeedBoost;
+		Respawn(); //initial creation of DrEric
         if (playerHolder == null)
         {
             throw new System.Exception("No Player Holder!");
@@ -61,6 +63,9 @@ public class RespawnController : MonoBehaviour {
             squidLauncher.transform.position = squidPos;
 
             rhythmController.SwitchToChannel(2);
+
+            squidLauncher.GetComponent<FollowObject>().movementSpeed *= deathSpeedBoost;
+
             if (onDeathList != null)
             {
                 foreach (UnityEvent e in onDeathList)
@@ -89,7 +94,8 @@ public class RespawnController : MonoBehaviour {
             foreach (UnityEvent e in onSpawnList)
             {
                 e.Invoke();
-            }
+                }
+            squidLauncher.GetComponent<FollowObject>().movementSpeed /= deathSpeedBoost;
         }
     }
     public void RegisterDeathEvent( UnityEvent e )

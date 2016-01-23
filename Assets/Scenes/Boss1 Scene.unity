@@ -922,7 +922,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 454698349}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: -10.09, y: 0, z: 0}
+  m_LocalPosition: {x: -10.07, y: -0.21, z: 0}
   m_LocalScale: {x: 1.076896, y: 1.5668081, z: 0}
   m_Children: []
   m_Father: {fileID: 203233237}
@@ -1112,7 +1112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1001 &603670723
 Prefab:
   m_ObjectHideFlags: 0
@@ -1159,6 +1159,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &632242935 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+  m_PrefabInternal: {fileID: 1136422711}
 --- !u!1 &693145724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1194,7 @@ Transform:
   - {fileID: 761481839}
   - {fileID: 312348772}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &738297438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 2
+  deathSpeedBoost: 2
   player: {fileID: 185872, guid: b0644c7c30ffed94d87849a47120fc28, type: 2}
   spawnEvents:
     m_PersistentCalls:
@@ -1479,12 +1484,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 827178135}
+        m_MethodName: respawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1503,6 +1508,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!1 &766615754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 766615755}
+  m_Layer: 0
+  m_Name: FuckingGummyBears Green
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &766615755
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 766615754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.87, y: -9.67, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1 &782456092 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 133462, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
@@ -1526,6 +1558,12 @@ MonoBehaviour:
   bloatScaleInc: 0.01
   FiringTime: 1
   respawner: {fileID: 764218636}
+--- !u!114 &827178135 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11485544, guid: c9b179972368a7b438a2e671ebb4ec96,
+    type: 2}
+  m_PrefabInternal: {fileID: 868988377}
+  m_Script: {fileID: 11500000, guid: f271670491bbef748ab52a03a66cfbb4, type: 3}
 --- !u!1001 &868988377
 Prefab:
   m_ObjectHideFlags: 0
@@ -1708,7 +1746,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424010, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.66
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 6121194, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: m_Offset.x
@@ -1808,6 +1846,222 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &904199334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 904199335}
+  m_Layer: 0
+  m_Name: FuckingGummyBears Purple
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &904199335
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 904199334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.87, y: -9.67, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_Children:
+  - {fileID: 1141061135}
+  - {fileID: 1692805235}
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+--- !u!1001 &924633577
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 904199335}
+    m_Modifications:
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -51.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &935106923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 935106924}
+  m_Layer: 0
+  m_Name: FuckingGummyBears Yellow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935106924
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 935106923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.87, y: -9.67, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_Children:
+  - {fileID: 1885293450}
+  - {fileID: 632242935}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+--- !u!1001 &950753061
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 904199335}
+    m_Modifications:
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 10.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1136422711
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 935106924}
+    m_Modifications:
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000016292068
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 154010, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_Name
+      value: Up G GummyBear (Yellow) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1141061135 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+  m_PrefabInternal: {fileID: 924633577}
 --- !u!114 &1166656842 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439,
@@ -1905,6 +2159,56 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &1469356814
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 935106924}
+    m_Modifications:
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -51.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000016292068
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1689350064
 Prefab:
   m_ObjectHideFlags: 0
@@ -1966,6 +2270,7 @@ GameObject:
   - 124: {fileID: 1691831158}
   - 81: {fileID: 1691831157}
   - 114: {fileID: 1691831162}
+  - 114: {fileID: 1691831163}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2055,6 +2360,23 @@ MonoBehaviour:
   yOffset: 0
   xOffset: 0
   zOffset: 0
+--- !u!114 &1691831163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1691831156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c02da020195aef4d92467cd8d0179ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationScaler: 5
+  callOnUpdate: 1
+--- !u!4 &1692805235 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 403334, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+  m_PrefabInternal: {fileID: 950753061}
 --- !u!1001 &1723601472
 Prefab:
   m_ObjectHideFlags: 0
@@ -2242,6 +2564,10 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!4 &1885293450 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 447522, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+  m_PrefabInternal: {fileID: 1469356814}
 --- !u!1 &1978845988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,7 +2666,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1991030381}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: -9.86, y: 0.21, z: 0}
+  m_LocalPosition: {x: -9.86, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1.5063481, z: 0}
   m_Children: []
   m_Father: {fileID: 181212261}
@@ -2446,3 +2772,30 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2104481863}
+--- !u!1 &2123695062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2123695063}
+  m_Layer: 0
+  m_Name: FuckingGummyBears Red
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2123695063
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123695062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.87, y: -9.67, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13

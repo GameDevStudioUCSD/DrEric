@@ -32,6 +32,10 @@ public class Boss1 : MonoBehaviour {
     private Vector2 startVector = Vector2.down;//default value
     private Vector2 endVector = Vector2.down;
     private int lasercounter = 0;//makes lazer cycle between top and bottom.
+    public GameObject RightGummyBears;
+    public GameObject LeftGummyBears;
+    public GameObject UpGummyBears;
+    public GameObject DownGummyBears;
     
 	// Use this for initialization
 	void Start () {

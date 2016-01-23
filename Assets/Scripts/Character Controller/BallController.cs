@@ -19,11 +19,13 @@ public class BallController : MonoBehaviour {
     public State state = State.IDLE;
     public Platform controllingPlatform;
     public float landingTolerance = 1.1f;
+    private int jumps = 0;
     private OrientWithGravity orientor;
     private Rigidbody2D rb;
     private float lastHit;
     private float bounceBufferPeriod = .4f;
     private RespawnController respawner;
+    private SquidLauncher squid;
 
     /**
      * Description: This method currently sets up a reference to the ball's 
@@ -35,6 +37,7 @@ public class BallController : MonoBehaviour {
         audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
+        squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
     }
     /**
      * Description: This method currently will only play the landing sound when
@@ -78,7 +81,20 @@ public class BallController : MonoBehaviour {
         if ((velocityProjG+gravity).magnitude < landingTolerance * gravity.magnitude)
         {
             state = State.IDLE;
+            jumps = 0;
         }
+    }
+
+    public void jump()
+    {
+        jumps++;
+        if (jumps >= squid.maxJumps)
+            state = State.LAUNCHING;
+    }
+
+    public int getJumps()
+    {
+        return jumps;
     }
     
 }

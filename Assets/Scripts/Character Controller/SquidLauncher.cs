@@ -14,10 +14,9 @@ public class SquidLauncher : MonoBehaviour {
 
     public float rotationOffset = 0;
 
-    public int maxJumps = 2;
     public float maxGrabTime = 3; //seconds
+    public int maxJumps = 1;
 
-    private int jumpCount = 0;
     private float grabTime = 0;
     private bool alreadyGrabbed = false;
 
@@ -130,8 +129,6 @@ public class SquidLauncher : MonoBehaviour {
     }
 
     void OnMouseOver() {
-        if (ballController.state != BallController.State.IDLE)
-            return;
         if (drEric != null && !(drEric.transform.parent.tag == "Launcher") )
         {
             //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
@@ -154,7 +151,7 @@ public class SquidLauncher : MonoBehaviour {
 	private bool IsGrabbable() {
         if (Vector3.Distance(transform.position, drEric.transform.position) <= grabRange && !alreadyGrabbed)
         {
-            //if (jumpCount < maxJumps)
+            if (drEric.GetComponent<BallController>().getJumps() < maxJumps)
                 return true;
         }
         return false;
@@ -266,7 +263,6 @@ public class SquidLauncher : MonoBehaviour {
         drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
         drEric.GetComponent<FlingObject>().Fling (deltaVector);
         state = State.RELEASING;
-        jumpCount++;
 	}
 
     /*

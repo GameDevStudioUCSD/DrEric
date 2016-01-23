@@ -90,7 +90,7 @@ public class Boss1 : MonoBehaviour {
         string Switchtag = activeSwitch.gameObject.name;
         //if (Switchtag == TOPSWITCH)  Debug.Log("TOPSWITHVC" + Physics2D.gravity + gravity);
         if (Switchtag == TOPSWITCH && gravity != GRAVITY.UP)
-            { UpGummyBears.SetActive(true); Debug.Log("PENIS"); }
+            { UpGummyBears.SetActive(true); }
         else { UpGummyBears.SetActive(false) ; }
 
         if (Switchtag == BOTTOMSWITCH && gravity != GRAVITY.DOWN)

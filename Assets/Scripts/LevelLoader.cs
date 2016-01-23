@@ -19,6 +19,7 @@ public class LevelLoader : MonoBehaviour {
     private const int SPACE_3 = 3;
     private const int SPACE_4 = 4;
     private const int SPACE_9 = 6;
+    private const int SPACE_5 = 7;
     private const int SPACE_BOSS = 5;
     private const int SPACE_BONUS = 1;
 

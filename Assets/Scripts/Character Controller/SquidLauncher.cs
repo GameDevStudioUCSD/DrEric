@@ -16,6 +16,7 @@ public class SquidLauncher : MonoBehaviour {
 
     public float maxGrabTime = 3; //seconds
     public int maxJumps = 1;
+    public Camera camera;
 
     private float grabTime = 0;
     private bool alreadyGrabbed = false;
@@ -238,7 +239,8 @@ public class SquidLauncher : MonoBehaviour {
      */
     private void Rotate()
     {
-        initialVector = centerOfScreen; //TODO OPTIMIZE
+        //initialVector = centerOfScreen; //TODO OPTIMIZE
+        initialVector = camera.WorldToScreenPoint(transform.position);
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;

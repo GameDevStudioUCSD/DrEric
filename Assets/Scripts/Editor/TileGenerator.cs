@@ -53,6 +53,12 @@ public class TileGenerator : MonoBehaviour {
         }
         // Sprite scale modifier 
         float size = wall.topLeftCorner.bounds.size.y;
+        // Create the box collider
+		BoxCollider2D collider = t.gameObject.AddComponent<BoxCollider2D>();
+        // Set the box collider's size
+		collider.size =  new Vector2(size*(w+1),size*(h+1));
+        // Set the collider's offset
+        collider.offset = 0.5f * (collider.size - new Vector2(size, size));
         // Set corners
         MakeGameObject(wall.topLeftCorner, 0, h*size, "TopLeftCorner", t);
         MakeGameObject(wall.topRightCorner, w*size, h*size, "TopRightCorner", t);

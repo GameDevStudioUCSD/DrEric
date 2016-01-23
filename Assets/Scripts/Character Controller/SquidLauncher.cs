@@ -16,7 +16,7 @@ public class SquidLauncher : MonoBehaviour {
 
     public float maxGrabTime = 3; //seconds
     public int maxJumps = 1;
-    public Camera camera;
+    public Camera activeCamera;
 
     private float grabTime = 0;
     private bool alreadyGrabbed = false;
@@ -67,7 +67,6 @@ public class SquidLauncher : MonoBehaviour {
         float x = fo.maxXSpeed;
         float y = fo.maxYSpeed;
         maxSpeed = new Vector2(x, y).magnitude;
-        Debug.Log(maxSpeed);
     }
     void GetDrEric()
     {
@@ -105,8 +104,6 @@ public class SquidLauncher : MonoBehaviour {
 
         else
         {
-            Vector2 drEricPos = new Vector2(drEric.transform.position.x, drEric.transform.position.y);
-
             //Check prevents launching while in Launcher, which should override standard movement
             
             AnimateSprite();
@@ -240,7 +237,7 @@ public class SquidLauncher : MonoBehaviour {
     private void Rotate()
     {
         //initialVector = centerOfScreen; //TODO OPTIMIZE
-        initialVector = camera.WorldToScreenPoint(transform.position);
+        initialVector = activeCamera.WorldToScreenPoint(transform.position);
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;

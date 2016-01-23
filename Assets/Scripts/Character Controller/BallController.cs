@@ -15,12 +15,11 @@ using System.Collections;
 public class BallController : MonoBehaviour {
     public enum State { IDLE, STUCK, LAUNCHING, LANDING }
     public AudioClip landSound;
-    public AudioSource audio;
+    public AudioSource audioSource;
     public State state = State.IDLE;
     public Platform controllingPlatform;
     public float landingTolerance = 1.1f;
     private int jumps = 0;
-    private OrientWithGravity orientor;
     private Rigidbody2D rb;
     private float lastHit;
     private float bounceBufferPeriod = .4f;
@@ -33,8 +32,7 @@ public class BallController : MonoBehaviour {
      */
     void Start()
     {
-        orientor = GetComponent<OrientWithGravity>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
         squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
@@ -45,8 +43,8 @@ public class BallController : MonoBehaviour {
      */
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (audio != null)
-            audio.PlayOneShot(landSound, 1f);
+        if (audioSource != null)
+            audioSource.PlayOneShot(landSound, 1f);
         if (state == State.LAUNCHING)
             state = State.LANDING;
         lastHit = Time.time;

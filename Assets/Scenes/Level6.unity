@@ -3820,7 +3820,7 @@ GameObject:
   - 61: {fileID: 1116347015}
   - 114: {fileID: 1116347016}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Snake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3863,7 +3863,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc5226113ec34ca7a56309c3fd750e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitsBeforeRetreat: 3
   speed: 0
+  maxTimeAggravated: 0
 --- !u!1 &1126081338
 GameObject:
   m_ObjectHideFlags: 0

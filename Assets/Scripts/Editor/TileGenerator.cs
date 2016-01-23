@@ -58,6 +58,23 @@ public class TileGenerator : MonoBehaviour {
         MakeGameObject(wall.topRightCorner, w*size, h*size, "TopRightCorner", t);
         MakeGameObject(wall.bottomLeftCorner, 0, 0, "BottomLeftCorner", t);
         MakeGameObject(wall.bottomRightCorner, w*size, 0, "BottomRightCorner", t);
+        // Make the horzontal tiling
+        for (int x = 1; x < w; x++)
+        {
+            MakeGameObject(wall.topSprite, x * size, h * size, "Top Tile " + x, t);
+            MakeGameObject(wall.bottomSprite, x * size, 0, "Bottom Tile " + x, t);
+        }
+        // Make the vertical tiling
+        for (int y = 1; y < h; y++)
+        {
+            MakeGameObject(wall.rightSprite, w * size, y * size, "Right Tile " + y, t);
+            MakeGameObject(wall.leftSprite, 0, y*size, "Left Tile " + y, t);
+        }
+        // Make the center tiling
+        for (int x = 1; x < w; x++)
+            for (int y = 1; y < h; y++)
+                MakeGameObject(wall.middleSprite, x * size, y * size, "Middle Tile " + x  + ", " + y, t);
+
     }
 
     static void MakeGameObject(Sprite sprite, float x, float y, string name, Transform parent)

@@ -12,7 +12,6 @@ GameObject:
   - 114: {fileID: 11440728}
   - 212: {fileID: 21268048}
   - 61: {fileID: 6111270}
-  - 114: {fileID: 11489394}
   m_Layer: 0
   m_Name: Left G GummyBear (Green) 1
   m_TagString: Untagged
@@ -27,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.069, y: -8.495, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: -2.06900001, y: -8.49499989, z: 0}
+  m_LocalScale: {x: .25, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -39,11 +38,10 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120616}
   m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.25}
+  m_Offset: {x: 0, y: .25}
   serializedVersion: 2
   m_Size: {x: 2, y: 3.5}
 --- !u!114 &11440728
@@ -57,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaffcd42fe0ff347b0fe16212131295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: {x: -9.8, y: 0}
+  Gravity: {x: -9.80000019, y: 0}
   redirectMomentum: 1
 --- !u!114 &11455864
 MonoBehaviour:
@@ -70,19 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2be99e7ed92b2459f149e1d2770d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11489394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 120616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c02da020195aef4d92467cd8d0179ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationScaler: 5
-  callOnUpdate: 1
 --- !u!212 &21268048
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -101,18 +86,14 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2de0421b6af907746925d5b97dac744b, type: 3}
-  m_Color: {r: 0.16267748, g: 1, b: 0.051470578, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_Color: {r: .162677482, g: 1, b: .0514705777, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

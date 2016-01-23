@@ -21,6 +21,7 @@ public class SpikeGenerator : MonoBehaviour {
             cspike.transform.parent = transform;
 		}
         transform.rotation = rotation;
+		GetComponent<MeshRenderer> ().enabled = false;
 	}
 	
 	// Update is called once per frame

@@ -20,7 +20,6 @@ public class BallController : MonoBehaviour {
     public Platform controllingPlatform;
     public float landingTolerance = 1.1f;
     private int jumps = 0;
-    private OrientWithGravity orientor;
     private Rigidbody2D rb;
     private float lastHit;
     private float bounceBufferPeriod = .4f;
@@ -33,7 +32,6 @@ public class BallController : MonoBehaviour {
      */
     void Start()
     {
-        orientor = GetComponent<OrientWithGravity>();
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();

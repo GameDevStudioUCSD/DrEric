@@ -14,10 +14,10 @@ public class SquidLauncher : MonoBehaviour {
 
     public float rotationOffset = 0;
 
-    public int maxJumps = 2;
     public float maxGrabTime = 3; //seconds
+    public int maxJumps = 1;
+    public Camera activeCamera;
 
-    private int jumpCount = 0;
     private float grabTime = 0;
     private bool alreadyGrabbed = false;
 
@@ -37,17 +37,14 @@ public class SquidLauncher : MonoBehaviour {
 
 	private Vector2 initialVector;
 	private Vector2 deltaVector;
-    private Vector2 centerOfScreen;
 
     private enum State {NORMAL, GRABBING, GRABBED, RELEASING};
     private State state = State.NORMAL;
 	private int spriteCounter = 0;
     
-    private Vector2 startPos;
     private float launcherXOffset = -.03f;
     private Quaternion destRotation;
     private float maxSpeed;
-    private BallController ballController;
 
     /*
      * Initialization. Identifies sprites for manual animations and initializes physics.
@@ -57,8 +54,6 @@ public class SquidLauncher : MonoBehaviour {
         destRotation = transform.rotation;
         idleSprite = transform.Find ("Idle Sprite");
 		launchingSprite = transform.Find ("Launching Sprite");
-        centerOfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
-        startPos = transform.position;
         orient = GetComponent<OrientWithGravity>();
     }
     void CalculateMaxSpeed()
@@ -67,14 +62,12 @@ public class SquidLauncher : MonoBehaviour {
         float x = fo.maxXSpeed;
         float y = fo.maxYSpeed;
         maxSpeed = new Vector2(x, y).magnitude;
-        Debug.Log(maxSpeed);
     }
     void GetDrEric()
     {
         try
         {
             drEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
-            ballController = drEric.GetComponent<BallController>();
             CalculateMaxSpeed();
         }
         catch
@@ -105,8 +98,6 @@ public class SquidLauncher : MonoBehaviour {
 
         else
         {
-            Vector2 drEricPos = new Vector2(drEric.transform.position.x, drEric.transform.position.y);
-
             //Check prevents launching while in Launcher, which should override standard movement
             
             AnimateSprite();
@@ -130,8 +121,6 @@ public class SquidLauncher : MonoBehaviour {
     }
 
     void OnMouseOver() {
-        if (ballController.state != BallController.State.IDLE)
-            return;
         if (drEric != null && !(drEric.transform.parent.tag == "Launcher") )
         {
             //Grabs if not currently grabbing or grabbed, and if within range, when mouse is pressed
@@ -154,7 +143,7 @@ public class SquidLauncher : MonoBehaviour {
 	private bool IsGrabbable() {
         if (Vector3.Distance(transform.position, drEric.transform.position) <= grabRange && !alreadyGrabbed)
         {
-            //if (jumpCount < maxJumps)
+            if (drEric.GetComponent<BallController>().getJumps() < maxJumps)
                 return true;
         }
         return false;
@@ -241,7 +230,8 @@ public class SquidLauncher : MonoBehaviour {
      */
     private void Rotate()
     {
-        initialVector = centerOfScreen; //TODO OPTIMIZE
+        //initialVector = centerOfScreen; //TODO OPTIMIZE
+        initialVector = activeCamera.WorldToScreenPoint(transform.position);
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;
@@ -266,7 +256,6 @@ public class SquidLauncher : MonoBehaviour {
         drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
         drEric.GetComponent<FlingObject>().Fling (deltaVector);
         state = State.RELEASING;
-        jumpCount++;
 	}
 
     /*

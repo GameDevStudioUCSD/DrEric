@@ -15,23 +15,27 @@ using System.Collections;
 public class BallController : MonoBehaviour {
     public enum State { IDLE, STUCK, LAUNCHING, LANDING }
     public AudioClip landSound;
-    public AudioSource audio;
+    public AudioSource audioSource;
     public State state = State.IDLE;
     public Platform controllingPlatform;
-    private OrientWithGravity orientor;
+    public float landingTolerance = 1.1f;
+    private int jumps = 0;
     private Rigidbody2D rb;
     private float lastHit;
     private float bounceBufferPeriod = .4f;
-    
+    private RespawnController respawner;
+    private SquidLauncher squid;
+
     /**
      * Description: This method currently sets up a reference to the ball's 
      *              AudioSource
      */
     void Start()
     {
-        orientor = GetComponent<OrientWithGravity>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+        respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
+        squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
     }
     /**
      * Description: This method currently will only play the landing sound when
@@ -39,15 +43,15 @@ public class BallController : MonoBehaviour {
      */
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(audio != null)
-            audio.PlayOneShot(landSound, 1f);
+        if (audioSource != null)
+            audioSource.PlayOneShot(landSound, 1f);
         if (state == State.LAUNCHING)
             state = State.LANDING;
         lastHit = Time.time;
     }
     void Update()
     {
-        switch(state)
+        switch (state)
         {
             case State.IDLE:
                 break;
@@ -58,6 +62,13 @@ public class BallController : MonoBehaviour {
                 HasLanded();
                 break;
         }
+        //out of bounds kill
+        if (respawner.player.transform.position.x < -1000 ||
+            respawner.player.transform.position.x > 1000 ||
+            respawner.player.transform.position.y < -1000 ||
+            respawner.player.transform.position.y > 1000)
+            respawner.kill();
+        
     }
     void HasLanded()
     {
@@ -65,10 +76,23 @@ public class BallController : MonoBehaviour {
             return;
         Vector3 gravity = Physics2D.gravity;
         Vector3 velocityProjG = Vector3.Project(rb.velocity, gravity);
-        if ((velocityProjG+gravity).magnitude < gravity.magnitude)
+        if ((velocityProjG+gravity).magnitude < landingTolerance * gravity.magnitude)
         {
             state = State.IDLE;
+            jumps = 0;
         }
+    }
+
+    public void jump()
+    {
+        jumps++;
+        if (jumps >= squid.maxJumps)
+            state = State.LAUNCHING;
+    }
+
+    public int getJumps()
+    {
+        return jumps;
     }
     
 }

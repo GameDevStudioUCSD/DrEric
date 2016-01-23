@@ -74,7 +74,6 @@ public class Launcher : MonoBehaviour {
 
         float x = launchSpeed * Mathf.Cos((transform.rotation.eulerAngles.z + gravityOffset) * Mathf.Deg2Rad);
 		float y = launchSpeed * Mathf.Sin((transform.rotation.eulerAngles.z + gravityOffset) * Mathf.Deg2Rad);
-        Vector2 output = new Vector2(x, y);
         return new Vector2 (x, y);
 	}
 }

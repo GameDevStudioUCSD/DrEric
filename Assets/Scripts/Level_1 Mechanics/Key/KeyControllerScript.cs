@@ -11,22 +11,23 @@ public class KeyControllerScript : MonoBehaviour {
  * Description:  controls number of keys collected and spent \n
  */
 	void Start () {
-        keys_collected = 0;
+		ResetKeys();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 	
 	}
 
-    public void incrementKeys()
-    {
+    public void IncrementKeys() {
         keys_collected++;
     }
 
-    public int getKeys()
-    {
+    public int GetKeys() {
         return keys_collected;
     }
-        
+     
+	public void ResetKeys() {
+		keys_collected = 0;
+	}
 }

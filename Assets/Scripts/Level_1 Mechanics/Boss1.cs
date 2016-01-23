@@ -8,10 +8,12 @@ using System.Collections;
 public class Boss1 : MonoBehaviour {
     public enum Direction { DOWN, UP, LEFT, RIGHT}
     enum STATE { LERPING_AWAY, LERPING_BACK,IDLE, FIRELASER}
+    public enum GRAVITY { RIGHT, UP, DOWN, LEFT}
 
     //check if switches have been pressed
 	public bool topSwitch, leftSwitch, rightSwitch, bottomSwitch;
     public float moveFactor = 3f;
+    private Switch activeSwitch;
 
 
     private bool needToPickASwitch;
@@ -32,6 +34,7 @@ public class Boss1 : MonoBehaviour {
     private Vector2 startVector = Vector2.down;//default value
     private Vector2 endVector = Vector2.down;
     private int lasercounter = 0;//makes lazer cycle between top and bottom.
+    public GRAVITY gravity;
     public GameObject RightGummyBears;
     public GameObject LeftGummyBears;
     public GameObject UpGummyBears;
@@ -49,6 +52,7 @@ public class Boss1 : MonoBehaviour {
         startTime = Time.time-1;
         victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
         victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+        gravity = GRAVITY.DOWN;
     }
 
     public void respawn()
@@ -62,6 +66,7 @@ public class Boss1 : MonoBehaviour {
         transform.position = startVector;
         victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
         victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+        gravity = GRAVITY.DOWN;
     }
 
 	// Update is called once per frame
@@ -72,6 +77,31 @@ public class Boss1 : MonoBehaviour {
         {
              BodySlam((Direction)Random.Range(0,4));
         }
+
+        if (Physics2D.gravity == new Vector2(0, 9.8f))
+            gravity = GRAVITY.UP;
+        else if (Physics2D.gravity == new Vector2(0, -9.8f))
+            gravity = GRAVITY.DOWN;
+        else if (Physics2D.gravity == new Vector2(9.8f,0))
+            gravity = GRAVITY.RIGHT;
+        else if (Physics2D.gravity == new Vector2(-9.8f,0 ))
+            gravity = GRAVITY.LEFT;
+
+        string Switchtag = activeSwitch.gameObject.name;
+        //if (Switchtag == TOPSWITCH)  Debug.Log("TOPSWITHVC" + Physics2D.gravity + gravity);
+        if (Switchtag == TOPSWITCH && gravity != GRAVITY.UP)
+            { UpGummyBears.SetActive(true); Debug.Log("PENIS"); }
+        else { UpGummyBears.SetActive(false) ; }
+
+        if (Switchtag == BOTTOMSWITCH && gravity != GRAVITY.DOWN)
+        { DownGummyBears.SetActive(true); }
+        else { DownGummyBears.SetActive(false); }
+        if (Switchtag == RIGHTSWITCH && gravity != GRAVITY.RIGHT)
+        { RightGummyBears.SetActive(true); }
+        else { RightGummyBears.SetActive(false); }
+        if (Switchtag == LEFTSWITCH && gravity != GRAVITY.LEFT)
+        { LeftGummyBears.SetActive(true); }
+        else { LeftGummyBears.SetActive(false); }
     }
 
     void Lerp()//lerp function
@@ -239,6 +269,7 @@ public class Boss1 : MonoBehaviour {
                 spriterenderer.enabled = true;
                 boxcollider2d = currentswitch2.GetComponentInChildren<BoxCollider2D>();
                 boxcollider2d.enabled = true;
+                activeSwitch = currentswitch2;
             }
         }
 

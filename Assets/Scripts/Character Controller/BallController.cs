@@ -72,7 +72,7 @@ public class BallController : MonoBehaviour {
             respawner.kill();
         
     }
-    void HasLanded()
+    public void HasLanded()
     {
         if (Time.time - lastHit < bounceBufferPeriod)
             return;

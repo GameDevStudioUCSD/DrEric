@@ -8,7 +8,7 @@ public class Snake : MonoBehaviour {
 	private enum State {IDLE, AGGRAVATED, CALMING, RETREAT};
 	private State state;
 	public float maxTimeAggravated = 0f;
-	const float FRAMERATE = 0.2f;
+	const float FRAMERATE = 0.1f;
 	
 	int aggravateFrameCounter = 0;
 	
@@ -24,12 +24,12 @@ public class Snake : MonoBehaviour {
 		}
 		else if (state == State.AGGRAVATED)
 		{
-			Invoke ("ReturnToIdle", maxTimeAggravated);
 			state = State.CALMING;
+			Invoke ("AnimateAggravated", FRAMERATE);
+			Invoke ("RetunToIdle", maxTimeAggravated);
 		}
 		else if (state == State.CALMING)
 		{
-			AnimateAggravated();
 		}
 		else if (state == State.RETREAT)
 		{
@@ -97,8 +97,6 @@ public class Snake : MonoBehaviour {
 				aggravateFrameCounter = 0;
 				break;
 		}
-		if (state == State.CALMING)
-			Invoke("AnimateAggravating", FRAMERATE);
 	}
 	
 	void AnimateRetreat()

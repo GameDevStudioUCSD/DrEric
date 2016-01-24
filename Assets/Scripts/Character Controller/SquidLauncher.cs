@@ -181,7 +181,6 @@ public class SquidLauncher : MonoBehaviour {
 
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(
             initialVector, Input.mousePosition);
-        Debug.Log(deltaVector.magnitude);
     }
 
     /**

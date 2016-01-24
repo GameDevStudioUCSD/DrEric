@@ -54,6 +54,10 @@ public class BallController : MonoBehaviour {
         switch (state)
         {
             case State.IDLE:
+                jumps = 0;
+                break;
+            case State.STUCK:
+                jumps = 0;
                 break;
             case State.LAUNCHING:
                 controllingPlatform = null;
@@ -79,7 +83,6 @@ public class BallController : MonoBehaviour {
         if ((velocityProjG+gravity).magnitude < landingTolerance * gravity.magnitude)
         {
             state = State.IDLE;
-            jumps = 0;
         }
     }
 

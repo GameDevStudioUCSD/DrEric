@@ -255,6 +255,7 @@ public class SquidLauncher : MonoBehaviour {
     {
         drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
         drEric.GetComponent<FlingObject>().Fling (deltaVector);
+        drEric.GetComponent<BallController>().state = BallController.State.LAUNCHING;
         state = State.RELEASING;
 	}
 

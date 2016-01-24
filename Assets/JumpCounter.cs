@@ -21,6 +21,8 @@ public class JumpCounter : MonoBehaviour {
 	}
     void GetDrEric()
     {
-        drEric = GameObject.Find(Names.DRERIC).GetComponent<BallController>();
+        GameObject obj = GameObject.Find(Names.DRERIC);
+        if(obj != null)
+            drEric = obj.GetComponent<BallController>();
     }
 }

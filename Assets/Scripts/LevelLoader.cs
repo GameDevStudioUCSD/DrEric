@@ -15,6 +15,7 @@ using System.Collections;
  */
 public class LevelLoader : MonoBehaviour {
 
+    private const int SPACE_1 = 9;
     private const int SPACE_2 = 2;
     private const int SPACE_3 = 3;
     private const int SPACE_4 = 4;
@@ -50,6 +51,9 @@ public class LevelLoader : MonoBehaviour {
     {
         switch( level )
         {
+            case Level.One:
+                Application.LoadLevel(SPACE_1);
+                break;
             case Level.Two:
                 Application.LoadLevel(SPACE_2);
                 break;

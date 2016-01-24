@@ -77,7 +77,7 @@ public class FlingObject : MonoBehaviour {
         AudioSource audio = GetComponent<AudioSource>();
         audio.Play();
         testAnimation();
-        playerController.jump();
+        playerController.Jump();
     }
     private void testAnimation()
     {

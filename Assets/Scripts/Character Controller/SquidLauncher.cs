@@ -39,8 +39,8 @@ public class SquidLauncher : MonoBehaviour {
 	private Vector2 deltaVector;
     private Vector2 centerOfScreen;
 
-    private enum State {NORMAL, GRABBING, GRABBED, RELEASING};
-    private State state = State.NORMAL;
+    public enum State {NORMAL, GRABBING, GRABBED, RELEASING};
+    public State state = State.NORMAL;
 	private int spriteCounter = 0;
     
     private Vector2 startPos;
@@ -67,7 +67,6 @@ public class SquidLauncher : MonoBehaviour {
         float x = fo.maxXSpeed;
         float y = fo.maxYSpeed;
         maxSpeed = new Vector2(x, y).magnitude;
-        Debug.Log(maxSpeed);
     }
     void GetDrEric()
     {
@@ -152,7 +151,7 @@ public class SquidLauncher : MonoBehaviour {
 	private bool IsGrabbable() {
         if (Vector3.Distance(transform.position, drEric.transform.position) <= grabRange && !alreadyGrabbed)
         {
-            if (drEric.GetComponent<BallController>().getJumps() < maxJumps)
+            if (drEric.GetComponent<BallController>().GetJumps() < maxJumps)
                 return true;
         }
         return false;

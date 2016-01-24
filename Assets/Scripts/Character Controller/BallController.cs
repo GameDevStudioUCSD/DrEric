@@ -13,7 +13,7 @@ using System.Collections;
  *              object collider.
  */
 public class BallController : MonoBehaviour {
-    public enum State { IDLE, STUCK, LAUNCHING, LANDING }
+    public enum State { IDLE, STUCK, LANDING }
     public AudioClip landSound;
     public AudioSource audio;
     public State state = State.IDLE;
@@ -26,6 +26,9 @@ public class BallController : MonoBehaviour {
     private float bounceBufferPeriod = .4f;
     private RespawnController respawner;
     private SquidLauncher squid;
+    int resets = 0;
+    float resetTimer = 0;
+    float resetTimeout = 0.1f;
 
     /**
      * Description: This method currently sets up a reference to the ball's 
@@ -47,52 +50,54 @@ public class BallController : MonoBehaviour {
     {
         if (audio != null)
             audio.PlayOneShot(landSound, 1f);
-        if (state == State.LAUNCHING)
-            state = State.LANDING;
+        
+        HasLanded();
         lastHit = Time.time;
     }
     void Update()
     {
-        switch (state)
+        if (rb.velocity.magnitude < 0.1 && squid.state == SquidLauncher.State.NORMAL)
         {
-            case State.IDLE:
-                break;
-            case State.LAUNCHING:
-                controllingPlatform = null;
-                break;
-            case State.LANDING:
-                HasLanded();
-                break;
+            if (resetTimer == 0)
+                resetTimer = Time.time;
+            if (Time.time - resetTimer > resetTimeout)
+                Land();
         }
+        else resetTimer = 0;
+
         //out of bounds kill
         if (respawner.player.transform.position.x < -1000 ||
             respawner.player.transform.position.x > 1000 ||
             respawner.player.transform.position.y < -1000 ||
             respawner.player.transform.position.y > 1000)
             respawner.kill();
-        
     }
     public void HasLanded()
     {
+        Debug.Log(Time.time - lastHit);
         if (Time.time - lastHit < bounceBufferPeriod)
             return;
         Vector3 gravity = Physics2D.gravity;
         Vector3 velocityProjG = Vector3.Project(rb.velocity, gravity);
         if ((velocityProjG+gravity).magnitude < landingTolerance * gravity.magnitude)
-        {
-            state = State.IDLE;
-            jumps = 0;
-        }
+            Land();
     }
 
-    public void jump()
+    public void Land()
+    {
+        state = State.IDLE;
+        jumps = 0;
+        resetTimer = 0;
+    }
+
+    public void Jump()
     {
         jumps++;
         if (jumps >= squid.maxJumps)
-            state = State.LAUNCHING;
+            state = State.LANDING;
     }
 
-    public int getJumps()
+    public int GetJumps()
     {
         return jumps;
     }

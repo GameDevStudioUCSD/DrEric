@@ -90,7 +90,7 @@ public class BallController : MonoBehaviour {
             state = State.LAUNCHING;
     }
 
-    public int getJumps()
+    public int GetJumps()
     {
         return jumps;
     }

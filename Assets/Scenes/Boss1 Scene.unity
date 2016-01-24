@@ -210,6 +210,23 @@ CanvasRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 463896, guid: f817de150228428448986cc2677a35fe, type: 2}
   m_PrefabInternal: {fileID: 2092739586}
+--- !u!1 &160767768 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 193610, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+  m_PrefabInternal: {fileID: 868988377}
+--- !u!114 &160767769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 160767768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0fb2297091c7a4aa2497b93daab84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  type: 0
 --- !u!1001 &181212260
 Prefab:
   m_ObjectHideFlags: 0
@@ -609,7 +626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &362011938
 Transform:
   m_ObjectHideFlags: 0
@@ -843,7 +860,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 417774772}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -10, y: -10.76, z: 0}
+  m_LocalPosition: {x: -11, y: -10.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 764218635}
@@ -1680,7 +1697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &765338355
 Transform:
   m_ObjectHideFlags: 0
@@ -1864,6 +1881,22 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11479848, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456338, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455014, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 490038, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.29
@@ -2093,6 +2126,90 @@ Prefab:
       propertyPath: leftSprite
       value: 
       objectReference: {fileID: 1576320168}
+    - target: {fileID: 11479848, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479848, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479848, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 827178135}
+    - target: {fileID: 11479848, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FlipLeftSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479848, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456338, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456338, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456338, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 827178135}
+    - target: {fileID: 11456338, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FlipRightSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456338, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455014, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455014, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455014, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 827178135}
+    - target: {fileID: 11455014, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FlipBottomSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455014, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 827178135}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FlipTopSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: unPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462360, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
+      propertyPath: isEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5043672, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
     - {fileID: 5050700, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
@@ -2573,7 +2690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1434903678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2709,7 +2826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1576320169
 Transform:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class SquidLauncher : MonoBehaviour {
 
     public float maxGrabTime = 3; //seconds
     public int maxJumps = 1;
-    public Camera camera;
+    public Camera activeCamera;
 
     private float grabTime = 0;
     private bool alreadyGrabbed = false;
@@ -37,17 +37,14 @@ public class SquidLauncher : MonoBehaviour {
 
 	private Vector2 initialVector;
 	private Vector2 deltaVector;
-    private Vector2 centerOfScreen;
 
     public enum State {NORMAL, GRABBING, GRABBED, RELEASING};
     public State state = State.NORMAL;
 	private int spriteCounter = 0;
     
-    private Vector2 startPos;
     private float launcherXOffset = -.03f;
     private Quaternion destRotation;
     private float maxSpeed;
-    private BallController ballController;
 
     /*
      * Initialization. Identifies sprites for manual animations and initializes physics.
@@ -57,8 +54,6 @@ public class SquidLauncher : MonoBehaviour {
         destRotation = transform.rotation;
         idleSprite = transform.Find ("Idle Sprite");
 		launchingSprite = transform.Find ("Launching Sprite");
-        centerOfScreen = new Vector2(Screen.width / 2, Screen.height / 2);
-        startPos = transform.position;
         orient = GetComponent<OrientWithGravity>();
     }
     void CalculateMaxSpeed()
@@ -73,7 +68,6 @@ public class SquidLauncher : MonoBehaviour {
         try
         {
             drEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(Names.DRERIC).gameObject;                                                                               //TODO: Remove magic string
-            ballController = drEric.GetComponent<BallController>();
             CalculateMaxSpeed();
         }
         catch
@@ -104,8 +98,6 @@ public class SquidLauncher : MonoBehaviour {
 
         else
         {
-            Vector2 drEricPos = new Vector2(drEric.transform.position.x, drEric.transform.position.y);
-
             //Check prevents launching while in Launcher, which should override standard movement
             
             AnimateSprite();
@@ -239,7 +231,7 @@ public class SquidLauncher : MonoBehaviour {
     private void Rotate()
     {
         //initialVector = centerOfScreen; //TODO OPTIMIZE
-        initialVector = camera.WorldToScreenPoint(transform.position);
+        initialVector = activeCamera.WorldToScreenPoint(transform.position);
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(initialVector, Input.mousePosition); //TODO
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;

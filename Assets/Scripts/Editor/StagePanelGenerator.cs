@@ -32,6 +32,11 @@ public class StagePanelGenerator : MonoBehaviour {
 			GameObject scoreTransform = subPanel.transform.Find("HiScoreValue").gameObject;
 			Text scoreValue = scoreTransform.GetComponent<Text> ();
 			scoreValue.text = ""+stageDetails.stageScore[i];
+
+			// Set the play button to load the corresponding level
+			Transform playButton = stagePanel.transform.FindChild("ButtonPlay");
+			var levelLoader = playButton.GetComponent<LevelLoader>();
+			levelLoader.setLevel (World.Space,LevelLoader.intToLevel(i+1));
 		}
 	}
 

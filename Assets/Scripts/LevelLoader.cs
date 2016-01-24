@@ -79,6 +79,37 @@ public class LevelLoader : MonoBehaviour {
                 break;
         }
     }
+
+	// Used for stage panel generator.
+	public void setLevel( World world, Level level){
+		this.world = world;
+		this.level = level;
+	}
+
+	public static Level intToLevel(int levelInt){
+		switch (levelInt) {
+		case 1:
+			return Level.One;
+		case 2:
+			return Level.Two;
+		case 3:
+			return Level.Three;
+		case 4:
+			return Level.Four;
+		case 5:
+			return Level.Five;
+		case 6:
+			return Level.Six;
+		case 7:
+			return Level.Seven;
+		case 8:
+			return Level.Eight;
+		case 9:
+			return Level.Nine;
+		default:
+			return Level.One;
+		}
+	}
 }
 
 public enum World { Space }

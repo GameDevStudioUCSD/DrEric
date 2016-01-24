@@ -5,10 +5,12 @@ public class Snake : MonoBehaviour {
 
 	int hitCount = 0;
 	public int hitsBeforeRetreat = 0;
-	private enum State {IDLE, AGGRAVATED, RETREAT};
+	private enum State {IDLE, AGGRAVATED, CALMING, RETREAT};
 	private State state;
-	public int maxTimeAggravated = 0;
-	int durationTimeAggravated;
+	public float maxTimeAggravated = 0f;
+	const float FRAMERATE = 0.2f;
+	
+	int aggravateFrameCounter = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,19 +24,85 @@ public class Snake : MonoBehaviour {
 		}
 		else if (state == State.AGGRAVATED)
 		{
-			//durationTimeAggravated
+			Invoke ("ReturnToIdle", maxTimeAggravated);
+			state = State.CALMING;
+		}
+		else if (state == State.CALMING)
+		{
+			AnimateAggravated();
 		}
 		else if (state == State.RETREAT)
 		{
-		
+			
 		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		hitCount++;
-		Debug.Log ("I GOT HIT " + hitCount + " times");
-		state = State.AGGRAVATED;
-		durationTimeAggravated = 0;
+		if (state == State.IDLE) {
+			hitCount++;
+			Debug.Log ("I GOT HIT " + hitCount + " times");
+			if (hitCount < hitsBeforeRetreat)
+				state = State.AGGRAVATED;
+			else
+				state = State.RETREAT;
+		}
+	}
+	
+	void ReturnToIdle()
+	{
+		Debug.Log ("back to idle");
+		state = State.IDLE;
+	}
+	
+	void AnimateIdle()
+	{
+	
+	}
+	
+	void AnimateAggravated()
+	{
+		switch (aggravateFrameCounter)
+		{
+			case 0:
+				Debug.Log ("#");
+				aggravateFrameCounter = 1;
+				break;
+			case 1: 
+			Debug.Log ("##");
+				aggravateFrameCounter = 2;
+				break;
+			case 2:
+			Debug.Log ("###");
+				aggravateFrameCounter = 3;
+				break;
+			case 3:
+			Debug.Log ("####");
+				aggravateFrameCounter = 4;
+				break;
+			case 4:
+			Debug.Log ("#####");
+				aggravateFrameCounter = 5;
+				break;
+			case 5:
+			Debug.Log ("####");
+				aggravateFrameCounter = 6;
+				break;
+			case 6:
+			Debug.Log ("###");
+				aggravateFrameCounter = 7;
+				break;
+			case 7:
+			Debug.Log ("##");
+				aggravateFrameCounter = 0;
+				break;
+		}
+		if (state == State.CALMING)
+			Invoke("AnimateAggravating", FRAMERATE);
+	}
+	
+	void AnimateRetreat()
+	{
+	
 	}
 }

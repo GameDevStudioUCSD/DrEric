@@ -28,11 +28,14 @@ public class GateScript : MonoBehaviour {
             KeyControllerScript KCS =
                 (KeyControllerScript)go.GetComponent(typeof(KeyControllerScript));
             Debug.Log("Gate Touched");
-            if (KCS.keys_collected > 0)
-            {
-                KCS.keys_collected--;
-                Destroy(this.gameObject, 0);
-            }
+			if (KCS.keys_collected > 0) {
+				KCS.keys_collected--;
+				Destroy (this.gameObject, 0);
+			} 
+			else {
+				AudioSource source = GetComponent<AudioSource> ();
+				source.Play ();
+			}
         }
     }
 }

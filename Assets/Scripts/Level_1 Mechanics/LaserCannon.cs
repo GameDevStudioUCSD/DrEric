@@ -131,6 +131,7 @@ public class LaserCannon : MonoBehaviour
         }
         else
         {
+            transform.position = Vector2.Lerp(currentVector, startVector, 1);
             firing = false;
             state = STATE.WAITING;
         }

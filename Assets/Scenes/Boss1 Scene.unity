@@ -618,8 +618,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 362011938}
   - 212: {fileID: 362011941}
-  - 61: {fileID: 362011940}
   - 114: {fileID: 362011939}
+  - 68: {fileID: 362011940}
   m_Layer: 0
   m_Name: icecreambossBottom
   m_TagString: Untagged
@@ -650,8 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3236904cf437ee7479502c1834d183e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &362011940
-BoxCollider2D:
+--- !u!68 &362011940
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -659,11 +659,16 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.16637114, y: -0.00000045064436}
-  serializedVersion: 2
-  m_Size: {x: 4.7978735, y: 9}
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -2.2000957, y: -0.4614561}
+  - {x: -2.8390803, y: -2.29735}
+  - {x: -1.6343267, y: -4.065553}
+  - {x: 0.9596624, y: -4.0427203}
+  - {x: 2.0844114, y: -2.543917}
+  - {x: 2.0185819, y: -0.6061726}
 --- !u!212 &362011941
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1689,8 +1694,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 765338355}
   - 212: {fileID: 765338357}
-  - 61: {fileID: 765338356}
   - 114: {fileID: 765338358}
+  - 68: {fileID: 765338356}
   m_Layer: 0
   m_Name: icecreambossTop
   m_TagString: Untagged
@@ -1710,8 +1715,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 987955631}
   m_RootOrder: 4
---- !u!61 &765338356
-BoxCollider2D:
+--- !u!68 &765338356
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1719,11 +1724,14 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.16637114, y: -0.00000045064436}
-  serializedVersion: 2
-  m_Size: {x: 4.7978735, y: 9}
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -2.9841323, y: -2.0852492}
+  - {x: 1.504483, y: 4.439774}
+  - {x: 2.1493552, y: -2.1501613}
+  - {x: 1.9696858, y: -0.056359388}
 --- !u!212 &765338357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2682,8 +2690,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1434903681}
   - 212: {fileID: 1434903680}
-  - 61: {fileID: 1434903679}
   - 114: {fileID: 1434903678}
+  - 68: {fileID: 1434903679}
   m_Layer: 0
   m_Name: icecreambossRight
   m_TagString: Untagged
@@ -2702,8 +2710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3236904cf437ee7479502c1834d183e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1434903679
-BoxCollider2D:
+--- !u!68 &1434903679
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -2711,11 +2719,13 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.16637114, y: -0.00000045064436}
-  serializedVersion: 2
-  m_Size: {x: 4.7978735, y: 9}
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -1.9107902, y: 0.0021348607}
+  - {x: 1.5829798, y: 4.4088955}
+  - {x: 1.8590171, y: 0.16841966}
 --- !u!212 &1434903680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2818,15 +2828,15 @@ GameObject:
   m_Component:
   - 4: {fileID: 1576320169}
   - 212: {fileID: 1576320172}
-  - 61: {fileID: 1576320171}
   - 114: {fileID: 1576320170}
+  - 68: {fileID: 1576320171}
   m_Layer: 0
   m_Name: icecreambossLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1576320169
 Transform:
   m_ObjectHideFlags: 0
@@ -2850,8 +2860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3236904cf437ee7479502c1834d183e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1576320171
-BoxCollider2D:
+--- !u!68 &1576320171
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -2859,11 +2869,13 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.16637114, y: -0.00000045064436}
-  serializedVersion: 2
-  m_Size: {x: 4.7978735, y: 9}
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -2.4652247, y: -1.2818581}
+  - {x: 1.4624039, y: 4.2501717}
+  - {x: 1.941939, y: -0.61581916}
 --- !u!212 &1576320172
 SpriteRenderer:
   m_ObjectHideFlags: 0

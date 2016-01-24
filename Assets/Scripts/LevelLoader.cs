@@ -20,6 +20,7 @@ public class LevelLoader : MonoBehaviour {
     private const int SPACE_4 = 4;
     private const int SPACE_9 = 6;
     private const int SPACE_5 = 7;
+    private const int SPACE_8 = 8;
     private const int SPACE_BOSS = 5;
     private const int SPACE_BONUS = 1;
 
@@ -57,6 +58,12 @@ public class LevelLoader : MonoBehaviour {
                 break;
             case Level.Four:
                 Application.LoadLevel(SPACE_4);
+                break;
+            case Level.Five:
+                Application.LoadLevel(SPACE_5);
+                break;
+            case Level.Eight:
+                Application.LoadLevel(SPACE_8);
                 break;
             case Level.Nine:
                 Application.LoadLevel(SPACE_9);

@@ -23,7 +23,7 @@ public class PlayerHolder : MonoBehaviour {
 	void Start () {
         squidLauncher = transform.Find(Names.SQUIDLAUNCHER).gameObject;
         gameCamera = transform.Find(Names.CAMERA).gameObject;
-        drEric = squidLauncher.GetComponent<SquidLauncher>().GetDrEric();
+        drEric = GameObject.Find(Names.DRERIC);
         cameraOrienter = gameCamera.GetComponent<OrientWithGravity>();
         if (!enableDrEricCamera)
         {
@@ -41,7 +41,7 @@ public class PlayerHolder : MonoBehaviour {
         cameraOrienter.CheckOrientation();
 
         if (drEric == null)
-            drEric = squidLauncher.GetComponent<SquidLauncher>().GetDrEric();
+            drEric = GameObject.Find(Names.DRERIC);
         if (drEric != null) {
             Vector3 squidPos = squidLauncher.transform.position;
             transform.position = drEric.transform.position;

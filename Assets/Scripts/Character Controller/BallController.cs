@@ -67,14 +67,11 @@ public class BallController : MonoBehaviour {
                 break;
         }
         //out of bounds kill
-        if (respawner.player.transform.position.x < -1000 ||
-            respawner.player.transform.position.x > 1000 ||
-            respawner.player.transform.position.y < -1000 ||
-            respawner.player.transform.position.y > 1000)
+        if (transform.position.magnitude > 1000)
             respawner.kill();
         
     }
-    void HasLanded()
+    public void HasLanded()
     {
         if (Time.time - lastHit < bounceBufferPeriod)
             return;
@@ -86,7 +83,7 @@ public class BallController : MonoBehaviour {
         }
     }
 
-    public void jump()
+    public void IncrementJumps()
     {
         jumps++;
         if (jumps >= squid.maxJumps)

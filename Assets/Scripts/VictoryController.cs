@@ -33,6 +33,31 @@ public class VictoryController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        CheckWinConditions();
+        if (collision.gameObject.tag == "Player")
+        {
+            if (!hasWon)
+                Instantiate(victoryScreen);
+            Invoke("LoadNextLevel", 2.0f);
+            hasWon = true;
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        CheckWinConditions();
+        if (collision.gameObject.tag == "Player")
+        {
+            if (!hasWon)
+                Instantiate(victoryScreen);
+            Invoke("LoadNextLevel", 2.0f);
+            hasWon = true;
+        }
+    }
+
+    void CheckWinConditions()
+    {
         //Instantiate(victoryScreen);
         //Invoke("LoadNextLevel", 2.0f);
 
@@ -47,13 +72,7 @@ public class VictoryController : MonoBehaviour
             Debug.LogError("AnhQuan, fix this NullReference exception please");
         saveCheckpoint();
 
-		//END TEST
-            if (collision.gameObject.tag == "Player"){
-            if(!hasWon)
-                Instantiate(victoryScreen);
-            Invoke("LoadNextLevel", 2.0f);
-            hasWon = true;
-        }
+        //END TEST
     }
 
     void LoadNextLevel()

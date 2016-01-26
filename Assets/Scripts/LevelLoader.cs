@@ -15,11 +15,13 @@ using System.Collections;
  */
 public class LevelLoader : MonoBehaviour {
 
+    private const int SPACE_1 = 9;
     private const int SPACE_2 = 2;
     private const int SPACE_3 = 3;
     private const int SPACE_4 = 4;
     private const int SPACE_9 = 6;
     private const int SPACE_5 = 7;
+    private const int SPACE_8 = 8;
     private const int SPACE_BOSS = 5;
     private const int SPACE_BONUS = 1;
 
@@ -49,6 +51,9 @@ public class LevelLoader : MonoBehaviour {
     {
         switch( level )
         {
+            case Level.One:
+                Application.LoadLevel(SPACE_1);
+                break;
             case Level.Two:
                 Application.LoadLevel(SPACE_2);
                 break;
@@ -57,6 +62,12 @@ public class LevelLoader : MonoBehaviour {
                 break;
             case Level.Four:
                 Application.LoadLevel(SPACE_4);
+                break;
+            case Level.Five:
+                Application.LoadLevel(SPACE_5);
+                break;
+            case Level.Eight:
+                Application.LoadLevel(SPACE_8);
                 break;
             case Level.Nine:
                 Application.LoadLevel(SPACE_9);
@@ -72,6 +83,37 @@ public class LevelLoader : MonoBehaviour {
                 break;
         }
     }
+
+	// Used for stage panel generator.
+	public void setLevel( World world, Level level){
+		this.world = world;
+		this.level = level;
+	}
+
+	public static Level intToLevel(int levelInt){
+		switch (levelInt) {
+		case 1:
+			return Level.One;
+		case 2:
+			return Level.Two;
+		case 3:
+			return Level.Three;
+		case 4:
+			return Level.Four;
+		case 5:
+			return Level.Five;
+		case 6:
+			return Level.Six;
+		case 7:
+			return Level.Seven;
+		case 8:
+			return Level.Eight;
+		case 9:
+			return Level.Nine;
+		default:
+			return Level.One;
+		}
+	}
 }
 
 public enum World { Space }

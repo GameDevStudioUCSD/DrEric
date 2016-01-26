@@ -143,7 +143,7 @@ public class SquidLauncher : MonoBehaviour {
 	private bool IsGrabbable() {
         if (Vector3.Distance(transform.position, drEric.transform.position) <= grabRange && !alreadyGrabbed)
         {
-            if (drEric.GetComponent<BallController>().getJumps() < maxJumps)
+            if (drEric.GetComponent<BallController>().GetJumps() < maxJumps)
                 return true;
         }
         return false;
@@ -255,6 +255,7 @@ public class SquidLauncher : MonoBehaviour {
     {
         drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
         drEric.GetComponent<FlingObject>().Fling (deltaVector);
+        drEric.GetComponent<BallController>().state = BallController.State.LAUNCHING;
         state = State.RELEASING;
 	}
 

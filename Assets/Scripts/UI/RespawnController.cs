@@ -111,4 +111,11 @@ public class RespawnController : MonoBehaviour {
             onSpawnList = new List<UnityEvent>();
         onSpawnList.Add(e);
     }
+    public static RespawnController GetRespawnController()
+    {
+        GameObject obj = GameObject.Find(Names.RESPAWNER);
+        if (obj != null)
+            return obj.GetComponent<RespawnController>();
+        return null;
+    }
 }

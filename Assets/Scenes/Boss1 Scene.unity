@@ -1454,7 +1454,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.5
+      value: 4.35
       objectReference: {fileID: 0}
     - target: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1482,80 +1482,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
       propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.6470366
-      objectReference: {fileID: 0}
-    - target: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.5365551
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Offset.x
-      value: -8.31939507
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Offset.y
-      value: -.0818493217
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.x
-      value: 21.409008
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Size.y
-      value: 1.65568554
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: startVector.x
-      value: -14
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: endVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: startVector.y
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: endVector.y
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: waitTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsTrigger
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 133462, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
       propertyPath: m_Name
       value: BottomLaserCannon
       objectReference: {fileID: 0}
-    - target: {fileID: 133462, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470578, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 183366, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 21251010, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    - target: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: FiringTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &181212261 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-  m_PrefabInternal: {fileID: 181212260}
 --- !u!1 &183559978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,16 +1652,40 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421964, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 133462, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
       propertyPath: m_Name
       value: 'TopLaserCannon '
       objectReference: {fileID: 0}
     - target: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-      propertyPath: respawner
-      value: 
-      objectReference: {fileID: 764218636}
+      propertyPath: endVector.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: startVector.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: endVector.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: startVector.x
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: FiringTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 21251010, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 470578, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
   m_IsPrefabParent: 0
@@ -6684,29 +6651,6 @@ Prefab:
     - {fileID: 11448166, guid: 70ca8911d8cc8494c947f0e76836e32f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 70ca8911d8cc8494c947f0e76836e32f, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &782456092 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 133462, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
-  m_PrefabInternal: {fileID: 181212260}
---- !u!114 &782456093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 782456092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ade47b5d003544f8d6457e4e558746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startVector: {x: -14, y: -12}
-  endVector: {x: 4, y: -12}
-  movementTime: 0.75
-  firing: 0
-  Bloattime: 1
-  bloatScaleInc: 0.02
-  FiringTime: 1
-  respawner: {fileID: 764218636}
 --- !u!1 &806724924
 GameObject:
   m_ObjectHideFlags: 0
@@ -7213,7 +7157,7 @@ Prefab:
     - target: {fileID: 11485544, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: BottomCannon
       value: 
-      objectReference: {fileID: 782456093}
+      objectReference: {fileID: 0}
     - target: {fileID: 21243124, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: m_Sprite
       value: 
@@ -16597,64 +16541,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
---- !u!1 &1991030381
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1991030382}
-  - 212: {fileID: 1991030383}
-  m_Layer: 0
-  m_Name: creambeamattack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1991030382
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1991030381}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: -10.74, y: 0.14, z: 0}
-  m_LocalScale: {x: 0.98974705, y: 1.6272672, z: 0}
-  m_Children: []
-  m_Father: {fileID: 181212261}
-  m_RootOrder: 0
---- !u!212 &1991030383
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1991030381}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 57caa6ccca932804ab03fbbf12709a83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

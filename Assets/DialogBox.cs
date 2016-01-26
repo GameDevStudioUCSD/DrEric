@@ -23,6 +23,7 @@ public class DialogBox : MonoBehaviour {
     AudioSource chipSource;
     float chipLength;
     bool isReading = true;
+    int charWidth = 15;
 	void Start () {
         // Set the word list
         wordList = dialog.Split(' ');
@@ -39,6 +40,8 @@ public class DialogBox : MonoBehaviour {
 	}
 	
 	void Update () {
+        // Define max char count
+        maxCharCount = (int)(currentLine.rectTransform.rect.width)/charWidth;
         if (Time.time - lastCharPrinted > speed)
         {
             if (HasFinished())

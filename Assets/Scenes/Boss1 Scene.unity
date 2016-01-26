@@ -6651,6 +6651,12 @@ Prefab:
     - {fileID: 11448166, guid: 70ca8911d8cc8494c947f0e76836e32f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 70ca8911d8cc8494c947f0e76836e32f, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &782456094 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11435926, guid: 7f9930746a70d964ea187560ee47cbbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 181212260}
+  m_Script: {fileID: 11500000, guid: 56ade47b5d003544f8d6457e4e558746, type: 3}
 --- !u!1 &806724924
 GameObject:
   m_ObjectHideFlags: 0
@@ -7157,7 +7163,7 @@ Prefab:
     - target: {fileID: 11485544, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: BottomCannon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 782456094}
     - target: {fileID: 21243124, guid: c9b179972368a7b438a2e671ebb4ec96, type: 2}
       propertyPath: m_Sprite
       value: 

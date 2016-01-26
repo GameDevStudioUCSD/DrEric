@@ -4,6 +4,8 @@ using System.Collections;
 
 public class DialogBox : MonoBehaviour {
 
+    private const string EMPTYBUF = "";
+
     public enum type { autoRead, clickToRead, nAutoRestClick }
 	// Use this for initialization
     public string dialog;
@@ -16,7 +18,7 @@ public class DialogBox : MonoBehaviour {
     public float timeBetweenAutoReads = 1.0f;
 
     string[] wordList;
-    string wordBuffer = "";
+    string wordBuffer = EMPTYBUF;
     private int wordIdx = 0;
     Text currentLine;
     float lastCharPrinted = 0;
@@ -32,8 +34,7 @@ public class DialogBox : MonoBehaviour {
         // Setup word list 
         currentLine = firstLine;
         // Clear text
-        firstLine.text = "";
-        secondLine.text = "";
+        ClearText();
         // Setup playback
         chipSource = GetComponent<AudioSource>();
         chipLength = chipSource.clip.length;
@@ -77,16 +78,20 @@ public class DialogBox : MonoBehaviour {
     void DeactiveObject() { 
         this.gameObject.SetActive(false);
     }
+    public void ClearText()
+    {
+        firstLine.text = secondLine.text = EMPTYBUF;
+    }
     
     // Pops a character off the word buffer onto the dialog box
     private void PopBuffer()
     {
-        if( wordBuffer != "" ) {
+        if( wordBuffer != EMPTYBUF ) {
             currentLine.text = currentLine.text + wordBuffer[0];
             if (IsPunctuation(wordBuffer[0].ToString()))
                 isReading = false;
             if (wordBuffer.Length == 1)
-                wordBuffer = "";
+                wordBuffer = EMPTYBUF;
             else
                 wordBuffer = wordBuffer.Substring(1);
             // Play a random noise from this character's voice to emulate speech
@@ -100,7 +105,7 @@ public class DialogBox : MonoBehaviour {
     // space onto the current line and increments the word list index
     private bool CheckBuffer()
     {
-        if (wordBuffer == "" && !HasFinished())
+        if (wordBuffer == EMPTYBUF && !HasFinished())
         {
             wordBuffer = wordList[wordIdx];
             if (!IsPunctuation(wordBuffer))
@@ -124,7 +129,7 @@ public class DialogBox : MonoBehaviour {
         if (!IsLineInBounds())
         {
             firstLine.text = currentLine.text;
-            secondLine.text = "";
+            secondLine.text = EMPTYBUF;
             currentLine = secondLine;
         }
     }
@@ -139,11 +144,7 @@ public class DialogBox : MonoBehaviour {
     }
     public bool HasFinished()
     {
-        return (wordBuffer == "" && wordIdx >= wordList.Length);
+        return (wordBuffer == EMPTYBUF && wordIdx >= wordList.Length);
 
-    }
-    public void ADebug()
-    {
-            Debug.Log("Clicked dialog box!");
     }
 }

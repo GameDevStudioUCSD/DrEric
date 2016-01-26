@@ -14,6 +14,7 @@ public class LaserCannon : MonoBehaviour
       * move from startVector to endVector */
     [Tooltip("This is the amount of time in seconds that it takes the game object to move from startVector to endVector")]
     public float movementTime = 2;
+	public bool hasPlayedSound = false;
     public bool firing = false;
     public float Bloattime = 5;//time it takes to bloat
     public float bloatScaleInc = .01F;//bloat scale per tic
@@ -93,6 +94,12 @@ public class LaserCannon : MonoBehaviour
 
     void Bloating()
     {
+		//to prevent it from playing the sound a billion times
+		if (!hasPlayedSound) {
+			AudioSource source = GetComponent<AudioSource>();
+			source.Play();
+			hasPlayedSound = true;
+		}
         currentVector = transform.position;
         if (Time.time - startTime <= Bloattime)//bloat to charge up lazor
         {
@@ -103,6 +110,8 @@ public class LaserCannon : MonoBehaviour
             transform.localScale = originalScale;//go back to original scale
             startTime = Time.time;
             transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = true;
+			//So that the noise can play next time
+			hasPlayedSound = false;
             state = STATE.FIRING;
         }
 

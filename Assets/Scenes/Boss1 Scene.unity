@@ -1496,6 +1496,10 @@ Prefab:
       propertyPath: FiringTime
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8223762, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
   m_IsPrefabParent: 0
@@ -1686,6 +1690,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1.16
       objectReference: {fileID: 0}
+    - target: {fileID: 8223762, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f9930746a70d964ea187560ee47cbbe, type: 2}
   m_IsPrefabParent: 0
@@ -1797,6 +1805,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 10
   topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
   topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
   bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
@@ -1806,8 +1816,6 @@ MonoBehaviour:
   leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
   rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
   middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  isVertical: 0
-  numTiles: 10
   width: 2
   height: 30
 --- !u!4 &240113479
@@ -5121,6 +5129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 10
   topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
   topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
   bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
@@ -5130,8 +5140,6 @@ MonoBehaviour:
   leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
   rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
   middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  isVertical: 0
-  numTiles: 10
   width: 2
   height: 30
 --- !u!4 &656337063
@@ -13518,6 +13526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 10
   topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
   topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
   bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
@@ -13527,8 +13537,6 @@ MonoBehaviour:
   leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
   rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
   middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  isVertical: 0
-  numTiles: 10
   width: 30
   height: 2
 --- !u!4 &1593538834
@@ -14163,6 +14171,14 @@ Prefab:
     - target: {fileID: 417460, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 406584, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408208, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
+      propertyPath: nextLevel
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
@@ -16152,6 +16168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 10
   topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
   topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
   bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
@@ -16161,8 +16179,6 @@ MonoBehaviour:
   leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
   rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
   middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  isVertical: 0
-  numTiles: 10
   width: 30
   height: 2
 --- !u!4 &1951392430

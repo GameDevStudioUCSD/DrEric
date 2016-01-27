@@ -5,7 +5,7 @@ public class LaserCannon : MonoBehaviour
 {
 
     /** State definitions for Platform.cs */
-    enum STATE { WAITING, SEARCHING, BLOATING, FIRING, RETURNING }
+    public enum STATE { WAITING, SEARCHING, BLOATING, FIRING, RETURNING }
     /** This is the starting vector of this game object*/
     public Vector2 startVector = new Vector2(1, 1);
     /** This is the end vector of the object's path */
@@ -14,38 +14,41 @@ public class LaserCannon : MonoBehaviour
       * move from startVector to endVector */
     [Tooltip("This is the amount of time in seconds that it takes the game object to move from startVector to endVector")]
     public float movementTime = 2;
+	public bool hasPlayedSound = false;
     public bool firing = false;
     public float Bloattime = 5;//time it takes to bloat
     public float bloatScaleInc = .01F;//bloat scale per tic
     public float FiringTime = 1;//time firing
     // Private variables
     private float startTime = 0;
-    private STATE state = STATE.WAITING;
+    public STATE state = STATE.WAITING;
     private RhythmController rhythmController;
     private Vector2 currentVector;
     private Vector3 originalScale;
-    public RespawnController respawner;
+    private RespawnController respawner;
 
     void Start()
     {//initialize stuff
         rhythmController = RhythmController.GetController();
         originalScale = transform.localScale;
         transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = false;
+        respawner = RespawnController.GetRespawnController();
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.tag != null && other.tag == "Player")
         {
             if (state == STATE.SEARCHING)//stop and start firing when player is found
             {
                 startTime = Time.time;
+                AudioSource source = GetComponent<AudioSource>();
+                source.Play();
                 state = STATE.BLOATING;
             }
             else if (state == STATE.FIRING)//kill when firing
             {
                 respawner.kill();
-                Debug.Log("DIE");
             }
         }
     }
@@ -93,6 +96,7 @@ public class LaserCannon : MonoBehaviour
 
     void Bloating()
     {
+		//to prevent it from playing the sound a billion times
         currentVector = transform.position;
         if (Time.time - startTime <= Bloattime)//bloat to charge up lazor
         {
@@ -103,6 +107,7 @@ public class LaserCannon : MonoBehaviour
             transform.localScale = originalScale;//go back to original scale
             startTime = Time.time;
             transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = true;
+			//So that the noise can play next time
             state = STATE.FIRING;
         }
 
@@ -110,14 +115,16 @@ public class LaserCannon : MonoBehaviour
 
     void Firing()//no animation, kill frames activated
     {
+        SpriteRenderer lazerSprite = transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>();
         if (Time.time - startTime <= FiringTime)
         {
+            lazerSprite.enabled = true;
         }
         else
         {
             startTime = Time.time;
             state = STATE.RETURNING;
-            transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = false;
+            lazerSprite.enabled = false;
         }
     }
 
@@ -131,6 +138,7 @@ public class LaserCannon : MonoBehaviour
         }
         else
         {
+            transform.position = Vector2.Lerp(currentVector, startVector, 1);
             firing = false;
             state = STATE.WAITING;
         }

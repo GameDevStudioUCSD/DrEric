@@ -9,4 +9,5 @@ public class Names  {
     public static string RHYTHMCONTROLLER = "RhythmController";
     public static string CAMERA = "Camera";
     public static string DIALOGWINDOW = "DialogWindow";
+    public static string RESPAWNER = "Respawner/Spawner";
 }

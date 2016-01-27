@@ -54,6 +54,10 @@ public class BallController : MonoBehaviour {
         switch (state)
         {
             case State.IDLE:
+                jumps = 0;
+                break;
+            case State.STUCK:
+                jumps = 0;
                 break;
             case State.LAUNCHING:
                 controllingPlatform = null;
@@ -63,14 +67,11 @@ public class BallController : MonoBehaviour {
                 break;
         }
         //out of bounds kill
-        if (respawner.player.transform.position.x < -1000 ||
-            respawner.player.transform.position.x > 1000 ||
-            respawner.player.transform.position.y < -1000 ||
-            respawner.player.transform.position.y > 1000)
+        if (transform.position.magnitude > 1000)
             respawner.kill();
         
     }
-    void HasLanded()
+    public void HasLanded()
     {
         if (Time.time - lastHit < bounceBufferPeriod)
             return;
@@ -79,18 +80,17 @@ public class BallController : MonoBehaviour {
         if ((velocityProjG+gravity).magnitude < landingTolerance * gravity.magnitude)
         {
             state = State.IDLE;
-            jumps = 0;
         }
     }
 
-    public void jump()
+    public void IncrementJumps()
     {
         jumps++;
         if (jumps >= squid.maxJumps)
             state = State.LAUNCHING;
     }
 
-    public int getJumps()
+    public int GetJumps()
     {
         return jumps;
     }

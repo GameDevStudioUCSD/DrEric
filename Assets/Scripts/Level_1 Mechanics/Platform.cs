@@ -31,13 +31,6 @@ public class Platform : MonoBehaviour {
       * reaching startVector or endVector. */ 
     [Tooltip("This is the amount of time in seconds that the platform waits upon reaching startVector or endVector")]
     public float waitTime = 1;
-    /** If true, then this platform will be sticky */
-    public bool isSticky = true;
-    /** This vector offsets Dr. Eric's placement when caught inside the 
-      * collider */
-    public Vector3 stickyPlacementOffset = Vector2.zero;
-    /** This is the speed Dr. Eric gravitates towards this platform */
-    public float stickSpeed = 1;
 
     public State startState = State.WAITING;
     public bool oscillate = true;
@@ -47,7 +40,6 @@ public class Platform : MonoBehaviour {
     private float startTime = 0;
     public State state ;
     private BallController playerController;
-    private Transform drEricTrans;
     private RhythmController rhythmController;
 	
     void Start()
@@ -58,9 +50,6 @@ public class Platform : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        // This method only matters if this object is a sticky platform
-        if (!isSticky)
-            return;
         GameObject colObj = other.gameObject;
         if(colObj.tag == "Player" )
         {
@@ -69,14 +58,16 @@ public class Platform : MonoBehaviour {
             playerPhysics.velocity = Vector3.zero;
             // Set Dr Eric's state
             playerController = colObj.GetComponent<BallController>();
-            playerController.state = BallController.State.STUCK;
-            playerController.controllingPlatform = this;
             // Save Dr Eric's transform
-            drEricTrans = colObj.transform;
+            playerController.HasLanded();
+            playerController.gameObject.transform.parent.parent = this.gameObject.transform;
         }
     }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        playerController.gameObject.transform.parent.parent = null;
+    }
 	void Update () {
-        MoveDrEric();
         switch(state){
             case State.WAITING:
                 Waiting();
@@ -87,17 +78,6 @@ public class Platform : MonoBehaviour {
 
         }
 	}
-
-    /** This method sticks Dr. Eric to the platform via lerping */
-    private void MoveDrEric()
-    {
-        if(playerController != null && playerController.controllingPlatform == this)
-        {
-            Vector2 currPosVect = drEricTrans.position;
-            Vector2 destPosVect = transform.position + stickyPlacementOffset;
-            drEricTrans.position = Vector2.Lerp(currPosVect, destPosVect, stickSpeed * Time.deltaTime);
-        }
-    }
 
     /** This method is only called during the waiting state of the platform. 
      *  It just waits until waitTime seconds have passed before moving the

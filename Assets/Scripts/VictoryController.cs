@@ -33,6 +33,43 @@ public class VictoryController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        CheckWinConditions();
+        if (collision.gameObject.tag == "Player")
+        {
+            if (!hasWon)
+                Instantiate(victoryScreen);
+            Invoke("LoadNextLevel", 2.0f);
+            hasWon = true;
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        CheckWinConditions();
+        if (collision.gameObject.tag == "Player")
+        {
+            if (!hasWon)
+            {
+                Instantiate(victoryScreen);
+                GameObject drEric = collision.gameObject;
+                Transform drEricTransform = collision.gameObject.transform;
+                Rigidbody2D drEricRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
+                ConstantForce2D force = drEric.AddComponent<ConstantForce2D>();
+                drEric.GetComponent<BallController>().enabled = false;
+                drEricTransform.parent = transform;
+                drEricTransform.localPosition = Vector2.zero;
+                drEricRigidBody.velocity = Vector2.zero;
+                drEricRigidBody.gravityScale = 0;
+                force.torque = 100;
+            }
+            Invoke("LoadNextLevel", 2.0f);
+            hasWon = true;
+        }
+    }
+
+    void CheckWinConditions()
+    {
         //Instantiate(victoryScreen);
         //Invoke("LoadNextLevel", 2.0f);
 
@@ -47,13 +84,7 @@ public class VictoryController : MonoBehaviour
             Debug.LogError("AnhQuan, fix this NullReference exception please");
         saveCheckpoint();
 
-		//END TEST
-            if (collision.gameObject.tag == "Player"){
-            if(!hasWon)
-                Instantiate(victoryScreen);
-            Invoke("LoadNextLevel", 2.0f);
-            hasWon = true;
-        }
+        //END TEST
     }
 
     void LoadNextLevel()

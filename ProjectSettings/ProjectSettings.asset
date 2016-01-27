@@ -160,7 +160,17 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
+<<<<<<< HEAD
   m_BuildTargetIcons: []
+=======
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 42f2d20a3af274f10b45f28449b134e0, type: 3}
+      m_Width: 0
+      m_Height: 0
+>>>>>>> 1fe63aad6b6962e2f2d4e8073fb52b3ce68b0e79
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default
@@ -459,9 +469,14 @@ PlayerSettings:
   Standalone::ScriptingBackend: 0
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
+<<<<<<< HEAD
   WebGL::exceptionSupport: 1
   WebGL::memorySize: 256
   WebPlayer::ScriptingBackend: 0
+=======
+  WebGL::exceptionSupport: 2
+  WebGL::memorySize: 523
+>>>>>>> 1fe63aad6b6962e2f2d4e8073fb52b3ce68b0e79
   iOS::Architecture: 2
   iOS::EnableIncrementalBuildSupportForIl2cpp: 0
   iOS::ScriptingBackend: 1

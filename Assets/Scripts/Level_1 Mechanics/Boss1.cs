@@ -8,10 +8,12 @@ using System.Collections;
 public class Boss1 : MonoBehaviour {
     public enum Direction { DOWN, UP, LEFT, RIGHT}
     enum STATE { LERPING_AWAY, LERPING_BACK,IDLE, FIRELASER}
+    public enum GRAVITY { RIGHT, UP, DOWN, LEFT}
 
     //check if switches have been pressed
 	public bool topSwitch, leftSwitch, rightSwitch, bottomSwitch;
     public float moveFactor = 3f;
+    private Switch activeSwitch;
 
 
     private bool needToPickASwitch;
@@ -20,6 +22,7 @@ public class Boss1 : MonoBehaviour {
     private string RIGHTSWITCH = "RightSwitch";
     private string LEFTSWITCH = "LeftSwitch";
     public LaserCannon TopCannon, BottomCannon;
+    public GameObject topSprite, botSprite, leftSprite, rightSprite;
     public VictoryController victorycontroller;
 
 
@@ -32,6 +35,7 @@ public class Boss1 : MonoBehaviour {
     private Vector2 startVector = Vector2.down;//default value
     private Vector2 endVector = Vector2.down;
     private int lasercounter = 0;//makes lazer cycle between top and bottom.
+    public GRAVITY gravity;
     public GameObject RightGummyBears;
     public GameObject LeftGummyBears;
     public GameObject UpGummyBears;
@@ -49,6 +53,7 @@ public class Boss1 : MonoBehaviour {
         startTime = Time.time-1;
         victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
         victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+        gravity = GRAVITY.DOWN;
     }
 
     public void respawn()
@@ -62,98 +67,143 @@ public class Boss1 : MonoBehaviour {
         transform.position = startVector;
         victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
         victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+        gravity = GRAVITY.DOWN;
     }
 
-	// Update is called once per frame
-	void Update () {//right now it just lerps in a random direction every 2 seconds
+    // Update is called once per frame
+    void Update()
+    {//right now it just lerps in a random direction every 2 seconds
         if (needToPickASwitch) PickASwitch();//neccesary because pickaswitch cannot be called in start
         if (state == STATE.LERPING_BACK || state == STATE.LERPING_AWAY) Lerp();
         if (state == STATE.IDLE && Time.time - startTime > endTime)
         {
-             BodySlam((Direction)Random.Range(0,4));
+            BodySlam((Direction)Random.Range(0, 4));
         }
+
+        topSprite.SetActive(false);
+        botSprite.SetActive(false);
+        leftSprite.SetActive(false);
+        rightSprite.SetActive(false);
+
+        if (Physics2D.gravity == new Vector2(0, 9.8f))
+        {
+            gravity = GRAVITY.UP;
+        }
+        else if (Physics2D.gravity == new Vector2(0, -9.8f))
+        {
+            gravity = GRAVITY.DOWN;
+        }
+        else if (Physics2D.gravity == new Vector2(9.8f, 0))
+        {
+            gravity = GRAVITY.RIGHT;
+        }
+        else if (Physics2D.gravity == new Vector2(-9.8f, 0))
+        {
+            gravity = GRAVITY.LEFT;
+        }
+
+        string Switchtag = activeSwitch.gameObject.name;
+        //if (Switchtag == TOPSWITCH)  Debug.Log("TOPSWITHVC" + Physics2D.gravity + gravity);
+        if (Switchtag == TOPSWITCH && gravity != GRAVITY.UP)
+        { UpGummyBears.SetActive(true); }
+        else { UpGummyBears.SetActive(false); }
+        if (Switchtag == BOTTOMSWITCH && gravity != GRAVITY.DOWN)
+        { DownGummyBears.SetActive(true); }
+        else { DownGummyBears.SetActive(false); }
+        if (Switchtag == RIGHTSWITCH && gravity != GRAVITY.RIGHT)
+        { RightGummyBears.SetActive(true); }
+        else { RightGummyBears.SetActive(false); }
+        if (Switchtag == LEFTSWITCH && gravity != GRAVITY.LEFT)
+        { LeftGummyBears.SetActive(true); }
+        else { LeftGummyBears.SetActive(false); }
+
+        if (Switchtag == TOPSWITCH) topSprite.SetActive(true);
+        if (Switchtag == BOTTOMSWITCH) botSprite.SetActive(true);
+        if (Switchtag == RIGHTSWITCH) rightSprite.SetActive(true);
+        if (Switchtag == LEFTSWITCH) leftSprite.SetActive(true);
+
     }
 
-    void Lerp()//lerp function
+            void Lerp()//lerp function
     {
-        if (state == STATE.LERPING_AWAY)//if boss is going away from center
-        {
-            if (Time.time - startTime < endTime)//lerp
-            {
-                //Debug.Log(Time.time - startTime);
-                float Lerpval = (Time.time - startTime) / endTime;
-                //Debug.Log(Lerpval);
-                transform.position = Vector2.Lerp(startVector, endVector, Lerpval);
+                if (state == STATE.LERPING_AWAY)//if boss is going away from center
+                {
+                    if (Time.time - startTime < endTime)//lerp
+                    {
+                        //Debug.Log(Time.time - startTime);
+                        float Lerpval = (Time.time - startTime) / endTime;
+                        //Debug.Log(Lerpval);
+                        transform.position = Vector2.Lerp(startVector, endVector, Lerpval);
+                    }
+                    else
+                    {//once boss is done going away, it lerps towards center
+                        startTime = Time.time;
+                        state = STATE.LERPING_BACK;
+                    }
+                }
+                else if (state == STATE.LERPING_BACK)//when boss is lerping to center
+                {
+                    if (Time.time - startTime < endTime)
+                    {
+                        //Debug.Log(Time.time - startTime);
+                        float Lerpval = (Time.time - startTime) / endTime;
+                        transform.position = Vector2.Lerp(endVector, startVector, Lerpval);
+                    }
+                    else
+                    {//idle once done going to center
+                        startTime = Time.time;
+                        state = STATE.IDLE;
+                    }
+                }
             }
-            else
-            {//once boss is done going away, it lerps towards center
+
+            void BodySlam(Direction direction){//initializes lerp and other variables
                 startTime = Time.time;
-                state = STATE.LERPING_BACK;
-            }
-        }
-        else if (state == STATE.LERPING_BACK)//when boss is lerping to center
-        {
-            if (Time.time - startTime < endTime)
-            {
-                //Debug.Log(Time.time - startTime);
-                float Lerpval = (Time.time - startTime) / endTime;
-                transform.position = Vector2.Lerp(endVector, startVector, Lerpval);
-            }
-            else
-            {//idle once done going to center
-                startTime = Time.time;
-                state = STATE.IDLE;
-            }
-        }
-    }
+                Vector2 tempVector = Vector2.down;
+                if (direction == Direction.DOWN)
+                {
+                    currentDirection = Direction.DOWN;
+                    tempVector = Vector2.down * moveFactor;
+                }
+                if (direction == Direction.UP)
+                {
+                    currentDirection = Direction.UP;
+                    tempVector = Vector2.up * moveFactor;
+                }
+                if (direction == Direction.LEFT)
+                {
+                    currentDirection = Direction.LEFT;
+                    tempVector = Vector2.left * moveFactor;
+                }
+                if (direction == Direction.RIGHT)
+                {
+                    currentDirection = Direction.RIGHT;
+                    tempVector = Vector2.right * moveFactor;
+                }
+                //set end vector based on direction
+                endVector = startVector + tempVector;
+                state = STATE.LERPING_AWAY;
 
-	void BodySlam(Direction direction){//initializes lerp and other variables
-        startTime = Time.time;
-        Vector2 tempVector = Vector2.down;
-        if (direction == Direction.DOWN)
-        {
-            currentDirection = Direction.DOWN;
-            tempVector = Vector2.down * moveFactor;
-        }
-        if (direction == Direction.UP)
-        {
-            currentDirection = Direction.UP;
-            tempVector = Vector2.up * moveFactor;
-        }
-        if (direction == Direction.LEFT)
-        {
-            currentDirection = Direction.LEFT;
-            tempVector = Vector2.left * moveFactor;
-        }
-        if (direction == Direction.RIGHT)
-        {
-            currentDirection = Direction.RIGHT;
-            tempVector = Vector2.right * moveFactor;
-        }
-        //set end vector based on direction
-        endVector = startVector + tempVector;
-        state = STATE.LERPING_AWAY;
+            }
 
-	}
-
-	void FireLasers()
+            void FireLasers()
     {
-        if (lasercounter % 2 == 0)
-        {
-            if (TopCannon.firing == false)
-            {
-                TopCannon.firing = true;
+                if (lasercounter % 2 == 0)
+                {
+                    if (TopCannon.firing == false)
+                    {
+                        TopCannon.firing = true;
+                    }
+                }
+                else
+                {
+                    if (BottomCannon.firing == false)
+                    {
+                        BottomCannon.firing = true;
+                    }
+                }
+                lasercounter++;
             }
-        }
-        else
-        {
-            if (BottomCannon.firing == false)
-            {
-                BottomCannon.firing = true;
-            }
-        }
-        lasercounter++;
-    }
 
     //methods called when switch is pressed
 	public void FlipRightSwitch(){
@@ -239,6 +289,7 @@ public class Boss1 : MonoBehaviour {
                 spriterenderer.enabled = true;
                 boxcollider2d = currentswitch2.GetComponentInChildren<BoxCollider2D>();
                 boxcollider2d.enabled = true;
+                activeSwitch = currentswitch2;
             }
         }
 

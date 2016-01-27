@@ -4,7 +4,7 @@ using System.Collections;
 public class KeyScript : MonoBehaviour {
 	/** Filename: KeyScript.cs \n
  * Author: James Allen \n
- * Contributing authors: ^ \n 
+ * Contributing authors: Kalan Miurrelle\n 
  * Date Drafted: 11/9/2015 \n
  * Description: determines key collision \n
  */
@@ -27,7 +27,17 @@ public class KeyScript : MonoBehaviour {
                 (KeyControllerScript)go.GetComponent(typeof(KeyControllerScript));
             Debug.Log("Key touched");
             KCS.keys_collected++;
-            Destroy(this.gameObject, 0);
+			//play sound effect
+			AudioSource source = GetComponent<AudioSource> ();
+			source.Play ();
+			//disable sprite and remove object after 1 second.
+			gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+			Invoke ("DestroyKey", 1.0f);
+            
         }
     }
+	void DestroyKey()
+	{
+		Destroy (this.gameObject, 0);
+	}
 }

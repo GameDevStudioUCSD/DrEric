@@ -51,7 +51,7 @@ public class AccelerationLauncher : MonoBehaviour
 
                 rigidBody.AddForce(forceScalar * acceleration.normalized, ForceMode2D.Impulse);
             }
-            other.GetComponent<BallController>().state = BallController.State.IDLE;
+            other.GetComponent<BallController>().HasLanded();
         }
     }
 

@@ -5347,15 +5347,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11438190, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: dialog
-      value: Hi Steven, I heard you like text boxes and ocaml. So I'll tell you some
-        history about it. OCaml's toolset includes an interactive top level interpreter,
-        a bytecode compiler, a reversible debugger, a package manager (OPAM), and
-        an optimizing native code compiler. It has a large standard library that makes
-        it useful for many of the same applications as Python or Perl, as well as
-        robust modular and object-oriented programming constructs that make it applicable
-        for large-scale software engineering. OCaml is the successor to Caml Light.
-        The acronym CAML originally stood for Categorical Abstract Machine Language,
-        although OCaml abandons this abstract machine.
+      value: 'Your email preferences are currently set to a 4-hour Auto Digest, so
+        you''ll receive at most one email every 4 hours. You can customize your email
+        preferences from your Account Settings page in the top right of your dashboard.  Here''s
+        what has happened in CSE 130 on Piazza:  Class Today 1/26/16 4:22 PM  I missed
+        class today, what did we cover so I can study it?    Click here to view.   Want
+        Piazza in all your classes? Tell your professors and TAs today. It''s free!   Thanks,
+        The Piazza Team -- Contact us at team@piazza.com  You''re receiving this email
+        because mmg005@ucsd.edu is enrolled in CSE 130 at University of California,
+        San Diego. Sign in to manage your email preferences or un-enroll from this
+        class. If you already have a Piazza account under another email address, link
+        mmg005@ucsd.edu to that account here.'
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchorMin.y
@@ -5405,6 +5407,10 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8283604, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 615bafa7253338547b459f85a7695821, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
   m_IsPrefabParent: 0

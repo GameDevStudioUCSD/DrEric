@@ -4,33 +4,64 @@ using System.Collections;
 
 public class DialogBox : MonoBehaviour {
 
+/**
+ * Filename: DialogBox.cs \n
+ * Author: Michael Gonzalez\n
+ * Contributing Authors: None \n
+ * Date Drafted: January 25, 2016 \n
+ * Description: This script controls the dialog boxes. It prints a message 
+ *              character by character to the user and plays noises to 
+ *              emulate the sound of speech. 
+ */
     private const string EMPTYBUF = "";
 
     public enum type { autoRead, clickToRead, nAutoRestClick }
-	// Use this for initialization
+    // The text to be displayed in the dialog box
     public string dialog;
+    // The maximum character count per line (OVERWRITTEN AT RUNTIME)
     public int maxCharCount = 52;
+    // References to the text UI elements of the dialogbox
     public Text firstLine;
     public Text secondLine;
-    public float speed = 0.2f;
+    // The delay between printing each individual character in seconds
+    public float delayBetweenChars = 0.05f;
+    // The type of the dialog box
+    // If autoRead, then the dialog box will continue to scroll through the 
+    // text without input from the user
+    // If clickToRead, then the dialog box will promt the user to click
+    // the box to progress through the dialog
+    // If nAutoRestClick, then the dialog box will auto read for n sentences
+    // and then act the same as clickToRead.
     public type typeOfDialogBox;
+    // The n auto reads for the type nAutoRestClick
     public int nAutoReads = 1;
+    // The time between sentences in seconds for autoRead and nAutoRestClick
     public float timeBetweenAutoReads = 1.0f;
 
+    // The list of words to display to the user
     string[] wordList;
-    string wordBuffer = EMPTYBUF;
+    // The current index of wordList
     private int wordIdx = 0;
+    // The current word buffer
+    string wordBuffer = EMPTYBUF;
+    // The reference to the current line being printed on
     Text currentLine;
-    float lastCharPrinted = 0;
+    // The time in seconds at which the last character was printed
+    float timeOfLastPop = 0;
+
+    // A reference to the AudioSource to emulate talking
     AudioSource chipSource;
+    // A copy of the length of the AudioClip attached to clipSource
     float chipLength;
-    bool isReading = true;
+    bool isNotAtEndOfSentence = true;
+    // An approximate value of how wide each character is
+    // TODO: Generalize
     int charWidth = 15;
 	void Start () {
         // Set the word list
         wordList = dialog.Split(' ');
         // Save the start time
-        lastCharPrinted = Time.time;
+        timeOfLastPop = Time.time;
         // Setup word list 
         currentLine = firstLine;
         // Clear text
@@ -43,27 +74,32 @@ public class DialogBox : MonoBehaviour {
 	void Update () {
         // Define max char count
         maxCharCount = (int)(currentLine.rectTransform.rect.width)/charWidth;
-        if (Time.time - lastCharPrinted > speed)
+        if (Time.time - timeOfLastPop > delayBetweenChars)
         {
             if (HasFinished())
                 Invoke("DeactiveObject", timeBetweenAutoReads);
-            lastCharPrinted = Time.time;
+            timeOfLastPop = Time.time;
             CheckBuffer();
-            if (IsLineInBounds() && isReading)
-                PopBuffer();
-            else if (isReading)
+            if (IsLineInBounds() && isNotAtEndOfSentence)
+                PopCharOffBuffer();
+            else if (isNotAtEndOfSentence)
                 ScrollDown();
-            else if (!isReading)
-            {
+            // If we've finished the current sentence, then the type of
+            // dialog box this is determines what we should do next
+            else if (!isNotAtEndOfSentence)
+            { 
+                // The following switch statement handles autoreading
+                // Click to read should be handled by a button script within
+                // the unity editor
                 switch (typeOfDialogBox)
                 {
                     case type.autoRead:
-                        isReading = true;
-                        lastCharPrinted += timeBetweenAutoReads;
+                        isNotAtEndOfSentence = true;
+                        timeOfLastPop += timeBetweenAutoReads;
                         break;
                     case type.nAutoRestClick:
-                        isReading = true;
-                        lastCharPrinted += timeBetweenAutoReads;
+                        isNotAtEndOfSentence = true;
+                        timeOfLastPop += timeBetweenAutoReads;
                         nAutoReads--;
                         if (nAutoReads == 0)
                             typeOfDialogBox = type.clickToRead;
@@ -84,12 +120,12 @@ public class DialogBox : MonoBehaviour {
     }
     
     // Pops a character off the word buffer onto the dialog box
-    private void PopBuffer()
+    private void PopCharOffBuffer()
     {
         if( wordBuffer != EMPTYBUF ) {
             currentLine.text = currentLine.text + wordBuffer[0];
             if (IsPunctuation(wordBuffer[0].ToString()))
-                isReading = false;
+                isNotAtEndOfSentence = false;
             if (wordBuffer.Length == 1)
                 wordBuffer = EMPTYBUF;
             else
@@ -135,7 +171,7 @@ public class DialogBox : MonoBehaviour {
     }
     public void ReadMore()
     {
-        isReading = true;
+        isNotAtEndOfSentence = true;
         if (HasFinished())
             this.gameObject.SetActive(false);
     }
@@ -145,6 +181,5 @@ public class DialogBox : MonoBehaviour {
     public bool HasFinished()
     {
         return (wordBuffer == EMPTYBUF && wordIdx >= wordList.Length);
-
     }
 }

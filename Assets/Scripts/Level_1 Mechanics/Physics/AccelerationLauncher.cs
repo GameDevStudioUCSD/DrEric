@@ -11,7 +11,7 @@ public class AccelerationLauncher : MonoBehaviour
      */
 
     public Vector2 acceleration;
-    public float forceScalar = .1f;
+    public float forceScalar = -.1f;
     public float maxVelocity = 50;
     public float minVelocity = 10;
     private Rigidbody2D rigidBody;

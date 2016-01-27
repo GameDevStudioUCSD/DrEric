@@ -61,10 +61,10 @@ public class BallController : MonoBehaviour {
                 state = State.IDLE;
                 break;
             case State.IDLE:
-                jumps = 0;
+                ResetJumps();
                 break;
             case State.STUCK:
-                jumps = 0;
+                ResetJumps();
                 break;
             case State.LAUNCHING:
                 controllingPlatform = null;
@@ -106,6 +106,10 @@ public class BallController : MonoBehaviour {
         jumps++;
         if (jumps >= squid.maxJumps)
             state = State.LAUNCHING;
+    }
+    public void ResetJumps()
+    {
+        jumps = 0;
     }
 
     public int GetJumps()

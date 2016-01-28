@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: DrEric
+  productName: ProjectCatapult
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -96,7 +96,7 @@ PlayerSettings:
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
-  productGUID: 3b56edc62eb444583a710125f5da06c2
+  productGUID: 6a3e32e953e8c0d408be6a9f62b9b846
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -169,17 +169,7 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-<<<<<<< HEAD
   m_BuildTargetIcons: []
-=======
-  m_BuildTargetIcons:
-  - m_BuildTarget: 
-    m_Icons:
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 42f2d20a3af274f10b45f28449b134e0, type: 3}
-      m_Width: 0
-      m_Height: 0
->>>>>>> 1fe63aad6b6962e2f2d4e8073fb52b3ce68b0e79
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default
@@ -266,7 +256,7 @@ PlayerSettings:
   ps4ApplicationParam4: 0
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
-  ps4Passcode: dVI5ZuGXbEWRK5RhRXdCdG5nG5azdNMK
+  ps4Passcode: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -303,7 +293,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-  psp2PackagePassword: 66MuCV6GXi5xr84P2R391UXaLHbavJvF
+  psp2PackagePassword: F69AzBlax3CF3EDNhm3soLBPh71Yexui
   psp2KeystoneFile: 
   psp2MemoryExpansionMode: 0
   psp2DRMType: 0
@@ -344,14 +334,14 @@ PlayerSettings:
     16: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     17: MOBILE_INPUT
     20: MOBILE_INPUT
-  metroPackageName: DrEric
+  metroPackageName: ProjectCatapult
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: DrEric
+  metroApplicationDescription: ProjectCatapult
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -361,9 +351,10 @@ PlayerSettings:
   metroWideTileShowName: 0
   metroDefaultTileSize: 1
   metroTileForegroundText: 1
-  metroTileBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  metroSplashScreenUseBackgroundColor: 0
+  metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
+  metroSplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628,
+    a: 1}
+  metroSplashScreenUseBackgroundColor: 1
   platformCapabilities: {}
   metroFTAName: 
   metroFTAFileTypes: []
@@ -435,24 +426,13 @@ PlayerSettings:
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - WebPlayer::ScriptingBackend
-  - iOS::Architecture
-  - iOS::EnableIncrementalBuildSupportForIl2cpp
-  - iOS::ScriptingBackend
   Android::ScriptingBackend: 0
   Standalone::ScriptingBackend: 0
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
-<<<<<<< HEAD
   WebGL::exceptionSupport: 1
   WebGL::memorySize: 256
   WebPlayer::ScriptingBackend: 0
-=======
-  WebGL::exceptionSupport: 2
-  WebGL::memorySize: 523
->>>>>>> 1fe63aad6b6962e2f2d4e8073fb52b3ce68b0e79
-  iOS::Architecture: 2
-  iOS::EnableIncrementalBuildSupportForIl2cpp: 0
-  iOS::ScriptingBackend: 1
   boolPropertyNames:
   - WebGL::analyzeBuildSize
   - WebGL::dataCaching

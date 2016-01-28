@@ -30,10 +30,12 @@ public class OrientWithGravity : MonoBehaviour {
 	
     public void CheckOrientation()
     {
-        if (Physics2D.gravity != gravity && Physics2D.gravity != Vector2.zero)
+        if (Physics2D.gravity != gravity )
         {
             // rotates object in relation to gravity
             gravity = Physics2D.gravity;
+            if (gravity == Vector2.zero)
+                gravity = Vector2.down;
             float x = gravity.x;
             float y = gravity.y;
 

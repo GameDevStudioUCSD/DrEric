@@ -259,6 +259,7 @@ public class RhythmController : MonoBehaviour {
         if (eventList == null)
             eventList = new List<RhythmEvent>();
         eventList.Add(e);
+        RegisterEventWithController(e);
     }
     private void RegisterEventWithController(RhythmEvent e)
     {

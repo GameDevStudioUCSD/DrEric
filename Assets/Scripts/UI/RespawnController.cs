@@ -54,6 +54,8 @@ public class RespawnController : MonoBehaviour {
 	 */
 	public void kill() {
 		if (currentPlayer != null) { //prevents attempting to delete null
+            if (currentPlayer.GetComponent<BallController>().state == BallController.State.SPAWNING)
+                return;
 			Destroy (currentPlayer.gameObject);
 			isDead = true;
 			respawnTimer = 0;

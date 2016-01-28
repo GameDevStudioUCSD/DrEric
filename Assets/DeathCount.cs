@@ -9,9 +9,11 @@ public class DeathCount : MonoBehaviour {
     public const string label = "Death Count: ";
     public Text text;
     private RandomRotations rotator;
+    private Color originalColor;
 	void Start () {
         UpdateCount();
         rotator = GetComponent<RandomRotations>();
+        originalColor = text.color;
 	}
 
     public void Increment()
@@ -27,7 +29,7 @@ public class DeathCount : MonoBehaviour {
     }
     public void ReturnToNormal()
     {
-        text.color = Color.white;
+        text.color = originalColor;
         rotator.enabled = false;
     }
 }

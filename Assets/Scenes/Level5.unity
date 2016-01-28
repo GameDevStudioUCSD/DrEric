@@ -492,6 +492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -501,8 +503,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &68356475
@@ -570,6 +570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 10
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -579,8 +581,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 10
   width: 2
   height: 2
 --- !u!1 &92250388
@@ -800,6 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -809,8 +811,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 2
   width: 2
   height: 2
 --- !u!4 &142951167
@@ -1000,6 +1000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -1009,8 +1011,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &176035732
@@ -1474,6 +1474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -1483,8 +1485,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &287637128
@@ -1674,7 +1674,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.824679
+      value: 12.28
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1702,7 +1702,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2.9758866
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.y
@@ -2282,6 +2282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -2291,8 +2293,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1001 &416125598
@@ -2404,6 +2404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -2413,8 +2415,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &445707649
@@ -2968,6 +2968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -2977,8 +2979,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &567374726
@@ -3172,6 +3172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -3181,8 +3183,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &598639498
@@ -3286,6 +3286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -3295,8 +3297,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 2
   width: 2
   height: 2
 --- !u!4 &629265787
@@ -3370,6 +3370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -3379,8 +3381,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &634204232
@@ -3440,6 +3440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -3449,8 +3451,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &668236063
@@ -3568,6 +3568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -3577,8 +3579,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &675640148
@@ -4044,6 +4044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -4053,8 +4055,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &746292410
@@ -4814,6 +4814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -4823,8 +4825,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &833164684
@@ -4956,7 +4956,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 9.84468
+      value: 9.32
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4984,7 +4984,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2.958112
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.y
@@ -5116,6 +5116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -5125,8 +5127,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &889304538
@@ -5246,6 +5246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -5255,8 +5257,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &925404091
@@ -5592,7 +5592,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.84467983
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5620,7 +5620,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2.9581122
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.y
@@ -6110,6 +6110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 10
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -6119,8 +6121,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 10
   width: 2
   height: 2
 --- !u!1 &1110806665
@@ -6247,6 +6247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 11
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -6256,8 +6258,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 11
   width: 2
   height: 2
 --- !u!1 &1123391451
@@ -6331,7 +6331,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.814679
+      value: 6.38
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6359,7 +6359,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2.958112
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 417062, guid: 3bcbf11019254e8498a7f49dda4086a0, type: 2}
       propertyPath: m_LocalScale.y
@@ -6945,6 +6945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -6954,8 +6956,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 2
   width: 2
   height: 2
 --- !u!4 &1230752454
@@ -7073,6 +7073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -7082,8 +7084,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 4
   width: 2
   height: 2
 --- !u!4 &1254312353
@@ -7159,6 +7159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -7168,8 +7170,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &1276437048
@@ -7639,6 +7639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -7648,8 +7650,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &1383343608
@@ -7769,6 +7769,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -7778,8 +7780,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &1399872078
@@ -8315,6 +8315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -8324,8 +8326,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &1603221885
@@ -8385,6 +8385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -8394,8 +8396,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &1645927509
@@ -8455,6 +8455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -8464,8 +8466,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &1660977872
@@ -8569,6 +8569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -8578,8 +8580,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 2
   width: 2
   height: 2
 --- !u!4 &1673667005
@@ -8929,6 +8929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 3
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -8938,8 +8940,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 3
   width: 2
   height: 2
 --- !u!4 &1731294123
@@ -9134,6 +9134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -9143,8 +9145,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &1790349190
@@ -9326,6 +9326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -9335,8 +9337,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &1801184100
@@ -9440,6 +9440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -9449,8 +9451,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 2
   width: 2
   height: 2
 --- !u!4 &1816569704
@@ -9510,6 +9510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -9519,8 +9521,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 2
   width: 2
   height: 2
 --- !u!4 &1821579280
@@ -9594,6 +9594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -9603,8 +9605,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1001 &1841140805
@@ -10031,6 +10031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 3
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -10040,8 +10042,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 3
   width: 2
   height: 2
 --- !u!1001 &1910930729
@@ -10207,6 +10207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 4
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -10216,8 +10218,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 4
   width: 2
   height: 2
 --- !u!1 &1951157657
@@ -10277,6 +10277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 2
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -10286,8 +10288,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 2
   width: 2
   height: 2
 --- !u!1 &1964616633

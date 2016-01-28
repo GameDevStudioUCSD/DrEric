@@ -13611,7 +13611,7 @@ Prefab:
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 120616, guid: f817de150228428448986cc2677a35fe, type: 2}
+      objectReference: {fileID: 160114, guid: 7670bfca60d59aa4cb6183c6a105f8a5, type: 2}
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bulletSpeed
       value: 20
@@ -22205,7 +22205,7 @@ Prefab:
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 123262, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
+      objectReference: {fileID: 114588, guid: 04f353baae74c3a4abfe0913f4f5be11, type: 2}
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bulletSpeed
       value: 20
@@ -23542,7 +23542,7 @@ Prefab:
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 154010, guid: 66eab268cdee0f3478ca4a1112a40879, type: 2}
+      objectReference: {fileID: 199456, guid: 3bee6ee96a2f91a48a62461944a9752b, type: 2}
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bulletSpeed
       value: 20
@@ -24755,7 +24755,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
 --- !u!1 &1692325847
 GameObject:
   m_ObjectHideFlags: 0
@@ -26071,6 +26071,14 @@ Prefab:
     - target: {fileID: 11471676, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
       propertyPath: followTarget
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431814, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498188, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8134382, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
@@ -27674,7 +27682,7 @@ Prefab:
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 131836, guid: 70ca8911d8cc8494c947f0e76836e32f, type: 2}
+      objectReference: {fileID: 176402, guid: 65b79ac7516f60e46b6085a9c10c494c, type: 2}
     - target: {fileID: 11490356, guid: 887ba22c668a5fc4eb5da30ae55f9c8b, type: 2}
       propertyPath: bulletSpeed
       value: 20

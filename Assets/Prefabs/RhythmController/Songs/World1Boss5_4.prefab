@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.49000001, y: -4.30000019, z: 0}
+  m_LocalPosition: {x: -0.49, y: -4.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -39,10 +39,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32e16b80b663a0478f4172db9076d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 120
-  timeSigUpper: 4
+  bpm: 175
+  timeSigUpper: 5
   timeSigLower: 4
-  pitch: .699999988
+  pitch: 0.7
   song: {fileID: 8300000, guid: 50f68b59d1e5aa8418d992d68ecbb2ec, type: 3}
   transition: {fileID: 8300000, guid: 21d466160d282804892976bbecda0870, type: 3}
 --- !u!1001 &100100000
@@ -56,6 +56,14 @@ Prefab:
       propertyPath: transition
       value: 
       objectReference: {fileID: 8300000, guid: 21d466160d282804892976bbecda0870, type: 3}
+    - target: {fileID: 0}
+      propertyPath: bpm
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: timeSigUpper
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107418}

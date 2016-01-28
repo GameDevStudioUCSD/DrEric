@@ -13,12 +13,14 @@ using System.Collections;
  *              object collider.
  */
 public class BallController : MonoBehaviour {
-    public enum State { IDLE, STUCK, LAUNCHING, LANDING }
+    public enum State { SPAWNING, IDLE, STUCK, LAUNCHING, LANDING }
     public AudioClip landSound;
     public AudioSource audioSource;
-    public State state = State.IDLE;
+    public State state = State.SPAWNING;
     public Platform controllingPlatform;
     public float landingTolerance = 1.1f;
+    public float spwanGracePeriod = 1.0f;
+    public SpriteRenderer sprite;
     private int jumps = 0;
     private Rigidbody2D rb;
     private float lastHit;
@@ -53,6 +55,11 @@ public class BallController : MonoBehaviour {
     {
         switch (state)
         {
+            case State.SPAWNING:
+                MakeInvincible();
+                Invoke("AllowMortality", spwanGracePeriod);
+                state = State.IDLE;
+                break;
             case State.IDLE:
                 jumps = 0;
                 break;
@@ -67,9 +74,20 @@ public class BallController : MonoBehaviour {
                 break;
         }
         //out of bounds kill
-        if (transform.position.magnitude > 1000)
+        if (transform.position.magnitude > 250)
             respawner.kill();
+        if (Physics2D.gravity == Vector2.zero)
+            state = State.IDLE;
         
+    }
+    public void MakeInvincible()
+    {
+        gameObject.tag = "Untagged";
+    }
+    public void AllowMortality()
+    {
+        gameObject.tag = "Player";
+        sprite.color = new Color(255, 255, 255, 255);
     }
     public void HasLanded()
     {

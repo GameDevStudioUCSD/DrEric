@@ -12,6 +12,7 @@ public class RespawnController : MonoBehaviour {
 	private float respawnTimer;
 	public float respawnTime;
     public float deathSpeedBoost = 2;
+    public bool slowMusicOnDeath = true;
 	public GameObject player;
     public UnityEvent spawnEvents;
     public UnityEvent deathEvents;
@@ -62,7 +63,8 @@ public class RespawnController : MonoBehaviour {
             playerHolder.transform.position = transform.position;
             squidLauncher.transform.position = squidPos;
 
-            rhythmController.SwitchToChannel(2);
+            if(slowMusicOnDeath)
+                rhythmController.SwitchToChannel(2);
 
             squidLauncher.GetComponent<FollowObject>().movementSpeed *= deathSpeedBoost;
 
@@ -82,8 +84,9 @@ public class RespawnController : MonoBehaviour {
 		if (currentPlayer == null) { //DrEric must not already exist
 			isDead = false;
 			currentPlayer = (GameObject)Instantiate (player, transform.position, Quaternion.identity);
-            rhythmController.SwitchToChannel(1);
-			Debug.Log ("DrEric has spawned");
+            if (slowMusicOnDeath)
+                rhythmController.SwitchToChannel(1);
+            Debug.Log ("DrEric has spawned");
             GameObject playerHolder = GameObject.Find("Player Holder");
             if (playerHolder != null)
             {

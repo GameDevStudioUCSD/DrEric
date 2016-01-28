@@ -26,6 +26,7 @@ public class LaserCannon : MonoBehaviour
     private Vector2 currentVector;
     private Vector3 originalScale;
     private RespawnController respawner;
+    private float speed = 1;
 
     void Start()
     {//initialize stuff
@@ -43,6 +44,7 @@ public class LaserCannon : MonoBehaviour
             {
                 startTime = Time.time;
                 AudioSource source = GetComponent<AudioSource>();
+                source.pitch = speed;
                 source.Play();
                 state = STATE.BLOATING;
             }
@@ -87,10 +89,12 @@ public class LaserCannon : MonoBehaviour
     {
         float lerpVal = (Time.time - startTime) / (movementTime);
         transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
-        if (lerpVal == 1)//if player isn't found, go back
+        if(Time.time - startTime > movementTime)
         {
-            currentVector = transform.position;
-            state = STATE.RETURNING;
+            startTime = Time.time;
+            Vector2 swap = endVector;
+            endVector = startVector;
+            startVector = swap;
         }
     }
 
@@ -98,7 +102,7 @@ public class LaserCannon : MonoBehaviour
     {
 		//to prevent it from playing the sound a billion times
         currentVector = transform.position;
-        if (Time.time - startTime <= Bloattime)//bloat to charge up lazor
+        if (Time.time - startTime <= Bloattime/speed)//bloat to charge up lazor
         {
             transform.localScale += new Vector3(0, bloatScaleInc, 0);
         }
@@ -116,7 +120,7 @@ public class LaserCannon : MonoBehaviour
     void Firing()//no animation, kill frames activated
     {
         SpriteRenderer lazerSprite = transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>();
-        if (Time.time - startTime <= FiringTime)
+        if (Time.time - startTime <= FiringTime/speed)
         {
             lazerSprite.enabled = true;
         }
@@ -142,5 +146,10 @@ public class LaserCannon : MonoBehaviour
             firing = false;
             state = STATE.WAITING;
         }
+    }
+    public void Fire(int speed)
+    {
+        firing = true;
+        this.speed = 1.0f + ((speed-1) * .4f);
     }
 }

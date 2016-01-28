@@ -37,6 +37,9 @@ public class DialogBox : MonoBehaviour {
     public int nAutoReads = 1;
     // The time between sentences in seconds for autoRead and nAutoRestClick
     public float timeBetweenAutoReads = 1.0f;
+    // The image for the flashing arrow to indicate that the player should 
+    // click the dialog box
+    public Image arrowImage;
 
     // The list of words to display to the user
     string[] wordList;
@@ -91,18 +94,20 @@ public class DialogBox : MonoBehaviour {
                 // The following switch statement handles autoreading
                 // Click to read should be handled by a button script within
                 // the unity editor
+                timeOfLastPop += timeBetweenAutoReads;
                 switch (typeOfDialogBox)
                 {
                     case type.autoRead:
                         isNotAtEndOfSentence = true;
-                        timeOfLastPop += timeBetweenAutoReads;
                         break;
                     case type.nAutoRestClick:
                         isNotAtEndOfSentence = true;
-                        timeOfLastPop += timeBetweenAutoReads;
                         nAutoReads--;
                         if (nAutoReads == 0)
                             typeOfDialogBox = type.clickToRead;
+                        break;
+                    case type.clickToRead:
+                        arrowImage.enabled = !arrowImage.enabled;
                         break;
                 }
             }
@@ -123,6 +128,7 @@ public class DialogBox : MonoBehaviour {
     private void PopCharOffBuffer()
     {
         if( wordBuffer != EMPTYBUF ) {
+            arrowImage.enabled = false;
             currentLine.text = currentLine.text + wordBuffer[0];
             if (IsPunctuation(wordBuffer[0].ToString()))
                 isNotAtEndOfSentence = false;

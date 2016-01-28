@@ -262,6 +262,7 @@ MonoBehaviour:
   controllingPlatform: {fileID: 0}
   landingTolerance: 1.20000005
   spwanGracePeriod: 3
+  sprite: {fileID: 21242376}
 --- !u!114 &11470922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,6 +383,10 @@ Prefab:
       propertyPath: spwanGracePeriod
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21242376}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185872}

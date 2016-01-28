@@ -82,6 +82,8 @@ public class FlingObject : MonoBehaviour {
         float rotatedY = ((deltaVector.x * sinAngle) +
             (deltaVector.y * cosAngle));
         Vector2 rotatedVector = new Vector2(rotatedX, rotatedY);
+        if (Physics2D.gravity == Vector2.zero)
+            rotatedVector = deltaVector;
 
         //Fling
         rigidBody.AddForce(rotatedVector, ForceMode2D.Impulse);

@@ -258,6 +258,7 @@ public class Boss1 : MonoBehaviour
         AudioSource deathSource = deathObj.AddComponent<AudioSource>();
         deathSource.clip = GetComponent<AudioSource>().clip;
         deathSource.Play();
+        Physics2D.gravity = Vector2.down;
         Physics2D.gravity = Vector2.zero;
         Destroy(this.gameObject);
     }

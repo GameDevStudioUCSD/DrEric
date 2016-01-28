@@ -236,8 +236,9 @@ public class SquidLauncher : MonoBehaviour {
 
         float angle = Mathf.Atan2(deltaVector.y, deltaVector.x) * Mathf.Rad2Deg + rotationOffset;
         float gravityOffset = Mathf.Atan2(Physics2D.gravity.y, Physics2D.gravity.x) * Mathf.Rad2Deg;
+        if(Physics2D.gravity == Vector2.zero)
+            gravityOffset = Mathf.Atan2(-1, 0) * Mathf.Rad2Deg;
         destRotation = Quaternion.Euler(0, 0, angle + gravityOffset);
-
         if (transform.rotation != destRotation)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, destRotation, Time.deltaTime * rotationSpeed);

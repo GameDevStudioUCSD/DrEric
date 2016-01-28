@@ -25,6 +25,7 @@ public class Boss1 : MonoBehaviour
     public LaserCannon topCannon, bottomCannon;
     public GameObject topSprite, botSprite, leftSprite, rightSprite;
     public VictoryController victorycontroller;
+    public AudioClip hurtSound;
 
 
     private RhythmController rhythmController;
@@ -273,6 +274,8 @@ public class Boss1 : MonoBehaviour
         }
         if (GetNumberOfSwitchesHit() == 0)
             rhythmController.PlaySong(5);
+        if (GetNumberOfSwitchesHit() < 3 && GetNumberOfSwitchesHit() > 0)
+            GetComponent<AudioSource>().PlayOneShot(hurtSound);
         if (GetNumberOfSwitchesHit() == 2)
             rhythmController.SwitchToChannel(2);
         // Check if should roar

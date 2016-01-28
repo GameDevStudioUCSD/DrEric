@@ -477,6 +477,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 10
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -486,8 +488,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 10
   width: 2
   height: 2
 --- !u!1 &119488254
@@ -1798,6 +1798,8 @@ GameObject:
   - 61: {fileID: 532714444}
   - 61: {fileID: 532714447}
   - 114: {fileID: 532714446}
+  - 114: {fileID: 532714449}
+  - 95: {fileID: 532714448}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -1812,7 +1814,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 532714442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.3599997, y: -6.03000021, z: 0}
+  m_LocalPosition: {x: 13.1700001, y: -11.3500004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 888617630}
@@ -1835,8 +1837,8 @@ Transform:
   - {fileID: 1987071849}
   - {fileID: 2118660023}
   - {fileID: 1181484550}
-  m_Father: {fileID: 2143987686}
-  m_RootOrder: 5
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!61 &532714444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1862,6 +1864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 10
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -1871,8 +1875,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 10
   width: 2
   height: 2
 --- !u!114 &532714446
@@ -1901,6 +1903,41 @@ BoxCollider2D:
   m_Offset: {x: -4.19999981, y: 2.5}
   serializedVersion: 2
   m_Size: {x: 1, y: 20}
+--- !u!95 &532714448
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532714442}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e03ad3d4fa3e9477da453d2ac01d78a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &532714449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532714442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a143f7d65acda47a255d217a4d3602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startVector: {x: 13.1700001, y: -11.3500004, z: 0}
+  endVector: {x: 13.1700001, y: -100, z: 0}
+  movementTime: 20
+  waitTime: 2
+  startState: 1
+  oscillate: 0
+  state: 0
 --- !u!1 &538280581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,6 +2258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 10
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -2230,8 +2269,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 10
   width: 2
   height: 2
 --- !u!1 &620353890
@@ -3533,6 +3570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 15
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -3542,8 +3581,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 15
   width: 2
   height: 2
 --- !u!1 &1126081338
@@ -4790,6 +4827,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 1
+  numTiles: 10
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -4799,8 +4838,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 1
-  numTiles: 10
   width: 2
   height: 2
 --- !u!1 &1641105099
@@ -5892,6 +5929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
+  isVertical: 0
+  numTiles: 15
   topLeftCorner: {fileID: 0}
   topRightCorner: {fileID: 0}
   bottomLeftCorner: {fileID: 0}
@@ -5901,8 +5940,6 @@ MonoBehaviour:
   leftSprite: {fileID: 0}
   rightSprite: {fileID: 0}
   middleSprite: {fileID: 0}
-  isVertical: 0
-  numTiles: 15
   width: 2
   height: 2
 --- !u!1 &1954561888
@@ -6679,6 +6716,5 @@ Transform:
   - {fileID: 1936813742}
   - {fileID: 602295564}
   - {fileID: 1639801850}
-  - {fileID: 532714443}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10

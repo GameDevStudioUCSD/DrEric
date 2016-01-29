@@ -25,6 +25,8 @@ public class RandomColorLerper : MonoBehaviour {
     public bool is2D = true;
     /** Set true this boolean if the object is text */
     public bool isText = false;
+    /** Set true if the object is a sprite **/
+    public bool isSprite;
     /** Setup overhead */
 	void Start () {
         initialTime = -10;

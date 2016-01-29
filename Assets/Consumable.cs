@@ -10,8 +10,7 @@ public class Consumable : MonoBehaviour
         {
             Destroy(this.gameObject);
             if(resetJumps) {
-                BallController drEric = other.gameObject.GetComponent<BallController>();
-                drEric.ResetJumps();
+                BallController.ResetJumps();
             }
         }
     }

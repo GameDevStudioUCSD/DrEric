@@ -19,12 +19,14 @@ public class ChangeGravity : MonoBehaviour {
         GameObject go = other.gameObject;
         if (go.tag == "Player")
         {
+            BallController.ResetJumps();
             ResetGravity();
             Physics2D.gravity = Gravity;
             if(redirectMomentum)
                 RedirectMomentum.Redirect(go.GetComponent<Rigidbody2D>(), Gravity);
         }
     }
+
 
     public void ResetGravity()
     {

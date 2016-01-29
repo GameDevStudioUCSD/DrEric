@@ -55,11 +55,16 @@ public class BallController : MonoBehaviour {
     {
         switch (state)
         {
+            case State.SPAWNING:
+                MakeInvincible();
+                Invoke("AllowMortality", spwanGracePeriod);
+                state = State.IDLE;
+                break;
             case State.IDLE:
-                ResetJumps();
+                SetJumps(0);
                 break;
             case State.STUCK:
-                ResetJumps();
+                SetJumps(0);
                 break;
             case State.LAUNCHING:
                 controllingPlatform = null;
@@ -75,13 +80,22 @@ public class BallController : MonoBehaviour {
             state = State.IDLE;
         
     }
+    public void SetJumps(int j)
+    {
+        jumps = j;
+    }
+    public static void ResetJumps()
+    {
+        GameObject drEric = GameObject.Find(Names.DRERIC);
+        if (drEric != null)
+            drEric.GetComponent<BallController>().SetJumps(0);
+    }
     public void MakeInvincible()
     {
         gameObject.tag = "Untagged";
     }
     public void AllowMortality()
     {
-        state = State.IDLE;
         gameObject.tag = "Player";
         sprite.color = new Color(255, 255, 255, 255);
     }
@@ -102,10 +116,6 @@ public class BallController : MonoBehaviour {
         jumps++;
         if (jumps >= squid.maxJumps)
             state = State.LAUNCHING;
-    }
-    public void ResetJumps()
-    {
-        jumps = 0;
     }
 
     public int GetJumps()

@@ -52,16 +52,7 @@ public class VictoryController : MonoBehaviour
             if (!hasWon)
             {
                 Instantiate(victoryScreen);
-                GameObject drEric = collision.gameObject;
-                Transform drEricTransform = collision.gameObject.transform;
-                Rigidbody2D drEricRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
-                ConstantForce2D force = drEric.AddComponent<ConstantForce2D>();
-                drEric.GetComponent<BallController>().enabled = false;
-                drEricTransform.parent = transform;
-                drEricTransform.localPosition = Vector2.zero;
-                drEricRigidBody.velocity = Vector2.zero;
-                drEricRigidBody.gravityScale = 0;
-                force.torque = 100;
+                spinEric(collision.gameObject);
             }
             Invoke("LoadNextLevel", 2.0f);
             hasWon = true;
@@ -105,4 +96,16 @@ public class VictoryController : MonoBehaviour
 
     }
 
+    public void spinEric(GameObject drEric)
+    {
+        Transform drEricTransform = drEric.transform;
+        Rigidbody2D drEricRigidBody = drEric.GetComponent<Rigidbody2D>();
+        ConstantForce2D force = drEric.AddComponent<ConstantForce2D>();
+        drEric.GetComponent<BallController>().enabled = false;
+        drEricTransform.parent = transform;
+        drEricTransform.localPosition = Vector2.zero;
+        drEricRigidBody.velocity = Vector2.zero;
+        drEricRigidBody.gravityScale = 0;
+        force.torque = 100;
+    }
 }

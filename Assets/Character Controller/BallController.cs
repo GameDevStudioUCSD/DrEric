@@ -65,7 +65,7 @@ public class BallController : MonoBehaviour {
                 controllingPlatform = null;
                 break;
             case State.LANDING:
-                HasLanded();
+                //HasLanded(); //obselete
                 break;
         }
         //out of bounds kill
@@ -98,12 +98,7 @@ public class BallController : MonoBehaviour {
     {
         if (Time.time - lastHit < bounceBufferPeriod)
             return;
-        Vector3 gravity = Physics2D.gravity;
-        Vector3 velocityProjG = Vector3.Project(rb.velocity, gravity);
-        if ((velocityProjG+gravity).magnitude < landingTolerance * gravity.magnitude)
-        {
-            state = State.IDLE;
-        }
+        state = State.IDLE;
     }
 
     public void IncrementJumps()

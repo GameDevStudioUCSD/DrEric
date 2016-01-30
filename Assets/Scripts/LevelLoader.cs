@@ -15,6 +15,7 @@ using System.Collections;
  */
 public class LevelLoader : MonoBehaviour {
 
+    private const int MAIN_MENU = 0;
     private const int SPACE_1 = 9;
     private const int SPACE_2 = 2;
     private const int SPACE_3 = 3;
@@ -41,6 +42,9 @@ public class LevelLoader : MonoBehaviour {
         {
             case World.Space:
                 LoadSpaceLevel(level);
+                break;
+            case World.MainMenu:
+                Application.LoadLevel(MAIN_MENU);
                 break;
             default:
                 Debug.LogError("Something horrible happened when trying to load world: " + world);
@@ -116,6 +120,6 @@ public class LevelLoader : MonoBehaviour {
 	}
 }
 
-public enum World { Space }
+public enum World { Space, MainMenu}
 public enum Level { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Boss, Bonus }
 public enum Menu { Main, WorldSelection }

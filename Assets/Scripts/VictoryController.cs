@@ -71,8 +71,6 @@ public class VictoryController : MonoBehaviour
             Debug.Log("This is temporarily fixed.");
             countOut.text = "" + count;
         }
-        else
-            Debug.LogError("AnhQuan, fix this NullReference exception please");
         saveCheckpoint();
 
         //END TEST

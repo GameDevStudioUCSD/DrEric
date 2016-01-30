@@ -55,11 +55,6 @@ public class BallController : MonoBehaviour {
     {
         switch (state)
         {
-            case State.SPAWNING:
-                MakeInvincible();
-                Invoke("AllowMortality", spwanGracePeriod);
-                state = State.IDLE;
-                break;
             case State.IDLE:
                 SetJumps(0);
                 break;

@@ -40,6 +40,8 @@ public class DialogBox : MonoBehaviour {
     // The image for the flashing arrow to indicate that the player should 
     // click the dialog box
     public Image arrowImage;
+    //fast mode multiplier
+    public int speedmultiplier;
 
     // The list of words to display to the user
     string[] wordList;
@@ -51,7 +53,8 @@ public class DialogBox : MonoBehaviour {
     Text currentLine;
     // The time in seconds at which the last character was printed
     float timeOfLastPop = 0;
-
+    //determines text speedup when clicked
+    bool fastmode = false;
     // A reference to the AudioSource to emulate talking
     AudioSource chipSource;
     // A copy of the length of the AudioClip attached to clipSource
@@ -77,7 +80,11 @@ public class DialogBox : MonoBehaviour {
 	void Update () {
         // Define max char count
         maxCharCount = (int)(currentLine.rectTransform.rect.width)/charWidth;
-        if (Time.time - timeOfLastPop > delayBetweenChars)
+        
+        //check for fast mode
+        int fastmodeflag = 0;
+        if (fastmode) fastmodeflag++;
+        if (Time.time - timeOfLastPop > (delayBetweenChars / ( fastmodeflag* speedmultiplier+1)))
         {
             if (HasFinished())
                 Invoke("DeactiveObject", timeBetweenAutoReads);
@@ -90,7 +97,8 @@ public class DialogBox : MonoBehaviour {
             // If we've finished the current sentence, then the type of
             // dialog box this is determines what we should do next
             else if (!isNotAtEndOfSentence)
-            { 
+            {
+                fastmode = false;
                 // The following switch statement handles autoreading
                 // Click to read should be handled by a button script within
                 // the unity editor
@@ -177,6 +185,10 @@ public class DialogBox : MonoBehaviour {
     }
     public void ReadMore()
     {
+        if (isNotAtEndOfSentence == true)
+        {//if is at end of sentence = false, make it faster
+            fastmode = true;
+        }
         isNotAtEndOfSentence = true;
         if (HasFinished())
             this.gameObject.SetActive(false);

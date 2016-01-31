@@ -17,6 +17,7 @@ public class BallController : MonoBehaviour {
 
     public enum State { SPAWNING, IDLE, STUCK, LANDING }
     public State state = State.SPAWNING;
+	public int numParticlesOnCollision = 5; //How many smehckels appaer when you hit a wall
 
     private int jumps = 0; //times jumped since last landed
     private float lastHit; //time last landed
@@ -29,6 +30,7 @@ public class BallController : MonoBehaviour {
     private Rigidbody2D rb;
     private RespawnController respawner;
     private SquidLauncher squid;
+	private ParticleSystem pSys;
 
     /**
      * Description: Sets up a reference to the ball's AudioSource and other
@@ -40,6 +42,7 @@ public class BallController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
         squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
+		pSys = GetComponent<ParticleSystem> ();
     }
 
     /**
@@ -55,6 +58,7 @@ public class BallController : MonoBehaviour {
             Land();
         if (Physics2D.gravity == Vector2.zero)
             Land();
+		pSys.startColor = new Color (Random.Range (0.5f, 1.0f), Random.Range (0.5f, 1.0f), Random.Range (0.5f, 1.0f));		
     }
 
     /**
@@ -63,6 +67,7 @@ public class BallController : MonoBehaviour {
      */
     void OnCollisionEnter2D(Collision2D collision)
     {
+		pSys.Emit(numParticlesOnCollision);
         if (audioSource != null)
             audioSource.PlayOneShot(landSound, 1f);
         if (HasLanded())

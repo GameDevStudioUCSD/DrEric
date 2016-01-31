@@ -258,6 +258,7 @@ public class SquidLauncher : MonoBehaviour {
         drEric.GetComponent<FlingObject>().Fling (deltaVector);
         drEric.GetComponent<BallController>().state = BallController.State.LAUNCHING;
         state = State.RELEASING;
+        gameObject.transform.parent.gameObject.GetComponent<PlayerHolder>().StartTimer();
 	}
 
     /*

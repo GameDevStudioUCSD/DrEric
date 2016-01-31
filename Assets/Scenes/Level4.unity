@@ -8375,6 +8375,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!114 &206008386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11396,6 +11397,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!114 &299860528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,6 +11973,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &311575135
 GameObject:
   m_ObjectHideFlags: 0
@@ -12191,6 +12194,48 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &324095394
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &326527356
 GameObject:
   m_ObjectHideFlags: 0
@@ -12686,6 +12731,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &338323996
 GameObject:
   m_ObjectHideFlags: 0
@@ -24891,6 +24937,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 1
   isText: 0
+  isSprite: 0
 --- !u!222 &699097217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25374,6 +25421,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 1
+  isSprite: 0
 --- !u!222 &723922466
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26088,6 +26136,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &748420866
 GameObject:
   m_ObjectHideFlags: 0
@@ -27708,6 +27757,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &815732856
 GameObject:
   m_ObjectHideFlags: 0
@@ -37798,6 +37848,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &1157441297
 GameObject:
   m_ObjectHideFlags: 0
@@ -38751,6 +38802,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &1180093699
 GameObject:
   m_ObjectHideFlags: 0
@@ -49510,6 +49562,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &1499898510
 GameObject:
   m_ObjectHideFlags: 0
@@ -58399,6 +58452,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &1747454113
 GameObject:
   m_ObjectHideFlags: 0
@@ -58700,6 +58754,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &1755751444
 GameObject:
   m_ObjectHideFlags: 0
@@ -62303,6 +62358,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!1 &1855822867
 GameObject:
   m_ObjectHideFlags: 0
@@ -71266,6 +71322,7 @@ MonoBehaviour:
   lerpDuration: .100000001
   is2D: 0
   isText: 0
+  isSprite: 0
 --- !u!114 &2108893115
 MonoBehaviour:
   m_ObjectHideFlags: 0

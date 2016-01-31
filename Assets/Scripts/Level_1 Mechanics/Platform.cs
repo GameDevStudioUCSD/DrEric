@@ -59,7 +59,7 @@ public class Platform : MonoBehaviour {
             // Set Dr Eric's state
             playerController = colObj.GetComponent<BallController>();
             // Save Dr Eric's transform
-            playerController.HasLanded();
+            playerController.Land();
             playerController.gameObject.transform.parent.parent = this.gameObject.transform;
         }
     }

@@ -28,30 +28,35 @@ public class Switch : MonoBehaviour {
 	
 	}
 
+	void PerformCollision(Collider2D other) {
+		if (isEnabled) {
+			if (other.gameObject.tag == "Player") {
+				if (!isPressed) {//upressed to pressed
+					if (isDebugging)
+						Debug.Log ("Switch Pressed");
+					pressEvent.Invoke (); //threw an ArgumentOutOfRangeException, boss disappeared
+					isPressed = !isPressed;
+					if (animator != null)
+						animator.SetBool ("IsPressed", true);
+				} else if (isPressed) {//pressed to unpressed
+					if (isDebugging)
+						Debug.Log ("Switch unpressed");
+					unPressEvent.Invoke ();
+					isPressed = !isPressed;
+					if (animator != null)
+						animator.SetBool ("IsPressed", false);
+				}
+			}
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		PerformCollision (other);
+	}
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (isEnabled)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                if (!isPressed)
-                {//upressed to pressed
-                    if (isDebugging)
-                        Debug.Log("Switch Pressed");
-                    pressEvent.Invoke(); //threw an ArgumentOutOfRangeException, boss disappeared
-                    isPressed = !isPressed;
-                    animator.SetBool("IsPressed", true);
-                }
-                else if (isPressed)
-                {//pressed to unpressed
-                    if (isDebugging)
-                        Debug.Log("Switch unpressed");
-                    unPressEvent.Invoke();
-                    isPressed = !isPressed;
-                    animator.SetBool("IsPressed", false);
-                }
-            }
-        }
+		PerformCollision (other.collider);
     }
 
     public void SetPressed(bool x) {

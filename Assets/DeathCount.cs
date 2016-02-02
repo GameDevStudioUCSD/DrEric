@@ -32,4 +32,11 @@ public class DeathCount : MonoBehaviour {
         text.color = originalColor;
         rotator.enabled = false;
     }
+    public static int GetDeathCount()
+    {
+        GameObject counter = GameObject.Find("DeathCount");
+        if(counter != null)
+            return counter.GetComponent<DeathCount>().deathCount;
+        return -1;
+    }
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 /**
  * Filename: VictoryController.cs \n
@@ -56,6 +58,16 @@ public class VictoryController : MonoBehaviour
             }
             Invoke("LoadNextLevel", 2.0f);
             hasWon = true;
+            if (!Application.isEditor)
+            {
+                Analytics.CustomEvent("CompletedLevel", new Dictionary<string, object>
+            {
+                {"world", (int)world + 1},
+                {"level", (int)LevelLoader.SceneIndexToLevelNumber(world, Application.loadedLevel) + 1},
+                {"timeToComplete", Time.timeSinceLevelLoad},
+                {"deaths", DeathCount.GetDeathCount()}
+            });
+            }
         }
     }
 
@@ -78,6 +90,7 @@ public class VictoryController : MonoBehaviour
 
     void LoadNextLevel()
     {
+        
         LevelLoader.LoadLevel(world, nextLevel);
     }
 

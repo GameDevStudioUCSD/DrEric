@@ -51,6 +51,32 @@ public class LevelLoader : MonoBehaviour {
                 break;
         }
     }
+    public static Level SceneIndexToLevelNumber(World world, int scene)
+    {
+        if (world == World.Space)
+        {
+            switch (scene)
+            {
+                case SPACE_1:
+                    return Level.One;
+                case SPACE_2:
+                    return Level.Two;
+                case SPACE_3:
+                    return Level.Three;
+                case SPACE_4:
+                    return Level.Four;
+                case SPACE_5:
+                    return Level.Five;
+                case SPACE_8:
+                    return Level.Eight;
+                case SPACE_9:
+                    return Level.Nine;
+                case SPACE_BOSS:
+                    return Level.Boss;
+            }
+        }
+        return Level.Bonus;
+    }
     public static void LoadSpaceLevel( Level level )
     {
         switch( level )

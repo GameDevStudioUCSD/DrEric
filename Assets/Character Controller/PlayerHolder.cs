@@ -40,7 +40,6 @@ public class PlayerHolder : MonoBehaviour {
      */
 	void Update () {
         cameraOrienter.CheckOrientation();
-
         if (drEric == null)
             drEric = GameObject.Find(Names.DRERIC);
         if (drEric != null) {

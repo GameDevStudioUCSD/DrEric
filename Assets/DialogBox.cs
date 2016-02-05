@@ -200,4 +200,11 @@ public class DialogBox : MonoBehaviour {
     {
         return (wordBuffer == EMPTYBUF && wordIdx >= wordList.Length);
     }
+    public void SetText(string text)
+    {
+        wordIdx = 0;
+        ClearText();
+        dialog = text;
+        wordList = dialog.Split(' ');
+    }
 }

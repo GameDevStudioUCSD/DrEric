@@ -31,7 +31,6 @@ public class VictoryController : MonoBehaviour
 	void Start() {
 		count = PlayerPrefs.GetInt ("Count", 0);
 	}
-	//END TEST
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -55,6 +54,7 @@ public class VictoryController : MonoBehaviour
             {
                 Instantiate(victoryScreen);
                 spinEric(collision.gameObject);
+                //AnalyticsLogger.SendEvent();
             }
             Invoke("LoadNextLevel", 2.0f);
             hasWon = true;

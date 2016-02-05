@@ -130,6 +130,9 @@ public class DialogBox : MonoBehaviour {
     public void ClearText()
     {
         firstLine.text = secondLine.text = EMPTYBUF;
+        wordBuffer = EMPTYBUF;
+        currentLine = firstLine;
+        wordIdx = 0;
     }
     
     // Pops a character off the word buffer onto the dialog box
@@ -200,10 +203,13 @@ public class DialogBox : MonoBehaviour {
     {
         return (wordBuffer == EMPTYBUF && wordIdx >= wordList.Length);
     }
+    public void DisplayText(string text)
+    {
+        SetText(text);
+        this.gameObject.SetActive(true);
+    }
     public void SetText(string text)
     {
-        currentLine = firstLine;
-        wordIdx = 0;
         ClearText();
         dialog = text;
         wordList = dialog.Split(' ');

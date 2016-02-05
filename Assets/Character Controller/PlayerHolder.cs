@@ -50,23 +50,7 @@ public class PlayerHolder : MonoBehaviour {
         }
 	}
 
-    public bool CheckGround()
-    {
-        if (drEric != null && Time.time > timer + .3)
-        {
-            RaycastHit2D[] detector = Physics2D.RaycastAll(
-                drEric.GetComponent<Transform>().position, Physics2D.gravity, 0.45f);
-            for (int i = 0; i < detector.GetLength(0); i++)
-            {
-                if (detector[i].collider.tag != "Player"
-                    && detector[i].collider.tag != "Invincible Player"
-                    && detector[i].collider.tag != "Squid")
-                    return true;
-            }
-            return false;
-        }
-        return false;
-    }
+    
 
     public void StartTimer()
     {

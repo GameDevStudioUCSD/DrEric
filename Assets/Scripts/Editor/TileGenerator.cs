@@ -5,7 +5,7 @@ using System.Collections;
 public class TileGenerator : MonoBehaviour {
 
 
-	[MenuItem("CONTEXT/Scripts/Editior/Wall/GenerateTiles")]
+	[MenuItem("CONTEXT/Wall/GenerateTiles")]
 	static void GenerateTiles() {
         DeleteTiles();
 		Transform t = Selection.activeTransform;
@@ -35,7 +35,7 @@ public class TileGenerator : MonoBehaviour {
 	}
 
 
-	[MenuItem("CONTEXT/Scripts/Editior/Wall/GenerateTiledSection")]
+	[MenuItem("CONTEXT/Wall/GenerateTiledSection")]
     static void GenerateTiledSection()
     {
         // Delete any existing tiles
@@ -92,7 +92,7 @@ public class TileGenerator : MonoBehaviour {
         obj.transform.localPosition = new Vector2(x, y);
     }
 
-	[MenuItem("CONTEXT/Scripts/Editior/Wall/DeleteTiles")]
+	[MenuItem("CONTEXT/Wall/DeleteTiles")]
 	static void DeleteTiles() {
 		Transform parent = Selection.activeTransform;
 		int count = parent.childCount;

@@ -10,7 +10,7 @@ public class RotateTrap : MonoBehaviour {
 	public enum Direction {cw, ccw};
 	public Direction dir;
 	public float limit = 90f;
-	float curr = 0;
+	//float curr = 0;
 
 	public GameObject hinge;
 	public Switch activator;

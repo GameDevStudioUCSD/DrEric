@@ -45,9 +45,6 @@ public class RhythmController : MonoBehaviour {
 
 	int currentMeasure;
 	int currentBeat;
-    int currentChannel = 1;
-    float startSwap = 0f;
-    float finishSwap = 0f;
 
 	/*Internals*/
 	MusicalTrack currentTrack;

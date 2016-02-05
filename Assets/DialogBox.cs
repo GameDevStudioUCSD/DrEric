@@ -149,7 +149,7 @@ public class DialogBox : MonoBehaviour {
                 wordBuffer = wordBuffer.Substring(1);
             // Play a random noise from this character's voice to emulate speech
             chipSource.Play();
-            chipSource.time = Random.RandomRange(0, chipLength);
+            chipSource.time = Random.Range(0, chipLength);
         }
     }
 

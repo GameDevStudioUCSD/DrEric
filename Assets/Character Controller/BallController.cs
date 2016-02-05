@@ -104,7 +104,7 @@ public class BallController : MonoBehaviour {
     {
         if (Time.time - lastHit < bounceBufferPeriod)
             return false;
-        else return transform.parent.GetComponent<PlayerHolder>().CheckGround();
+        return CheckGround();
     }
 
     /**
@@ -170,5 +170,19 @@ public class BallController : MonoBehaviour {
     {
         gameObject.tag = "Player";
         sprite.color = new Color(255, 255, 255, 255);
+    }
+
+
+    public bool CheckGround()
+    {
+            RaycastHit2D[] detector = Physics2D.RaycastAll(transform.position, Physics2D.gravity, 0.45f);
+            for (int i = 0; i < detector.GetLength(0); i++)
+            {
+                if (detector[i].collider.gameObject.name != "Player Holder"
+                    && detector[i].collider.tag != "Invincible Player"
+                    && detector[i].collider.tag != "Squid")
+                    return true;
+            }
+            return false;
     }
 }

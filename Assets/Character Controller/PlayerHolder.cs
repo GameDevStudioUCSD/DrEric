@@ -55,7 +55,7 @@ public class PlayerHolder : MonoBehaviour {
         if (drEric != null && Time.time > timer + .3)
         {
             RaycastHit2D[] detector = Physics2D.RaycastAll(
-                transform.position, Physics2D.gravity, 0.45f);
+                drEric.GetComponent<Transform>().position, Physics2D.gravity, 0.45f);
             for (int i = 0; i < detector.GetLength(0); i++)
             {
                 if (detector[i].collider.tag != "Player"

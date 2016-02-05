@@ -49,13 +49,19 @@ public class AnalyticsLogger : MonoBehaviour {
             Debug.Log("Key: " + key + " Value: " + logger.log[key]);
         }
     }
-
+    #if UNITY_ANALYTICS
     public void CreateCustomEvent()
     {
         LogFinishingStats();
         Analytics.CustomEvent(eventName, log);
     }
-    
+
+    #else
+        public void CreateCustomEvent() {
+            Debug.LogWarning("Unity Analytics is not working on your device!");
+        }
+    #endif
+
 
     public void LogCustomEvent(string key, object value)
     {

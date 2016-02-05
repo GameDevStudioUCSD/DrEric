@@ -202,6 +202,7 @@ public class DialogBox : MonoBehaviour {
     }
     public void SetText(string text)
     {
+        currentLine = firstLine;
         wordIdx = 0;
         ClearText();
         dialog = text;

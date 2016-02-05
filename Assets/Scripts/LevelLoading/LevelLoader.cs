@@ -28,6 +28,7 @@ public class LevelLoader : MonoBehaviour {
 
     public World world;
     public Level level;
+
     public void LoadLevel()
     {
         LoadLevel(world, level);
@@ -51,31 +52,32 @@ public class LevelLoader : MonoBehaviour {
                 break;
         }
     }
-    public static Level SceneIndexToLevelNumber(World world, int scene)
+    public static LevelInfo GetLevelInfo( int scene)
     {
-        if (world == World.Space)
+        switch (scene)
         {
-            switch (scene)
-            {
-                case SPACE_1:
-                    return Level.One;
-                case SPACE_2:
-                    return Level.Two;
-                case SPACE_3:
-                    return Level.Three;
-                case SPACE_4:
-                    return Level.Four;
-                case SPACE_5:
-                    return Level.Five;
-                case SPACE_8:
-                    return Level.Eight;
-                case SPACE_9:
-                    return Level.Nine;
-                case SPACE_BOSS:
-                    return Level.Boss;
-            }
+            case SPACE_1:
+                return new LevelInfo(World.Space, Level.One);
+            case SPACE_2:
+                return new LevelInfo(World.Space, Level.Two);
+            case SPACE_3:
+                return new LevelInfo(World.Space, Level.Three);
+            case SPACE_4:
+                return new LevelInfo(World.Space, Level.Four);
+            case SPACE_5:
+                return new LevelInfo(World.Space, Level.Five);
+            case SPACE_8:
+                return new LevelInfo(World.Space, Level.Eight);
+            case SPACE_9:
+                return new LevelInfo(World.Space, Level.Nine);
+            case SPACE_BOSS:
+                return new LevelInfo(World.Space, Level.Boss);
+            case SPACE_BONUS:
+                return new LevelInfo(World.Space, Level.Bonus);
+            case MAIN_MENU:
+                return new LevelInfo(World.MainMenu, Level.Bonus);
         }
-        return Level.Bonus;
+        return null;
     }
     public static void LoadSpaceLevel( Level level )
     {

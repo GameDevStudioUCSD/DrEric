@@ -10,4 +10,5 @@ public class Names  {
     public static string CAMERA = "Camera";
     public static string DIALOGWINDOW = "DialogWindow";
     public static string RESPAWNER = "Respawner/Spawner";
+    public static string ANALYTICSLOGGER = "UnityAnalytics";
 }

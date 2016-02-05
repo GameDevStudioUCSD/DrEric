@@ -58,16 +58,6 @@ public class VictoryController : MonoBehaviour
             }
             Invoke("LoadNextLevel", 2.0f);
             hasWon = true;
-            if (!Application.isEditor)
-            {
-                Analytics.CustomEvent("CompletedLevel", new Dictionary<string, object>
-            {
-                {"world", (int)world + 1},
-                {"level", (int)LevelLoader.SceneIndexToLevelNumber(world, Application.loadedLevel) + 1},
-                {"timeToComplete", Time.timeSinceLevelLoad},
-                {"deaths", DeathCount.GetDeathCount()}
-            });
-            }
         }
     }
 

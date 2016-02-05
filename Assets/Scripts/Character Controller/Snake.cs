@@ -38,21 +38,17 @@ public class Snake : MonoBehaviour {
 	{
 		if (state == State.IDLE) {
 			hitCount++;
-			dialog.gameObject.SetActive(true);
 			switch (hitCount)
-			{
-				case 1:
-				
-				break;
-				
+			{	
 				case 2:
-				
+				dialog.SetText("Stop that! You better not hit me (1) more time(s)!");
 				break;
 				
 				case 3:
-				
+				dialog.SetText("That's it! You've hit me a total of (3) times! I'm leaving!");
 				break;
 			}
+			dialog.gameObject.SetActive(true);
 			//Debug.Log ("I GOT HIT " + hitCount + " times");
 			if (hitCount < hitsBeforeRetreat)
 				state = State.AGGRAVATED;

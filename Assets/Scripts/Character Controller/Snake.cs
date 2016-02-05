@@ -8,6 +8,7 @@ public class Snake : MonoBehaviour {
 	private enum State {IDLE, AGGRAVATED, RETREAT};
 	private State state;
 	public float maxTimeAggravated = 3f;
+	public DialogBox dialog;
 	
 	int aggravateFrameCounter = 0;
 	
@@ -37,7 +38,22 @@ public class Snake : MonoBehaviour {
 	{
 		if (state == State.IDLE) {
 			hitCount++;
-			Debug.Log ("I GOT HIT " + hitCount + " times");
+			dialog.gameObject.SetActive(true);
+			switch (hitCount)
+			{
+				case 1:
+				
+				break;
+				
+				case 2:
+				
+				break;
+				
+				case 3:
+				
+				break;
+			}
+			//Debug.Log ("I GOT HIT " + hitCount + " times");
 			if (hitCount < hitsBeforeRetreat)
 				state = State.AGGRAVATED;
 			else

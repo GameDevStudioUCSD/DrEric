@@ -175,14 +175,18 @@ public class BallController : MonoBehaviour {
 
     public bool CheckGround()
     {
-            RaycastHit2D[] detector = Physics2D.RaycastAll(transform.position, Physics2D.gravity, 0.45f);
-            for (int i = 0; i < detector.GetLength(0); i++)
-            {
-                if (detector[i].collider.gameObject.name != "Player Holder"
-                    && detector[i].collider.tag != "Invincible Player"
-                    && detector[i].collider.tag != "Squid")
-                    return true;
-            }
-            return false;
+        RaycastHit2D[] detector = Physics2D.RaycastAll(transform.position, Physics2D.gravity, 0.45f);
+        /** Debugging Junk
+        string debugstr = "";
+        foreach(RaycastHit2D ray in detector) { debugstr += ray.collider.gameObject + "\t"; }
+        Debug.Log(debugstr);
+        */
+        for (int i = 0; i < detector.GetLength(0); i++)
+        {
+            if (detector[i].collider.gameObject.name != Names.DRERIC
+                && detector[i].collider.gameObject.name != Names.SQUIDLAUNCHER) 
+                return true;
+        }
+        return false;
     }
 }

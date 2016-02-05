@@ -7,8 +7,9 @@ public class Snake : MonoBehaviour {
 	public int hitsBeforeRetreat = 3;
 	private enum State {IDLE, AGGRAVATED, RETREAT};
 	private State state;
-	public float maxTimeAggravated = 3f;
+	public float maxTimeAggravated = 15f;
 	public DialogBox dialog;
+	float timeCounter;
 	
 	int aggravateFrameCounter = 0;
 	
@@ -25,7 +26,12 @@ public class Snake : MonoBehaviour {
 		else if (state == State.AGGRAVATED)
 		{
 			this.GetComponent<Animator>().SetInteger("Animation", 1);
-			state = State.IDLE;
+			if ((Time.time - timeCounter) > maxTimeAggravated)
+			{
+				dialog.SetText("I'm calming down now. Don't hit me again.");
+				dialog.gameObject.SetActive(true);
+				state = State.IDLE;
+			}
 		}
 		else if (state == State.RETREAT)
 		{
@@ -49,11 +55,15 @@ public class Snake : MonoBehaviour {
 				break;
 			}
 			dialog.gameObject.SetActive(true);
-			//Debug.Log ("I GOT HIT " + hitCount + " times");
+			timeCounter = Time.time;
 			if (hitCount < hitsBeforeRetreat)
+			{
 				state = State.AGGRAVATED;
+			}
 			else
+			{
 				state = State.RETREAT;
+			}
 		}
 	}
 	

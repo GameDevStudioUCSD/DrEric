@@ -69,6 +69,7 @@ public class SquidLauncher : MonoBehaviour
      */
     void Update()
     {
+        UpdateAnimation();
         //Rotates to match gravity when not holding DrEric
         if (state != State.GRABBED)
             orient.CheckOrientation();
@@ -96,9 +97,25 @@ public class SquidLauncher : MonoBehaviour
         }
         else
         {
-            if (state == State.GRABBED) //Releases if DrEric dies while held
-                state = State.NORMAL;
+            state = State.NORMAL;
             FindDrEric();
+        }
+    }
+
+
+    void UpdateAnimation()
+    {
+        switch(state)
+        {
+            case State.GRABBED:
+                idleSprite.GetComponent<SpriteRenderer>().enabled = false;
+                launchingSprite.GetComponent<SpriteRenderer>().enabled = true;
+                break;
+            default:
+                idleSprite.GetComponent<SpriteRenderer>().enabled = true;
+                launchingSprite.GetComponent<SpriteRenderer>().enabled = false;
+                break;
+
         }
     }
 
@@ -180,8 +197,6 @@ public class SquidLauncher : MonoBehaviour
 
         grabSprite = 1;
         AnimateSprite();
-        idleSprite.GetComponent<SpriteRenderer>().enabled = false;
-        launchingSprite.GetComponent<SpriteRenderer>().enabled = true;
 
         drEric.GetComponent<Rigidbody2D>().gravityScale = 0;
         drEric.GetComponent<Rigidbody2D>().angularVelocity = 0;
@@ -278,8 +293,6 @@ public class SquidLauncher : MonoBehaviour
     {
         drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
         drEric.GetComponent<FlingObject>().Fling(deltaVector);
-        idleSprite.GetComponent<SpriteRenderer>().enabled = true;
-        launchingSprite.GetComponent<SpriteRenderer>().enabled = false;
         state = State.NORMAL;
     }
 

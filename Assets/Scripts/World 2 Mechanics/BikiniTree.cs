@@ -35,7 +35,9 @@ public class BikiniTree : TimeObject{
 	public void Expand(float height) {
 		//myPlatform.enabled = true;
 		//myPlatform.endVector.y = height - 25;
-		this.transform.position.y = height;
+        Vector3 oldPos = this.transform.position;
+        Vector3 newPosition = new Vector3(oldPos.x, height, oldPos.z);
+		this.transform.position = newPosition;
 	}
 	
 }

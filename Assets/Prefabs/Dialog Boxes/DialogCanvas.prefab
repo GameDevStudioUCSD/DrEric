@@ -352,7 +352,7 @@ MonoBehaviour:
   firstLine: {fileID: 11474018}
   secondLine: {fileID: 11431518}
   delayBetweenChars: 0.05
-  typeOfDialogBox: 2
+  typeOfDialogBox: 0
   nAutoReads: 3
   timeBetweenAutoReads: 1
   arrowImage: {fileID: 11429458}
@@ -566,6 +566,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speedmultiplier
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: typeOfDialogBox
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 4bf17053007c7b64a97c5c5f47f2fc9e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -11750,48 +11750,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1001 &823530732
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.11564779
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -8.83859158
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 464942, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 31164a1f2f097f54ca662f39e00079a9, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &829550193
 GameObject:
   m_ObjectHideFlags: 0
@@ -28559,7 +28517,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &1941410073
 GameObject:
   m_ObjectHideFlags: 0
@@ -29184,7 +29142,7 @@ Transform:
   - {fileID: 100531233}
   - {fileID: 1510980460}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &1990512586
 GameObject:
   m_ObjectHideFlags: 0

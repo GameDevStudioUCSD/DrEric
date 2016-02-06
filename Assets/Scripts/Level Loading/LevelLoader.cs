@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 /**
  * Filename: LevelLoader.cs \n
@@ -15,16 +15,18 @@ using System.Collections;
  */
 public class LevelLoader : MonoBehaviour {
 
-    private const int MAIN_MENU = 1;
-    private const int SPACE_1 = 10;
+    private const int MAIN_MENU = 0;
+    private const int SPACE_1 = 2;
     private const int SPACE_2 = 3;
     private const int SPACE_3 = 4;
     private const int SPACE_4 = 5;
-    private const int SPACE_5 = 8;
+    private const int SPACE_5 = 6;
+    private const int SPACE_6 = 7;
+    private const int SPACE_7 = 8;
     private const int SPACE_8 = 9;
-    private const int SPACE_9 = 7;
-    private const int SPACE_BOSS = 6;
-    private const int SPACE_BONUS = 2;
+    private const int SPACE_9 = 10;
+    private const int SPACE_BOSS = 11;
+    private const int SPACE_BONUS = 12;
 
     public World world;
     public Level level;
@@ -45,7 +47,7 @@ public class LevelLoader : MonoBehaviour {
                 LoadSpaceLevel(level);
                 break;
             case World.MainMenu:
-                Application.LoadLevel(MAIN_MENU);
+                SceneManager.LoadScene(MAIN_MENU);
                 break;
             default:
                 Debug.LogError("Something horrible happened when trying to load world: " + world);
@@ -66,6 +68,10 @@ public class LevelLoader : MonoBehaviour {
                 return new LevelInfo(World.Space, Level.Four);
             case SPACE_5:
                 return new LevelInfo(World.Space, Level.Five);
+            case SPACE_6:
+                return new LevelInfo(World.Space, Level.Six);
+            case SPACE_7:
+                return new LevelInfo(World.Space, Level.Seven);
             case SPACE_8:
                 return new LevelInfo(World.Space, Level.Eight);
             case SPACE_9:
@@ -84,31 +90,37 @@ public class LevelLoader : MonoBehaviour {
         switch( level )
         {
             case Level.One:
-                Application.LoadLevel(SPACE_1);
+                SceneManager.LoadScene(SPACE_1);
                 break;
             case Level.Two:
-                Application.LoadLevel(SPACE_2);
+                SceneManager.LoadScene(SPACE_2);
                 break;
             case Level.Three:
-                Application.LoadLevel(SPACE_3);
+                SceneManager.LoadScene(SPACE_3);
                 break;
             case Level.Four:
-                Application.LoadLevel(SPACE_4);
+                SceneManager.LoadScene(SPACE_4);
                 break;
             case Level.Five:
-                Application.LoadLevel(SPACE_5);
+                SceneManager.LoadScene(SPACE_5);
+                break;
+            case Level.Six:
+                SceneManager.LoadScene(SPACE_6);
+                break;
+            case Level.Seven:
+                SceneManager.LoadScene(SPACE_7);
                 break;
             case Level.Eight:
-                Application.LoadLevel(SPACE_8);
+                SceneManager.LoadScene(SPACE_8);
                 break;
             case Level.Nine:
-                Application.LoadLevel(SPACE_9);
+                SceneManager.LoadScene(SPACE_9);
                 break;
             case Level.Boss:
-                Application.LoadLevel(SPACE_BOSS);
+                SceneManager.LoadScene(SPACE_BOSS);
                 break;
             case Level.Bonus:
-                Application.LoadLevel(SPACE_BONUS);
+                SceneManager.LoadScene(SPACE_BONUS);
                 break;
             default:
                 Debug.LogError("Tried to load a Space level that has not been implemented!");

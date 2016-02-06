@@ -10,12 +10,14 @@ public class Snake : MonoBehaviour {
 	public float maxTimeAggravated = 15f;
 	public DialogBox dialog;
 	float timeCounter;
+    Vector3 startingposition;
 	
 	int aggravateFrameCounter = 0;
 	
 	// Use this for initialization
 	void Start () {
 		state = State.IDLE;
+        startingposition = transform.position;
 	}
 	
 	void Update () {
@@ -39,13 +41,24 @@ public class Snake : MonoBehaviour {
 			this.GetComponent<Platform>().enabled = true;
 		}
 	}
+
+    public void reset()
+    {
+        state = State.IDLE;
+        this.GetComponent<Platform>().enabled = false;
+        hitCount = 0;
+        transform.position = startingposition;
+    }
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (state == State.IDLE) {
 			hitCount++;
 			switch (hitCount)
-			{	
+			{
+                case 1:
+                    dialog.SetText("Ouch! That hurt! You better not hit me (2) more times!");
+                break;
 				case 2:
 				dialog.SetText("Stop that! You better not hit me (1) more time(s)!");
 				break;

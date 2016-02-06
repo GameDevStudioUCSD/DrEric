@@ -7,6 +7,7 @@ public class Names  {
     public static string PLAYERHOLDER = "Player Holder";
     public static string SQUIDLAUNCHER = "Squid Launcher";
     public static string RHYTHMCONTROLLER = "RhythmController";
+    public static string BALLCONTROLLER = "BallController";
     public static string CAMERA = "Camera";
     public static string DIALOGWINDOW = "DialogWindow";
     public static string RESPAWNER = "Respawner/Spawner";

@@ -16,7 +16,6 @@ public class PlayerHolder : MonoBehaviour {
     private GameObject squidLauncher;
     private GameObject gameCamera;
     private OrientWithGravity cameraOrienter;
-    private float timer = 0;
 
 	/**
      * Description: Initializes reference fields
@@ -49,11 +48,4 @@ public class PlayerHolder : MonoBehaviour {
             squidLauncher.transform.position = squidPos;
         }
 	}
-
-    
-
-    public void StartTimer()
-    {
-        timer = Time.time;
-    }
 }

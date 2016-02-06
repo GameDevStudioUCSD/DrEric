@@ -39,6 +39,12 @@ public class Snake : MonoBehaviour {
 			this.GetComponent<Platform>().enabled = true;
 		}
 	}
+
+    public void reset()
+    {
+        state = State.IDLE;
+        hitCount = 0;
+    }
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{

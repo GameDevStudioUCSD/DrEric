@@ -19,6 +19,8 @@ public class BallController : MonoBehaviour {
     public State state = State.SPAWNING;
 	public int numParticlesOnCollision = 3; //How many particles appear when you hit a wall
 
+    public float outOfBoundsRegion = 200;
+
     private int jumps = 0; //times jumped since last landed
     private float lastHit; //time last landed
     private const float bounceBufferPeriod = .1f; //min time between "landings"
@@ -31,6 +33,7 @@ public class BallController : MonoBehaviour {
     private RespawnController respawner;
     private SquidLauncher squid;
 	private ParticleSystem pSys;
+    private GameObject playerHolder;
 
     /**
      * Description: Sets up a reference to the ball's AudioSource and other
@@ -38,11 +41,12 @@ public class BallController : MonoBehaviour {
      */
     void Start()
     {
+        playerHolder = GameObject.Find(Names.PLAYERHOLDER);
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+		pSys = GetComponent<ParticleSystem> ();
         respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
         squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
-		pSys = GetComponent<ParticleSystem> ();
     }
 
     /**
@@ -149,10 +153,12 @@ public class BallController : MonoBehaviour {
      */
     public bool OutOfBounds()
     {
-        return (respawner.player.transform.position.x < -1000 ||
-            respawner.player.transform.position.x > 1000 ||
-            respawner.player.transform.position.y < -1000 ||
-            respawner.player.transform.position.y > 1000);
+        if(playerHolder != null)
+        {
+            Transform t = playerHolder.GetComponent<Transform>();
+            return t.position.magnitude > outOfBoundsRegion;
+        }
+        return false;
     }
 
     /**

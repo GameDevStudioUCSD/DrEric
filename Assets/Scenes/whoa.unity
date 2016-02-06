@@ -6530,6 +6530,10 @@ Prefab:
       propertyPath: state
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 185872, guid: b0644c7c30ffed94d87849a47120fc28, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0644c7c30ffed94d87849a47120fc28, type: 2}
   m_IsPrefabParent: 0
@@ -10700,20 +10704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
-  isVertical: 0
-  numTiles: 100
-  topLeftCorner: {fileID: 0}
-  topRightCorner: {fileID: 0}
-  bottomLeftCorner: {fileID: 0}
-  bottomRightCorner: {fileID: 0}
-  topSprite: {fileID: 0}
-  bottomSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
-  middleSprite: {fileID: 0}
-  width: 2
-  height: 2
 --- !u!1 &689323229
 GameObject:
   m_ObjectHideFlags: 0
@@ -10963,8 +10953,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpDuration: 0.1
+  trail: {fileID: 0}
   is2D: 1
   isText: 0
+  isSprite: 0
+  isTrail: 0
 --- !u!222 &699097217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11286,8 +11279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpDuration: 0.1
+  trail: {fileID: 0}
   is2D: 0
   isText: 1
+  isSprite: 0
+  isTrail: 0
 --- !u!222 &723922466
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14808,20 +14804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
-  isVertical: 1
-  numTiles: 100
-  topLeftCorner: {fileID: 0}
-  topRightCorner: {fileID: 0}
-  bottomLeftCorner: {fileID: 0}
-  bottomRightCorner: {fileID: 0}
-  topSprite: {fileID: 0}
-  bottomSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
-  middleSprite: {fileID: 0}
-  width: 2
-  height: 2
 --- !u!1 &1008887140
 GameObject:
   m_ObjectHideFlags: 0
@@ -14908,8 +14890,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpDuration: 1
+  trail: {fileID: 0}
   is2D: 0
   isText: 1
+  isSprite: 0
+  isTrail: 0
 --- !u!1 &1013208461
 GameObject:
   m_ObjectHideFlags: 0
@@ -20451,20 +20436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
-  isVertical: 1
-  numTiles: 100
-  topLeftCorner: {fileID: 0}
-  topRightCorner: {fileID: 0}
-  bottomLeftCorner: {fileID: 0}
-  bottomRightCorner: {fileID: 0}
-  topSprite: {fileID: 0}
-  bottomSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
-  middleSprite: {fileID: 0}
-  width: 2
-  height: 2
 --- !u!1 &1415820232
 GameObject:
   m_ObjectHideFlags: 0
@@ -22137,20 +22108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 734a76c4e207d44e187ee56bd9e01571, type: 3}
-  isVertical: 0
-  numTiles: 100
-  topLeftCorner: {fileID: 0}
-  topRightCorner: {fileID: 0}
-  bottomLeftCorner: {fileID: 0}
-  bottomRightCorner: {fileID: 0}
-  topSprite: {fileID: 0}
-  bottomSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
-  middleSprite: {fileID: 0}
-  width: 2
-  height: 2
 --- !u!1001 &1509659102
 Prefab:
   m_ObjectHideFlags: 0
@@ -24592,6 +24549,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 151384, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -24755,7 +24716,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1692325847
 GameObject:
   m_ObjectHideFlags: 0
@@ -26002,8 +25963,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpDuration: 0.1
+  trail: {fileID: 0}
   is2D: 0
   isText: 0
+  isSprite: 0
+  isTrail: 0
 --- !u!95 &1741787355
 Animator:
   serializedVersion: 3

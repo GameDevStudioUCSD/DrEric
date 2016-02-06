@@ -15,16 +15,16 @@ using System.Collections;
  */
 public class LevelLoader : MonoBehaviour {
 
-    private const int MAIN_MENU = 0;
-    private const int SPACE_1 = 9;
-    private const int SPACE_2 = 2;
-    private const int SPACE_3 = 3;
-    private const int SPACE_4 = 4;
-    private const int SPACE_9 = 6;
-    private const int SPACE_5 = 7;
-    private const int SPACE_8 = 8;
-    private const int SPACE_BOSS = 5;
-    private const int SPACE_BONUS = 1;
+    private const int MAIN_MENU = 1;
+    private const int SPACE_1 = 10;
+    private const int SPACE_2 = 3;
+    private const int SPACE_3 = 4;
+    private const int SPACE_4 = 5;
+    private const int SPACE_5 = 8;
+    private const int SPACE_8 = 9;
+    private const int SPACE_9 = 7;
+    private const int SPACE_BOSS = 6;
+    private const int SPACE_BONUS = 2;
 
     public World world;
     public Level level;

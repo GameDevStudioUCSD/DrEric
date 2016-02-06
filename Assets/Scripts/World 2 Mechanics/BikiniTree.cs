@@ -4,9 +4,10 @@ using System.Collections;
 public class BikiniTree : TimeObject{
 
 	public GameObject playerHolder;
-	public BallController playerCharacter;
-	private float top = 0;
+	private BallController playerCharacter;
+	public float headHeightLimit = 2;
 	private Platform myPlatform;
+	private bool onTreeTop;
 	
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class BikiniTree : TimeObject{
 		myPlatform = this.GetComponent<Platform>();
 		Mesh mesh = GetComponent<MeshFilter>().mesh;
 		Bounds bounds = mesh.bounds;
-		top = bounds.max.y;		
+		headHeightLimit = bounds.max.y;		
 	}
 	
 	// Update is called once per frame
@@ -23,11 +24,14 @@ public class BikiniTree : TimeObject{
 			playerCharacter = playerHolder.GetComponentInChildren<BallController>();
 		}
 		
+		if (onTreeTop)
+			return;
+		
 		float playerTop = playerCharacter.transform.position.y;
-		if (playerTop > this.top) {
+		if (playerTop > this.headHeightLimit) {
 			this.Expand(playerTop);
 		} else {
-			this.Expand(this.top);
+			this.Expand(this.headHeightLimit);
 		}
 	}
 	
@@ -38,6 +42,14 @@ public class BikiniTree : TimeObject{
         Vector3 oldPos = this.transform.position;
         Vector3 newPosition = new Vector3(oldPos.x, height, oldPos.z);
 		this.transform.position = newPosition;
+	}
+	
+	public void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Player")
+		{
+			onTreeTop = true;
+		}
 	}
 	
 }

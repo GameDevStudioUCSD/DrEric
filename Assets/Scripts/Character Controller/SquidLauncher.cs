@@ -31,7 +31,7 @@ public class SquidLauncher : MonoBehaviour
     public Sprite launchSprite5;
     public Sprite launchSprite6;
 
-    public enum State { NORMAL, GRABBING, GRABBED };
+    public enum State { NORMAL, GRABBED };
     public State state = State.NORMAL;
     private int grabSprite = 0; //grabbing sprite for current vector
 
@@ -59,10 +59,6 @@ public class SquidLauncher : MonoBehaviour
         orient = GetComponent<OrientWithGravity>();
     }
 
-    /**
-     * Description: Orients with gravity, finds DrEric, animates grabbing
-     *              sprites, rotates, and launches or releases DrEric
-     */
     /**
      * Description: Orients with gravity, finds DrEric, animates grabbing
      *              sprites, rotates, and launches or releases DrEric

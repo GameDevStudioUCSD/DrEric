@@ -5,13 +5,30 @@ public class FixRotation : MonoBehaviour {
 
 	public GameObject go;
 
-	bool rotating = false;
+	public bool rotating = false;
+    Quaternion startingrotation;
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.transform.tag == "Player")
 			rotating = true;
 	}
+
+    void start()
+    {
+        startingrotation = go.transform.rotation;
+    }
+
+    public void startRotation()
+    {
+        rotating = true;
+    }
+
+    public void resetRotation()
+    {
+        rotating = false;
+        go.transform.rotation = startingrotation;
+    }
 
 	void Update()
 	{

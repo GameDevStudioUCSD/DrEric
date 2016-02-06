@@ -115,18 +115,18 @@ public class BallController : MonoBehaviour {
      */
     public bool TimeoutLanding()
     {
-        if (rb.velocity.magnitude < resetSpeedTolerance &&
-            squid.state == SquidLauncher.State.NORMAL)
+        if (Mathf.Abs(rb.velocity.x) < resetSpeedTolerance
+            && Mathf.Abs(rb.velocity.y) < resetSpeedTolerance
+            && squid.state == SquidLauncher.State.NORMAL)
         {
             if (Time.time - resetTimer > resetTimeout)
                 return true;
-            else if (resetTimer == 0)
-                resetTimer = Time.time;
-            return false;
+            else
+                return false;
         }
         else
         {
-            resetTimer = 0;
+            resetTimer = Time.time;
             return false;
         }
     }
@@ -172,7 +172,10 @@ public class BallController : MonoBehaviour {
         sprite.color = new Color(255, 255, 255, 255);
     }
 
-
+    /**
+     * Description: Checks if the player is in contact with the ground and
+     *              resets the jumps if it is
+     */
     public bool CheckGround()
     {
         RaycastHit2D[] detector = Physics2D.RaycastAll(transform.position, Physics2D.gravity, 0.45f);

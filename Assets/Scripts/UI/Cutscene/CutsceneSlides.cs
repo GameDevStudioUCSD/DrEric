@@ -15,6 +15,8 @@ public class CutsceneSlides : MonoBehaviour {
 	void Update () {
         if (currentSlide == null && slideIdx < slides.Length)
             CreateSlide();
+        if (slideIdx == slides.Length && currentSlide == null)
+            LevelLoader.LoadLevel(World.MainMenu, Level.One);
 	}
 
 
@@ -24,7 +26,7 @@ public class CutsceneSlides : MonoBehaviour {
         currentSlide = GameObject.Instantiate(slides[slideIdx]);
         // Fix the transform's position
         RectTransform trans = currentSlide.GetComponent<RectTransform>();
-        trans.parent = this.transform;
+        trans.SetParent(transform);
         trans.offsetMax = trans.offsetMin = Vector2.zero;
         // Increment the slide index
         slideIdx++;

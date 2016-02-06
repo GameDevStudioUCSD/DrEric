@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public class AnalyticsLogger : MonoBehaviour {
 
-    public int level = -1;
-    public string world = "NOTAWORLD";
-    public string eventName = "INVALIDEVENT";
+    private int level = -1;
+    private string world = "NOTAWORLD";
+    private string eventName = "INVALIDEVENT";
     private bool destroyOnMainMenu = false;
 
     private Dictionary<string, object> log;
@@ -28,20 +28,30 @@ public class AnalyticsLogger : MonoBehaviour {
     // Public Functions
     public static void SendEvent()
     {
-        AnalyticsLogger logger = GetInstance(); 
-        logger.CreateCustomEvent();
+        AnalyticsLogger logger = GetInstance();
+        if (logger == null)
+            LogWarningNotFound();
+        else
+            logger.CreateCustomEvent();
     }
 
     public static AnalyticsLogger GetInstance()
     {
         GameObject loggerObj = GameObject.Find(Names.ANALYTICSLOGGER);
-        AnalyticsLogger logger = loggerObj.GetComponent<AnalyticsLogger>();
+        AnalyticsLogger logger = null;
+        if (loggerObj != null)
+            logger = loggerObj.GetComponent<AnalyticsLogger>();
         return logger;
     }
     
     public static void DumpCompletionLog()
     {
         AnalyticsLogger logger = GetInstance();
+        if (logger == null)
+        {
+            LogWarningNotFound();
+            return;
+        }
         logger.LogFinishingStats();
         Debug.Log("Custom Event: " + logger.eventName);
         foreach( string key in logger.log.Keys)
@@ -69,7 +79,7 @@ public class AnalyticsLogger : MonoBehaviour {
     }
 
     // Private Functions
-    void SetupLoggingDict()
+    private void SetupLoggingDict()
     {
         DetermineLevelInfo();
         // Create a new instance for the dict
@@ -78,12 +88,12 @@ public class AnalyticsLogger : MonoBehaviour {
         eventName = "Completed_" + world + "_Level_" + level;
     }
 
-    void LogFinishingStats()
+    private void LogFinishingStats()
     {
         LogCustomEvent("Number of Deaths", DeathCount.GetDeathCount());
         LogCustomEvent("Time to Complete", Time.timeSinceLevelLoad);
     }
-    void DetermineLevelInfo()
+    private void DetermineLevelInfo()
     {
         int sceneIdx = Application.loadedLevel;
         LevelInfo info = LevelLoader.GetLevelInfo(sceneIdx );
@@ -101,6 +111,12 @@ public class AnalyticsLogger : MonoBehaviour {
                 world = "NOTAWORLD";
                 break;
         }
+    }
+
+
+    private static void LogWarningNotFound()
+    {
+        Debug.LogWarning("The UnityAnalytics GameObject could not be found! Did you start the game from the mainmenu?");
     }
 
 

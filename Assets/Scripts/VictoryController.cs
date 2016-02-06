@@ -54,7 +54,8 @@ public class VictoryController : MonoBehaviour
             {
                 Instantiate(victoryScreen);
                 spinEric(collision.gameObject);
-                //AnalyticsLogger.SendEvent();
+                if(!Application.isEditor)
+                    AnalyticsLogger.SendEvent();
             }
             Invoke("LoadNextLevel", 2.0f);
             hasWon = true;

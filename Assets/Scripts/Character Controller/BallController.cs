@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour {
 
     private int jumps = 0; //times jumped since last landed
     private float lastHit; //time last landed
-    private const float bounceBufferPeriod = .4f; //min time between "landings"
+    private const float bounceBufferPeriod = .1f; //min time between "landings"
     private float resetTimer = 0;
     private const float resetTimeout = 0.1f;
     private const float resetSpeedTolerance = 0.1f; //max speed for timeout

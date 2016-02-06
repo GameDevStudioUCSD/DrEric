@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq;
 
 public class DialogBox : MonoBehaviour {
 
@@ -206,6 +207,12 @@ public class DialogBox : MonoBehaviour {
     public void DisplayText(string text)
     {
         SetText(text);
+        this.gameObject.SetActive(true);
+    }
+    public void AppendText(string text)
+    {
+        string[] newWords = text.Split(' ');
+        wordList= (string[])wordList.Concat(newWords);
         this.gameObject.SetActive(true);
     }
     public void SetText(string text)

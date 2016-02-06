@@ -24,7 +24,6 @@ public class Snake : MonoBehaviour {
 		if (state == State.IDLE)
 		{
 			this.GetComponent<Animator>().SetInteger("Animation", 0);
-            Debug.Log(startingposition);
 		}
 		else if (state == State.AGGRAVATED)
 		{

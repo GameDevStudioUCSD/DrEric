@@ -4,17 +4,16 @@ using System.Collections;
 public class BikiniTree : TimeObject{
 
 	public GameObject playerHolder;
-	public BallController playerCharacter;
-	private float top = 0;
+	private BallController playerCharacter;
+	public float headHeightLimit = 2;
 	private Platform myPlatform;
+	private bool onTreeTop;
+	public bool treeAlive = true;
 	
 	// Use this for initialization
 	void Start () {
 		playerCharacter = null;
 		myPlatform = this.GetComponent<Platform>();
-		Mesh mesh = GetComponent<MeshFilter>().mesh;
-		Bounds bounds = mesh.bounds;
-		top = bounds.max.y;		
 	}
 	
 	// Update is called once per frame
@@ -23,11 +22,17 @@ public class BikiniTree : TimeObject{
 			playerCharacter = playerHolder.GetComponentInChildren<BallController>();
 		}
 		
+		if (onTreeTop)
+			return;
+
+		if (!treeAlive)
+			return; 
+	
 		float playerTop = playerCharacter.transform.position.y;
-		if (playerTop > this.top) {
+		if (playerTop > this.headHeightLimit) {
 			this.Expand(playerTop);
 		} else {
-			this.Expand(this.top);
+			this.Expand(this.headHeightLimit);
 		}
 	}
 	
@@ -38,6 +43,30 @@ public class BikiniTree : TimeObject{
         Vector3 oldPos = this.transform.position;
         Vector3 newPosition = new Vector3(oldPos.x, height, oldPos.z);
 		this.transform.position = newPosition;
+	}
+	
+	public void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Player")
+		{
+			onTreeTop = true;
+		}
+	}
+
+	public void killTree()
+	{
+		treeAlive = false;
+		this.GetComponent<BoxCollider2D>().enabled = false;
+		this.GetComponent<SpriteRenderer>().enabled = false;
+
+	}
+
+	public void plantTree()
+	{
+		treeAlive = true;
+		this.GetComponent<BoxCollider2D>().enabled = true;
+		this.GetComponent<SpriteRenderer>().enabled = true;
+
 	}
 	
 }

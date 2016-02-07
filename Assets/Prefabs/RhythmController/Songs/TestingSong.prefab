@@ -42,8 +42,9 @@ MonoBehaviour:
   bpm: 120
   timeSigUpper: 4
   timeSigLower: 4
-  pitch: .899999976
-  song: {fileID: 8300000, guid: 71069596088a08942b64f785197c1b7c, type: 3}
+  pitch: 1.29999995
+  song: {fileID: 8300000, guid: e75ce41c7d3546948be06bafb19ba072, type: 3}
+  transition: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -54,7 +55,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: song
       value: 
-      objectReference: {fileID: 8300000, guid: 71069596088a08942b64f785197c1b7c, type: 3}
+      objectReference: {fileID: 8300000, guid: e75ce41c7d3546948be06bafb19ba072, type: 3}
     - target: {fileID: 0}
       propertyPath: bpm
       value: 120
@@ -69,7 +70,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pitch
-      value: .899999976
+      value: 1.29999995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

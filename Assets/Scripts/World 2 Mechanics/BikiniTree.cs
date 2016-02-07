@@ -13,9 +13,6 @@ public class BikiniTree : TimeObject{
 	void Start () {
 		playerCharacter = null;
 		myPlatform = this.GetComponent<Platform>();
-		Mesh mesh = GetComponent<MeshFilter>().mesh;
-		Bounds bounds = mesh.bounds;
-		headHeightLimit = bounds.max.y;		
 	}
 	
 	// Update is called once per frame

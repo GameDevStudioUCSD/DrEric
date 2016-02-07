@@ -8,6 +8,7 @@ public class BikiniTree : TimeObject{
 	public float headHeightLimit = 2;
 	private Platform myPlatform;
 	private bool onTreeTop;
+	public bool treeAlive = true;
 	
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,10 @@ public class BikiniTree : TimeObject{
 		
 		if (onTreeTop)
 			return;
-		
+
+		if (!treeAlive)
+			return; 
+	
 		float playerTop = playerCharacter.transform.position.y;
 		if (playerTop > this.headHeightLimit) {
 			this.Expand(playerTop);
@@ -47,6 +51,22 @@ public class BikiniTree : TimeObject{
 		{
 			onTreeTop = true;
 		}
+	}
+
+	public void killTree()
+	{
+		treeAlive = false;
+		this.GetComponent<BoxCollider2D>().enabled = false;
+		this.GetComponent<SpriteRenderer>().enabled = false;
+
+	}
+
+	public void plantTree()
+	{
+		treeAlive = true;
+		this.GetComponent<BoxCollider2D>().enabled = true;
+		this.GetComponent<SpriteRenderer>().enabled = true;
+
 	}
 	
 }

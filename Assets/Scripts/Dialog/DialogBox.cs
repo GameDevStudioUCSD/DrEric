@@ -212,7 +212,7 @@ public class DialogBox : MonoBehaviour {
     public void AppendText(string text)
     {
         string[] newWords = text.Split(' ');
-        wordList= (string[])wordList.Concat(newWords);
+        wordList= wordList.Concat(newWords).ToArray<string>();
         this.gameObject.SetActive(true);
     }
     public void SetText(string text)

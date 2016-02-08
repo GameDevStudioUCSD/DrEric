@@ -8,7 +8,7 @@ public DialogBox boxUhText;
     {
         if(collider.tag == "Player")
         {
-            boxUhText.DisplayText(dialog);
+            boxUhText.AppendText(dialog);
             GameObject.Destroy(this.gameObject);
         }
     }

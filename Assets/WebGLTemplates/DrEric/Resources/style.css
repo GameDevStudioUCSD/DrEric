@@ -1,0 +1,110 @@
+html, body {
+    margin: 0;
+}
+
+body {
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.canvas-wrapper {
+    width: 1280px;
+    height: 864px;
+    position: relative;
+    left: calc(50% - 640px);
+    top: calc(50% - 400px);
+}
+
+#canvas {
+    width: 100%;
+    height: calc(100% - 64px);
+    background-color: rgba(0,0,0,0.5);
+}
+
+#loading {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 50px);
+    text-align: center;
+    line-height: 60px;
+    width: 100px;
+    height: 60px;
+    font-size: 40px;
+    font-family: Papyrus, fantasy;
+    color: white;
+}
+
+#messages {
+    white-space: nowrap;
+    position: absolute;
+    bottom:64px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-family: monospace;
+    color: white;
+}
+
+#squid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+}
+
+#bsod {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(31,103,179);
+    z-index: 2000;
+    display: none;
+}
+
+#bsod .content {
+    font-family:  'Segoe UI', sans-serif;
+    font-weight: 100;
+    color: white;
+    width: 1024px;
+    height: 640px;
+    position: relative;
+    left: calc(50% - 512px);
+    top: calc(50% - 320px);
+}
+#bsod .face {
+    font-size: 200px;
+    width: 100%;
+}
+
+#bsod .text {
+    margin-top: 20px;
+    font-size: 36px;
+    width: 100%;
+}
+
+#bsod .subtext {
+    margin-top: 60px;
+    font-size: 20px;
+    width: 100%;
+}
+
+#fullscreen {
+    font-size: 40px;
+    height: 64px;
+    color: deeppink;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    line-height: 64px;
+    cursor: pointer;
+}
+#fullscreen:hover {
+    background-color: rgba(0,0,0,0.2);
+}

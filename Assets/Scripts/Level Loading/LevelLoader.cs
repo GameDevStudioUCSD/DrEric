@@ -45,6 +45,7 @@ public class LevelLoader : MonoBehaviour {
         {
             case World.Space:
                 LoadSpaceLevel(level);
+                Physics2D.gravity = -9.81f * Vector2.up;
                 break;
             case World.MainMenu:
                 SceneManager.LoadScene(MAIN_MENU);

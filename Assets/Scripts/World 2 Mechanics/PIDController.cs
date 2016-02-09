@@ -14,12 +14,12 @@ public class PIDController : MonoBehaviour {
 
     public enum TrackingType { Transform, Vector }
 
-    public float kP;
-    public float kI;
-    public float kD;
+    public float kP = 1.0f;
+    public float kI = 1.0f;
+    public float kD = 1.0f;
 
-    public float maximumImpulse;
-    public float minimumImpulse;
+    public float maximumImpulse = 1.0f;
+    public float minimumImpulse = 0f;
 
     public float impuseRate;
 
@@ -29,14 +29,33 @@ public class PIDController : MonoBehaviour {
 
     private Vector3 previousError;
     private Vector3 currError;
+    private float lastUpdate;
 	void Start () {
-	
+        lastUpdate = Time.time;
 	}
 	
 	void Update () {
-	
+        if(Time.time - lastUpdate > impuseRate)
+        {
+            Vector3 impulseVect = CalculatePID();
+
+        }
 	}
 
+    Vector3 CalculatePID()
+    {
+        CalculateError();
+        Vector3 res = currError;
+        return kP * currError;
+    }
+
+    public static Vector3 ClampVector3( Vector3 v, float minMagnitude, float maxMagnitude )
+    {
+        Vector3 res = v;
+        res = res.magnitude > maxMagnitude ? maxMagnitude * v.normalized : res; 
+        res = res.magnitude < minMagnitude ? minMagnitude * v.normalized : res; 
+        return res;
+    }
     void CalculateError()
     {
         Vector3 dest = destinationVector;

@@ -30,9 +30,10 @@ public class Chaser : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.name != Names.DRERIC)
+        Transform otherTrans = c.gameObject.GetComponent<Transform>();
+        if (otherTrans != pid.destinationTransform)
             return;
-        Vector3 otherPos = c.gameObject.GetComponent<Transform>().position;
+        Vector3 otherPos = otherTrans.position;
         Vector3 restPos = restDistance * (transform.position - otherPos).normalized;
         pid.destinationVector = transform.position + restPos;
         pid.trackingType = PIDController.TrackingType.Vector;

@@ -28,7 +28,7 @@ public class RandomColorLerper : MonoBehaviour {
     /** Set true this boolean if the object is text */
     public bool isText = false;
     /** Set true if the object is a sprite **/
-    public bool isSprite;
+    public bool isRenderer;
     /** Set true if the object is a trail renderer **/
     public bool isTrail;
     /** Setup overhead */
@@ -37,11 +37,11 @@ public class RandomColorLerper : MonoBehaviour {
         goalColor = GetRandomColor();
         if (isText)
             text = GetComponent<Text>();
-        else if (is2D)
+        if (is2D)
             img = GetComponent<Image>();
-        else if (isTrail)
+        if (isTrail)
             trailMaterial = trail.material;
-        else
+        if( isRenderer) 
             rend = GetComponent<Renderer>();
 	}
 	
@@ -62,11 +62,11 @@ public class RandomColorLerper : MonoBehaviour {
             Color lerpColor = Color.Lerp(currColor, goalColor, lerpVal );
             if (isText)
                 text.color = lerpColor;
-            else if (is2D)
+            if (is2D)
                 img.color = lerpColor;
-            else if (isTrail)
+            if (isTrail)
                 trailMaterial.color = lerpColor;
-            else
+            if (isRenderer)
                 rend.material.color = lerpColor;
         }
 	}

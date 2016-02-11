@@ -543,8 +543,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ReadMore
+      - m_Target: {fileID: 11493484}
+        m_MethodName: OnMouseDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -633,14 +633,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffb772c3ece83a48b504da128367f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: Hi! I'm the mother squid's beloved avatar, Squidly! I'm here to teach you
-    how to play! You've already learned your first biggest lesson - you have to click
-    these text boxes to progress through text! Wowee, what else can we click? Why
-    don't you try clicking on me!
+  dialog: Mister Eric, it seems that you have taken a rather wrong turn. I have been
+    charged with escorting you around the multi-spheres. Unfortunately, I can read
+    your mind - so just give me an indication of the direction you want to move or
+    any other matters that are currently pressing on your mind.
   maxCharCount: 52
   firstLine: {fileID: 11466952}
   secondLine: {fileID: 11473906}
   delayBetweenChars: 0.05
+  savedDelay: 0.05
   typeOfDialogBox: 0
   nAutoReads: 3
   timeBetweenAutoReads: 1

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class AnalyticsLogger : MonoBehaviour {
 
@@ -11,18 +12,45 @@ public class AnalyticsLogger : MonoBehaviour {
     private bool destroyOnMainMenu = false;
 
     private Dictionary<string, object> log;
+    private bool hasCompleted = false;
+    public string randHash = "TURK_";
+    public Text displayHash;
 
 
     // MonoBehaviour functions
 	void Start() {
         DontDestroyOnLoad(this.gameObject);
         SetupLoggingDict();
+        for (int i = 0; i < 4; i++)
+        {
+            randHash += (char)((int)Random.Range(65, 90));
+        }
+        randHash += (int)Random.Range(0, 9);
+        randHash += (int)Random.Range(0, 9);
+        displayHash.text += randHash;
 	}
 
     void OnLevelWasLoaded(int level)
     {
-        destroyOnMainMenu = true;
         SetupLoggingDict();
+        if(world != "NOTAWORD")
+            destroyOnMainMenu = true;
+    }
+
+    void Update()
+    {
+        Dictionary<string, object> turkerLog = new Dictionary<string, object>();
+        turkerLog["UID"] = randHash;
+        if (level == 11 && DeathCount.GetDeathCount() > 2 && !hasCompleted )
+        {
+            Analytics.CustomEvent("Turker Completed", turkerLog);
+            hasCompleted = displayHash.enabled = true;
+        }
+        if (level == 12 && !hasCompleted)
+        {
+            Analytics.CustomEvent("Turker Completed", turkerLog);
+            hasCompleted = displayHash.enabled = true;
+        }
     }
 
     // Public Functions

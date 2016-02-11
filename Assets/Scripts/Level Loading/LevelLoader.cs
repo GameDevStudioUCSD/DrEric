@@ -15,7 +15,8 @@ using UnityEngine.SceneManagement;
  */
 public class LevelLoader : MonoBehaviour {
 
-    private const int MAIN_MENU = 0;
+    private const int INTRO = 0;
+    private const int MAIN_MENU = 1;
     private const int SPACE_1 = 2;
     private const int SPACE_2 = 3;
     private const int SPACE_3 = 4;
@@ -83,6 +84,8 @@ public class LevelLoader : MonoBehaviour {
                 return new LevelInfo(World.Space, Level.Bonus);
             case MAIN_MENU:
                 return new LevelInfo(World.MainMenu, Level.Bonus);
+            case INTRO:
+                return new LevelInfo(World.Intro, Level.Bonus);
         }
         return null;
     }
@@ -161,6 +164,5 @@ public class LevelLoader : MonoBehaviour {
 	}
 }
 
-public enum World { Space, MainMenu}
+public enum World { Space, MainMenu, Intro }
 public enum Level { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Boss, Bonus }
-public enum Menu { Main, WorldSelection }

@@ -49,7 +49,6 @@ public class Tutorial : MonoBehaviour {
             case State.Drag:
                 dragT.position = new Vector3(dragX, (( dragY) % 300) + 100, dragZ);
                 dragY += 3;
-                Debug.Log(savedPosMag - squidT.position.magnitude);
                 if (savedPosMag - squidT.position.magnitude < -7 || savedPosMag - squidT.position.magnitude > -2)
                 {
                     drag.SetActive(false);

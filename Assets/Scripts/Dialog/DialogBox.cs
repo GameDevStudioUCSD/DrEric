@@ -44,6 +44,8 @@ public class DialogBox : MonoBehaviour {
     //fast mode multiplier
     public int speedmultiplier;
 
+    public Image characterImage;
+
     // The list of words to display to the user
     string[] wordList;
     // The current index of wordList
@@ -63,7 +65,8 @@ public class DialogBox : MonoBehaviour {
     bool isNotAtEndOfSentence = true;
     // An approximate value of how wide each character is
     // TODO: Generalize
-    int charWidth = 15;
+    float charWidth = 18.0f;
+    float preferredWidth;
 	void Start () {
         // Set the word list
         wordList = dialog.Split(' ');
@@ -71,6 +74,7 @@ public class DialogBox : MonoBehaviour {
         timeOfLastPop = Time.time;
         // Setup word list 
         currentLine = firstLine;
+        preferredWidth = currentLine.preferredWidth;
         // Clear text
         ClearText();
         // Setup playback
@@ -80,7 +84,8 @@ public class DialogBox : MonoBehaviour {
 	
 	void Update () {
         // Define max char count
-        maxCharCount = (int)(currentLine.rectTransform.rect.width)/charWidth;
+        preferredWidth = transform.GetComponent<RectTransform>().rect.width;
+        maxCharCount = (int)((preferredWidth*.7f)/charWidth);
         
         //check for fast mode
         int fastmodeflag = 0;

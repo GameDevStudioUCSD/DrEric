@@ -357,6 +357,7 @@ MonoBehaviour:
   timeBetweenAutoReads: 1
   arrowImage: {fileID: 11429458}
   speedmultiplier: 2
+  characterImage: {fileID: 0}
 --- !u!114 &11474018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -570,6 +571,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: typeOfDialogBox
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: oldDialogCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -4,8 +4,8 @@ using System.Collections;
 public class Chaser : MonoBehaviour {
 
     enum State { Resting, Chasing }
-    public float restRate = 1.5f;
-    public float restDistance = 5;
+    public float restRate = 1;
+    public float restDistance = 3;
     PIDController pid;
     float lastAttack = 0;
     State state = State.Chasing;
@@ -31,8 +31,11 @@ public class Chaser : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D c)
     {
         Transform otherTrans = c.gameObject.GetComponent<Transform>();
-        if (otherTrans != pid.destinationTransform)
-            return;
+        if (otherTrans != pid.destinationTransform )
+        {
+            if (c.gameObject.name != Names.DRERIC || pid.destinationTransform.gameObject.name != Names.PLAYERHOLDER)
+                return;
+        }
         Vector3 otherPos = otherTrans.position;
         Vector3 restPos = restDistance * (transform.position - otherPos).normalized;
         pid.destinationVector = transform.position + restPos;

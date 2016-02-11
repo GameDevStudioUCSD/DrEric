@@ -160,13 +160,9 @@ public class RhythmController : MonoBehaviour {
         SetupSong();
         if(isDebugging)
 		    DebugLengths ();
-	}
-
-    void Awake()
-    {
         if (isIntro)
             DontDestroyOnLoad(this.gameObject);
-    }
+	}
 
     void SetupSong()
     {

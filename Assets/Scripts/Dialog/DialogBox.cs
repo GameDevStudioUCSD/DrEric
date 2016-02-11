@@ -26,6 +26,7 @@ public class DialogBox : MonoBehaviour {
     public Text secondLine;
     // The delay between printing each individual character in seconds
     public float delayBetweenChars = 0.05f;
+    public float savedDelay = 0.05f;
     // The type of the dialog box
     // If autoRead, then the dialog box will continue to scroll through the 
     // text without input from the user
@@ -80,7 +81,13 @@ public class DialogBox : MonoBehaviour {
         // Setup playback
         chipSource = GetComponent<AudioSource>();
         chipLength = chipSource.clip.length;
+        savedDelay = delayBetweenChars;
 	}
+
+    public void OnMouseDown()
+    {
+        delayBetweenChars /= 10;
+    }
 	
 	void Update () {
         // Define max char count
@@ -98,8 +105,10 @@ public class DialogBox : MonoBehaviour {
             CheckBuffer();
             if (IsLineInBounds() && isNotAtEndOfSentence)
                 PopCharOffBuffer();
-            else if (isNotAtEndOfSentence)
+            else if (isNotAtEndOfSentence) {
                 ScrollDown();
+                delayBetweenChars = savedDelay;
+            }
             // If we've finished the current sentence, then the type of
             // dialog box this is determines what we should do next
             else if (!isNotAtEndOfSentence)

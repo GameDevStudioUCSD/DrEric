@@ -32,6 +32,7 @@ public class RhythmController : MonoBehaviour {
     public float errorMargin = 1f;
     public float swapSpeed = 5f;
     public bool isDebugging;
+    public bool isIntro = false;
 
     private List<int> measureKeys;
     private SortedDictionary<int, List<float>> measureTimeKeys;
@@ -40,6 +41,8 @@ public class RhythmController : MonoBehaviour {
 	private AudioSource channel2;
 	private AudioSource activeChannel;
     private List<RhythmEvent> eventList;
+
+    private bool shouldDestroy = false;
 
     static RhythmController singleton = null;
 
@@ -74,18 +77,6 @@ public class RhythmController : MonoBehaviour {
     {
         GameObject controller = GameObject.Find(Names.RHYTHMCONTROLLER);
         return controller.GetComponent<RhythmController>();
-    }
-    /**
-	 * Function Signature: void Awake();
-     * Description: Ensures that there is only one RhythmController.
-     */
-    void Awake() {
-        if (singleton != null && singleton != this){
-            Destroy(this.gameObject);
-            return;
-        } else {
-            singleton = this;
-        }
     }
     /**
      * Function Name: SwapChannel()
@@ -170,6 +161,12 @@ public class RhythmController : MonoBehaviour {
         if(isDebugging)
 		    DebugLengths ();
 	}
+
+    void Awake()
+    {
+        if (isIntro)
+            DontDestroyOnLoad(this.gameObject);
+    }
 
     void SetupSong()
     {
@@ -316,6 +313,15 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
+        if (isIntro)
+        {
+            isIntro = false;
+            shouldDestroy = true;
+            return;
+        }
+        if (shouldDestroy)
+            Destroy(this.gameObject);
+        
         if(channel1 != null)
             channel1.Stop();
         if(channel2 != null)

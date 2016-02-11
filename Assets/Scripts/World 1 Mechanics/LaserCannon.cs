@@ -26,6 +26,7 @@ public class LaserCannon : MonoBehaviour
     private Vector2 currentVector;
     private Vector3 originalScale;
     private RespawnController respawner;
+    private PIDController pid;
     private float speed = 1;
 
     void Start()
@@ -34,6 +35,7 @@ public class LaserCannon : MonoBehaviour
         originalScale = transform.localScale;
         transform.FindChild("creambeamattack").GetComponent<SpriteRenderer>().enabled = false;
         respawner = RespawnController.GetRespawnController();
+        pid = GetComponent<PIDController>();
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -87,6 +89,8 @@ public class LaserCannon : MonoBehaviour
 
     void Searching()//move right until player found
     {
+        pid.trackingType = PIDController.TrackingType.Transform;
+        /**
         float lerpVal = (Time.time - startTime) / (movementTime);
         transform.position = Vector2.Lerp(startVector, endVector, lerpVal);
         if(Time.time - startTime > movementTime)
@@ -96,10 +100,13 @@ public class LaserCannon : MonoBehaviour
             endVector = startVector;
             startVector = swap;
         }
+        */
     }
 
     void Bloating()
     {
+        pid.enabled = false;
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		//to prevent it from playing the sound a billion times
         currentVector = transform.position;
         if (Time.time - startTime <= Bloattime/speed)//bloat to charge up lazor
@@ -134,6 +141,11 @@ public class LaserCannon : MonoBehaviour
 
     void Returning()//go back to original position
     {
+        pid.enabled = true;
+        pid.trackingType = PIDController.TrackingType.Vector;
+        state = STATE.WAITING;
+        firing = false;
+        /**
         if (Time.time - startTime <= movementTime)
         {
             float lerpVal = (Time.time - startTime) / (movementTime / rhythmController.GetPitch());
@@ -146,6 +158,7 @@ public class LaserCannon : MonoBehaviour
             firing = false;
             state = STATE.WAITING;
         }
+        */
     }
     public void Fire(int speed)
     {

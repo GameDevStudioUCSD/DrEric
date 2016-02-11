@@ -10928,7 +10928,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 1
   isText: 0
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!222 &699097217
 CanvasRenderer:
@@ -11254,7 +11254,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 0
   isText: 1
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!222 &723922466
 CanvasRenderer:
@@ -12941,6 +12941,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &834150915
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471930, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &837835423
 GameObject:
   m_ObjectHideFlags: 0
@@ -14865,7 +14907,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 0
   isText: 1
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!1 &1013208461
 GameObject:

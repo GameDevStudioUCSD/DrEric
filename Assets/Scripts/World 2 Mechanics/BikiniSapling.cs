@@ -9,7 +9,7 @@ public class BikiniSapling : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		prevX = this.transform.position.y;
+		prevX = this.transform.position.x;
 	}
 	
 	// Update is called once per frame

@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 524.9428, y: 428.05804, z: 0}
+  m_LocalPosition: {x: 524.94281, y: 428.058044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,8 +42,9 @@ MonoBehaviour:
   bpm: 120
   timeSigUpper: 4
   timeSigLower: 4
-  pitch: 1
-  song: {fileID: 8300000, guid: b7830af320af08d4fbd7ca153a874b01, type: 3}
+  pitch: 1.29999995
+  song: {fileID: 8300000, guid: e75ce41c7d3546948be06bafb19ba072, type: 3}
+  transition: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -54,7 +55,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: song
       value: 
-      objectReference: {fileID: 8300000, guid: b7830af320af08d4fbd7ca153a874b01, type: 3}
+      objectReference: {fileID: 8300000, guid: e75ce41c7d3546948be06bafb19ba072, type: 3}
     - target: {fileID: 0}
       propertyPath: bpm
       value: 120
@@ -66,6 +67,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: timeSigLower
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pitch
+      value: 1.29999995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

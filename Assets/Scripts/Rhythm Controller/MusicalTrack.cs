@@ -11,6 +11,7 @@ public class MusicalTrack : MonoBehaviour
     public int timeSigLower = 4;
     public float pitch = 1f;
     public AudioClip song;
+    public AudioClip transition;
     private int measures;
 
     // Use this for initialization

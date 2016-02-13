@@ -24,12 +24,15 @@ public class RhythmController : MonoBehaviour {
 	public MusicalTrack[] channel1TrackList;
 	public MusicalTrack[] channel2TrackList;
 
-    
-    [Range(0,4)]
+
+    private MusicalTrack song1;
+    private MusicalTrack song2;
+    [Range(0,6)]
     public int songIndex = 0;
     public float errorMargin = 1f;
     public float swapSpeed = 5f;
     public bool isDebugging;
+    public bool isIntro = false;
 
     private List<int> measureKeys;
     private SortedDictionary<int, List<float>> measureTimeKeys;
@@ -37,14 +40,14 @@ public class RhythmController : MonoBehaviour {
     private AudioSource channel1;
 	private AudioSource channel2;
 	private AudioSource activeChannel;
+    private List<RhythmEvent> eventList;
+
+    private bool shouldDestroy = false;
 
     static RhythmController singleton = null;
 
 	int currentMeasure;
 	int currentBeat;
-    int currentChannel = 1;
-    float startSwap = 0f;
-    float finishSwap = 0f;
 
 	/*Internals*/
 	MusicalTrack currentTrack;
@@ -52,23 +55,28 @@ public class RhythmController : MonoBehaviour {
 	float startTime;
     float destPitch;
 
+    public void StopSong()
+    {
+        channel1.Stop();
+        channel2.Stop();
+    }
+    public void PlaySong()
+    {
+        channel1.Play();
+        channel2.Play();
+    }
+    public void PlaySong(int i )
+    {
+        songIndex = i;
+        SetupSong();
+        StopSong();
+        PlayTransition(song1);
+    }
 
     public static RhythmController GetController()
     {
         GameObject controller = GameObject.Find(Names.RHYTHMCONTROLLER);
         return controller.GetComponent<RhythmController>();
-    }
-    /**
-	 * Function Signature: void Awake();
-     * Description: Ensures that there is only one RhythmController.
-     */
-    void Awake() {
-        if (singleton != null && singleton != this){
-            Destroy(this.gameObject);
-            return;
-        } else {
-            singleton = this;
-        }
     }
     /**
      * Function Name: SwapChannel()
@@ -80,15 +88,28 @@ public class RhythmController : MonoBehaviour {
     {
         if (activeChannel == channel1)
         {
+            PlayTransition(song1);
             activeChannel = channel2;
             destPitch = channel2TrackList[songIndex].pitch;
         }
         else
         {
+            PlayTransition(song2);
             activeChannel = channel1;
             destPitch = channel1TrackList[songIndex].pitch;
         }
     }
+    private void PlayTransition(MusicalTrack song)
+    {
+        if (song == null)
+            return;
+        if(song.transition != null)
+        {
+            StopSong();
+            activeChannel.PlayOneShot(song.transition);
+            Invoke("PlaySong", song.transition.length);
+        }
+    } 
     public void SwitchToChannel( int channel )
     {
         if( channel == 1 )
@@ -127,29 +148,40 @@ public class RhythmController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Create collection objects
-        measureKeys = new List<int>();
-        measureTimeKeys = new SortedDictionary<int, List<float>>();
+        if(eventList == null)
+            eventList = new List<RhythmEvent>(); 
         events = new SortedDictionary<int, SortedDictionary<float, List<RhythmEvent>>>();
-
 		foreach( Transform channel in transform) {
 			if(channel.gameObject.name == "Channel 1")
 				channel1 = channel.gameObject.GetComponent<AudioSource>();
 			if(channel.gameObject.name == "Channel 2")
 				channel2 = channel.gameObject.GetComponent<AudioSource>();
 		}
-		currentTrack = channel1TrackList[songIndex];
-		channel1.clip = currentTrack.song;
-		channel2.clip = channel2TrackList[songIndex].song;
-        channel1.pitch = channel1TrackList[songIndex].pitch;
-        destPitch = channel1.pitch;
-        channel1.Play();
-		channel2.volume = 0f;
-		channel2.Play();
-		SetNoteLengths();
-        activeChannel = channel1;
+        SetupSong();
         if(isDebugging)
 		    DebugLengths ();
+        if (isIntro)
+            DontDestroyOnLoad(this.gameObject);
 	}
+
+    void SetupSong()
+    {
+        measureKeys = new List<int>();
+        measureTimeKeys = new SortedDictionary<int, List<float>>();
+        song1 = channel1TrackList[songIndex];
+        song2 = channel2TrackList[songIndex];
+        currentTrack = channel1TrackList[songIndex];
+        channel1.clip = currentTrack.song;
+        channel2.clip = channel2TrackList[songIndex].song;
+        channel1.pitch = channel1TrackList[songIndex].pitch;
+        destPitch = channel1.pitch;
+        channel2.volume = 0f;
+        SetNoteLengths();
+        activeChannel = channel1;
+        foreach (RhythmEvent e in eventList)
+            RegisterEventWithController(e);
+        PlaySong();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -211,7 +243,15 @@ public class RhythmController : MonoBehaviour {
 		}
 		return false;
 	}
+
     public void RegisterEvent(RhythmEvent e)
+    {
+        if (eventList == null)
+            eventList = new List<RhythmEvent>();
+        eventList.Add(e);
+        RegisterEventWithController(e);
+    }
+    private void RegisterEventWithController(RhythmEvent e)
     {
         float noteLength = GetNoteLength(e.noteDivision);
         int measure = e.measureSeparation;
@@ -269,6 +309,15 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
+        if (isIntro)
+        {
+            isIntro = false;
+            shouldDestroy = true;
+            return;
+        }
+        if (shouldDestroy)
+            Destroy(this.gameObject);
+        
         if(channel1 != null)
             channel1.Stop();
         if(channel2 != null)

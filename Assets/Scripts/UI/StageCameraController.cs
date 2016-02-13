@@ -8,7 +8,7 @@ public class StageCameraController : MonoBehaviour {
 	//public float offset = 100;
 
 	private int currentStage;
-	public float speed = 0.0001f;
+	public float speed = 1f;
 
 	public GameObject panelGroup;
 	private Transform target = null;
@@ -73,15 +73,17 @@ public class StageCameraController : MonoBehaviour {
 	void Update(){
 
 		if (target != null) {
-			Debug.Log ("Setting  to " + currentStage);
+			Debug.Log ("Moving to stage " + currentStage);
 			transform.position = Vector3.Lerp (transform.position, new Vector3(target.position.x,target.position.y,transform.position.z), speed*Time.deltaTime);
-			Debug.Log ("Moved");
 			// Check if target is reached
-			if (transform.position.Equals(target.position)){
+			// TODO: never reached inside the if statement.
+			if (transform.position.x == target.position.x){
+				Debug.Log ("Target Reached ");
 				target = null;
 			}
 		}else{
 			//Debug.Log ("Taking inputs");
+
 			// Move camera via arrow keys
 			if(Input.GetKey(KeyCode.RightArrow)){
 				transform.Translate(new Vector3(speed * Time.deltaTime,0,0));

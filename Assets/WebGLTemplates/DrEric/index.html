@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="Resources/favicon.png" type='image/png'/>
+    <title>Dr. Eric's Psychedelic Wonderland</title>
+    <link rel="stylesheet" href="Resources/style.css">
+</head>
+<body>
+<div id="bsod">
+    <div class="content">
+        <div class="face">
+            :(
+        </div>
+        <div class="text">
+            Your PC ran into a giant squid and has perished. There is nothing you can do. It will not restart.
+        </div>
+        <div class="subtext">
+            Error info: YOUR_PC_CANT_EVEN
+        </div>
+    </div>
+</div>
+<div class="canvas-wrapper">
+    <div id="loading">
+
+    </div>
+    <div id="messages">
+        Loading...
+    </div>
+    <img id="squid" src="Resources/squid.gif" class="squid"/>
+
+    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <div id="fullscreen" onclick="SetFullscreen(1)">
+        <img src="Resources/fullscreen.png"/>
+    </div>
+</div>
+<script src="Resources/progress.js"></script>
+%UNITY_WEBGL_LOADER_GLUE%
+</body>
+</html>

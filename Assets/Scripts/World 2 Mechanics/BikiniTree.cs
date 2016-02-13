@@ -1,19 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BikiniTree : TimeObject{
+public class BikiniTree : MonoBehaviour{
 
 	public GameObject playerHolder;
 	private BallController playerCharacter;
 	public float headHeightLimit = 2;
-	private Platform myPlatform;
 	private bool onTreeTop;
 	public bool treeAlive = true;
 	
 	// Use this for initialization
 	void Start () {
 		playerCharacter = null;
-		myPlatform = this.GetComponent<Platform>();
 	}
 	
 	// Update is called once per frame
@@ -38,8 +36,6 @@ public class BikiniTree : TimeObject{
 	
 	// Move tree's top to "height"
 	public void Expand(float height) {
-		//myPlatform.enabled = true;
-		//myPlatform.endVector.y = height - 25;
         Vector3 oldPos = this.transform.position;
         Vector3 newPosition = new Vector3(oldPos.x, height, oldPos.z);
 		this.transform.position = newPosition;
@@ -66,7 +62,12 @@ public class BikiniTree : TimeObject{
 		treeAlive = true;
 		this.GetComponent<BoxCollider2D>().enabled = true;
 		this.GetComponent<SpriteRenderer>().enabled = true;
-
 	}
-	
+
+	public void shiftX(float X)
+	{
+		Vector3 oldPos = this.transform.position;
+		Vector3 newPos = new Vector3(oldPos.x + X, oldPos.y, oldPos.z);
+		this.transform.position = newPos;
+	}
 }

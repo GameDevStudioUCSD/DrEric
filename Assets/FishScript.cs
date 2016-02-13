@@ -24,7 +24,14 @@ public class FishScript : MonoBehaviour {
 
         if (rigid.velocity.x > 0 && oldyrotation != 180) oldyrotation = 180;
         else oldyrotation = 0;
-        m.eulerAngles = new Vector3(oldxrotation,oldyrotation,oldzrotation);
-        
+
+        float degreeratio = Mathf.Atan(rigid.velocity.y / rigid.velocity.x);
+        degreeratio = degreeratio / Mathf.PI;
+        oldzrotation = 180 * degreeratio;
+
+        if (rigid.velocity.x > 0) oldzrotation *= -1;
+
+
+        m.eulerAngles = new Vector3(oldxrotation, oldyrotation, oldzrotation);
     }
 }

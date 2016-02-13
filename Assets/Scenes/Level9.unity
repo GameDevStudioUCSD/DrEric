@@ -5926,20 +5926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  topRightCorner: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 2
-  height: 47
 --- !u!1 &172637248
 GameObject:
   m_ObjectHideFlags: 0
@@ -8176,7 +8162,7 @@ Transform:
   - {fileID: 349420824}
   - {fileID: 898978303}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!61 &242828211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8203,20 +8189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 2
-  height: 4
 --- !u!1 &243089137
 GameObject:
   m_ObjectHideFlags: 0
@@ -8549,160 +8521,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1001 &256579399
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22441644, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283604, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283604, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11438190, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: dialog
-      value: Whoops, I'll fix the gravity for you. There you go, don't die now! bloop.
-      objectReference: {fileID: 0}
-    - target: {fileID: 11438190, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: typeOfDialogBox
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 115786, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 558.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -47.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 1017
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 558.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -122.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 1017
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 75
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-  m_IsPrefabParent: 0
---- !u!1 &256579400 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 115786, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
-  m_PrefabInternal: {fileID: 256579399}
 --- !u!1 &257459292
 GameObject:
   m_ObjectHideFlags: 0
@@ -12088,20 +11906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: fbd72b1f27d3c0b449e04d1de864455d, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 66
-  height: 4
 --- !u!1 &327288633
 GameObject:
   m_ObjectHideFlags: 0
@@ -19987,20 +19791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 2
-  height: 47
 --- !u!1 &535962033
 GameObject:
   m_ObjectHideFlags: 0
@@ -20700,20 +20490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: fbd72b1f27d3c0b449e04d1de864455d, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 5
-  height: 2
 --- !u!1 &553911077
 GameObject:
   m_ObjectHideFlags: 0
@@ -27867,20 +27643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: fbd72b1f27d3c0b449e04d1de864455d, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 2
-  height: 25
 --- !u!1 &776386720 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 123262, guid: 4bd855e1502703e49a5c27f763ffd9b4, type: 2}
@@ -31607,10 +31369,10 @@ Prefab:
     - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 256579400}
+      objectReference: {fileID: 1064117665}
     - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -33274,20 +33036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 2
-  height: 33
 --- !u!1 &917132591
 GameObject:
   m_ObjectHideFlags: 0
@@ -38671,6 +38419,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1064117665 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 195118, guid: b21c32029de3e4f1da1dce2e6c0ef6be, type: 2}
+  m_PrefabInternal: {fileID: 1713679232}
 --- !u!1 &1064764291
 GameObject:
   m_ObjectHideFlags: 0
@@ -53071,20 +52823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: fbd72b1f27d3c0b449e04d1de864455d, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 18
-  height: 18
 --- !u!1 &1426687052
 GameObject:
   m_ObjectHideFlags: 0
@@ -53322,20 +53060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 33
-  height: 2
 --- !u!1 &1428631490
 GameObject:
   m_ObjectHideFlags: 0
@@ -67456,20 +67180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: dc3dfc8fbed294a4ca0524af78f86b2c, type: 3}
-  isVertical: 0
-  numTiles: 0
-  topLeftCorner: {fileID: 21300000, guid: 1ebd9a11c02f0a245bc8cbd92d06061d, type: 3}
-  topRightCorner: {fileID: 21300000, guid: 69d0c55b630bb934aaac51371a305ad7, type: 3}
-  bottomLeftCorner: {fileID: 21300000, guid: 611cc3d1300020d46a1bd5f4cd2885bf, type: 3}
-  bottomRightCorner: {fileID: 21300000, guid: fbd72b1f27d3c0b449e04d1de864455d, type: 3}
-  topSprite: {fileID: 21300000, guid: 43a57ae01531d52418d2d79711fbb04f, type: 3}
-  bottomSprite: {fileID: 21300000, guid: b46a06a3e27395145bcfcfe0a82621d8, type: 3}
-  leftSprite: {fileID: 21300000, guid: 94da8a85f377785458f575b9e88ddfd7, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10db35a30962b754b958dfcab75ded52, type: 3}
-  middleSprite: {fileID: 21300000, guid: d37d27f993ea0a04da04ff29dffca479, type: 3}
-  width: 66
-  height: 4
 --- !u!1 &1839805893
 GameObject:
   m_ObjectHideFlags: 0

@@ -2196,6 +2196,19 @@ Prefab:
       propertyPath: destinationVector.y
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 21235800, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b4eef4f529ce9d44a5538fa5556d739,
+        type: 3}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_IsPrefabParent: 0
@@ -2286,6 +2299,10 @@ Prefab:
       propertyPath: drainingWater
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 151512, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
+      propertyPath: m_TagString
+      value: Water
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
   m_IsPrefabParent: 0
@@ -2347,6 +2364,22 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1776451373 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 104774, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+  m_PrefabInternal: {fileID: 1590753757}
+--- !u!114 &1776451379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1776451373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9ce050da057e14ebbe32bb1a160424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SecondsAliveOutOfWater: 3
 --- !u!1 &1783514010
 GameObject:
   m_ObjectHideFlags: 0

@@ -8094,7 +8094,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -202.83333
+      value: -155.83333
       objectReference: {fileID: 0}
     - target: {fileID: 22406316, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.x
@@ -8106,7 +8106,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22406316, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -811.3334
+      value: -623.3334
       objectReference: {fileID: 0}
     - target: {fileID: 22444402, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.x
@@ -8118,7 +8118,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22444402, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -279.33334
+      value: -123.33334
       objectReference: {fileID: 0}
     - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.x
@@ -8138,19 +8138,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 523
+      value: 477.5
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50.708332
+      value: -38.958332
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 1006
+      value: 915
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 101.416664
+      value: 77.916664
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMin.y
@@ -8166,7 +8166,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -152.125
+      value: -116.875
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.x
@@ -8174,11 +8174,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 101.416664
+      value: 77.916664
       objectReference: {fileID: 0}
     - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: dialog
-      value: Quick! The timer is going down! Make the shot! Make the shot!
+      value: Quick! The timer is going down! Make the shot! Make the shot! bzzzt.
       objectReference: {fileID: 0}
     - target: {fileID: 141000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_IsActive
@@ -8188,6 +8188,11 @@ Prefab:
       propertyPath: m_Name
       value: DialogOfEncouragement
       objectReference: {fileID: 0}
+    - target: {fileID: 11453788, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 301caa56452b54383a26cb77e3037e83,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
   m_IsPrefabParent: 0
@@ -74733,7 +74738,7 @@ Prefab:
     - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: dialog
       value: Huh, I guess you're not quite cutout for the big leauges yet. Oh well,
-        I guess I'll just let you go on.
+        I guess I'll just let you go on. bzzzt.
       objectReference: {fileID: 0}
     - target: {fileID: 141000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_IsActive
@@ -74743,6 +74748,11 @@ Prefab:
       propertyPath: m_Name
       value: DialogOfDiscouragement
       objectReference: {fileID: 0}
+    - target: {fileID: 11453788, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 301caa56452b54383a26cb77e3037e83,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
   m_IsPrefabParent: 0

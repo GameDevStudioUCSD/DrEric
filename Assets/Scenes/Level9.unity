@@ -3094,7 +3094,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 1
   isText: 0
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!222 &96214835
 CanvasRenderer:
@@ -8176,7 +8176,7 @@ Transform:
   - {fileID: 349420824}
   - {fileID: 898978303}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
 --- !u!61 &242828211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8638,7 +8638,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11438190, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: dialog
-      value: Whoops, I'll fix the gravity for you. There you go, don't die now!
+      value: Whoops, I'll fix the gravity for you. There you go, don't die now! bloop.
       objectReference: {fileID: 0}
     - target: {fileID: 11438190, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: typeOfDialogBox
@@ -48345,7 +48345,7 @@ RectTransform:
   m_Children:
   - {fileID: 96214833}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -62522,7 +62522,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 0
   isText: 1
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!222 &1696047060
 CanvasRenderer:

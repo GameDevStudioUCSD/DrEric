@@ -28,13 +28,38 @@ public class BikiniSapling : MonoBehaviour {
 
 	void DehydrateSapling()
 	{
-		this.GetComponent<BoxCollider2D>().enabled = false;
+		Debug.Log("I am dehydrated!");
+		if (presentTree != null)
+			presentTree.killTree();
 		this.GetComponent<Rigidbody2D>().isKinematic = true;
 	}
 
 	void HydrateSapling()
 	{
-		this.GetComponent<BoxCollider2D>().enabled = true;
+		Debug.Log("I AM HYDRATED");
+		if (presentTree != null)
+			presentTree.plantTree();
 		this.GetComponent<Rigidbody2D>().isKinematic = false;
+	}
+
+	void OnTriggerEnter2D (Collider2D other) {
+		if (other.tag == "Water") {
+			Debug.Log("HYDRATED");
+			HydrateSapling();
+		}
+	}
+
+	void OnTriggerStay2D (Collider2D other) {
+		if (other.tag == "Water") {
+			Debug.Log("HYDRATED");
+			HydrateSapling();
+		}
+	}
+
+	void OnTriggerExit2D (Collider2D other) {
+		if (other.tag == "Water") {
+			Debug.Log("DEHYDRATED");
+			DehydrateSapling();
+		}
 	}
 }

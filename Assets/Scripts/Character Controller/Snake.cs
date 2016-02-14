@@ -10,46 +10,53 @@ public class Snake : MonoBehaviour {
 	public float maxTimeAggravated = 15f;
 	public DialogBox dialog;
 	float timeCounter;
+    private int penis;
     Vector3 startingposition;
 	
 	int aggravateFrameCounter = 0;
 	
 	// Use this for initialization
 	void Start () {
+        penis = 2;
 		state = State.IDLE;
         startingposition = transform.position;
 	}
 	
 	void Update () {
-		if (state == State.IDLE)
-		{
-			this.GetComponent<Animator>().SetInteger("Animation", 0);
-		}
-		else if (state == State.AGGRAVATED)
-		{
-			this.GetComponent<Animator>().SetInteger("Animation", 1);
-			if ((Time.time - timeCounter) > maxTimeAggravated)
-			{
-				dialog.SetText("I'm calming down now. Don't hit me again.");
-				dialog.gameObject.SetActive(true);
-				state = State.IDLE;
-			}
-		}
-		else if (state == State.RETREAT)
-		{
-			this.GetComponent<Animator>().SetInteger("Animation", 2);
-			this.GetComponent<Platform>().enabled = true;
+        if (state == State.IDLE)
+        {
+            this.GetComponent<Animator>().SetInteger("Animation", 0);
+        }
+        else if (state == State.AGGRAVATED)
+        {
+            this.GetComponent<Animator>().SetInteger("Animation", 1);
+            if ((Time.time - timeCounter) > maxTimeAggravated)
+            {
+                dialog.SetText("I'm calming down now. Don't hit me again.");
+                dialog.gameObject.SetActive(true);
+                state = State.IDLE;
+            }
+        }
+        else if (state == State.RETREAT)
+        {
+            this.GetComponent<Animator>().SetInteger("Animation", 2);
+            this.GetComponent<Platform>().enabled = true;
             Platform platform = GetComponent<Platform>();
-            if (transform.position != platform.endVector) platform.state = Platform.State.LERPING;
-		}
+            if ((platform.state == Platform.State.STOP||platform.state == Platform.State.WAITING) && penis < 2)
+            {
+                penis++;
+                platform.state = Platform.State.LERPING;
+            }
+        }
 	}
 
     public void reset()
     {
         state = State.IDLE;
+        penis = 0;
         hitCount = 0;
         transform.position = startingposition;
-        this.GetComponent<Platform>().state = Platform.State.WAITING;
+        this.GetComponent<Platform>().state = Platform.State.STOP;
         this.GetComponent<Platform>().enabled = false;
     }
 	

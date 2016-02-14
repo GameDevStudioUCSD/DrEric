@@ -9,11 +9,11 @@ public class TimePortal : MonoBehaviour {
 	{
 		if (other.tag == "Player" )
 		{
+			other.transform.parent.position = destination.transform.position;
 			if (platform.playerOnTop == true)
 			{
 				float yPos = platform.presentTree.transform.position.y;
 			}
-			other.transform.parent.position = destination.transform.position;
 
 		}
 	}

@@ -313,7 +313,7 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
-        if (isIntro)
+        if (level == 1)
         {
             isIntro = false;
             shouldDestroy = true;
@@ -321,7 +321,6 @@ public class RhythmController : MonoBehaviour {
         }
         if (shouldDestroy)
             Destroy(this.gameObject);
-        
         if(channel1 != null)
             channel1.Stop();
         if(channel2 != null)

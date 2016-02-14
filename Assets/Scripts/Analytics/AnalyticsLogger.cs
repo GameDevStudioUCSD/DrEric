@@ -33,7 +33,7 @@ public class AnalyticsLogger : MonoBehaviour {
     void OnLevelWasLoaded(int level)
     {
         SetupLoggingDict();
-        if(world != "NOTAWORD")
+        if(level == 1)
             destroyOnMainMenu = true;
     }
 

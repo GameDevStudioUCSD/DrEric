@@ -246,7 +246,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 146266360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.86, y: -4.22, z: 0}
+  m_LocalPosition: {x: -0.86, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 55232565}
@@ -297,17 +297,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 11463244, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
-      propertyPath: playerHolder
-      value: 
-      objectReference: {fileID: 686893953}
     - target: {fileID: 156094, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
       propertyPath: m_Name
       value: Bikini Tree Right
       objectReference: {fileID: 0}
-    - target: {fileID: 21231104, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
-      propertyPath: m_SortingOrder
-      value: -1
+    - target: {fileID: 11463244, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
+      propertyPath: playerHolder
+      value: 
+      objectReference: {fileID: 686893953}
+    - target: {fileID: 6182744, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
+      propertyPath: m_Size.x
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
@@ -490,6 +490,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11425978, guid: 0c85c1fa04c2e114781d068b7b45f949, type: 2}
+      propertyPath: is2D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425978, guid: 0c85c1fa04c2e114781d068b7b45f949, type: 2}
+      propertyPath: isRenderer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c85c1fa04c2e114781d068b7b45f949, type: 2}
   m_IsPrefabParent: 0
@@ -585,7 +593,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.49999988, y: -0.4999999}
-  m_ConnectedAnchor: {x: -0.49999997, y: 0.5531721}
+  m_ConnectedAnchor: {x: -0.49999997, y: 0.5531719}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -736,7 +744,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 04ac474c03fc34818a7ab9522bf881d2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5955882, g: 0.55596286, b: 0.23648356, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!4 &852688623
@@ -797,7 +805,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.49999988, y: -0.4999999}
-  m_ConnectedAnchor: {x: -0.51339656, y: 0.5531721}
+  m_ConnectedAnchor: {x: -0.51339656, y: 0.5531719}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1294,7 +1302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.16
+      value: -8.43
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1360,7 +1368,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424548, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11463244, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
       propertyPath: playerHolder
@@ -1603,6 +1611,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel1TrackList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel2TrackList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1637,8 +1653,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: songIndex
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel1TrackList.Array.data[7]
+      value: 
+      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+        type: 2}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel2TrackList.Array.data[7]
+      value: 
+      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
   m_IsPrefabParent: 0

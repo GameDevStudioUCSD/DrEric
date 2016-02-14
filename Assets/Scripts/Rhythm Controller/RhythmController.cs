@@ -27,7 +27,7 @@ public class RhythmController : MonoBehaviour {
 
     private MusicalTrack song1;
     private MusicalTrack song2;
-    [Range(0,6)]
+    [Range(0,7)]
     public int songIndex = 0;
     public float errorMargin = 1f;
     public float swapSpeed = 5f;

@@ -70,9 +70,11 @@ public class BallController : MonoBehaviour {
      */
     void OnCollisionEnter2D(Collision2D collision)
     {
-		//I think it is better  here?
-		pSys.startColor = new Color(Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f));
-		pSys.Emit(numParticlesOnCollision);
+        if (pSys != null)
+        {
+            pSys.startColor = new Color(Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f));
+            pSys.Emit(numParticlesOnCollision);
+        }
         if (audioSource != null)
             audioSource.PlayOneShot(landSound, 1f);
         if (HasLanded())

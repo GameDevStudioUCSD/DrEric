@@ -20,7 +20,6 @@ public class DiesInWater : MonoBehaviour {
     {
         if (col.tag == "Water")
         {
-            Debug.Log("PENIS");
             dietime = Time.time;
         }
     }

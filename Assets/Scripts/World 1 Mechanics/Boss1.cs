@@ -43,6 +43,7 @@ public class Boss1 : MonoBehaviour
     public GameObject LeftGummyBears;
     public GameObject UpGummyBears;
     public GameObject DownGummyBears;
+    private Switch currentSwitch = null;
 
     // Use this for initialization
     void Start()
@@ -85,10 +86,7 @@ public class Boss1 : MonoBehaviour
             BodySlam((Direction)Random.Range(0, 4 ));
         }
 
-        topSprite.SetActive(false);
-        botSprite.SetActive(false);
-        leftSprite.SetActive(false);
-        rightSprite.SetActive(false);
+
         if(GetNumberOfSwitchesHit() == 3 )
         {
             FireLasers();
@@ -133,6 +131,13 @@ public class Boss1 : MonoBehaviour
 
     }
 
+    void DeactivateAllSwitches()
+    {
+        topSprite.SetActive(false);
+        botSprite.SetActive(false);
+        leftSprite.SetActive(false);
+        rightSprite.SetActive(false);
+    }
     void Lerp()//lerp function
     {
         if (state == STATE.LERPING_AWAY)//if boss is going away from center
@@ -220,32 +225,32 @@ public class Boss1 : MonoBehaviour
     public void FlipRightSwitch()
     {
         rightSwitch = true;
-        Switch currentswitch = transform.FindChild(RIGHTSWITCH).gameObject.GetComponent<Switch>();
-        currentswitch.isEnabled = false;
+        currentSwitch = transform.FindChild(RIGHTSWITCH).gameObject.GetComponent<Switch>();
+        currentSwitch.isEnabled = false;
         FireLasers();
         PickASwitch();
     }
     public void FlipTopSwitch()
     {
         topSwitch = true;
-        Switch currentswitch = transform.FindChild(TOPSWITCH).gameObject.GetComponent<Switch>();
-        currentswitch.isEnabled = false;
+        currentSwitch = transform.FindChild(TOPSWITCH).gameObject.GetComponent<Switch>();
+        currentSwitch.isEnabled = false;
         FireLasers();
         PickASwitch();
     }
     public void FlipLeftSwitch()
     {
         leftSwitch = true;
-        Switch currentswitch = transform.FindChild(LEFTSWITCH).gameObject.GetComponent<Switch>();
-        currentswitch.isEnabled = false;
+        currentSwitch = transform.FindChild(LEFTSWITCH).gameObject.GetComponent<Switch>();
+        currentSwitch.isEnabled = false;
         FireLasers();
         PickASwitch();
     }
     public void FlipBottomSwitch()
     {
         bottomSwitch = true;
-        Switch currentswitch = transform.FindChild(BOTTOMSWITCH).gameObject.GetComponent<Switch>();
-        currentswitch.isEnabled = false;
+        currentSwitch = transform.FindChild(BOTTOMSWITCH).gameObject.GetComponent<Switch>();
+        currentSwitch.isEnabled = false;
         FireLasers();
         PickASwitch();
     }
@@ -266,7 +271,8 @@ public class Boss1 : MonoBehaviour
 
     void PickASwitch()
     {
-
+        if(this.currentSwitch != null)
+            this.currentSwitch.gameObject.SetActive(false);
         //check for death
         if (topSwitch && leftSwitch && rightSwitch && bottomSwitch)
         {
@@ -285,15 +291,15 @@ public class Boss1 : MonoBehaviour
             GetComponent<AudioSource>().Play();
         }
         //assign all unpressed switches to list
-        ArrayList list = new ArrayList();
-        if (!topSwitch) list.Add(transform.FindChild(TOPSWITCH));
-        if (!bottomSwitch) list.Add(transform.FindChild(BOTTOMSWITCH));
-        if (!rightSwitch) list.Add(transform.FindChild(RIGHTSWITCH));
-        if (!leftSwitch) list.Add(transform.FindChild(LEFTSWITCH));
+        ArrayList switchList = new ArrayList();
+        if (!topSwitch) switchList.Add(transform.FindChild(TOPSWITCH));
+        if (!bottomSwitch) switchList.Add(transform.FindChild(BOTTOMSWITCH));
+        if (!rightSwitch) switchList.Add(transform.FindChild(RIGHTSWITCH));
+        if (!leftSwitch) switchList.Add(transform.FindChild(LEFTSWITCH));
         //disable all the switches and make them visible
-        for (int i = 0; i < list.Count; i++)
+        for (int i = 0; i < switchList.Count; i++)
         {
-            Transform currenttransform = (Transform)list[i];
+            Transform currenttransform = (Transform)switchList[i];
             Switch currentswitch = currenttransform.gameObject.GetComponent<Switch>();
             //Debug.Log(currenttransform.gameObject);
             currentswitch.isEnabled = false;
@@ -303,19 +309,21 @@ public class Boss1 : MonoBehaviour
             boxcollider2d.enabled = false;
         }
         //choose a switch at random 
-        int size = list.Count;
+        int size = switchList.Count;
         if (size == 0) return;
         int index = Random.Range(0, size);
 
         //select and enable a switch
-        Transform currentTransform = (Transform)list[index];
+        DeactivateAllSwitches();
+        Transform currentTransform = (Transform)switchList[index];
         Switch currentSwitch = currentTransform.gameObject.GetComponent<Switch>();
+        currentSwitch.gameObject.SetActive(true);
         Debug.Log(currentTransform.gameObject + " ENABLED");
         currentSwitch.isEnabled = true;
         //make 
-        for (int forloopindex = 0; forloopindex < list.Count; forloopindex++)
+        for (int i = 0; i < switchList.Count; i++)
         {
-            Transform currenttransform2 = (Transform)list[forloopindex];
+            Transform currenttransform2 = (Transform)switchList[i];
             Switch currentswitch2 = currenttransform2.gameObject.GetComponent<Switch>();
             //Debug.Log(currenttransform.gameObject);
             if (currentswitch2 == currentSwitch)

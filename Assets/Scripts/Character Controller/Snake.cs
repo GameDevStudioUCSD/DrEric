@@ -4,7 +4,7 @@ using System.Collections;
 public class Snake : MonoBehaviour {
 
 	int hitCount = 0;
-	public int hitsBeforeRetreat = 3;
+	public int hitsBeforeRetreat;
 	private enum State {IDLE, AGGRAVATED, RETREAT};
 	private State state;
 	public float maxTimeAggravated = 15f;
@@ -39,15 +39,18 @@ public class Snake : MonoBehaviour {
 		{
 			this.GetComponent<Animator>().SetInteger("Animation", 2);
 			this.GetComponent<Platform>().enabled = true;
+            Platform platform = GetComponent<Platform>();
+            if (transform.position != platform.endVector) platform.state = Platform.State.LERPING;
 		}
 	}
 
     public void reset()
     {
         state = State.IDLE;
-        this.GetComponent<Platform>().enabled = false;
         hitCount = 0;
         transform.position = startingposition;
+        this.GetComponent<Platform>().state = Platform.State.WAITING;
+        this.GetComponent<Platform>().enabled = false;
     }
 	
 	void OnTriggerEnter2D(Collider2D other)

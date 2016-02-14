@@ -114,7 +114,7 @@ public class Platform : MonoBehaviour {
         }
     }
 
-    void SwapVector()
+    public void SwapVector()
     {
         Vector3 swapVector = startVector;
         startVector = endVector;
@@ -127,5 +127,9 @@ public class Platform : MonoBehaviour {
             state = State.LERPING;
         else if (state == State.LERPING)
             state = State.WAITING;
+    }
+    public void Reset()
+    {
+        startTime = Time.time;
     }
 }

@@ -43,12 +43,12 @@ public class AnalyticsLogger : MonoBehaviour {
         turkerLog["UID"] = randHash;
         if (level == 11 && DeathCount.GetDeathCount() > 2 && !hasCompleted )
         {
-            Analytics.CustomEvent("Turker Completed", turkerLog);
+            //Analytics.CustomEvent("Turker Completed", turkerLog);
             hasCompleted = displayHash.enabled = true;
         }
         if (level == 12 && !hasCompleted)
         {
-            Analytics.CustomEvent("Turker Completed", turkerLog);
+            //Analytics.CustomEvent("Turker Completed", turkerLog);
             hasCompleted = displayHash.enabled = true;
         }
     }
@@ -91,7 +91,7 @@ public class AnalyticsLogger : MonoBehaviour {
     public void CreateCustomEvent()
     {
         LogFinishingStats();
-        Analytics.CustomEvent(eventName, log);
+        //Analytics.CustomEvent(eventName, log);
     }
 
     #else

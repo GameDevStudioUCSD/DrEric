@@ -26,6 +26,8 @@ public class Danmaku : MonoBehaviour {
 	}
 	
 	void Update () {
+        if (bulletInstances[0] == null)
+            Spawn();
         if (Time.time - stateChangeTime > waitTime)
         {
             switch (state)

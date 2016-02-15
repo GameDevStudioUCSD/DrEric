@@ -19,7 +19,7 @@ public class Danmaku : MonoBehaviour {
     float stateChangeTime = 0f;
     float waitTime;
 
-	void Start () {
+	void Start() {
         waitTime = circleTime;
         Spawn();
         
@@ -77,5 +77,13 @@ public class Danmaku : MonoBehaviour {
             else
                 pid.destinationTransform = bulletInstances[i + 1].GetComponent<Transform>();
         }
+    }
+
+
+    public void Deactive()
+    {
+        this.enabled = false;
+        foreach (GameObject bullet in bulletInstances)
+            GameObject.Destroy(bullet);
     }
 }

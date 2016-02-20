@@ -182,6 +182,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114052, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 168986, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
   m_IsPrefabParent: 0
@@ -435,7 +443,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 0
   isText: 1
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!222 &728864041
 CanvasRenderer:
@@ -1016,6 +1024,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -2.8599999
       objectReference: {fileID: 0}
+    - target: {fileID: 151728, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
   m_IsPrefabParent: 0
@@ -1120,6 +1132,10 @@ Prefab:
       propertyPath: songIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 194616, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
   m_IsPrefabParent: 0
@@ -1174,7 +1190,7 @@ MonoBehaviour:
   trail: {fileID: 0}
   is2D: 1
   isText: 0
-  isSprite: 0
+  isRenderer: 0
   isTrail: 0
 --- !u!222 &2039234107
 CanvasRenderer:

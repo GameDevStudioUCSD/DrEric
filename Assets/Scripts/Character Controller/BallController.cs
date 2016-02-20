@@ -186,7 +186,7 @@ public class BallController : MonoBehaviour {
      */
     public bool CheckGround()
     {
-        RaycastHit2D[] detector = Physics2D.RaycastAll(transform.position, Physics2D.gravity, 0.45f);
+        RaycastHit2D[] detector = Physics2D.RaycastAll(transform.position, Physics2D.gravity, 0.75f);
         /** Debugging Junk
         string debugstr = "";
         foreach(RaycastHit2D ray in detector) { debugstr += ray.collider.gameObject + "\t"; }

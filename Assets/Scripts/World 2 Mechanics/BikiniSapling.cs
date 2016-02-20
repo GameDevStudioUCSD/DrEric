@@ -5,6 +5,7 @@ public class BikiniSapling : MonoBehaviour {
 
 	public BikiniTree presentTree;
 	public bool saplingHydrated = false;
+	public bool playerOnTop = false;
 	private float prevX;
 
 	// Use this for initialization
@@ -28,7 +29,6 @@ public class BikiniSapling : MonoBehaviour {
 
 	void DehydrateSapling()
 	{
-		Debug.Log("I am dehydrated!");
 		if (presentTree != null)
 			presentTree.killTree();
 		this.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -36,7 +36,6 @@ public class BikiniSapling : MonoBehaviour {
 
 	void HydrateSapling()
 	{
-		Debug.Log("I AM HYDRATED");
 		if (presentTree != null)
 			presentTree.plantTree();
 		this.GetComponent<Rigidbody2D>().isKinematic = false;
@@ -44,22 +43,31 @@ public class BikiniSapling : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Water") {
-			Debug.Log("HYDRATED");
 			HydrateSapling();
+		}
+
+		if (other.tag == "Player") {
+			playerOnTop = true;
 		}
 	}
 
 	void OnTriggerStay2D (Collider2D other) {
 		if (other.tag == "Water") {
-			Debug.Log("HYDRATED");
 			HydrateSapling();
+		}
+
+		if (other.tag == "Player") {
+			playerOnTop = true;
 		}
 	}
 
 	void OnTriggerExit2D (Collider2D other) {
 		if (other.tag == "Water") {
-			Debug.Log("DEHYDRATED");
 			DehydrateSapling();
+		}
+
+		if (other.tag == "Player") {
+			playerOnTop = false;
 		}
 	}
 }

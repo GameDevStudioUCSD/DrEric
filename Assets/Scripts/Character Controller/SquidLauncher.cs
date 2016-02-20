@@ -76,8 +76,6 @@ public class SquidLauncher : MonoBehaviour
             {
                 AnimateSprite();
                 Rotate(); //rotation around DrEric while grabbed
-                if (Time.time >= grabTime + maxGrabTime)
-                    Launch(); //release without applying force
             }
 
             if (Input.GetMouseButtonUp(0))

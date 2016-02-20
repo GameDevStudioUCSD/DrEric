@@ -43,7 +43,7 @@ MonoBehaviour:
   timeSigUpper: 4
   timeSigLower: 4
   pitch: 1
-  song: {fileID: 8300000, guid: 578959a3392ee4b9f916605a10b328c9, type: 3}
+  song: {fileID: 8300000, guid: 79ea7ffc252b2434f8256d9b13a20337, type: 3}
   transition: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -51,7 +51,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: song
+      value: 
+      objectReference: {fileID: 8300000, guid: 79ea7ffc252b2434f8256d9b13a20337, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133212}

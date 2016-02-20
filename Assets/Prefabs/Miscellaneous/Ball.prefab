@@ -76,8 +76,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpDuration: 0.1
-  is2D: 1
+  trail: {fileID: 0}
+  is2D: 0
   isText: 0
+  isRenderer: 1
+  isTrail: 0
 --- !u!135 &13599474
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -101,6 +104,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 95f4f9195c6222b4aa9c7e32aafacbd5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: is2D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isRenderer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155062}

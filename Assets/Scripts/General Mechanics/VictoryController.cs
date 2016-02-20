@@ -109,5 +109,6 @@ public class VictoryController : MonoBehaviour
         drEricRigidBody.velocity = Vector2.zero;
         drEricRigidBody.gravityScale = 0;
         force.torque = 100;
+
     }
 }

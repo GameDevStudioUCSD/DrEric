@@ -20,6 +20,7 @@ public class Chomp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(transform.rotation.eulerAngles);
         switch( state )
         {
             case State.OPENING:
@@ -27,6 +28,10 @@ public class Chomp : MonoBehaviour {
                 break;
             case State.CLOSING:
                 Close();
+                break;
+            case State.OPEN:
+                break;
+            case State.CLOSED:
                 break;
         }
 	}
@@ -43,14 +48,16 @@ public class Chomp : MonoBehaviour {
     void Open()
     {
         float lerpVal = (Time.time - startTime) / chompSpeed;
-        transform.rotation = Quaternion.Slerp(initialQuarternion, destinationQuarternion, lerpVal);
+        transform.localRotation = Quaternion.Slerp(initialQuarternion, destinationQuarternion, lerpVal);
+        //transform.Rotate(Time.deltaTime * Vector3.right);
         if (Time.time - startTime > chompSpeed)
             state = State.OPEN;
     }
     void Close()
     {
         float lerpVal = (Time.time - startTime) / chompSpeed;
-        transform.rotation = Quaternion.Slerp(destinationQuarternion, initialQuarternion, lerpVal);
+        transform.localRotation = Quaternion.Slerp(destinationQuarternion, initialQuarternion, lerpVal);
+        //transform.Rotate(Time.deltaTime * Vector3.left);
         if (Time.time - startTime > chompSpeed)
             state = State.CLOSED;
     }

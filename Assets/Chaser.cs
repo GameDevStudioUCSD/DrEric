@@ -6,16 +6,16 @@ public class Chaser : MonoBehaviour {
     enum State { Resting, Chasing }
     public float restRate = 1;
     public float restDistance = 3;
-    PIDController pid;
+    protected PIDController pid;
     float lastAttack = 0;
     State state = State.Chasing;
 
-	void Start () {
+	protected void Start () {
         pid = GetComponent<PIDController>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
         if(Time.time - lastAttack > restRate )
         {
             switch(state)
@@ -27,11 +27,12 @@ public class Chaser : MonoBehaviour {
             }
         }
 	}
-
-    void OnCollisionEnter2D(Collision2D c)
+   
+    protected void OnCollisionEnter2D(Collision2D c)
     {
+        pid = GetComponent<PIDController>();
         Transform otherTrans = c.gameObject.GetComponent<Transform>();
-        if (otherTrans != pid.destinationTransform )
+        if (otherTrans != pid.destinationTransform  )
         {
             if (c.gameObject.name != Names.DRERIC || pid.destinationTransform.gameObject.name != Names.PLAYERHOLDER)
                 return;

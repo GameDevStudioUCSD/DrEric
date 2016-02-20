@@ -269,6 +269,8 @@ public class SquidLauncher : MonoBehaviour
             + rotationOffset;
         float gravityOffset = Mathf.Atan2(Physics2D.gravity.y,
             Physics2D.gravity.x) * Mathf.Rad2Deg;
+        if (Physics2D.gravity.magnitude == 0)
+            gravityOffset = -90;
         destRotation = Quaternion.Euler(0, 0, angle + gravityOffset);
 
         if (transform.rotation != destRotation)

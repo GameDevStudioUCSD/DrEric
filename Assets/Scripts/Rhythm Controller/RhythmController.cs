@@ -309,7 +309,7 @@ public class RhythmController : MonoBehaviour {
     }
     void OnLevelWasLoaded(int level)
     {
-        if (isIntro)
+        if (level == 1)
         {
             isIntro = false;
             shouldDestroy = true;

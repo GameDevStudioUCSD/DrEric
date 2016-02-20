@@ -6130,7 +6130,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 496170, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.64
+      value: -1.21
       objectReference: {fileID: 0}
     - target: {fileID: 496170, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6162,7 +6162,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11449606, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
       propertyPath: numberOfBullets
-      value: 3
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 11449606, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
       propertyPath: distanceFromCenter
@@ -6171,7 +6171,19 @@ Prefab:
     - target: {fileID: 11449606, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 143174, guid: 0d698cbac12b1324bbe1988673c914f9, type: 2}
+      objectReference: {fileID: 165322, guid: fc185c06d495d7648b04920214aba2ef, type: 2}
+    - target: {fileID: 11449606, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
+      propertyPath: circleTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449606, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
+      propertyPath: returnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449606, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
+      propertyPath: maxDistance
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b51a11b69e3d62c47be33ed250ab1177, type: 2}
   m_IsPrefabParent: 0

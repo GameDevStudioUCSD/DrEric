@@ -36,7 +36,7 @@ public class AnalyticsLogger : MonoBehaviour {
     void OnLevelWasLoaded(int level)
     {
         SetupLoggingDict();
-        if(world != "NOTAWORD")
+        if(level == 1)
             destroyOnMainMenu = true;
     }
 
@@ -94,7 +94,7 @@ public class AnalyticsLogger : MonoBehaviour {
     public void CreateCustomEvent()
     {
         LogFinishingStats();
-        //Analytics.CustomEvent(eventName, log);
+        Analytics.CustomEvent(eventName, log);
     }
 
     #else

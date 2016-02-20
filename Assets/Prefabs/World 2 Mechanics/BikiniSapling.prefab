@@ -14,7 +14,7 @@ GameObject:
   - 50: {fileID: 5047266}
   - 212: {fileID: 21269814}
   m_Layer: 0
-  m_Name: Bikini Sapling
+  m_Name: BikiniSapling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presentTree: {fileID: 0}
-  saplingAlive: 0
+  saplingHydrated: 0
+  playerOnTop: 0
 --- !u!212 &21269814
 SpriteRenderer:
   m_ObjectHideFlags: 1

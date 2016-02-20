@@ -11,6 +11,14 @@ public class PlatformTree : MonoBehaviour{
 
 	public void Start() {
 		floor = transform.position.y;
+		if (treeAlive)
+		{
+			plantTree();
+		}
+		else
+		{
+			killTree();
+		}
 	}
 
 	public void killTree()

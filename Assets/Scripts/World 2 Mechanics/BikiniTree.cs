@@ -8,12 +8,21 @@ public class BikiniTree : MonoBehaviour{
 	public float headHeightLimit = 3;
 	private bool onTreeTop;
 	public bool treeAlive = true;
-	private float y_orig;
+	private float yOrig;
 	
 	// Use this for initialization
 	void Start () {
 		playerCharacter = null;
-		y_orig = transform.position.y;
+		yOrig = transform.position.y;
+
+		if (treeAlive)
+		{
+			plantTree();
+		}
+		else
+		{
+			killTree();
+		}
 	}
 	
 	// Update is called once per frame
@@ -30,9 +39,9 @@ public class BikiniTree : MonoBehaviour{
 	
 		float playerTop = playerCharacter.transform.position.y;
 		if (playerTop > this.headHeightLimit) {
-			this.Expand(y_orig + playerTop - headHeightLimit);
+			this.Expand(yOrig + playerTop - headHeightLimit);
 		} else {
-			this.Expand(y_orig);
+			this.Expand(yOrig);
 		}
 	}
 	

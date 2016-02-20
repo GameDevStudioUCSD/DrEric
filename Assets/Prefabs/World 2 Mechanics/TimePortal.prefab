@@ -108,7 +108,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -134,6 +134,8 @@ MonoBehaviour:
   destination: {fileID: 0}
   platform: {fileID: 0}
   timeBetweenTeleportation: 3
+  presentSkybox: {fileID: 0}
+  pastSkybox: {fileID: 0}
 --- !u!114 &11479054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +197,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Size.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

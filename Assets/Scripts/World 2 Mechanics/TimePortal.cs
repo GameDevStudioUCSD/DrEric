@@ -8,6 +8,9 @@ public class TimePortal : MonoBehaviour
 
     public float timeBetweenTeleportation = 2f;
 
+    public Material skybox1;
+    public Material skybox2;
+
     private Transform drEricTransform;
     private Transform playerHolderTrans;
     private AudioSource audioSource;
@@ -55,6 +58,13 @@ public class TimePortal : MonoBehaviour
         drEricTrail.enabled = false;
         drEricTransform.parent = playerHolderTrans;
         playerHolderTrans.position = destination.transform.position;
+        if (skybox1 != null && skybox2 != null)
+        {
+            if (RenderSettings.skybox == skybox1)
+                RenderSettings.skybox = skybox2;
+            else
+                RenderSettings.skybox = skybox1;
+        }
         Invoke("ReenableTrail", drEricTrail.time);
         Invoke("ShutoffDestAnimation", timeBetweenTeleportation);
         portalDanmaku.Deactive();

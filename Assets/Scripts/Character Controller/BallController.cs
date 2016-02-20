@@ -195,7 +195,8 @@ public class BallController : MonoBehaviour {
         for (int i = 0; i < detector.GetLength(0); i++)
         {
             if (detector[i].collider.gameObject.name != Names.DRERIC
-                && detector[i].collider.gameObject.name != Names.SQUIDLAUNCHER) 
+                && detector[i].collider.gameObject.name != Names.SQUIDLAUNCHER
+                && detector[i].collider.tag != Names.WATER) 
                 return true;
         }
         return false;

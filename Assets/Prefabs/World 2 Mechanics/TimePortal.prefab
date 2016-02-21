@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 415964}
   - 114: {fileID: 11450848}
   - 61: {fileID: 6187036}
-  - 212: {fileID: 21208632}
   - 114: {fileID: 11479054}
   - 82: {fileID: 8276620}
+  - 212: {fileID: 21203916}
   m_Layer: 0
   m_Name: TimePortal
   m_TagString: Untagged
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
   platform: {fileID: 0}
-  timeBetweenTeleportation: 3
-  presentSkybox: {fileID: 0}
-  pastSkybox: {fileID: 0}
+  timeBetweenTeleportation: 2
+  presentSkybox: {fileID: 2100000, guid: e40fee7baeeca43498dec2ffde6a4581, type: 2}
+  pastSkybox: {fileID: 2100000, guid: 85534340a6e6341e4a5f0f78438593fd, type: 2}
 --- !u!114 &11479054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
   circleTime: 2
   returnTime: 1
   maxDistance: 1000
---- !u!212 &21208632
+--- !u!212 &21203916
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

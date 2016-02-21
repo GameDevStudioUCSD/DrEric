@@ -4,7 +4,7 @@ using System.Collections;
 public class TimePortal : MonoBehaviour
 {
     public GameObject destination;
-    public BikiniSapling platform;
+    public PlatformSapling platform;
 
     public float timeBetweenTeleportation = 2f;
 
@@ -17,6 +17,7 @@ public class TimePortal : MonoBehaviour
     private Danmaku portalDanmaku;
     private Danmaku destinationDanmaku;
     private TrailRenderer drEricTrail;
+    private bool onTree = false;
     void Start()
     {
         portalDanmaku = GetComponent<Danmaku>();
@@ -29,6 +30,7 @@ public class TimePortal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+        	onTree = false;
             audioSource.Play();
             // Invoke teleport later
             Invoke("Teleport", timeBetweenTeleportation);
@@ -44,9 +46,9 @@ public class TimePortal : MonoBehaviour
             // Stop Dr Eric from moving
             other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             other.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
-            if (platform.playerOnTop == true)
+            if (platform != null && platform.playerOnTop == true)
             {
-                float yPos = platform.presentTree.transform.position.y;
+                onTree = true;
             }
 
         }
@@ -57,7 +59,11 @@ public class TimePortal : MonoBehaviour
     {
         drEricTrail.enabled = false;
         drEricTransform.parent = playerHolderTrans;
-        playerHolderTrans.position = destination.transform.position;
+        Vector3 dest = destination.transform.position;
+        if (onTree) {
+        	dest = new Vector3(platform.presentTree.transform.position.x, dest.y + 10, dest.z);
+        }
+        playerHolderTrans.position = dest;
         ChangeSkybox();
         Invoke("ReenableTrail", drEricTrail.time);
         Invoke("ShutoffDestAnimation", timeBetweenTeleportation);

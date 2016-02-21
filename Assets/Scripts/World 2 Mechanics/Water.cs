@@ -29,6 +29,9 @@ public class Water : MonoBehaviour {
     // When true, begins to drain water
     public bool drainingWater = false;
 
+    // When true, gives the player infinite jumps
+    public bool resetsJumps = true;
+
     // Start position of the water
     private Vector2 startPosition;
     // End position of the water
@@ -56,14 +59,18 @@ public class Water : MonoBehaviour {
 	}
 
     // Called every frame collider stays in the water
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-       // If the collider is player's, then give player infinite jump
-       if(other.tag == PLAYER_TAG)
-       {
-           // Land player to reset jumps
-           other.gameObject.GetComponent<BallController>().Land();
-       }
+        // If the collider is player's, then give player infinite jump
+        if (other.tag == PLAYER_TAG)
+        {
+            if (resetsJumps)
+            {
+                Debug.Log("Reset jumps!");
+                // Land player to reset jumps
+                other.gameObject.GetComponent<BallController>().Land();
+            }
+        }
     }
 
     // Starts the water draining process

@@ -11,7 +11,7 @@ using System.Collections;
 public class RemoteSpawner : MonoBehaviour {
 
     public GameObject spawnThis; //prefab to spawn
-    public float cooldown; //time between consecutive uses
+    public float cooldown = 5; //time between consecutive uses
     
     private float startTime = 0; //time switch last hit
 	
@@ -22,14 +22,18 @@ public class RemoteSpawner : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (Time.time > 2 && startTime == 0)
-            spawn();
+        if (other.collider.tag == "Player")
+        {
+            if (Time.time > 2 && startTime == 0)
+                spawn();
+        }
     }
 
     void spawn()
     {
         startTime = Time.time;
-        Instantiate(spawnThis, transform.GetChild(0).position,
-            spawnThis.transform.rotation);
+        GameObject spawned = (GameObject) Transform.Instantiate(spawnThis,
+            transform.GetChild(0).position, spawnThis.transform.rotation);
+        spawned.GetComponent<Rigidbody2D>().isKinematic = false;
     }
 }

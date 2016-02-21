@@ -7,12 +7,14 @@ public class PlatformSapling : MonoBehaviour {
 	public bool saplingHydrated = false;
 	public bool playerOnTop = false;
 	private float prevX;
+    private float prevY;
 
 	public float height;
 
 	// Use this for initialization
 	void Start () {
 		prevX = this.transform.position.x;
+        prevY = this.transform.position.y;
 		if (saplingHydrated)
 			HydrateSapling();
 		else
@@ -21,11 +23,14 @@ public class PlatformSapling : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (presentTree != null && presentTree.treeAlive)
+		if (presentTree != null /*&& presentTree.treeAlive*/)
 		{
 			float currX = this.transform.position.x;
+            float currY = this.transform.position.y;
 			presentTree.shiftX(currX - prevX);
+            presentTree.shiftY(currY - prevY);
 			prevX = currX;
+            prevY = currY;
 		}
 	}
 
@@ -33,7 +38,9 @@ public class PlatformSapling : MonoBehaviour {
 	{
 		if (presentTree != null)
 			presentTree.killTree();
-		this.GetComponent<Rigidbody2D>().isKinematic = true;
+        this.GetComponent<Rigidbody2D>().constraints =
+            RigidbodyConstraints2D.FreezeRotation;
+        this.GetComponent<Rigidbody2D>().isKinematic = false;
 	}
 
 	void HydrateSapling()
@@ -41,6 +48,9 @@ public class PlatformSapling : MonoBehaviour {
 		if (presentTree != null)
 			presentTree.plantTree();
 		this.GetComponent<Rigidbody2D>().isKinematic = false;
+        this.GetComponent<Rigidbody2D>().constraints =
+            RigidbodyConstraints2D.FreezePositionY
+            | RigidbodyConstraints2D.FreezeRotation;
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {

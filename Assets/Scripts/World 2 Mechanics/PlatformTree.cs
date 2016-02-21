@@ -42,4 +42,11 @@ public class PlatformTree : MonoBehaviour{
 		Vector3 newPos = new Vector3(oldPos.x + X, oldPos.y, oldPos.z);
 		this.transform.position = newPos;
 	}
+
+    public void shiftY(float Y)
+    {
+        Vector3 oldPos = this.transform.position;
+        Vector3 newPos = new Vector3(oldPos.x, oldPos.y + Y, oldPos.z);
+        this.transform.position = newPos;
+    }
 }

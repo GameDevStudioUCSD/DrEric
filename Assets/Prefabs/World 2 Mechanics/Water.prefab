@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11439052}
   - 23: {fileID: 2364028}
   - 33: {fileID: 3334014}
+  - 68: {fileID: 6880278}
   m_Layer: 4
   m_Name: Water
   m_TagString: Water
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -8.16, z: 0}
+  m_LocalPosition: {x: -80.70231, y: 5.522872, z: 0}
   m_LocalScale: {x: 71.91005, y: 7.4918294, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,6 +80,21 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!68 &6880278
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118216}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -0.5, y: 0.4954143}
+  - {x: 0.50029385, y: 0.49562737}
 --- !u!114 &11439052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +109,7 @@ MonoBehaviour:
   drainRate: 0.1
   targetHeight: -20
   drainingWater: 0
+  resetsJumps: 1
 --- !u!253 &25358012
 BuoyancyEffector2D:
   m_ObjectHideFlags: 1

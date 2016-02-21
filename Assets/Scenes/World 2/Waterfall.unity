@@ -85,25 +85,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &50445906 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 118216, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
-  m_PrefabInternal: {fileID: 87799563}
---- !u!68 &50445912
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 50445906}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-  - {x: -0.49997094, y: 0.50091624}
-  - {x: 0.49992326, y: 0.49576283}
 --- !u!1001 &61017973
 Prefab:
   m_ObjectHideFlags: 0
@@ -498,6 +479,10 @@ Prefab:
     - target: {fileID: 118216, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880278, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}

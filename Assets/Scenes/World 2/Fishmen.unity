@@ -375,28 +375,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &285261580 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 104774, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
-  m_PrefabInternal: {fileID: 1879092596}
 --- !u!4 &285261581 stripped
 Transform:
   m_PrefabParentObject: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_PrefabInternal: {fileID: 1879092596}
---- !u!61 &285261582
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 285261580}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.16}
 --- !u!1 &372572343 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 104774, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
@@ -591,7 +573,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 789460260}
   m_Layer: 0
-  m_Name: FishFolder
+  m_Name: FishSchool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1400,29 +1382,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11424688, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
-      propertyPath: destinationVector.x
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 104774, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
       propertyPath: m_Name
       value: Fish (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 11424688, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
-      propertyPath: kI
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11424688, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
-      propertyPath: kD
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11424688, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
-      propertyPath: kP
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11424688, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
-      propertyPath: destinationVector.y
-      value: -4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}

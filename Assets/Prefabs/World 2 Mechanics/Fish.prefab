@@ -14,6 +14,7 @@ GameObject:
   - 50: {fileID: 5072788}
   - 61: {fileID: 6118884}
   - 114: {fileID: 11441266}
+  - 61: {fileID: 6150742}
   m_Layer: 2
   m_Name: Fish
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.64, y: -6, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 5.14, y: 4.17, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,6 +65,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.16}
+--- !u!61 &6150742
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.16}
 --- !u!114 &11420184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,15 +102,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a68defb856d81d4b93eb2905f3ca3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kP: 1
-  kI: 0.5
-  kD: 0.5
+  kP: 2
+  kI: 0
+  kD: 0
   maximumImpulse: 0.1
   minimumImpulse: 0.01
   impuseRate: 1
   trackingType: 1
   destinationTransform: {fileID: 0}
-  destinationVector: {x: 9, y: -6, z: 0}
+  destinationVector: {x: 40, y: -4, z: 0}
 --- !u!114 &11441266
 MonoBehaviour:
   m_ObjectHideFlags: 1

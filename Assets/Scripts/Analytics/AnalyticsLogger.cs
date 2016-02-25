@@ -15,6 +15,7 @@ public class AnalyticsLogger : MonoBehaviour {
     private bool hasCompleted = false;
     public string randHash = "http://bit.ly/DrEricSurvey";
     public Text displayHash;
+    public GameObject displayPanel;
     public float displayLinkAfterNMinutes = 1.0f;
 
 
@@ -51,6 +52,7 @@ public class AnalyticsLogger : MonoBehaviour {
         if ( (bossDestroyedPlayer || onVictoryScreen || hasTimeExpired) && !hasCompleted )
         {
             hasCompleted = displayHash.enabled = true;
+            displayPanel.SetActive(true);
         }
     }
 

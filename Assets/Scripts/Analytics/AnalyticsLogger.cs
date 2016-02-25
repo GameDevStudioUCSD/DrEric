@@ -15,6 +15,7 @@ public class AnalyticsLogger : MonoBehaviour {
     private bool hasCompleted = false;
     public string randHash = "http://bit.ly/DrEricSurvey";
     public Text displayHash;
+    public float displayLinkAfterNMinutes = 1.0f;
 
 
     // MonoBehaviour functions
@@ -44,14 +45,11 @@ public class AnalyticsLogger : MonoBehaviour {
     {
         Dictionary<string, object> turkerLog = new Dictionary<string, object>();
         turkerLog["UID"] = randHash;
-        if (level == 11 && DeathCount.GetDeathCount() > 2 && !hasCompleted )
+        bool bossDestroyedPlayer = (level == 11 && DeathCount.GetDeathCount() > 2);
+        bool onVictoryScreen = level == 12;
+        bool hasTimeExpired = (Time.time > displayLinkAfterNMinutes * 60);
+        if ( (bossDestroyedPlayer || onVictoryScreen || hasTimeExpired) && !hasCompleted )
         {
-            //Analytics.CustomEvent("Turker Completed", turkerLog);
-            hasCompleted = displayHash.enabled = true;
-        }
-        if (level == 12 && !hasCompleted)
-        {
-            //Analytics.CustomEvent("Turker Completed", turkerLog);
             hasCompleted = displayHash.enabled = true;
         }
     }

@@ -18,16 +18,16 @@ public class LevelLoader : MonoBehaviour {
     private const int INTRO = 0;
     private const int MAIN_MENU = 1;
     private const int SPACE_1 = 2;
-    private const int SPACE_2 = 3;
-    private const int SPACE_3 = 4;
-    private const int SPACE_4 = 5;
-    private const int SPACE_5 = 6;
-    private const int SPACE_6 = 7;
-    private const int SPACE_7 = 8;
-    private const int SPACE_8 = 9;
+    private const int SPACE_2 = 30;
+    private const int SPACE_3 = 40;
+    private const int SPACE_4 = 3;
+    private const int SPACE_5 = 60;
+    private const int SPACE_6 = 70;
+    private const int SPACE_7 = 4;
+    private const int SPACE_8 = 90;
     private const int SPACE_9 = 10;
-    private const int SPACE_BOSS = 11;
-    private const int SPACE_BONUS = 12;
+    private const int SPACE_BOSS = 5;
+    private const int SPACE_BONUS = 6;
 
     public World world;
     public Level level;

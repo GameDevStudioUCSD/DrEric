@@ -40,13 +40,15 @@ public class Boss2Script : MonoBehaviour {
                
         }
 	}
-
+    
     void Waiting()
     {
         if (Time.time -starttime > horndelay && hornsFired <= maxHP - health)
         {
             GameObject thishorn = Instantiate(horn);
-
+            Boss2Horn hornscript = thishorn.GetComponent<Boss2Horn>();
+            hornscript.Fired = true;
+            hornsFired++;
         }
     }
 

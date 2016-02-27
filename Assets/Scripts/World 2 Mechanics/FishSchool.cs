@@ -6,7 +6,11 @@ public class FishSchool : MonoBehaviour {
 	public int numFish;
 	public GameObject barrier;
 	public GameObject[] backgrounds;
-	//public DialogBox dialog;
+	public DialogBox dialog;
+
+	public string[] startDialog;
+	public string[] midDialog;
+	public string[] endDialog;
 
 	// Use this for initialization
 	void Start () {
@@ -42,8 +46,9 @@ public class FishSchool : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Player")
 		{
-			//dialog.SetText("Gurgle gurgle");
-			//dialog.gameObject.SetActive(true);
+			Debug.Log("Tree Hit");
+			dialog.SetText("Gurgle gurgle");
+			dialog.gameObject.SetActive(true);
 		}
 	}
 }

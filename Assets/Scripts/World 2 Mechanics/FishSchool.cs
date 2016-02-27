@@ -6,6 +6,7 @@ public class FishSchool : MonoBehaviour {
 	public int numFish;
 	public GameObject barrier;
 	public GameObject[] backgrounds;
+	//public DialogBox dialog;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,15 @@ public class FishSchool : MonoBehaviour {
 		{
 			backgrounds[0].SetActive(false);
 			backgrounds[1].SetActive(true);
+		}
+	}
+
+	public void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.tag == "Player")
+		{
+			//dialog.SetText("Gurgle gurgle");
+			//dialog.gameObject.SetActive(true);
 		}
 	}
 }

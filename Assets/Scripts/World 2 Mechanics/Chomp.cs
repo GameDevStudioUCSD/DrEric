@@ -20,7 +20,7 @@ public class Chomp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(transform.rotation.eulerAngles);
+        //Debug.Log(transform.rotation.eulerAngles);
         switch( state )
         {
             case State.OPENING:

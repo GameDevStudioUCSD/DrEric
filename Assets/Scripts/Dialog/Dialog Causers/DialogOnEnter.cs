@@ -3,12 +3,12 @@ using System.Collections;
 
 public class DialogOnEnter : MonoBehaviour {
 public string dialog;
-public DialogBox boxUhText;
+public DialogBox boxText;
 	void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.tag == "Player")
         {
-            boxUhText.AppendText(dialog);
+            boxText.DisplayText(dialog);
             GameObject.Destroy(this.gameObject);
         }
     }

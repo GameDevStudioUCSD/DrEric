@@ -25,7 +25,7 @@ public class FishScript : MonoBehaviour {
         if (rigid.velocity.x > 0 && oldyrotation != 180) oldyrotation = 180;
         else oldyrotation = 0;
 
-        float degreeratio = Mathf.Atan(rigid.velocity.y / rigid.velocity.x);
+        float degreeratio = Mathf.Atan2(rigid.velocity.y , rigid.velocity.x);
         degreeratio = degreeratio / Mathf.PI;
         oldzrotation = 180 * degreeratio;
 

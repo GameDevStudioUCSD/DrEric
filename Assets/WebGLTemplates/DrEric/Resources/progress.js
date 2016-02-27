@@ -23,28 +23,30 @@ function UnityProgress(dom) {
     };
 
     this.Clear = function () {
+        bsod.style.display = "block";
         setTimeout(function () {
             loading.style.display = "none";
             messages.style.display = "none";
-            squid.style.display = "none";
+            //squid.style.display = "none";
             bsod.style.display = "none";
-        }, 2000);
+        }, 3000);
     };
 
     this.Update = function () {
         var percent = (this.progress * 100).toFixed(0);
         if (percent >= 97) {
-            bsod.style.display = "block";
+            //bsod.style.display = "block";
         }
         else {
-            //loading.innerHTML = percent + "%";
+            loading.innerHTML = percent + "%";
             //messages.innerHTML = this.message;
-            var scale = (percent * percent / 4);
-            if (scale < 150)
-                scale = 150;
-            messages.innerHTML = percent + "%";
-            squid.style.width =  scale + "px";
-            squid.style.height = scale + "px";
+
+            //var scale = (percent * percent / 4);
+            //if (scale < 150)
+            //    scale = 150;
+            //messages.innerHTML = percent + "%";
+            //squid.style.width =  scale + "px";
+            //squid.style.height = scale + "px";
         }
     };
 

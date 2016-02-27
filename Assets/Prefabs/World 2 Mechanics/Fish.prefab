@@ -13,8 +13,8 @@ GameObject:
   - 114: {fileID: 11420184}
   - 50: {fileID: 5072788}
   - 61: {fileID: 6118884}
-  - 114: {fileID: 11441266}
   - 61: {fileID: 6150742}
+  - 61: {fileID: 6125726}
   m_Layer: 2
   m_Name: Fish
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: -10, y: -5, z: 0}
   m_LocalScale: {x: 5.14, y: 4.17, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,6 +65,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.16}
+--- !u!61 &6125726
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.16}
 --- !u!61 &6150742
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -91,6 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checktime: 0
+  secondsAliveOutOfWater: 3
+  health: 2
+  schoolOfFish: {fileID: 0}
 --- !u!114 &11424688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,19 +127,7 @@ MonoBehaviour:
   impuseRate: 1
   trackingType: 1
   destinationTransform: {fileID: 0}
-  destinationVector: {x: 40, y: -4, z: 0}
---- !u!114 &11441266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9ce050da057e14ebbe32bb1a160424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SecondsAliveOutOfWater: 3
+  destinationVector: {x: 55, y: -5, z: 0}
 --- !u!212 &21235800
 SpriteRenderer:
   m_ObjectHideFlags: 1

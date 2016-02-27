@@ -16,7 +16,7 @@ using System.Collections;
 /// </summary>
 
 public class Water : MonoBehaviour {
-
+	private RhythmController rhythmController;
 	public bool inWater = false;
     // Tag the player object will have
     static string PLAYER_TAG = "Player";
@@ -49,6 +49,7 @@ public class Water : MonoBehaviour {
         // Calculate the ending position using target height
         endPosition = startPosition;
         endPosition.y = targetHeight;
+		rhythmController = RhythmController.GetController ();
 	}
 	
 	// Update is called once per frame
@@ -67,7 +68,7 @@ public class Water : MonoBehaviour {
         {
             if (resetsJumps)
             {
-				GetComponentInChildren<RhythmController> ().SwapChannel();
+				rhythmController.SwapChannel();
                 Debug.Log("Reset jumps!");
                 // Land player to reset jumps
                 other.gameObject.GetComponent<BallController>().Land();
@@ -81,8 +82,7 @@ public class Water : MonoBehaviour {
 		//Debug.Log ("ANHQWUANANAA");
 		if (other.tag == PLAYER_TAG)
 		{
-			
-			GetComponentInChildren<RhythmController> ().SwapChannel();
+			rhythmController.SwapChannel();
 		}
 	}
 

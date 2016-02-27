@@ -190,7 +190,7 @@ public class RhythmController : MonoBehaviour {
         ChannelLerp(); 
         foreach (int measure in measureKeys)
         {
-            float t = channel1.time * 1000 * activeChannel.pitch; // t == time
+			float t = activeChannel.time * 1000 * activeChannel.pitch; // t == time
             if ((int)(t / measureLength) % measure == 0)
             { // We know that we're in an appropriate measure to call methods on
                 List<float> timeKeys = measureTimeKeys[measure];

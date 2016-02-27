@@ -524,11 +524,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel2TrackList.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_LocalPosition.x
@@ -589,7 +589,7 @@ Prefab:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[0]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11464008, guid: be36067eddd25414e95042618f2ad5ec,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[1]
@@ -661,11 +661,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: songIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 194616, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel2TrackList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11492908, guid: 646a96abb6e7ac344b9463b417f3e6f1,
+        type: 2}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: swapSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}

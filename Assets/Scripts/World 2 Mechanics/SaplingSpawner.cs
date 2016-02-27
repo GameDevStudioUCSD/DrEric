@@ -20,6 +20,7 @@ public class SaplingSpawner : MonoBehaviour {
     {
         if (other.collider.tag == "Player")
         {
+            Debug.Log("Collided");
             if (Time.time > 2 && startTime == 0)
                 spawn();
         }

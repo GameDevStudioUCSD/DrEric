@@ -68,7 +68,6 @@ public class Water : MonoBehaviour {
             if (resetsJumps)
             {
 				GetComponentInChildren<RhythmController> ().SwapChannel();
-                Debug.Log("Reset jumps!");
                 // Land player to reset jumps
                 other.gameObject.GetComponent<BallController>().Land();
             }

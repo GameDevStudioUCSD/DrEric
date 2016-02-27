@@ -66,7 +66,6 @@ public class Water : MonoBehaviour {
         {
             if (resetsJumps)
             {
-                Debug.Log("Reset jumps!");
                 // Land player to reset jumps
                 other.gameObject.GetComponent<BallController>().Land();
             }

@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FishScript : MonoBehaviour {
+public class Fish : MonoBehaviour {
 
 
     private float starttime;
     public float checktime;
+	private float dietime;
+    public float secondsAliveOutOfWater;
+    public int health;
+    public FishSchool schoolOfFish;
+
 	// Use this for initialization
 	void Start () {
-   
+		dietime = Time.time;
         starttime = Time.time;
         //Debug.Log(currentpos);
 
@@ -25,13 +30,44 @@ public class FishScript : MonoBehaviour {
         if (rigid.velocity.x > 0 && oldyrotation != 180) oldyrotation = 180;
         else oldyrotation = 0;
 
-        float degreeratio = Mathf.Atan(rigid.velocity.y / rigid.velocity.x);
+        float degreeratio = Mathf.Atan2(rigid.velocity.y , rigid.velocity.x);
         degreeratio = degreeratio / Mathf.PI;
         oldzrotation = 180 * degreeratio;
 
         if (rigid.velocity.x > 0) oldzrotation *= -1;
 
-
         m.eulerAngles = new Vector3(oldxrotation, oldyrotation, oldzrotation);
+		if (Time.time - dietime > secondsAliveOutOfWater)
+		{
+			if (schoolOfFish != null)
+			{
+				schoolOfFish.KillAFish();
+			}
+            Destroy(this.gameObject);
+        }
+    }
+
+	void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Water")
+        {
+            dietime = Time.time;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+    	if (col.gameObject.tag == "Player")
+    	{
+    		health--;
+    		if (health <= 0)
+    		{
+				if (schoolOfFish != null)
+				{
+					schoolOfFish.KillAFish();
+				}
+           		Destroy(this.gameObject);
+    		}
+    	}
     }
 }

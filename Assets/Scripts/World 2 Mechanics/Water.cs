@@ -17,6 +17,7 @@ using System.Collections;
 
 public class Water : MonoBehaviour {
 
+	public bool inWater = false;
     // Tag the player object will have
     static string PLAYER_TAG = "Player";
 
@@ -66,12 +67,24 @@ public class Water : MonoBehaviour {
         {
             if (resetsJumps)
             {
+				GetComponentInChildren<RhythmController> ().SwapChannel();
                 Debug.Log("Reset jumps!");
                 // Land player to reset jumps
                 other.gameObject.GetComponent<BallController>().Land();
             }
         }
+			
     }
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		//Debug.Log ("ANHQWUANANAA");
+		if (other.tag == PLAYER_TAG)
+		{
+			
+			GetComponentInChildren<RhythmController> ().SwapChannel();
+		}
+	}
 
     // Starts the water draining process
     public void beginDrainingWater()

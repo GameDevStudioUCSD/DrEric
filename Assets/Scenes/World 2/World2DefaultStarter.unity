@@ -347,6 +347,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!4 &553788895 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
+  m_PrefabInternal: {fileID: 1027864693}
 --- !u!1 &678799094 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 199570, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
@@ -360,7 +364,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 553788895}
     m_Modifications:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.size
@@ -376,7 +380,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_LocalPosition.z
@@ -400,7 +404,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: panLevelCustomCurve.m_RotationOrder
@@ -429,22 +433,22 @@ Prefab:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[0]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11426520, guid: 5c684731ca1e04cfa9f65227014c5a39,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[1]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11426520, guid: 5c684731ca1e04cfa9f65227014c5a39,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[2]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11426520, guid: 5c684731ca1e04cfa9f65227014c5a39,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[3]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11426520, guid: 5c684731ca1e04cfa9f65227014c5a39,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[4]
@@ -464,17 +468,17 @@ Prefab:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel2TrackList.Array.data[1]
       value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
+      objectReference: {fileID: 11458916, guid: c8b9d3cd83dfd4187818e44cdef5b503,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel2TrackList.Array.data[2]
       value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
+      objectReference: {fileID: 11458916, guid: c8b9d3cd83dfd4187818e44cdef5b503,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel2TrackList.Array.data[3]
       value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
+      objectReference: {fileID: 11458916, guid: c8b9d3cd83dfd4187818e44cdef5b503,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel2TrackList.Array.data[4]
@@ -502,6 +506,23 @@ Prefab:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: songIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel2TrackList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11458916, guid: c8b9d3cd83dfd4187818e44cdef5b503,
+        type: 2}
+    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.16666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: swapSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}

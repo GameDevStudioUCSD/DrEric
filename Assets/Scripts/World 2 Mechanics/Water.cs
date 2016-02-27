@@ -16,8 +16,8 @@ using System.Collections;
 /// </summary>
 
 public class Water : MonoBehaviour {
-	private RhythmController rhythmController;
-	public bool inWater = false;
+    private RhythmController rhythmController;
+
     // Tag the player object will have
     static string PLAYER_TAG = "Player";
 
@@ -49,7 +49,7 @@ public class Water : MonoBehaviour {
         // Calculate the ending position using target height
         endPosition = startPosition;
         endPosition.y = targetHeight;
-		rhythmController = RhythmController.GetController ();
+        rhythmController = RhythmController.GetController();
 	}
 	
 	// Update is called once per frame
@@ -66,24 +66,23 @@ public class Water : MonoBehaviour {
         // If the collider is player's, then give player infinite jump
         if (other.tag == PLAYER_TAG)
         {
+            rhythmController.SwapChannel();
             if (resetsJumps)
             {
-				rhythmController.SwapChannel();
                 // Land player to reset jumps
                 other.gameObject.GetComponent<BallController>().Land();
             }
         }
-			
     }
 
-	void OnTriggerExit2D(Collider2D other)
-	{
-		//Debug.Log ("ANHQWUANANAA");
-		if (other.tag == PLAYER_TAG)
-		{
-			rhythmController.SwapChannel();
-		}
-	}
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == PLAYER_TAG)
+        {
+            rhythmController.SwapChannel();
+        }
+    }
 
     // Starts the water draining process
     public void beginDrainingWater()

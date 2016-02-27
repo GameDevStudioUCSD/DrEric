@@ -235,4 +235,8 @@ public class DialogBox : MonoBehaviour {
         dialog = text;
         wordList = dialog.Split(' ');
     }
+    public void SetImage(Sprite image)
+    {
+        characterImage.sprite = image;
+    }
 }

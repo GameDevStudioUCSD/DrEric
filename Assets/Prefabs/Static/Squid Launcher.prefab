@@ -303,13 +303,27 @@ MonoBehaviour:
   rotationSpeed: 5
   rotationOffset: 0
   activeCamera: {fileID: 0}
-  launchSprite0: {fileID: 21300000, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
-  launchSprite1: {fileID: 21300002, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
-  launchSprite2: {fileID: 21300004, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
-  launchSprite3: {fileID: 21300006, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
-  launchSprite4: {fileID: 21300008, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
-  launchSprite5: {fileID: 21300010, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
-  launchSprite6: {fileID: 21300012, guid: 2696b7c16b198426c9f252826b12381d, type: 3}
+  launchPresentSprite0: {fileID: 21300000, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPresentSprite1: {fileID: 21300002, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPresentSprite2: {fileID: 21300004, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPresentSprite3: {fileID: 21300006, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPresentSprite4: {fileID: 21300008, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPresentSprite5: {fileID: 21300010, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPresentSprite6: {fileID: 21300012, guid: 2696b7c16b198426c9f252826b12381d,
+    type: 3}
+  launchPastSprite0: {fileID: 0}
+  launchPastSprite1: {fileID: 0}
+  launchPastSprite2: {fileID: 0}
+  launchPastSprite3: {fileID: 0}
+  launchPastSprite4: {fileID: 0}
+  launchPastSprite5: {fileID: 0}
+  launchPastSprite6: {fileID: 0}
   state: 0
 --- !u!124 &12410630
 Behaviour:
@@ -414,7 +428,42 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite0
+      value: 
+      objectReference: {fileID: 21300000, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite1
+      value: 
+      objectReference: {fileID: 21300002, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite2
+      value: 
+      objectReference: {fileID: 21300004, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite3
+      value: 
+      objectReference: {fileID: 21300006, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite4
+      value: 
+      objectReference: {fileID: 21300008, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite5
+      value: 
+      objectReference: {fileID: 21300010, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: launchPresentSprite6
+      value: 
+      objectReference: {fileID: 21300012, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 172428}

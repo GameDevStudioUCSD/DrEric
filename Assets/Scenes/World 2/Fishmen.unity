@@ -232,6 +232,10 @@ Prefab:
       propertyPath: schoolOfFish
       value: 
       objectReference: {fileID: 581736951}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -5.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_IsPrefabParent: 0
@@ -785,7 +789,7 @@ Prefab:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[0]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11464008, guid: be36067eddd25414e95042618f2ad5ec,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[1]
@@ -857,7 +861,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: songIndex
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel2TrackList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11492908, guid: 646a96abb6e7ac344b9463b417f3e6f1,
+        type: 2}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: swapSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
@@ -1169,6 +1182,10 @@ Prefab:
       propertyPath: schoolOfFish
       value: 
       objectReference: {fileID: 581736951}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -5.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_IsPrefabParent: 0
@@ -1869,6 +1886,10 @@ Prefab:
       propertyPath: schoolOfFish
       value: 
       objectReference: {fileID: 581736951}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -5.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_IsPrefabParent: 0
@@ -1961,6 +1982,10 @@ Prefab:
       propertyPath: schoolOfFish
       value: 
       objectReference: {fileID: 581736951}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -5.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_IsPrefabParent: 0
@@ -2003,6 +2028,41 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite0
+      value: 
+      objectReference: {fileID: 21300000, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite1
+      value: 
+      objectReference: {fileID: 21300002, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite2
+      value: 
+      objectReference: {fileID: 21300004, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite3
+      value: 
+      objectReference: {fileID: 21300006, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite4
+      value: 
+      objectReference: {fileID: 21300008, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite5
+      value: 
+      objectReference: {fileID: 21300010, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
+    - target: {fileID: 11413130, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
+      propertyPath: launchPresentSprite6
+      value: 
+      objectReference: {fileID: 21300012, guid: 2696b7c16b198426c9f252826b12381d,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
   m_IsPrefabParent: 0
@@ -2081,6 +2141,10 @@ Prefab:
       propertyPath: schoolOfFish
       value: 
       objectReference: {fileID: 581736951}
+    - target: {fileID: 401538, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -5.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
   m_IsPrefabParent: 0

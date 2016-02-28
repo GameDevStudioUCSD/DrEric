@@ -6,6 +6,8 @@ public class PlatformSapling : MonoBehaviour {
 	public PlatformTree presentTree;
 	public bool saplingHydrated = false;
 	public bool playerOnTop = false;
+	public Sprite hydratedSapling;
+	public Sprite dehydratedSapling;
 	private float prevX;
     private float prevY;
 
@@ -41,6 +43,8 @@ public class PlatformSapling : MonoBehaviour {
         this.GetComponent<Rigidbody2D>().constraints =
             RigidbodyConstraints2D.FreezeRotation;
         this.GetComponent<Rigidbody2D>().isKinematic = false;
+		this.gameObject.GetComponent<SpriteRenderer>().sprite = dehydratedSapling;
+
 	}
 
 	void HydrateSapling()
@@ -51,6 +55,8 @@ public class PlatformSapling : MonoBehaviour {
         this.GetComponent<Rigidbody2D>().constraints =
             RigidbodyConstraints2D.FreezePositionY
             | RigidbodyConstraints2D.FreezeRotation;
+
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = hydratedSapling;
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {

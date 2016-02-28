@@ -28,7 +28,7 @@ public class FishSchool : MonoBehaviour {
 		if (numFish == 0)
 		{
 			backgrounds[2].SetActive(false);
-			Destroy(barrier);
+			Destroy(this.gameObject);
 		}
 		else if (numFish < 2)
 		{

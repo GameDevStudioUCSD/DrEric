@@ -27,6 +27,8 @@ GameObject:
   - 114: {fileID: 11455724}
   - 60: {fileID: 6035234}
   - 114: {fileID: 11431858}
+  - 114: {fileID: 11478034}
+  - 50: {fileID: 5052628}
   m_Layer: 0
   m_Name: Horn
   m_TagString: Untagged
@@ -59,6 +61,23 @@ Transform:
   - {fileID: 413530}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5052628
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170624}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &6035234
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -90,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ffe762e2dc2284ab0beab030875c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  Fired: 0
 --- !u!114 &11455724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,6 +122,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3236904cf437ee7479502c1834d183e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11478034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170624}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a68defb856d81d4b93eb2905f3ca3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kP: 1
+  kI: 1
+  kD: 1
+  maximumImpulse: 1
+  minimumImpulse: 0
+  impuseRate: 1
+  trackingType: 0
+  destinationTransform: {fileID: 0}
+  destinationVector: {x: 0, y: 0, z: 0}
 --- !u!212 &21290540
 SpriteRenderer:
   m_ObjectHideFlags: 1

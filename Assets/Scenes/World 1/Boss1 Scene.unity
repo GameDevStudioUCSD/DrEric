@@ -1919,6 +1919,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  isVertical: 0
+  numTiles: 0
+  topLeftCorner: {fileID: 0}
+  topRightCorner: {fileID: 0}
+  bottomLeftCorner: {fileID: 0}
+  bottomRightCorner: {fileID: 0}
+  topSprite: {fileID: 0}
+  bottomSprite: {fileID: 0}
+  leftSprite: {fileID: 0}
+  rightSprite: {fileID: 0}
+  middleSprite: {fileID: 0}
+  width: 2
+  height: 2
 --- !u!4 &240113479
 Transform:
   m_ObjectHideFlags: 0
@@ -4792,19 +4806,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_SizeDelta.x
@@ -4812,23 +4826,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22483780, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22432432, guid: 220897a8bbdf13e46b063207905022b1, type: 2}
       propertyPath: m_SizeDelta.x
@@ -5427,6 +5441,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  isVertical: 0
+  numTiles: 0
+  topLeftCorner: {fileID: 0}
+  topRightCorner: {fileID: 0}
+  bottomLeftCorner: {fileID: 0}
+  bottomRightCorner: {fileID: 0}
+  topSprite: {fileID: 0}
+  bottomSprite: {fileID: 0}
+  leftSprite: {fileID: 0}
+  rightSprite: {fileID: 0}
+  middleSprite: {fileID: 0}
+  width: 2
+  height: 2
 --- !u!4 &656337063
 Transform:
   m_ObjectHideFlags: 0
@@ -13380,6 +13408,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  isVertical: 0
+  numTiles: 0
+  topLeftCorner: {fileID: 0}
+  topRightCorner: {fileID: 0}
+  bottomLeftCorner: {fileID: 0}
+  bottomRightCorner: {fileID: 0}
+  topSprite: {fileID: 0}
+  bottomSprite: {fileID: 0}
+  leftSprite: {fileID: 0}
+  rightSprite: {fileID: 0}
+  middleSprite: {fileID: 0}
+  width: 2
+  height: 2
 --- !u!4 &1593538834
 Transform:
   m_ObjectHideFlags: 0
@@ -14020,6 +14062,10 @@ Prefab:
     - target: {fileID: 11408208, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
       propertyPath: nextLevel
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408208, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
+      propertyPath: world
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
@@ -15917,6 +15963,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e21742a2964735847a0e10368a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  isVertical: 0
+  numTiles: 0
+  topLeftCorner: {fileID: 0}
+  topRightCorner: {fileID: 0}
+  bottomLeftCorner: {fileID: 0}
+  bottomRightCorner: {fileID: 0}
+  topSprite: {fileID: 0}
+  bottomSprite: {fileID: 0}
+  leftSprite: {fileID: 0}
+  rightSprite: {fileID: 0}
+  middleSprite: {fileID: 0}
+  width: 2
+  height: 2
 --- !u!4 &1951392430
 Transform:
   m_ObjectHideFlags: 0

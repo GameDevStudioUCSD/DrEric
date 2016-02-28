@@ -23,13 +23,21 @@ public class SquidLauncher : MonoBehaviour
     private bool alreadyGrabbed = false; //prevents trying to grab while held
 
     //sprites with extended tentacles
-    public Sprite launchSprite0;
-    public Sprite launchSprite1;
-    public Sprite launchSprite2;
-    public Sprite launchSprite3;
-    public Sprite launchSprite4;
-    public Sprite launchSprite5;
-    public Sprite launchSprite6;
+    public Sprite launchPresentSprite0;
+	public Sprite launchPresentSprite1;
+	public Sprite launchPresentSprite2;
+	public Sprite launchPresentSprite3;
+	public Sprite launchPresentSprite4;
+	public Sprite launchPresentSprite5;
+	public Sprite launchPresentSprite6;
+
+	public Sprite launchPastSprite0;
+	public Sprite launchPastSprite1;
+	public Sprite launchPastSprite2;
+	public Sprite launchPastSprite3;
+	public Sprite launchPastSprite4;
+	public Sprite launchPastSprite5;
+	public Sprite launchPastSprite6;
 
     public enum State { NORMAL, GRABBED };
     public State state = State.NORMAL;
@@ -228,27 +236,27 @@ public class SquidLauncher : MonoBehaviour
         switch (grabSprite)
         {
             case 1:
-                sprite.sprite = launchSprite1;
+                sprite.sprite = launchPresentSprite1;
                 launchingSprite.localPosition = new Vector3(xOffset, .64f, 0);
                 break;
             case 2:
-                sprite.sprite = launchSprite2;
+                sprite.sprite = launchPresentSprite2;
                 launchingSprite.localPosition = new Vector3(xOffset, 1.13f, 0);
                 break;
             case 3:
-                sprite.sprite = launchSprite3;
+                sprite.sprite = launchPresentSprite3;
                 launchingSprite.localPosition = new Vector3(xOffset, 1.62f, 0);
                 break;
             case 4:
-                sprite.sprite = launchSprite4;
+                sprite.sprite = launchPresentSprite4;
                 launchingSprite.localPosition = new Vector3(xOffset, 2.41f, 0);
                 break;
             case 5:
-                sprite.sprite = launchSprite5;
+                sprite.sprite = launchPresentSprite5;
                 launchingSprite.localPosition = new Vector3(xOffset, 3.39f, 0);
                 break;
             case 6:
-                sprite.sprite = launchSprite6;
+                sprite.sprite = launchPresentSprite6;
                 launchingSprite.localPosition = new Vector3(xOffset, 4.20f, 0);
                 break;
         }

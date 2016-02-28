@@ -7,6 +7,7 @@ public class Fish : MonoBehaviour {
     private float starttime;
     public float checktime;
 	private float dietime;
+    private int speed = 3;
     public float secondsAliveOutOfWater;
     public int health;
     public FishSchool schoolOfFish;
@@ -22,22 +23,14 @@ public class Fish : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-        Transform m = transform;
-        float oldxrotation = transform.rotation.eulerAngles.x;
-        float oldyrotation = transform.rotation.eulerAngles.y;
-        float oldzrotation = transform.rotation.eulerAngles.z;
-
-        if (rigid.velocity.x > 0 && oldyrotation != 180) oldyrotation = 180;
-        else oldyrotation = 0;
-
-        float degreeratio = Mathf.Atan2(rigid.velocity.y , rigid.velocity.x);
-        degreeratio = degreeratio / Mathf.PI;
-        oldzrotation = 180 * degreeratio;
-
-        if (rigid.velocity.x > 0) oldzrotation *= -1;
-
-        m.eulerAngles = new Vector3(oldxrotation, oldyrotation, oldzrotation);
-		if (Time.time - dietime > secondsAliveOutOfWater)
+        Vector3 vectorToTarget = rigid.velocity;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        Debug.Log(transform.rotation.eulerAngles.z);
+        if (transform.rotation.eulerAngles.z < 180 && transform.localScale.y < 0) transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y);
+        if (transform.rotation.eulerAngles.z > 180 && transform.localScale.y > 0) transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y);
+        if (Time.time - dietime > secondsAliveOutOfWater)
 		{
 			if (schoolOfFish != null)
 			{

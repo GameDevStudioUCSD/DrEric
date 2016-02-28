@@ -16,8 +16,8 @@ using System.Collections;
 /// </summary>
 
 public class Water : MonoBehaviour {
-
     private RhythmController rhythmController;
+
     // Tag the player object will have
     static string PLAYER_TAG = "Player";
 
@@ -69,12 +69,12 @@ public class Water : MonoBehaviour {
             rhythmController.SwapChannel();
             if (resetsJumps)
             {
-                Debug.Log("Reset jumps!");
                 // Land player to reset jumps
                 other.gameObject.GetComponent<BallController>().Land();
             }
         }
     }
+
 
     void OnTriggerExit2D(Collider2D other)
     {

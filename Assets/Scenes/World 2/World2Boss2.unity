@@ -2339,26 +2339,6 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 457842, guid: 6af8d25aac87d1244b17f6c75b8fc5ea, type: 2}
   m_PrefabInternal: {fileID: 886992655}
---- !u!114 &716271595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 716271593}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a68defb856d81d4b93eb2905f3ca3e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kP: 1
-  kI: 1
-  kD: 1
-  maximumImpulse: 1
-  minimumImpulse: 0
-  impuseRate: 0
-  trackingType: 0
-  destinationTransform: {fileID: 0}
-  destinationVector: {x: 0, y: 0, z: 0}
 --- !u!1 &720324157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,6 +3351,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11431858, guid: 6af8d25aac87d1244b17f6c75b8fc5ea, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 960584918}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6af8d25aac87d1244b17f6c75b8fc5ea, type: 2}
   m_IsPrefabParent: 0
@@ -3870,8 +3854,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalPosition: {x: 0, y: 0, z: 0}
-  target: {fileID: 0}
+  target: {fileID: 960584918}
+  horn: {fileID: 716271593}
   health: 3
+  horndelay: 0.5
+  horninitialforce: 2
 --- !u!114 &1127293015
 MonoBehaviour:
   m_ObjectHideFlags: 0

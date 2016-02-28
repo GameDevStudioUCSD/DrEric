@@ -9,6 +9,7 @@ public class Boss2Script : MonoBehaviour {
     public GameObject horn;
     public int health = 3;
     public float horndelay;
+    public float horninitialforce = 10;
 
 
     private int maxHP;
@@ -45,9 +46,14 @@ public class Boss2Script : MonoBehaviour {
     {
         if (Time.time -starttime > horndelay && hornsFired <= maxHP - health)
         {
-            GameObject thishorn = Instantiate(horn);
-            Boss2Horn hornscript = thishorn.GetComponent<Boss2Horn>();
+            GameObject firedhorn = Instantiate(horn);
+            Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
+            firedhorn.transform.position = horn.transform.position;
+            firedhorn.transform.rotation = horn.transform.rotation;
+            hornscript.target = target;
+            float impulseradians = horn.transform.rotation.eulerAngles.z;
             hornscript.Fired = true;
+            firedhorn.GetComponent<Rigidbody2D>().AddForce(new Vector2(-horninitialforce * Mathf.Cos(impulseradians), -horninitialforce * Mathf.Cos(impulseradians)), ForceMode2D.Impulse);
             hornsFired++;
         }
     }

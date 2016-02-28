@@ -303,40 +303,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &141496012 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 136372, guid: e4a2799a364e94e12b1a611f940989dd, type: 2}
-  m_PrefabInternal: {fileID: 1512275000}
---- !u!212 &141496013
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 141496012}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14d057acffd7942aba46b8c177d78889, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
 --- !u!4 &141496015 stripped
 Transform:
   m_PrefabParentObject: {fileID: 415964, guid: e4a2799a364e94e12b1a611f940989dd, type: 2}
@@ -466,7 +432,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 26.29
+      value: 29.46
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalPosition.z
@@ -502,7 +468,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalScale.y
-      value: 15.004307
+      value: 21.346584
       objectReference: {fileID: 0}
     - target: {fileID: 25358012, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_FlowAngle
@@ -764,6 +730,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11422428, guid: 5661301f77fd343beab5ba87020112a2, type: 2}
+      propertyPath: height
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5661301f77fd343beab5ba87020112a2, type: 2}
   m_IsPrefabParent: 0
@@ -981,7 +951,7 @@ Prefab:
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[0]
       value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
+      objectReference: {fileID: 11464008, guid: be36067eddd25414e95042618f2ad5ec,
         type: 2}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: channel1TrackList.Array.data[1]
@@ -1053,7 +1023,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: songIndex
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: channel2TrackList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11492908, guid: 646a96abb6e7ac344b9463b417f3e6f1,
+        type: 2}
+    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: swapSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
@@ -1174,40 +1153,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 415964, guid: e4a2799a364e94e12b1a611f940989dd, type: 2}
   m_PrefabInternal: {fileID: 1070557673}
---- !u!1 &1070557675 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 136372, guid: e4a2799a364e94e12b1a611f940989dd, type: 2}
-  m_PrefabInternal: {fileID: 1070557673}
---- !u!212 &1070557676
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1070557675}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14d057acffd7942aba46b8c177d78889, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
 --- !u!1001 &1136755757
 Prefab:
   m_ObjectHideFlags: 0
@@ -1395,7 +1340,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 26.29
+      value: 29.46
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1431,7 +1376,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485432, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_LocalScale.y
-      value: 15.004307
+      value: 21.338451
       objectReference: {fileID: 0}
     - target: {fileID: 25358012, guid: 95e2d45bde7ace24a908c6f09d6b9b65, type: 2}
       propertyPath: m_FlowAngle
@@ -1671,7 +1616,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 417460, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 7.19
       objectReference: {fileID: 0}
     - target: {fileID: 417460, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2056,8 +2001,8 @@ PolygonCollider2D:
       - {x: -0.6497694, y: -0.16606092}
       - {x: -0.653504, y: -11.181977}
       - {x: 0.49581966, y: -11.667037}
-      - {x: 0.4976937, y: 37.97224}
-      - {x: 0.17572452, y: 37.961914}
+      - {x: 0.5053995, y: 44.814964}
+      - {x: 0.17495395, y: 44.804638}
       - {x: 0.17627847, y: 30.052868}
       - {x: 0.19825278, y: 28.613194}
       - {x: 0.328491, y: 28.466217}
@@ -2158,8 +2103,8 @@ PolygonCollider2D:
       - {x: -0.6497694, y: -0.16606092}
       - {x: -0.653504, y: -11.181977}
       - {x: 0.49581966, y: -11.667037}
-      - {x: 0.4976937, y: 37.97224}
-      - {x: 0.17572452, y: 37.961914}
+      - {x: 0.49769372, y: 44.825966}
+      - {x: 0.1740196, y: 44.764492}
       - {x: 0.17627847, y: 30.052868}
       - {x: 0.19825278, y: 28.613194}
       - {x: 0.328491, y: 28.466217}

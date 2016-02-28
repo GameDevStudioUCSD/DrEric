@@ -44,17 +44,36 @@ public class Boss2Script : MonoBehaviour {
     
     void Waiting()
     {
-        if (Time.time -starttime > horndelay && hornsFired <= maxHP - health)
+        if (Time.time - starttime > horndelay && hornsFired <= maxHP - health)
         {
             GameObject firedhorn = Instantiate(horn);
             Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
             firedhorn.transform.position = horn.transform.position;
             firedhorn.transform.rotation = horn.transform.rotation;
             hornscript.target = target;
+            hornscript.boss = this;
             float impulseradians = horn.transform.rotation.eulerAngles.z;
-            hornscript.Fired = true;
             firedhorn.GetComponent<Rigidbody2D>().AddForce(new Vector2(-horninitialforce * Mathf.Cos(impulseradians), -horninitialforce * Mathf.Cos(impulseradians)), ForceMode2D.Impulse);
             hornsFired++;
+            starttime = Time.time;
+            while (Time.time - starttime > 2)
+            {
+                hornscript.Fired = false;
+            }
+            hornscript.Fired = true;
+        }
+    }
+
+    public void hit()
+    {
+        health--;
+        if (health == 0)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            state = State.BLOATING;
         }
     }
 

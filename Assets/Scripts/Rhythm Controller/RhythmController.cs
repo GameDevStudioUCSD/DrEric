@@ -73,6 +73,19 @@ public class RhythmController : MonoBehaviour {
         PlayTransition(song1);
     }
 
+    // Preserves position in song
+    public void SwapToSong(int i)
+    {
+        float song1Len = channel1TrackList[songIndex].bpm;
+        float song2Len = channel1TrackList[i].bpm;
+        float songRatio = song1Len / song2Len;
+        float currentTime = channel1.time;
+        PlaySong(i);
+        PlaySong();
+        channel1.time = currentTime * songRatio;
+        channel2.time = currentTime * songRatio;
+    }
+
     public static RhythmController GetController()
     {
         GameObject controller = GameObject.Find(Names.RHYTHMCONTROLLER);
@@ -103,7 +116,7 @@ public class RhythmController : MonoBehaviour {
     {
         if (song == null)
             return;
-        if(song.transition != null)
+        if (song.transition != null)
         {
             StopSong();
             activeChannel.PlayOneShot(song.transition);

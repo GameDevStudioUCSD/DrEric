@@ -27,7 +27,6 @@ public class Fish : MonoBehaviour {
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
-        Debug.Log(transform.rotation.eulerAngles.z);
         if (transform.rotation.eulerAngles.z < 180 && transform.localScale.y < 0) transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y);
         if (transform.rotation.eulerAngles.z > 180 && transform.localScale.y > 0) transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y);
         if (Time.time - dietime > secondsAliveOutOfWater)

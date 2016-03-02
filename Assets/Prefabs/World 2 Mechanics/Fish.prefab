@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checktime: 0
-  secondsAliveOutOfWater: 3
-  health: 2
+  secondsAliveOutOfWater: 5
+  health: 10
   schoolOfFish: {fileID: 0}
 --- !u!114 &11424688
 MonoBehaviour:
@@ -174,6 +174,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 7b4eef4f529ce9d44a5538fa5556d739,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: secondsAliveOutOfWater
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 104774}

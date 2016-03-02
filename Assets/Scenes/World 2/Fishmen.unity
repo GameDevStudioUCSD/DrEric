@@ -443,6 +443,12 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.16}
+--- !u!114 &401965729 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11453788, guid: b6d5643c0c9b82244a41284c98261649,
+    type: 2}
+  m_PrefabInternal: {fileID: 1425532467}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &451743241 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 104774, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
@@ -511,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55475c9155d9d46ae8206ffcdcbe8f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 8b7d5e8583e45478ea01ff99e6781029, type: 3}
   numFish: 5
   barrier: {fileID: 1207710400}
   backgrounds:
@@ -521,38 +528,37 @@ MonoBehaviour:
   startDialog:
   - '*gurgle gurgle*'
   - '*gurgle gurgle gurgle*'
-  - '*cough* Sorry. Was clearing my throat.'
+  - '*cough* Sorry. Clearing my throat.'
   - YOU SHALL NOT PASS.
   - BY THE ORDER OF THE GRAND FISH EMPEROR, I SHALL GUARD THIS MIGHTY GATE WITH MY
-    LIFE!
+    LIFE.
+  - ONLY A LETTER MARKED WITH THE SEAL OF THE GRAND EMPEROR WILL GRANT YOU ENTRANCE
+    TO OUR KINGDOM.
+  - THE GRAND EMPEROR RESIDES INSIDE THE CITY, AND YOU MUST VISIT HIM TO RECEIVE HIS
+    SEAL.
+  - AND SINCE YOU REQUIRE THE SEAL TO ENTER...
+  - YOU SHALL NOT PASS.
   - OUR GLORIOUS EMPIRE WAS FOUNDED UPON THE SACRIFICES OF GELVIN THE GREAT, GARGLE
     THE GARGLER, GAWAIN THE GREEN, GILBERT THE GRAND, AND STEVE THE FOOL.
-  - 
-  - 
-  - 
-  - 
+  - ON THEIR GREAT AND HONORABLE NAMES, YOU SHALL NOT PASS.
+  - YOU SHALL NOT PASS.
   midDialog:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - Our glorious empire originated from only five brave fish ancestors.
+  - Ahem.
+  - As a noble servant of the great city of Ikthea, I must ask that you turn back.
+  - The laws regarding admittance to the city are very strict; we must ensure that
+    none shall pass.
+  - If you were to have a signed letter from the King himself, however...
+  - Well. Seeing as you do not have any business being here...
+  - ', and Steve the Fool...ur three founders: Gawain the Green, Gargle the Gargler,
+    and Steve the Fool...'
+  - You shall not pass.
   endDialog:
   - Chief Fishstick don't like outsiders.
   - SCRAM!
   - Get outta here!
-  - 'Our ancestor Steve the Smart '
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Our ancestor Steve the Smart, he know what's good for us.
+  - So get out!
+  - Leave!
 --- !u!1 &652823912
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,166 +721,6 @@ Transform:
   - {fileID: 1346778003}
   m_Father: {fileID: 1496829887}
   m_RootOrder: 0
---- !u!1001 &890281061
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 492872, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8257576, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8257576, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8257576, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11464008, guid: be36067eddd25414e95042618f2ad5ec,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[3]
-      value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[4]
-      value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[5]
-      value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel1TrackList.Array.data[6]
-      value: 
-      objectReference: {fileID: 11481096, guid: d58159b30d9c04be591f3283abefcacc,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[3]
-      value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[4]
-      value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[5]
-      value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[6]
-      value: 
-      objectReference: {fileID: 11444478, guid: a3c7d6eef07071b4b8b72a85cfa35c08,
-        type: 2}
-    - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8257576, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: songIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: channel2TrackList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11492908, guid: 646a96abb6e7ac344b9463b417f3e6f1,
-        type: 2}
-    - target: {fileID: 11437658, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-      propertyPath: swapSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1027864693
 Prefab:
   m_ObjectHideFlags: 0
@@ -1115,6 +961,18 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 156094, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
   m_PrefabInternal: {fileID: 313000641}
+--- !u!114 &1207710404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207710400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2dbed5ae48abe34397f22faa4e5cbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dBox: {fileID: 581736951}
 --- !u!1001 &1231482215
 Prefab:
   m_ObjectHideFlags: 0
@@ -1507,6 +1365,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: characterImage
+      value: 
+      objectReference: {fileID: 401965729}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
   m_IsPrefabParent: 0
@@ -2147,6 +2009,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24cdc3caa1ff652489c281a33437c0f0, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &2049130743
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 496430, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 105290, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
+      propertyPath: m_Name
+      value: RhythmController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 03db1131180b40e4a98db9b8dd803583, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2067080153
 GameObject:

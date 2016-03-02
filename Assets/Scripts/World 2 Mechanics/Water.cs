@@ -66,7 +66,7 @@ public class Water : MonoBehaviour {
         // If the collider is player's, then give player infinite jump
         if (other.tag == PLAYER_TAG)
         {
-            rhythmController.SwapChannel();
+            rhythmController.SwitchToChannel(2);
             if (resetsJumps)
             {
                 // Land player to reset jumps
@@ -80,7 +80,7 @@ public class Water : MonoBehaviour {
     {
         if (other.tag == PLAYER_TAG)
         {
-            rhythmController.SwapChannel();
+            rhythmController.SwitchToChannel(1);
         }
     }
 

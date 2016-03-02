@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 449414}
   - 114: {fileID: 11422036}
-  - 212: {fileID: 21223862}
   - 50: {fileID: 5043418}
   - 61: {fileID: 6138038}
   - 61: {fileID: 6157004}
+  - 212: {fileID: 21237224}
   m_Layer: 0
   m_Name: PlatformSapling
   m_TagString: Untagged
@@ -91,8 +91,10 @@ MonoBehaviour:
   presentTree: {fileID: 0}
   saplingHydrated: 0
   playerOnTop: 0
+  hydratedSapling: {fileID: 21300000, guid: 58d952a81b4ea4f649629b25a1e47d9c, type: 3}
+  dehydratedSapling: {fileID: 21300000, guid: 413249f7c8fd64d669d1cec9c020b95e, type: 3}
   height: 0
---- !u!212 &21223862
+--- !u!212 &21237224
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -118,7 +120,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 58d952a81b4ea4f649629b25a1e47d9c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,6 +148,16 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dehydratedSapling
+      value: 
+      objectReference: {fileID: 21300000, guid: 413249f7c8fd64d669d1cec9c020b95e,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: hydratedSapling
+      value: 
+      objectReference: {fileID: 21300000, guid: 58d952a81b4ea4f649629b25a1e47d9c,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123206}

@@ -19,6 +19,7 @@ public class TimePortal : MonoBehaviour
     private TrailRenderer drEricTrail;
     private bool onTree = false;
     private RhythmController rhythmController;
+
     void Start()
     {
         portalDanmaku = GetComponent<Danmaku>();
@@ -32,6 +33,8 @@ public class TimePortal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            GetComponent<Collider2D>().enabled = false;
+            Debug.Log("Time travel at time: " + Time.time);
         	onTree = false;
             audioSource.Play();
             // Invoke teleport later
@@ -71,6 +74,7 @@ public class TimePortal : MonoBehaviour
         Invoke("ReenableTrail", drEricTrail.time);
         Invoke("ShutoffDestAnimation", timeBetweenTeleportation);
         portalDanmaku.Deactive();
+        GetComponent<Collider2D>().enabled = true;
     }
 
     void ChangeSong()

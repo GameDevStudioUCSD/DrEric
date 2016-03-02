@@ -18,6 +18,7 @@ public class FishSchool : HasDialog {
 	// Use this for initialization
 	void Start () {
         currDialog = startDialog;
+
 	}
 
 	// Update is called once per frame
@@ -58,7 +59,9 @@ public class FishSchool : HasDialog {
 		if (dialogProgress < currDialog.Length - 1) {
 			dialogProgress++;
 		}
-		dialog.gameObject.SetActive(true);
+        else
+            startDialog[startDialog.Length - 1] = "YOUR WAIFU IS TRASH!";
+        dialog.gameObject.SetActive(true);
 	}
 
 }

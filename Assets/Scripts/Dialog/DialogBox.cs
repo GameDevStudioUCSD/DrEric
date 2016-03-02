@@ -140,7 +140,8 @@ public class DialogBox : MonoBehaviour {
         
 	}
     void DeactiveObject() { 
-        this.gameObject.SetActive(false);
+		if(HasFinished())
+        	this.gameObject.SetActive(false);
     }
     public void ClearText()
     {

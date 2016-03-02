@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FishSchool : MonoBehaviour {
+public class FishSchool : HasDialog {
 
 	public int numFish;
 	public GameObject barrier;
@@ -12,11 +12,14 @@ public class FishSchool : MonoBehaviour {
 	public string[] midDialog;
 	public string[] endDialog;
 
+	string[] currDialog;
+	int dialogProgress = 0;
+
 	// Use this for initialization
 	void Start () {
-	
+		currDialog = startDialog;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -34,21 +37,26 @@ public class FishSchool : MonoBehaviour {
 		{
 			backgrounds[1].SetActive(false);
 			backgrounds[2].SetActive(true);
+			currDialog = endDialog;
+			dialogProgress = 0;
 		}
 		else if (numFish < 4)
 		{
 			backgrounds[0].SetActive(false);
 			backgrounds[1].SetActive(true);
+			currDialog = midDialog;
+			dialogProgress = 0;
 		}
 	}
 
-	public void OnCollisionEnter2D(Collision2D col)
+	public override void showDialog()
 	{
-		if (col.gameObject.tag == "Player")
-		{
-			Debug.Log("Tree Hit");
-			dialog.SetText("Gurgle gurgle");
-			dialog.gameObject.SetActive(true);
+		Debug.Log ("AAA");
+		dialog.SetText(currDialog[dialogProgress]);
+		if (dialogProgress < currDialog.Length - 1) {
+			dialogProgress++;
 		}
+		dialog.gameObject.SetActive(true);
 	}
+
 }

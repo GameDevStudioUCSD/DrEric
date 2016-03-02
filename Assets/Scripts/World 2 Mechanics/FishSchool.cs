@@ -8,7 +8,7 @@ public class FishSchool : HasDialog {
 	public GameObject[] backgrounds;
 	public DialogBox dialog;
 
-	public string[] startDialog;
+    public string[] startDialog;
 	public string[] midDialog;
 	public string[] endDialog;
 
@@ -17,7 +17,7 @@ public class FishSchool : HasDialog {
 
 	// Use this for initialization
 	void Start () {
-		currDialog = startDialog;
+        currDialog = startDialog;
 	}
 
 	// Update is called once per frame
@@ -52,7 +52,9 @@ public class FishSchool : HasDialog {
 	public override void showDialog()
 	{
 		Debug.Log ("AAA");
-		dialog.SetText(currDialog[dialogProgress]);
+        if (image != null)
+            dialog.SetImage(image);
+        dialog.SetText(currDialog[dialogProgress]);
 		if (dialogProgress < currDialog.Length - 1) {
 			dialogProgress++;
 		}

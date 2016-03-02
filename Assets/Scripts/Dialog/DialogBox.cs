@@ -237,6 +237,14 @@ public class DialogBox : MonoBehaviour {
     }
     public void SetImage(Sprite image)
     {
+        float lScale = characterImage.rectTransform.localScale.magnitude;
+        Debug.Log(lScale);
+        if (image.rect.width * image.rect.height * lScale > 20000)
+        {
+            Debug.Log(image.rect.width * image.rect.height);
+            characterImage.rectTransform.localScale /= image.rect.width * image.rect.height / 10000;
+            Debug.Log(characterImage.rectTransform.localScale.magnitude);
+        }
         characterImage.sprite = image;
     }
 }

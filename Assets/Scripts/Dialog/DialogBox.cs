@@ -66,7 +66,7 @@ public class DialogBox : MonoBehaviour {
     bool isNotAtEndOfSentence = true;
     // An approximate value of how wide each character is
     // TODO: Generalize
-    float charWidth = 18.0f;
+    float charWidth = 12.0f;
     float preferredWidth;
 	void Start () {
         // Set the word list

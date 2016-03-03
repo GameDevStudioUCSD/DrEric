@@ -492,12 +492,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4db3ca4fa12f2a94ca562b99b6e5302a, type: 3}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 80
-    m_Alignment: 4
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -590,12 +590,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4db3ca4fa12f2a94ca562b99b6e5302a, type: 3}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
+    m_MinSize: 4
     m_MaxSize: 60
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -633,10 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffb772c3ece83a48b504da128367f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: Mister Eric, it seems that you have taken a rather wrong turn. I have been
-    charged with escorting you around the multi-spheres. Unfortunately, I can read
-    your mind - so just give me an indication of the direction you want to move or
-    any other matters that are currently pressing on your mind.
+  dialog: Aaaah, it seems we have entered the spawning pools of my people. Keep an
+    eye on the foods around here.
   maxCharCount: 52
   firstLine: {fileID: 11466952}
   secondLine: {fileID: 11473906}
@@ -647,7 +645,7 @@ MonoBehaviour:
   timeBetweenAutoReads: 1
   arrowImage: {fileID: 11436996}
   speedmultiplier: 2
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 11453788}
 --- !u!114 &11494284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -820,7 +818,7 @@ RectTransform:
   m_GameObject: {fileID: 125380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: -0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 22407322}
   - {fileID: 22481256}

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
     public enum State { WAITING, BLOATING,MOVING };
     private State state;
@@ -11,6 +11,7 @@ public class Boss2Script : MonoBehaviour {
     public float horndelay;
     public float horninitialforce = 10;
 
+    private ArrayList hornlist = new ArrayList();
 
     private int maxHP;
     private float starttime;
@@ -41,16 +42,19 @@ public class Boss2Script : MonoBehaviour {
                
         }
 	}
-    
+
     void Waiting()
     {// fire a horn for every damage, starting 1
+
         if (Time.time - starttime > horndelay && hornsFired <= maxHP - health)
         {
             GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
             Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
+            hornlist.Add(hornscript);
             firedhorn.transform.position = horn.transform.position;
             firedhorn.transform.rotation = horn.transform.rotation;
             hornscript.target = target;
+            hornscript.Fired = true;
             hornscript.boss = this;
             hornscript.starttime = Time.time;
 
@@ -60,6 +64,15 @@ public class Boss2Script : MonoBehaviour {
             hornsFired++;
             starttime = Time.time;
         }
+    }
+
+    void destroyAllHorns()
+    {
+        foreach (Boss2Horn horn in hornlist)
+        {
+            horn.Destroy();
+        }
+        hornlist.Clear();
     }
 
     public void hit()//get hit

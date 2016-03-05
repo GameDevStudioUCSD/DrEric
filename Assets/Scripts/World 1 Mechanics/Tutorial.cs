@@ -31,6 +31,7 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void Update () {
+		Debug.Log (savedPosMag - squidT.position.magnitude);
         switch (state)
         {
             case State.Waiting:
@@ -49,7 +50,7 @@ public class Tutorial : MonoBehaviour {
             case State.Drag:
                 dragT.position = new Vector3(dragX, (( dragY) % 300) + 100, dragZ);
                 dragY += 3;
-                if (savedPosMag - squidT.position.magnitude < -7 || savedPosMag - squidT.position.magnitude > -2)
+                if (savedPosMag - squidT.position.magnitude < -10 || savedPosMag - squidT.position.magnitude > 2)
                 {
                     drag.SetActive(false);
                     enabled = false;

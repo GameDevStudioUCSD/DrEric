@@ -1485,6 +1485,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: dialog.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22488250, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1515,7 +1519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22488250, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22488250, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1593,12 +1597,12 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: -186.33333
       objectReference: {fileID: 0}
-    - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 22406316, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
@@ -1645,9 +1649,9 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11498612, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
-      propertyPath: m_Padding.m_Right
-      value: 0
+    - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: dialog.Array.data[1]
+      value: Test second Line
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}

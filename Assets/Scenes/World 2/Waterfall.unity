@@ -600,7 +600,7 @@ Transform:
   - {fileID: 2131011539}
   - {fileID: 1294538769}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &444956484
 Prefab:
   m_ObjectHideFlags: 0
@@ -827,6 +827,48 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 422268, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
   m_PrefabInternal: {fileID: 1681010304}
+--- !u!1001 &748070518
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -59.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400286, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b753f22177e197e4ab8e12a99ceb536d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &871874695
 Prefab:
   m_ObjectHideFlags: 0
@@ -1901,7 +1943,7 @@ Transform:
   - {fileID: 1733427589}
   - {fileID: 1362024397}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &2016379481
 GameObject:
   m_ObjectHideFlags: 0

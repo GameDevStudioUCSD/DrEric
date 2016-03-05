@@ -31,6 +31,11 @@ public class Boss2Horn : MonoBehaviour {
         }
     }
 
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Boss") && Time.time -starttime > 2 )
@@ -39,7 +44,7 @@ public class Boss2Horn : MonoBehaviour {
             boss.hit();
             Destroy(this.gameObject);
         }
-        if (other.tag == "Player")
+        if (other.tag == "Player" )
         {
             Destroy(this.gameObject);
         }

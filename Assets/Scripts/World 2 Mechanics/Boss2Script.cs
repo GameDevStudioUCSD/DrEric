@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
     public enum State { WAITING, BLOATING,MOVING };
     private State state;
@@ -8,9 +8,14 @@ public class Boss2Script : MonoBehaviour {
     public GameObject target;
     public GameObject horn;
     public int health = 3;
+
+	public float SCALE_INCREMENT = 5;
+	public float BLOAT_TIME = 2;
+
     public float horndelay;
     public float horninitialforce = 10;
 
+    private ArrayList hornlist = new ArrayList();
 
     private int maxHP;
     private float starttime;
@@ -41,16 +46,19 @@ public class Boss2Script : MonoBehaviour {
                
         }
 	}
-    
+
     void Waiting()
     {// fire a horn for every damage, starting 1
+
         if (Time.time - starttime > horndelay && hornsFired <= maxHP - health)
         {
             GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
             Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
+            hornlist.Add(hornscript);
             firedhorn.transform.position = horn.transform.position;
             firedhorn.transform.rotation = horn.transform.rotation;
             hornscript.target = target;
+            hornscript.Fired = true;
             hornscript.boss = this;
             hornscript.starttime = Time.time;
 
@@ -60,6 +68,15 @@ public class Boss2Script : MonoBehaviour {
             hornsFired++;
             starttime = Time.time;
         }
+    }
+
+    void destroyAllHorns()
+    {
+        foreach (Boss2Horn horn in hornlist)
+        {
+            horn.Destroy();
+        }
+        hornlist.Clear();
     }
 
     public void hit()//get hit
@@ -76,8 +93,16 @@ public class Boss2Script : MonoBehaviour {
         }
     }
 
+	// called at every frame when state is BLOATING
     void Bloating()
     {
+		transform.localScale = new Vector3 (transform.localScale.x * SCALE_INCREMENT, 
+			transform.localScale.y * SCALE_INCREMENT, transform.localScale.z);
+
+		if (Time.time - starttime >= BLOAT_TIME) 
+		{
+			state = State.MOVING;
+		}
 
     }
 

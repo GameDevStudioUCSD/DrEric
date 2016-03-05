@@ -55,6 +55,7 @@ public class PIDController : MonoBehaviour {
         {
             Vector3 impulseVect = CalculatePID();
             ApplyImpulse(impulseVect);
+            lastUpdate = Time.time;
         }
 	}
 

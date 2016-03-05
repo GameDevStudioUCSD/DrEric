@@ -8,6 +8,10 @@ public class Boss2Script : MonoBehaviour {
     public GameObject target;
     public GameObject horn;
     public int health = 3;
+
+	public float SCALE_INCREMENT = 5;
+	public float BLOAT_TIME = 2;
+
     public float horndelay;
     public float horninitialforce = 10;
 
@@ -89,8 +93,16 @@ public class Boss2Script : MonoBehaviour {
         }
     }
 
+	// called at every frame when state is BLOATING
     void Bloating()
     {
+		transform.localScale = new Vector3 (transform.localScale.x * SCALE_INCREMENT, 
+			transform.localScale.y * SCALE_INCREMENT, transform.localScale.z);
+
+		if (Time.time - starttime >= BLOAT_TIME) 
+		{
+			state = State.MOVING;
+		}
 
     }
 

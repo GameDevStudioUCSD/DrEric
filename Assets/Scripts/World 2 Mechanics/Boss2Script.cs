@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
     public enum State { WAITING, BLOATING,MOVING };
     private State state;
-    public Vector3 originalPosition;
     public GameObject target;
     public GameObject horn;
     public int health = 3;
@@ -20,7 +19,8 @@ public class Boss2Script : MonoBehaviour {
     private int maxHP;
     private float starttime;
     private int hornsFired;
-
+    private Vector3 originalScale;
+    private Vector3 originalPosition;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +28,8 @@ public class Boss2Script : MonoBehaviour {
         hornsFired = 0;
         starttime = Time.time;
         maxHP = health;
+        originalPosition = transform.position;
+        originalScale = transform.localScale;
 	}
 	
 	// Update is called once per frame
@@ -50,7 +52,7 @@ public class Boss2Script : MonoBehaviour {
     void Waiting()
     {// fire a horn for every damage, starting 1
 
-        if (Time.time - starttime > horndelay && hornsFired <= maxHP - health)
+        if (Time.time - starttime > horndelay && hornsFired <= maxHP - health+2)
         {
             GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
             Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
@@ -63,11 +65,23 @@ public class Boss2Script : MonoBehaviour {
             hornscript.starttime = Time.time;
 
             float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
+            Debug.Log(Mathf.Cos(impulseradians));
             firedhorn.GetComponent<Rigidbody2D>().AddForce(new Vector2(-horninitialforce * Mathf.Cos(impulseradians), -horninitialforce * Mathf.Cos(impulseradians)), ForceMode2D.Impulse);
 
             hornsFired++;
             starttime = Time.time;
         }
+    }
+
+    public void Respawn()
+    {
+        destroyAllHorns();
+        health = maxHP;
+        transform.position = originalPosition;
+        transform.localScale = originalScale;
+        starttime = Time.time;
+        hornsFired = 0;
+        state = State.WAITING;
     }
 
     void destroyAllHorns()
@@ -82,6 +96,7 @@ public class Boss2Script : MonoBehaviour {
     public void hit()//get hit
     {
         health--;
+        destroyAllHorns();
         if (health == 0)
         {
             Destroy(this.gameObject);

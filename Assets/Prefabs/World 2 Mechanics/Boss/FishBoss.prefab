@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starttime: 0
   target: {fileID: 0}
-  boss: {fileID: 0}
+  invulnerabilitytime: 0
   Fired: 0
 --- !u!114 &11416256
 MonoBehaviour:
@@ -1565,6 +1565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   turnspeed: 1
+  istheretarget: 0
 --- !u!114 &11454648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1579,10 +1580,12 @@ MonoBehaviour:
   target: {fileID: 0}
   horn: {fileID: 123186}
   health: 3
+  hornNumber: 5
   SCALE_INCREMENT: 1.01
   BLOAT_TIME: 2
   horndelay: 2
   horninitialforce: 5
+  chargeScalar: 10
 --- !u!114 &11462368
 MonoBehaviour:
   m_ObjectHideFlags: 1

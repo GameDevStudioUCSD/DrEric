@@ -2,17 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
-    public enum State { WAITING, BLOATING,MOVING };
+    public enum State { WAITING, BLOATING,MOVING,NONE };
     private State state;
     public GameObject target;
     public GameObject horn;
     public int health = 3;
+    public int hornNumber = 5;
 
 	public float SCALE_INCREMENT = 5;
 	public float BLOAT_TIME = 2;
 
     public float horndelay;
     public float horninitialforce = 10;
+    public float chargeScalar = 10;
 
     private ArrayList hornlist = new ArrayList();
 
@@ -22,6 +24,8 @@ public class Boss2Script : MonoBehaviour {
     private Vector3 originalScale;
     private Vector3 originalPosition;
 
+    private Rigidbody2D myRigidBody;
+
     // Use this for initialization
     void Start () {
         state = State.WAITING;
@@ -30,6 +34,7 @@ public class Boss2Script : MonoBehaviour {
         maxHP = health;
         originalPosition = transform.position;
         originalScale = transform.localScale;
+        myRigidBody = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -45,14 +50,18 @@ public class Boss2Script : MonoBehaviour {
             case State.MOVING:
                 Moving();
                 break;
+            default:
+                break;
                
         }
 	}
 
     void Waiting()
     {// fire a horn for every damage, starting 1
-
-        if (Time.time - starttime > horndelay && hornsFired <= maxHP - health+2)
+        myRigidBody.velocity *= 0;
+        if (RespawnController.IsDead())
+            return;
+        if (Time.time - starttime > horndelay && hornsFired <= maxHP - health+hornNumber)
         {
             GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
             Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
@@ -65,11 +74,15 @@ public class Boss2Script : MonoBehaviour {
             hornscript.starttime = Time.time;
 
             float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
+            Vector2 force = new Vector2(horninitialforce * Mathf.Abs(Mathf.Cos(impulseradians)),
+                horninitialforce * Mathf.Abs(Mathf.Cos(impulseradians)))*transform.localScale.y;
+            Debug.Log(impulseradians);
             Debug.Log(Mathf.Cos(impulseradians));
-            firedhorn.GetComponent<Rigidbody2D>().AddForce(new Vector2(-horninitialforce * Mathf.Cos(impulseradians), -horninitialforce * Mathf.Cos(impulseradians)), ForceMode2D.Impulse);
-
+            Debug.Log(force);
             hornsFired++;
             starttime = Time.time;
+            firedhorn.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+
         }
     }
 
@@ -116,13 +129,20 @@ public class Boss2Script : MonoBehaviour {
 
 		if (Time.time - starttime >= BLOAT_TIME) 
 		{
+
 			state = State.MOVING;
+            transform.position = originalPosition;
+            transform.localScale = originalScale;
+            starttime = Time.time;
 		}
 
     }
 
     void Moving()
     {
-
+        Vector3 direction = chargeScalar * (target.transform.position - transform.position).normalized;
+        Debug.Log("Trying to move towards: " + direction);
+        myRigidBody.AddForce(direction, ForceMode2D.Impulse);
+        state = State.WAITING;
     }
 }

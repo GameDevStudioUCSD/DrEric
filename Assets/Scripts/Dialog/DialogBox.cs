@@ -18,6 +18,7 @@ public class DialogBox : MonoBehaviour {
     private const string EMPTYBUF = "";
     public enum type { autoRead, clickToRead, nAutoRestClick }
     // The text to be displayed in the dialog box
+    [Multiline()]
     public string dialog;
     // The maximum character count per line (OVERWRITTEN AT RUNTIME)
     public int maxCharCount = 52;
@@ -274,15 +275,19 @@ public class DialogBox : MonoBehaviour {
     public void SetImage(Sprite image)
     {
         float lScale = characterImage.rectTransform.localScale.magnitude;
-        Debug.Log(lScale);
 
-        if (image.rect.width * image.rect.height * lScale > 20000)
+        /**if (image.rect.width * image.rect.height * lScale > 20000)
         {
             Debug.Log(image.rect.width * image.rect.height);
             characterImage.rectTransform.localScale /= image.rect.width * image.rect.height / 10000;
             Debug.Log(characterImage.rectTransform.localScale.magnitude);
-        }
+        }*/
 
         characterImage.sprite = image;
+    }
+
+    public void SetAudioClip( AudioClip clip )
+    {
+        chipSource.clip = clip;
     }
 }

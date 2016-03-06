@@ -10,6 +10,7 @@ public class ChaseCamera : MonoBehaviour {
     private SquidLauncher squid;
     private Camera camera;
     private GameObject boss;
+    private GameObject walls;
     private float lastUpdate;
     
 	void Start () {
@@ -17,27 +18,37 @@ public class ChaseCamera : MonoBehaviour {
         squid = playerHolder.GetComponentInChildren<SquidLauncher>();
         camera = this.transform.FindChild("Camera").gameObject.GetComponent<Camera>();
         boss = this.transform.FindChild("FishBoss").gameObject;
+        walls = transform.FindChild("SolidBorders").gameObject;
+
+        if (active) Activate();
+        else
+        {
+            boss.SetActive(false);
+            walls.SetActive(false);
+        }
 	}
 	
 	void Update ()
     {
-        if (active)
-        {
-            boss.SetActive(true);
-            if (transform.position.x < finalX)
-                transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
-            squid.activeCamera = camera;
-        }
-        else
-        {
-            boss.SetActive(false);
-        }
+        if (active && transform.localPosition.x < finalX)
+            transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
         lastUpdate = Time.time;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+            Activate();
     }
 
     public void Activate()
     {
-        playerHolder.GetComponent<PlayerHolder>().enableDrEricCamera = false;
         active = true;
+        boss.SetActive(true);
+        playerHolder.GetComponent<PlayerHolder>().enableDrEricCamera = false;
+        squid.activeCamera.gameObject.SetActive(false);
+        squid.activeCamera = camera;
+        walls.SetActive(true);
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }

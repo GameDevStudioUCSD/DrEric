@@ -31,7 +31,7 @@ GameObject:
   - 50: {fileID: 5052628}
   m_Layer: 0
   m_Name: Horn
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ffe762e2dc2284ab0beab030875c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starttime: 0
   target: {fileID: 0}
+  invulnerabilitytime: 0
   Fired: 0
 --- !u!114 &11455724
 MonoBehaviour:
@@ -136,9 +138,9 @@ MonoBehaviour:
   kP: 1
   kI: 1
   kD: 1
-  maximumImpulse: 1
+  maximumImpulse: 5
   minimumImpulse: 0
-  impuseRate: 1
+  impuseRate: 0.2
   trackingType: 0
   destinationTransform: {fileID: 0}
   destinationVector: {x: 0, y: 0, z: 0}
@@ -178,7 +180,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Deadly
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170624}

@@ -35,14 +35,16 @@ public class BikiniTree : MonoBehaviour{
 			return;
 
 		if (!treeAlive)
-			return; 
-	
-		float playerTop = playerCharacter.transform.position.y;
-		if (playerTop > this.headHeightLimit) {
-			this.Expand(yOrig + playerTop - headHeightLimit);
-		} else {
-			this.Expand(yOrig);
-		}
+			return;
+        if (playerCharacter != null) {
+            float playerTop = playerCharacter.transform.position.y;
+            if (playerTop > this.headHeightLimit) {
+                this.Expand(yOrig + playerTop - headHeightLimit);
+            }
+            else {
+                this.Expand(yOrig);
+            }
+        }
 	}
 	
 	// Move tree's top to "height"

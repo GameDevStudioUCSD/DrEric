@@ -449,6 +449,187 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &570320542
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1434408167}
+    m_Modifications:
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[2].dialog
+      value: SWAG.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1478963094}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[0].dialog
+      value: YOU CAN'T PASS. I TOLD YOU ALREADY.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: destroyOnEnter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[1].dialog
+      value: Looks like we can't go this way. You should explore around for an alternative
+        path.
+      objectReference: {fileID: 0}
+    - target: {fileID: 195926, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_Name
+      value: MultiDialogRegion (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11498202, guid: 5a2bb1063a1244a0ea98805e57bfeb66,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d298d250443d4a147b42037099f934bf, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &570320543 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+  m_PrefabInternal: {fileID: 570320542}
+--- !u!1001 &676541005
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1434408167}
+    m_Modifications:
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[2].dialog
+      value: SWAG.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1478963094}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[0].dialog
+      value: It seems we have entered the spawning grounds of my people.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: destroyOnEnter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[1].dialog
+      value: Looks like we can't go this way. You should explore around for an alternative
+        path.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11433040, guid: d2cb0c6933de5884896ac227ad28b9a6,
+        type: 2}
+    - target: {fileID: 195926, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_Name
+      value: MultiDialogRegion (Start)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11433040, guid: d2cb0c6933de5884896ac227ad28b9a6,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d298d250443d4a147b42037099f934bf, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &676541006 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+  m_PrefabInternal: {fileID: 676541005}
 --- !u!1 &678799094 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 199570, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
@@ -899,7 +1080,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 442648, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
@@ -1055,6 +1236,9 @@ Transform:
   - {fileID: 1136755758}
   - {fileID: 1724242362}
   - {fileID: 1548060120}
+  - {fileID: 676541006}
+  - {fileID: 1831026732}
+  - {fileID: 570320543}
   - {fileID: 342993575}
   - {fileID: 1188142366}
   - {fileID: 1915041850}
@@ -1140,7 +1324,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415964, guid: e4a2799a364e94e12b1a611f940989dd, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11450848, guid: e4a2799a364e94e12b1a611f940989dd, type: 2}
       propertyPath: destination
@@ -1294,7 +1478,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424548, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11463244, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
       propertyPath: playerHolder
@@ -1379,6 +1563,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 109196, guid: 65122cfe0d7bf455caf9ba9170603ad5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65122cfe0d7bf455caf9ba9170603ad5, type: 2}
   m_IsPrefabParent: 0
@@ -1419,7 +1607,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 422268, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 199570, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
       propertyPath: m_Name
@@ -1492,7 +1680,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: dialog.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22488250, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1658,6 +1846,18 @@ Prefab:
       propertyPath: dialog.Array.data[1]
       value: Test second Line
       objectReference: {fileID: 0}
+    - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: dialog
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 141000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
   m_IsPrefabParent: 0
@@ -1665,6 +1865,92 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 168986, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
   m_PrefabInternal: {fileID: 1915041849}
+--- !u!1001 &1831026731
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1434408167}
+    m_Modifications:
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[2].dialog
+      value: SWAG.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1478963094}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[0].dialog
+      value: 'Sorry sweetie. Can''t let you get past here.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: destroyOnEnter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[1].dialog
+      value: Looks like we can't go this way. You should explore around for an alternative
+        path.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453336, guid: d298d250443d4a147b42037099f934bf, type: 2}
+      propertyPath: dialogs.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11498202, guid: 5a2bb1063a1244a0ea98805e57bfeb66,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d298d250443d4a147b42037099f934bf, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1831026732 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 476162, guid: d298d250443d4a147b42037099f934bf, type: 2}
+  m_PrefabInternal: {fileID: 1831026731}
 --- !u!1001 &1915041849
 Prefab:
   m_ObjectHideFlags: 0
@@ -1702,7 +1988,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 426508, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998826c335f5d924ba2e49eb8747c7ad, type: 2}

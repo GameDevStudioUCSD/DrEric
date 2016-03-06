@@ -51,6 +51,7 @@ public class BikiniTree : MonoBehaviour{
 	public void Expand(float height) {
         Vector3 oldPos = this.transform.position;
         Vector3 newPosition = new Vector3(oldPos.x, height, oldPos.z);
+                
 		this.transform.position = newPosition;
 	}
 	

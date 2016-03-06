@@ -5,7 +5,6 @@ public class Boss2Horn : MonoBehaviour {
 
     public float starttime;
     public GameObject target;
-    public Boss2Script boss;
     public float invulnerabilitytime;
     public bool Fired;
     private int speed = 100;
@@ -15,6 +14,10 @@ public class Boss2Horn : MonoBehaviour {
         if(Fired)
         {
             gameObject.AddComponent<Rigidbody2D>();
+        }
+        if(target == null)
+        {
+            target = GameObject.Find(Names.PLAYERHOLDER);
         }
         myRigidbody = GetComponent<Rigidbody2D>();
 	}
@@ -45,7 +48,8 @@ public class Boss2Horn : MonoBehaviour {
     {
         if (other.CompareTag("Boss") && Time.time -starttime > invulnerabilitytime )
         {
-            Debug.Log(other);
+            Debug.Log("Getting hit");
+            Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
             boss.hit();
             Destroy(this.gameObject);
         }

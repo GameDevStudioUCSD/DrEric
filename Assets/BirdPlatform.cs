@@ -9,7 +9,7 @@ public class BirdPlatform : MonoBehaviour {
 	public float resetDelay;
 
 	private bool isFalling;
-
+	private Animator anim;
 
 
 	// Use this for initialization
@@ -18,6 +18,7 @@ public class BirdPlatform : MonoBehaviour {
 		birdPosition = transform.position;
 		//starts off not falling;
 		isFalling = false;
+		anim = GetComponent<Animator> ();
 	}
 	void ResetPosition(){
 		//stops falling
@@ -25,6 +26,7 @@ public class BirdPlatform : MonoBehaviour {
 		isFalling = false;
 		//resets postion
 		transform.position = birdPosition;
+		anim.SetBool ("isFalling", false);
 	}
 	void OnCollisionEnter2D(Collision2D coll){
 		//only on player collision once per cycle
@@ -32,6 +34,7 @@ public class BirdPlatform : MonoBehaviour {
 			//let the platform start falling
 			isFalling = true;
 			Debug.Log ("hi");
+			anim.SetBool ("isFalling", true);
 			//will reset after a certain time
 			Invoke("ResetPosition", resetDelay);
 		}

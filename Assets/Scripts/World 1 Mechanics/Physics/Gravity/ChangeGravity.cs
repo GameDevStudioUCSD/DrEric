@@ -27,6 +27,11 @@ public class ChangeGravity : MonoBehaviour {
         }
     }
 
+    public void ChangeTest()
+    {
+        Physics2D.gravity = Gravity;
+    }
+
 
     public void ResetGravity()
     {

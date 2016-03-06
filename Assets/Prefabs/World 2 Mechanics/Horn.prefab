@@ -109,7 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ffe762e2dc2284ab0beab030875c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starttime: 0
   target: {fileID: 0}
+  boss: {fileID: 0}
   Fired: 0
 --- !u!114 &11455724
 MonoBehaviour:
@@ -136,9 +138,9 @@ MonoBehaviour:
   kP: 1
   kI: 1
   kD: 1
-  maximumImpulse: 1
+  maximumImpulse: 5
   minimumImpulse: 0
-  impuseRate: 1
+  impuseRate: 0.2
   trackingType: 0
   destinationTransform: {fileID: 0}
   destinationVector: {x: 0, y: 0, z: 0}

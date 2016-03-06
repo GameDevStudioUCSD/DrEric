@@ -11,8 +11,6 @@ public class PlatformSapling : MonoBehaviour {
 	private float prevX;
     private float prevY;
 
-	public float height;
-
 	// Use this for initialization
 	void Start () {
 		prevX = this.transform.position.x;
@@ -88,4 +86,10 @@ public class PlatformSapling : MonoBehaviour {
 			playerOnTop = false;
 		}
 	}
+
+    // If this object is destroyed, then destroy the present tree
+    void OnDestroy()
+    {
+        Destroy(presentTree.gameObject);
+    }
 }

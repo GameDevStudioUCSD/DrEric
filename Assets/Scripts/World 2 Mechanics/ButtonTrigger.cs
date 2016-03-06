@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// 
@@ -15,20 +16,22 @@ using System.Collections;
 public class ButtonTrigger : MonoBehaviour {
 
     // The object to trigger something in
-    public GameObject triggerTarget = null;
+    public List<GameObject> triggerTargetList = new List<GameObject>();
 
-    // The Triggerable script attached to trigger target
-    private Triggerable triggerableComponent = null;
+    private List<Triggerable> triggerableScriptList = new List<Triggerable>();
 
 	// Use this for initialization
 	void Start () {
-        if (triggerTarget == null)
+        if (triggerTargetList.Count == 0)
         {
-            Debug.LogError("ButtonTrigger: null exception, triggerTarget needs to be initialized.");
+            Debug.LogError("ButtonTrigger: List of triggerable objects empty!");
         }
 
-        // Get the Triggerable script from target
-        triggerableComponent = triggerTarget.GetComponent<Triggerable>();
+        // Get the Triggerable script from targets
+        foreach (GameObject triggerTarget in  triggerTargetList)
+        {
+            triggerableScriptList.Add(triggerTarget.GetComponent<Triggerable>());
+        }
 	}
 	
 	// Update is called once per frame
@@ -40,8 +43,10 @@ public class ButtonTrigger : MonoBehaviour {
     {
         if (other.collider.tag == "Player")
         {
-            // trigger
-            triggerableComponent.Trigger();
+            foreach (Triggerable triggerScript in triggerableScriptList)
+            {
+                triggerScript.Trigger();
+            }
         }
     }
 }

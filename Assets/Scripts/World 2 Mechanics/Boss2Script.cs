@@ -155,7 +155,7 @@ public class Boss2Script : MonoBehaviour {
         GetComponent<Danmaku>().enabled = true;
         state = State.NONE;
     }
-    void OnTriggerEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Deadly")
         {

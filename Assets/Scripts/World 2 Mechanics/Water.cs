@@ -66,12 +66,17 @@ public class Water : MonoBehaviour {
         // If the collider is player's, then give player infinite jump
         if (other.tag == PLAYER_TAG)
         {
+			BallController ball = other.gameObject.GetComponent<BallController> ();
             rhythmController.SwitchToChannel(2);
             if (resetsJumps)
             {
                 // Land player to reset jumps
-                other.gameObject.GetComponent<BallController>().Land();
+				if (!ball.inWater)
+					ball.Land();
+				//Fixed jump reset in water for one instance of object
+				//Remove edge collider to fix case for all water prefabs
             }
+			ball.inWater = true;
         }
     }
 
@@ -80,7 +85,9 @@ public class Water : MonoBehaviour {
     {
         if (other.tag == PLAYER_TAG)
         {
+			BallController ball = other.gameObject.GetComponent<BallController> ();
             rhythmController.SwitchToChannel(1);
+			ball.inWater = false;
         }
     }
 

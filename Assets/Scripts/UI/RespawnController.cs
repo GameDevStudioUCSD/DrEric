@@ -123,4 +123,8 @@ public class RespawnController : MonoBehaviour {
             return obj.GetComponent<RespawnController>();
         return null;
     }
+    public static bool IsDead()
+    {
+        return GetRespawnController().isDead;
+    }
 }

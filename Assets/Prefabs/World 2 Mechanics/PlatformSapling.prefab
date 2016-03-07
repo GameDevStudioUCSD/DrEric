@@ -16,7 +16,7 @@ GameObject:
   - 61: {fileID: 6170606}
   m_Layer: 0
   m_Name: PlatformSapling
-  m_TagString: Untagged
+  m_TagString: Sapling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,6 +173,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 58d952a81b4ea4f649629b25a1e47d9c,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Sapling
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123206}

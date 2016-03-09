@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
-    public enum State { WAITING, BLOATING,MOVING,NONE };
+    public enum State { WAITING, BLOATING,MOVING,DANMAKU, NONE };
     private State state;
     public GameObject target;
     public GameObject horn;
@@ -50,6 +50,9 @@ public class Boss2Script : MonoBehaviour {
             case State.MOVING:
                 Moving();
                 break;
+            case State.DANMAKU:
+                DanmakuState();
+                break;
             default:
                 break;
                
@@ -70,7 +73,7 @@ public class Boss2Script : MonoBehaviour {
             firedhorn.transform.rotation = horn.transform.rotation;
             hornscript.target = target;
             hornscript.Fired = true;
-            hornscript.boss = this;
+            //hornscript.boss = this;
             hornscript.starttime = Time.time;
 
             float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
@@ -114,11 +117,13 @@ public class Boss2Script : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-        else
+        else if (health > 1)
         {//if living go to next state   
             starttime = Time.time;
             state = State.BLOATING;
         }
+        else
+            state = State.DANMAKU;
     }
 
 	// called at every frame when state is BLOATING
@@ -144,5 +149,16 @@ public class Boss2Script : MonoBehaviour {
         Debug.Log("Trying to move towards: " + direction);
         myRigidBody.AddForce(direction, ForceMode2D.Impulse);
         state = State.WAITING;
+    }
+    void DanmakuState()
+    {
+        GetComponent<Danmaku>().enabled = true;
+        state = State.NONE;
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Deadly")
+        {
+        }
     }
 }

@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd774ca1e22b9c7459b118a4da655b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallRate: 0.02
+  fallRate: 0.06
   resetDelay: 10
 --- !u!212 &21264596
 SpriteRenderer:
@@ -111,7 +111,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: fallRate
+      value: 0.06
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 152386}

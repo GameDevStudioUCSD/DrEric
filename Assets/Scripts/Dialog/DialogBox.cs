@@ -288,6 +288,7 @@ public class DialogBox : MonoBehaviour {
 
     public void SetAudioClip( AudioClip clip )
     {
+		chipSource = GetComponent<AudioSource>();
         chipSource.clip = clip;
     }
 }

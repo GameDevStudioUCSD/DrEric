@@ -13,6 +13,7 @@ public class TimePortal : MonoBehaviour
 
     private Transform drEricTransform;
     private Transform playerHolderTrans;
+    private SquidLauncher squid;
     private AudioSource audioSource;
     private Danmaku portalDanmaku;
     private Danmaku destinationDanmaku;
@@ -27,6 +28,7 @@ public class TimePortal : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         timeBetweenTeleportation = audioSource.clip.length / 2;
         rhythmController = RhythmController.GetController();
+        squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
     }
        
     void OnTriggerEnter2D(Collider2D other)
@@ -94,6 +96,7 @@ public class TimePortal : MonoBehaviour
             else
                 RenderSettings.skybox = presentSkybox;
         }
+        squid.pastSprites = !squid.pastSprites;
     }
 
     void ReenableTrail()

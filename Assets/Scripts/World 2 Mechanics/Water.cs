@@ -88,6 +88,7 @@ public class Water : MonoBehaviour {
 			BallController ball = other.gameObject.GetComponent<BallController> ();
             rhythmController.SwitchToChannel(1);
 			ball.inWater = false;
+
         }
     }
 

@@ -77,23 +77,21 @@ public class Triggerable : MonoBehaviour {
         if(currentState == State.Raised || currentState == State.Raising)
         {
             currentState = State.Lowering;
-            Debug.Log("Lowering!!");
         }
         // If the obstacle is currently in lowered position or lowering
         else if(currentState == State.Lowered || currentState == State.Lowering)
         {
             currentState = State.Raising;
-            Debug.Log("Raising!!!!");
         }
 
         // Get the intermediate position so lerp doesn't jump around
         intermediatePosition = this.transform.position;
+        positionFraction = 0.0f;
 
     }
 
     private void Raise()
     {
-        Debug.Log("R");
         if (positionFraction < 1.0)
         {
             positionFraction += Time.deltaTime * moveRate;
@@ -107,11 +105,10 @@ public class Triggerable : MonoBehaviour {
 
     private void Lower()
     {
-        Debug.Log("L");
-        if (positionFraction > 0.0)
+        if (positionFraction < 1.0)
         {
-            positionFraction -= Time.deltaTime * moveRate;
-            this.transform.position = Vector2.Lerp(loweredPosition, intermediatePosition, positionFraction);
+            positionFraction += Time.deltaTime * moveRate;
+            this.transform.position = Vector2.Lerp(intermediatePosition, loweredPosition, positionFraction);
         }
         else
         {

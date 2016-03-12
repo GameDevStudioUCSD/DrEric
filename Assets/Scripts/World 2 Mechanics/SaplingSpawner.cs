@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic; // Used for List<T>()
 
 public class SaplingSpawner : MonoBehaviour {
 
     // Heights corresponding to short, middle, and tall trees
-    public static float[] Heights = new float[3]{-2.0f, -8.0f, -14.0f};
+    public static List<float> Heights = new List<float>{-2.0f, -8.0f, -14.0f};
 
     public GameObject sapling = null; //prefab to spawn
     public GameObject tree = null; //analagous tree
@@ -16,6 +17,15 @@ public class SaplingSpawner : MonoBehaviour {
     public float treeHeight = 0.0f;
 
     private float startTime = 0; //time switch last hit
+
+    void Start()
+    {
+        // Randomize which height this sapling spawner will get.
+        int index = Random.Range(0, SaplingSpawner.Heights.Count);
+        treeHeight = SaplingSpawner.Heights[index];
+        SaplingSpawner.Heights.RemoveAt(index);
+
+    }
 
     void Update()
     {
@@ -39,7 +49,7 @@ public class SaplingSpawner : MonoBehaviour {
         GameObject spawned = (GameObject)Transform.Instantiate(sapling,
             transform.GetChild(0).position, sapling.transform.rotation);
         Vector3 treePosition = transform.GetChild(0).position;
-        treePosition.y = Heights[0];
+        treePosition.y = treeHeight;
         GameObject spawnedTree = (GameObject)Transform.Instantiate(tree,
             treePosition, tree.transform.rotation);
         spawned.GetComponent<PlatformSapling>().presentTree = spawnedTree.GetComponent<PlatformTree>();

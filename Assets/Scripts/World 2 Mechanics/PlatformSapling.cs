@@ -90,6 +90,9 @@ public class PlatformSapling : MonoBehaviour {
     // If this object is destroyed, then destroy the present tree
     void OnDestroy()
     {
-        Destroy(presentTree.gameObject);
+        if(presentTree != null)
+        {
+            Destroy(presentTree.gameObject);
+        }
     }
 }

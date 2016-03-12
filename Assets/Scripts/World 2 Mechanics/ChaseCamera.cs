@@ -47,6 +47,7 @@ public class ChaseCamera : MonoBehaviour {
         boss.SetActive(true);
         playerHolder.GetComponent<PlayerHolder>().enableDrEricCamera = false;
         squid.activeCamera.gameObject.SetActive(false);
+        camera.gameObject.SetActive(true);
         squid.activeCamera = camera;
         walls.SetActive(true);
         GetComponent<BoxCollider2D>().enabled = false;

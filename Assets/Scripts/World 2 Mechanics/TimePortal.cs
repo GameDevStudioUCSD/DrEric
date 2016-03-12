@@ -28,7 +28,7 @@ public class TimePortal : MonoBehaviour
         timeBetweenTeleportation = audioSource.clip.length / 2;
         rhythmController = RhythmController.GetController();
     }
-
+       
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

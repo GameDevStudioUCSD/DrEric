@@ -136,10 +136,11 @@ public class Boss2Script : MonoBehaviour {
 		{
 
 			state = State.MOVING;
-            transform.position = originalPosition;
+     //       transform.position = originalPosition;
             transform.localScale = originalScale;
             starttime = Time.time;
 		}
+		hornsFired = 0;
 
     }
 
@@ -148,7 +149,9 @@ public class Boss2Script : MonoBehaviour {
         Vector3 direction = chargeScalar * (target.transform.position - transform.position).normalized;
         Debug.Log("Trying to move towards: " + direction);
         myRigidBody.AddForce(direction, ForceMode2D.Impulse);
-        state = State.WAITING;
+		state = State.NONE;
+		Invoke ("ReturnToWaiting", 2);
+        
     }
     void DanmakuState()
     {
@@ -161,4 +164,8 @@ public class Boss2Script : MonoBehaviour {
         {
         }
     }
+
+	void ReturnToWaiting() {
+		state = State.WAITING;
+	}
 }

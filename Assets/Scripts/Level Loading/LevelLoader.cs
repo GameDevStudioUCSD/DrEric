@@ -33,7 +33,9 @@ public class LevelLoader : MonoBehaviour {
     private const int WATER_4 = 15;
 	private const int WATER_5 = 16;
 	private const int WATER_6 = 17;
-    private const int SPACE_BONUS = 18;
+    private const int WATER_7 = 18;
+    private const int WATER_BOSS = 19;
+    private const int SPACE_BONUS = 20;
 
     public World world;
     public Level level;
@@ -97,6 +99,14 @@ public class LevelLoader : MonoBehaviour {
             case WATER_3:
                 return new LevelInfo(World.Water, Level.Three);
             case WATER_4:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_5:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_6:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_7:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_BOSS:
                 return new LevelInfo(World.Water, Level.Four);
             case SPACE_BONUS:
                 return new LevelInfo(World.Space, Level.Bonus);
@@ -172,6 +182,12 @@ public class LevelLoader : MonoBehaviour {
 			case Level.Six:
 				SceneManager.LoadScene (WATER_6);
 				break;
+            case Level.Seven:
+                SceneManager.LoadScene(WATER_7);
+                break;
+            case Level.Boss:
+                SceneManager.LoadScene(WATER_BOSS);
+                break;
             case Level.Bonus:
                 SceneManager.LoadScene(SPACE_BONUS);
                 break;

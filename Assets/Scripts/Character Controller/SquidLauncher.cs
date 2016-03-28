@@ -229,7 +229,7 @@ public class SquidLauncher : MonoBehaviour
     {
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(
             initialVector, Input.mousePosition);
-        float magnitude = deltaVector.magnitude;
+        float magnitude = 3 * deltaVector.magnitude;
         int numOfSprites = 6;
         for (int i = 1; i <= numOfSprites; i++)
         {

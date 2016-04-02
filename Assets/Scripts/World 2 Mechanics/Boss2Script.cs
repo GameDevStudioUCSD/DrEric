@@ -104,7 +104,14 @@ public class Boss2Script : MonoBehaviour {
     {
         foreach (Boss2Horn horn in hornlist)
         {
-            horn.Destroy();
+            //horn.GetComponentInChildren<Animator>().SetBool("Exploded", true);
+            //horn.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            
+            //float timepenis = Time.time; int x = 0;
+            //if (Time.time - timepenis > 5)
+            //{
+                horn.Destroy();
+            //}
         }
         hornlist.Clear();
     }
@@ -168,4 +175,5 @@ public class Boss2Script : MonoBehaviour {
 	void ReturnToWaiting() {
 		state = State.WAITING;
 	}
+
 }

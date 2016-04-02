@@ -41,7 +41,15 @@ public class Boss2Horn : MonoBehaviour {
 
     public void Destroy()
     {
-        Destroy(this.gameObject);
+
+        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        float timepenis = Time.time;
+        Debug.Log( Time.time - timepenis);
+        if (Time.time - timepenis> 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -51,7 +59,7 @@ public class Boss2Horn : MonoBehaviour {
             Debug.Log("Getting hit");
             Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
             boss.hit();
-            Destroy(this.gameObject);
+            this.Destroy();
         }
         else if (other.tag == "Player" )
         {
@@ -61,5 +69,7 @@ public class Boss2Horn : MonoBehaviour {
             myRigidbody.velocity *= 0;
         }
     }
+
+
 
 }

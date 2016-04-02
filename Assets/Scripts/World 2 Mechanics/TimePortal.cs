@@ -20,6 +20,7 @@ public class TimePortal : MonoBehaviour
     private TrailRenderer drEricTrail;
     private bool onTree = false;
     private RhythmController rhythmController;
+    private Rigidbody2D drEricRB;
 
     void Start()
     {
@@ -35,12 +36,12 @@ public class TimePortal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Time.timeScale = 5;
             GetComponent<Collider2D>().enabled = false;
-            Debug.Log("Time travel at time: " + Time.time);
         	onTree = false;
             audioSource.Play();
             // Invoke teleport later
-            Invoke("Teleport", timeBetweenTeleportation);
+            Invoke("Teleport", timeBetweenTeleportation * Time.timeScale);
             // Cue the visuals
             portalDanmaku.enabled = true;
             destinationDanmaku.enabled = true;
@@ -51,8 +52,10 @@ public class TimePortal : MonoBehaviour
             drEricTransform.position = Vector2.zero;
             drEricTrail = other.GetComponent<TrailRenderer>();
             // Stop Dr Eric from moving
-            other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            other.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            drEricRB = other.gameObject.GetComponent<Rigidbody2D>();
+            drEricRB.velocity = Vector2.zero;
+            drEricRB.angularVelocity = 0;
+            drEricRB.gravityScale = 0;
             if (platform != null && platform.playerOnTop == true)
             {
                 onTree = true;
@@ -64,8 +67,10 @@ public class TimePortal : MonoBehaviour
 
     void Teleport()
     {
+        Time.timeScale = 1;
         drEricTrail.enabled = false;
         drEricTransform.parent = playerHolderTrans;
+        drEricRB.gravityScale = 1;
         Vector3 dest = destination.transform.position;
         if (onTree) {
         	dest = new Vector3(platform.presentTree.transform.position.x, dest.y + 10, dest.z);
@@ -102,6 +107,9 @@ public class TimePortal : MonoBehaviour
     void ReenableTrail()
     {
         drEricTrail.enabled = true;
+    }
+    void ResetTime()
+    {
     }
     void ShutoffDestAnimation()
     {

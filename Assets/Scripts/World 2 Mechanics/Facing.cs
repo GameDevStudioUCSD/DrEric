@@ -7,6 +7,7 @@ public class Facing : MonoBehaviour
     public GameObject target;
     public float turnspeed;
     public bool istheretarget;
+	public float offset;
     // Use this for initialization
     void Start()
     {
@@ -18,7 +19,7 @@ public class Facing : MonoBehaviour
         if (!istheretarget) { 
             Vector3 vectorToTarget = target.transform.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+			Quaternion q = Quaternion.AngleAxis(angle + offset, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * turnspeed);
             if (vectorToTarget.x < 0 && transform.localScale.y > 0 || vectorToTarget.x > 0 && transform.localScale.y < 0)
             {

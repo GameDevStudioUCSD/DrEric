@@ -16,6 +16,7 @@ public class SquidLauncher : MonoBehaviour
     public float grabRange = 2; //max distance from player to allow grab
     public float rotationSpeed = 5; //speed of rotation around held DrEric
     public float rotationOffset = 0; //aesthetic change in direction
+    public bool pastSprites = false; //use past sprites if true
 
     public Camera activeCamera;
 
@@ -49,6 +50,7 @@ public class SquidLauncher : MonoBehaviour
     private GameObject drEric = null;
     private OrientWithGravity orient;
     private Transform idleSprite;
+    private Transform pastSprite;
     private Transform launchingSprite;
     private Quaternion destRotation;
 
@@ -62,6 +64,7 @@ public class SquidLauncher : MonoBehaviour
     void Start()
     {
         idleSprite = transform.Find("Idle Sprite");
+        pastSprite = transform.Find("Idle Sprite (Past)");
         launchingSprite = transform.Find("Launching Sprite");
         destRotation = transform.rotation;
         orient = GetComponent<OrientWithGravity>();
@@ -111,10 +114,20 @@ public class SquidLauncher : MonoBehaviour
         {
             case State.GRABBED:
                 idleSprite.GetComponent<SpriteRenderer>().enabled = false;
+                pastSprite.GetComponent<SpriteRenderer>().enabled = false;
                 launchingSprite.GetComponent<SpriteRenderer>().enabled = true;
                 break;
             default:
-                idleSprite.GetComponent<SpriteRenderer>().enabled = true;
+                if (pastSprites)
+                {
+                    idleSprite.GetComponent<SpriteRenderer>().enabled = false;
+                    pastSprite.GetComponent<SpriteRenderer>().enabled = true;
+                }
+                else
+                {
+                    idleSprite.GetComponent<SpriteRenderer>().enabled = true;
+                    pastSprite.GetComponent<SpriteRenderer>().enabled = false;
+                }
                 launchingSprite.GetComponent<SpriteRenderer>().enabled = false;
                 break;
 
@@ -216,7 +229,7 @@ public class SquidLauncher : MonoBehaviour
     {
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(
             initialVector, Input.mousePosition);
-        float magnitude = deltaVector.magnitude;
+        float magnitude = 3 * deltaVector.magnitude;
         int numOfSprites = 6;
         for (int i = 1; i <= numOfSprites; i++)
         {
@@ -236,28 +249,34 @@ public class SquidLauncher : MonoBehaviour
         switch (grabSprite)
         {
             case 1:
-                sprite.sprite = launchPresentSprite1;
+                sprite.sprite = pastSprites ? launchPastSprite1 : launchPresentSprite1;
                 launchingSprite.localPosition = new Vector3(xOffset, .64f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
                 break;
             case 2:
-                sprite.sprite = launchPresentSprite2;
+                sprite.sprite = pastSprites ? launchPastSprite2 : launchPresentSprite2;
                 launchingSprite.localPosition = new Vector3(xOffset, 1.13f, 0);
+                launchingSprite.transform.localScale = new Vector3 (pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
                 break;
             case 3:
-                sprite.sprite = launchPresentSprite3;
+                sprite.sprite = pastSprites ? launchPastSprite3 : launchPresentSprite3;
                 launchingSprite.localPosition = new Vector3(xOffset, 1.62f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
                 break;
             case 4:
-                sprite.sprite = launchPresentSprite4;
-                launchingSprite.localPosition = new Vector3(xOffset, 2.41f, 0);
+                sprite.sprite = pastSprites ? launchPastSprite4 : launchPresentSprite4;
+                launchingSprite.localPosition = new Vector3(xOffset, pastSprites ? 1.91f : 2.41f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
                 break;
             case 5:
-                sprite.sprite = launchPresentSprite5;
-                launchingSprite.localPosition = new Vector3(xOffset, 3.39f, 0);
+                sprite.sprite = pastSprites ? launchPastSprite5 : launchPresentSprite5;
+                launchingSprite.localPosition = new Vector3(xOffset, pastSprites ? 2.59f : 3.39f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
                 break;
             case 6:
-                sprite.sprite = launchPresentSprite6;
-                launchingSprite.localPosition = new Vector3(xOffset, 4.20f, 0);
+                sprite.sprite = pastSprites ? launchPastSprite6 : launchPresentSprite6;
+                launchingSprite.localPosition = new Vector3(xOffset, pastSprites ? 3.00f : 4.20f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
                 break;
         }
     }

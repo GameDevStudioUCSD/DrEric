@@ -1,58 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &199570
+--- !u!1 &187404
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 422268}
-  - 114: {fileID: 11441612}
+  - 4: {fileID: 460788}
+  - 114: {fileID: 11480536}
   m_Layer: 0
-  m_Name: TimeDestination
+  m_Name: DrEricCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &422268
+--- !u!4 &460788
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199570}
+  m_GameObject: {fileID: 187404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38, y: 1, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11441612
+--- !u!114 &11480536
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199570}
-  m_Enabled: 0
+  m_GameObject: {fileID: 187404}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02c031547fe2194eac99f27762ce25a, type: 3}
+  m_Script: {fileID: 11500000, guid: 20c94d83b14694b4aad2594675384acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfBullets: 30
-  distanceFromCenter: 3
-  bullet: {fileID: 143174, guid: 0d698cbac12b1324bbe1988673c914f9, type: 2}
-  circleTime: 2
-  returnTime: 1
-  maxDistance: 1000
+  name: 
+  characterImage: {fileID: 21300000, guid: e5545f00460e74b2b8c81a4e035ca2ec, type: 3}
+  talkingNoise: {fileID: 8300000, guid: 6bfe38699cd2e9a409b80e7e7ef11dc3, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: characterImage
+      value: 
+      objectReference: {fileID: 21300000, guid: e5545f00460e74b2b8c81a4e035ca2ec,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: talkingNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bfe38699cd2e9a409b80e7e7ef11dc3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 199570}
+  m_RootGameObject: {fileID: 187404}
   m_IsPrefabParent: 1

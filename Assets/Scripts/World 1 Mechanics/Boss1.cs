@@ -31,7 +31,7 @@ public class Boss1 : MonoBehaviour
     private RhythmController rhythmController;
     private float startTime;
     private SpriteRenderer spriterenderer;
-    private BoxCollider2D boxcollider2d;
+    private CircleCollider2D boxcollider2d;
     private float endTime = 3;
     private Direction currentDirection;
     private STATE state;
@@ -57,7 +57,7 @@ public class Boss1 : MonoBehaviour
         startVector = transform.position;
         startTime = Time.time - 1;
         victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
-        victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+        victorycontroller.GetComponent<CircleCollider2D>().enabled = false;
         gravity = GRAVITY.DOWN;
         rhythmController = RhythmController.GetController();
     }
@@ -305,7 +305,7 @@ public class Boss1 : MonoBehaviour
             currentswitch.isEnabled = false;
             spriterenderer = currentswitch.GetComponentInChildren<SpriteRenderer>();
             spriterenderer.enabled = false;
-            boxcollider2d = currentswitch.GetComponentInChildren<BoxCollider2D>();
+            boxcollider2d = currentswitch.GetComponentInChildren<CircleCollider2D>();
             boxcollider2d.enabled = false;
         }
         //choose a switch at random 
@@ -330,7 +330,7 @@ public class Boss1 : MonoBehaviour
             {
                 spriterenderer = currentswitch2.GetComponentInChildren<SpriteRenderer>();
                 spriterenderer.enabled = true;
-                boxcollider2d = currentswitch2.GetComponentInChildren<BoxCollider2D>();
+                boxcollider2d = currentswitch2.GetComponentInChildren<CircleCollider2D>();
                 boxcollider2d.enabled = true;
                 activeSwitch = currentswitch2;
             }

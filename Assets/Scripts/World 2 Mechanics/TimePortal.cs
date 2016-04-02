@@ -4,8 +4,6 @@ using System.Collections;
 public class TimePortal : MonoBehaviour
 {
     public GameObject destination;
-    public PlatformSapling platform;
-
     public float timeBetweenTeleportation = 2f;
 
     public Material presentSkybox; //present
@@ -56,10 +54,6 @@ public class TimePortal : MonoBehaviour
             drEricRB.velocity = Vector2.zero;
             drEricRB.angularVelocity = 0;
             drEricRB.gravityScale = 0;
-            if (platform != null && platform.playerOnTop == true)
-            {
-                onTree = true;
-            }
 
         }
     }
@@ -72,9 +66,6 @@ public class TimePortal : MonoBehaviour
         drEricTransform.parent = playerHolderTrans;
         drEricRB.gravityScale = 1;
         Vector3 dest = destination.transform.position;
-        if (onTree) {
-        	dest = new Vector3(platform.presentTree.transform.position.x, dest.y + 10, dest.z);
-        }
         playerHolderTrans.position = dest;
         ChangeSkybox();
         ChangeSong();

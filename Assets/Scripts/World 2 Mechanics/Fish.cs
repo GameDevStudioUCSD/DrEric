@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour {
     public float secondsAliveOutOfWater;
     public int health;
     public FishSchool schoolOfFish;
-
+    public int MAXHEIGHT;
 	// Use this for initialization
 	void Start () {
 		dietime = Time.time;
@@ -37,6 +37,7 @@ public class Fish : MonoBehaviour {
 			}
             Destroy(this.gameObject);
         }
+        if (transform.position.y > MAXHEIGHT) GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-2), ForceMode2D.Impulse) ;
     }
 
 	void OnTriggerStay2D(Collider2D col)

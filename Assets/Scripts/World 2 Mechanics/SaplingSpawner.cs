@@ -19,6 +19,7 @@ public class SaplingSpawner : MonoBehaviour {
     public float treeHeight = 0.0f;
 
     private float startTime = 0; //time switch last hit
+    private AudioSource aSource;
 
 
     void Start()
@@ -27,6 +28,7 @@ public class SaplingSpawner : MonoBehaviour {
         int index = Random.Range(0, SaplingSpawner.Heights.Count);
         treeHeight = SaplingSpawner.Heights[index];
         SaplingSpawner.Heights.RemoveAt(index);
+        aSource = GetComponent<AudioSource>();
 
     }
 
@@ -44,6 +46,7 @@ public class SaplingSpawner : MonoBehaviour {
             {
                 spawn();
                 happyButtonAnimator.SetBool("pressed", true);
+                aSource.Play();
             }
         }
     }

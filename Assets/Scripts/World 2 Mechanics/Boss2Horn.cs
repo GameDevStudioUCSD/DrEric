@@ -58,8 +58,8 @@ public class Boss2Horn : MonoBehaviour {
         {
             Debug.Log("Getting hit");
             Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
-            boss.hit();
-            this.Destroy();
+            boss.TakeDamage();
+            Destroy(this.gameObject);
         }
         else if (other.tag == "Player" )
         {

@@ -7,6 +7,8 @@ public class SaplingSpawner : MonoBehaviour {
     // Heights corresponding to short, middle, and tall trees
     public static List<float> Heights = new List<float>{-2.0f, -8.0f, -14.0f};
 
+    public Animator happyButtonAnimator = null;
+
     public GameObject sapling = null; //prefab to spawn
     public GameObject tree = null; //analagous tree
     public float cooldown = 5; //time between consecutive uses
@@ -17,6 +19,7 @@ public class SaplingSpawner : MonoBehaviour {
     public float treeHeight = 0.0f;
 
     private float startTime = 0; //time switch last hit
+
 
     void Start()
     {
@@ -38,7 +41,10 @@ public class SaplingSpawner : MonoBehaviour {
         if (other.collider.tag == "Player")
         {
             if (Time.time > 2 && startTime == 0)
+            {
                 spawn();
+                happyButtonAnimator.SetBool("pressed", true);
+            }
         }
     }
 
@@ -54,5 +60,10 @@ public class SaplingSpawner : MonoBehaviour {
         spawned.GetComponent<PlatformSapling>().presentTree = spawnedTree.GetComponent<PlatformTree>();
         spawned.GetComponent<Rigidbody2D>().isKinematic = false;
         spawnedTree.GetComponent<PlatformTree>().shiftX(distanceToPresent);
+    }
+
+    void pressEnd()
+    {
+        happyButtonAnimator.SetBool("pressed", false);
     }
 }

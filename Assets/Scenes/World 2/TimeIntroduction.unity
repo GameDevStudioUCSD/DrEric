@@ -216,7 +216,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127850799}
-  m_Mesh: {fileID: 1587682116}
+  m_Mesh: {fileID: 384159070}
 --- !u!23 &127850805
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -359,7 +359,17 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb0b8f023d32844c8bbb20c39db7f47e, type: 2}
   m_IsPrefabParent: 0
---- !u!43 &323027556
+--- !u!114 &342993574 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11463244, guid: 25e5bb812e6664a0f9278ad7b0425fc8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1586543596}
+  m_Script: {fileID: 11500000, guid: 99221015d092c4c3d946a8dfaf0400f6, type: 3}
+--- !u!4 &342993575 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 424548, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
+  m_PrefabInternal: {fileID: 1586543596}
+--- !u!43 &384159070
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -487,16 +497,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!114 &342993574 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11463244, guid: 25e5bb812e6664a0f9278ad7b0425fc8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1586543596}
-  m_Script: {fileID: 11500000, guid: 99221015d092c4c3d946a8dfaf0400f6, type: 3}
---- !u!4 &342993575 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 424548, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
-  m_PrefabInternal: {fileID: 1586543596}
 --- !u!1001 &451207851
 Prefab:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1567671961}
-  m_Mesh: {fileID: 323027556}
+  m_Mesh: {fileID: 1596646191}
 --- !u!23 &1567671965
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1950,7 +1950,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25e5bb812e6664a0f9278ad7b0425fc8, type: 2}
   m_IsPrefabParent: 0
---- !u!43 &1587682116
+--- !u!43 &1596646191
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2209,7 +2209,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 417460, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 417460, guid: df27f1cb229d89b4da316d0033e528b5, type: 2}
       propertyPath: m_LocalPosition.y

@@ -44,7 +44,7 @@ public class SquidLauncher : MonoBehaviour
     public State state = State.NORMAL;
     private int grabSprite = 0; //grabbing sprite for current vector
 
-    private const float xOffset = -.03f; //compensates for sprite assymetry
+    private const float xOffset = -.1f; //compensates for sprite assymetry
     private float maxSpeed; //calculated from FlingObject
 
     private GameObject drEric = null;

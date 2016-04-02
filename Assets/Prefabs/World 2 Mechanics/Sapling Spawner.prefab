@@ -26,7 +26,6 @@ GameObject:
   - 4: {fileID: 400286}
   - 212: {fileID: 21232498}
   - 61: {fileID: 6108566}
-  - 50: {fileID: 5072360}
   - 114: {fileID: 11443416}
   - 95: {fileID: 9553748}
   m_Layer: 0
@@ -61,23 +60,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400286}
   m_RootOrder: 0
---- !u!50 &5072360
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 187716}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!58 &5880258
 CircleCollider2D:
   m_ObjectHideFlags: 1

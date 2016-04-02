@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
-    public enum State { WAITING, BLOATING,MOVING,DANMAKU, NONE };
+    public enum State { TRACKING, BLOATING,MOVING,DANMAKU, NONE };
     private State state;
     public GameObject target;
     public GameObject horn;
@@ -28,7 +28,7 @@ public class Boss2Script : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        state = State.WAITING;
+        state = State.TRACKING;
         hornsFired = 0;
         starttime = Time.time;
         maxHP = health;
@@ -41,17 +41,17 @@ public class Boss2Script : MonoBehaviour {
 	void Update () {
         switch (state)
         {
-            case State.WAITING:
-                Waiting();
+            case State.TRACKING:
+                Track();
                 break;
             case State.BLOATING:
-                Bloating();
+                Bloat();
                 break;
             case State.MOVING:
-                Moving();
+                Move();
                 break;
             case State.DANMAKU:
-                DanmakuState();
+                FireDanmaku();
                 break;
             default:
                 break;
@@ -59,8 +59,9 @@ public class Boss2Script : MonoBehaviour {
         }
 	}
 
-    void Waiting()
-    {// fire a horn for every damage, starting 1
+    void Track()
+    {
+        // fire a horn for every damage, starting 1
         myRigidBody.velocity *= 0;
         if (RespawnController.IsDead())
             return;
@@ -97,7 +98,7 @@ public class Boss2Script : MonoBehaviour {
         transform.localScale = originalScale;
         starttime = Time.time;
         hornsFired = 0;
-        state = State.WAITING;
+        state = State.TRACKING;
     }
 
     void destroyAllHorns()
@@ -134,7 +135,7 @@ public class Boss2Script : MonoBehaviour {
     }
 
 	// called at every frame when state is BLOATING
-    void Bloating()
+    void Bloat()
     {
 		transform.localScale = new Vector3 (transform.localScale.x * SCALE_INCREMENT, 
 			transform.localScale.y * SCALE_INCREMENT, transform.localScale.z);
@@ -151,7 +152,7 @@ public class Boss2Script : MonoBehaviour {
 
     }
 
-    void Moving()
+    void Move()
     {
         Vector3 direction = chargeScalar * (target.transform.position - transform.position).normalized;
         Debug.Log("Trying to move towards: " + direction);
@@ -160,20 +161,20 @@ public class Boss2Script : MonoBehaviour {
 		Invoke ("ReturnToWaiting", 2);
         
     }
-    void DanmakuState()
+    void FireDanmaku()
     {
         GetComponent<Danmaku>().enabled = true;
         state = State.NONE;
     }
-    void OnTriggerEnter2D(Collider2D collision)
+    /**void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Deadly")
         {
         }
-    }
+    }*/
 
 	void ReturnToWaiting() {
-		state = State.WAITING;
+		state = State.TRACKING;
 	}
 
 }

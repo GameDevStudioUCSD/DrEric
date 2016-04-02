@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c94d83b14694b4aad2594675384acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Bikini Sapling
   characterImage: {fileID: 21300000, guid: b22facd16f9664beab819fc73a9b887e, type: 3}
   talkingNoise: {fileID: 8300000, guid: 542ac21cfc427aa49bbb9b81b3710549, type: 3}
 --- !u!1001 &100100000
@@ -48,7 +48,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: name
+      value: Bikini Sapling
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165316}

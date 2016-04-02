@@ -9,17 +9,17 @@ public class Boss2Script : MonoBehaviour {
     public int health = 3;
     public int hornNumber = 5;
 
-	public float SCALE_INCREMENT = 5;
-	public float BLOAT_TIME = 2;
+	public float scaleIncrement = 5;
+	public float bloatTime = 2;
 
-    public float horndelay;
-    public float horninitialforce = 10;
+    public float hornDelay;
+    public float hornInitialForce = 10;
     public float chargeScalar = 10;
 
-    private ArrayList hornlist = new ArrayList();
+    private ArrayList hornList = new ArrayList();
 
     private int maxHP;
-    private float starttime;
+    private float startTime;
     private int hornsFired;
     private Vector3 originalScale;
     private Vector3 originalPosition;
@@ -30,7 +30,7 @@ public class Boss2Script : MonoBehaviour {
     void Start () {
         state = State.TRACKING;
         hornsFired = 0;
-        starttime = Time.time;
+        startTime = Time.time;
         maxHP = health;
         originalPosition = transform.position;
         originalScale = transform.localScale;
@@ -65,11 +65,11 @@ public class Boss2Script : MonoBehaviour {
         myRigidBody.velocity *= 0;
         if (RespawnController.IsDead())
             return;
-        if (Time.time - starttime > horndelay && hornsFired <= maxHP - health+hornNumber)
+        if (Time.time - startTime > hornDelay && hornsFired <= maxHP - health+hornNumber)
         {
             GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
             Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
-            hornlist.Add(hornscript);
+            hornList.Add(hornscript);
             firedhorn.transform.position = horn.transform.position;
             firedhorn.transform.rotation = horn.transform.rotation;
             hornscript.target = target;
@@ -78,13 +78,13 @@ public class Boss2Script : MonoBehaviour {
             hornscript.starttime = Time.time;
 
             float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
-            Vector2 force = new Vector2(horninitialforce * Mathf.Abs(Mathf.Cos(impulseradians)),
-                horninitialforce * Mathf.Abs(Mathf.Cos(impulseradians)))*transform.localScale.y;
+            Vector2 force = new Vector2(hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)),
+                hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)))*transform.localScale.y;
             Debug.Log(impulseradians);
             Debug.Log(Mathf.Cos(impulseradians));
             Debug.Log(force);
             hornsFired++;
-            starttime = Time.time;
+            startTime = Time.time;
             firedhorn.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
 
         }
@@ -92,35 +92,35 @@ public class Boss2Script : MonoBehaviour {
 
     public void Respawn()
     {
-        destroyAllHorns();
+        DestroyAllHorns();
         health = maxHP;
         transform.position = originalPosition;
         transform.localScale = originalScale;
-        starttime = Time.time;
+        startTime = Time.time;
         hornsFired = 0;
         state = State.TRACKING;
     }
 
-    void destroyAllHorns()
+    void DestroyAllHorns()
     {
-        foreach (Boss2Horn horn in hornlist)
+        foreach (Boss2Horn horn in hornList)
         {
             horn.Destroy();
         }
-        hornlist.Clear();
+        hornList.Clear();
     }
 
-    public void hit()//get hit
+    public void TakeDamage()//get hit
     {
         health--;
-        destroyAllHorns();
+        DestroyAllHorns();
         if (health == 0)
         {
             Destroy(this.gameObject);
         }
         else if (health > 1)
         {//if living go to next state   
-            starttime = Time.time;
+            startTime = Time.time;
             state = State.BLOATING;
         }
         else
@@ -130,16 +130,16 @@ public class Boss2Script : MonoBehaviour {
 	// called at every frame when state is BLOATING
     void Bloat()
     {
-		transform.localScale = new Vector3 (transform.localScale.x * SCALE_INCREMENT, 
-			transform.localScale.y * SCALE_INCREMENT, transform.localScale.z);
+		transform.localScale = new Vector3 (transform.localScale.x * scaleIncrement, 
+			transform.localScale.y * scaleIncrement, transform.localScale.z);
 
-		if (Time.time - starttime >= BLOAT_TIME) 
+		if (Time.time - startTime >= bloatTime) 
 		{
 
 			state = State.MOVING;
      //       transform.position = originalPosition;
             transform.localScale = originalScale;
-            starttime = Time.time;
+            startTime = Time.time;
 		}
 		hornsFired = 0;
 

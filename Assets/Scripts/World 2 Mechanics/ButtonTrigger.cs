@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; // Used for List<T>
 
 /// <summary>
 /// 
@@ -18,6 +18,8 @@ public class ButtonTrigger : MonoBehaviour {
     // The object to trigger something in
     public List<GameObject> triggerTargetList = new List<GameObject>();
 
+    public Animator happyButtonAnimator = null;
+
     private List<Triggerable> triggerableScriptList = new List<Triggerable>();
 
 	// Use this for initialization
@@ -26,6 +28,9 @@ public class ButtonTrigger : MonoBehaviour {
         {
             Debug.LogError("ButtonTrigger: List of triggerable objects empty!");
         }
+
+        // Set pressed animation state
+        happyButtonAnimator.SetBool("pressed", true);
 
         // Get the Triggerable script from targets
         foreach (GameObject triggerTarget in  triggerTargetList)
@@ -46,7 +51,16 @@ public class ButtonTrigger : MonoBehaviour {
             foreach (Triggerable triggerScript in triggerableScriptList)
             {
                 triggerScript.Trigger();
+
+                // Animation state change
+                happyButtonAnimator.SetBool("pressed", true);
             }
         }
+    }
+
+    // Animation Event
+    void pressEnd()
+    {
+        happyButtonAnimator.SetBool("pressed", false);
     }
 }

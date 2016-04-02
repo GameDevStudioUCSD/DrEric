@@ -34,7 +34,7 @@ public class Boss2Horn : MonoBehaviour {
             Rigidbody2D rigid = GetComponent<Rigidbody2D>();
             Vector3 vectorToTarget = rigid.velocity;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion q = Quaternion.AngleAxis(angle-90, Vector3.forward);
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
         }
     }

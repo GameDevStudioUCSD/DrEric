@@ -34,7 +34,7 @@ public class TimePortal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Time.timeScale = 5;
+            Time.timeScale = 9;
             GetComponent<Collider2D>().enabled = false;
         	onTree = false;
             audioSource.Play();

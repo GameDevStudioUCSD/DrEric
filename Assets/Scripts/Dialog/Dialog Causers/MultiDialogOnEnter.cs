@@ -8,6 +8,7 @@ public class MultiDialogOnEnter : MonoBehaviour {
     public DialogCharacterPair[] dialogs;
     public bool appendText;
     public bool destroyOnEnter = true;
+    public bool pauseWhenActivated;
 
     private Queue dialogPairs;
     private bool hasActivated = false;

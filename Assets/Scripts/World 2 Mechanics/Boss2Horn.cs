@@ -3,71 +3,86 @@ using System.Collections;
 
 public class Boss2Horn : MonoBehaviour {
 
-    public float starttime;
     public GameObject target;
     public float invulnerabilitytime;
-    public bool Fired;
+    public float explosiveRadius = 5.0F;
+    public float explosionPower = 10.0F;
+
     private int speed = 100;
     private Rigidbody2D myRigidbody;
-	// Use this for initialization
-	void Start () {
-        if(Fired)
-        {
-            gameObject.AddComponent<Rigidbody2D>();
-        }
-        if(target == null)
-        {
-            target = GameObject.Find(Names.PLAYERHOLDER);
-        }
-        myRigidbody = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (Fired)
-        {   //turn on PIDcontroller when fired
-            PIDController pid = this.GetComponent<PIDController>();
-            pid.enabled = true;
-            pid.destinationTransform = target.transform;
+    private PIDController pidController;
+    private enum State { LAUNCHING, TRACKING, BLOWINGUP}
+    private State state = State.LAUNCHING;
 
-            //code that makes it face where its going
-            Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-            Vector3 vectorToTarget = rigid.velocity;
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
-        }
-    }
-
-    public void Destroy()
+    void Start()
     {
-
-        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        float timepenis = Time.time;
-        Debug.Log( Time.time - timepenis);
-        if (Time.time - timepenis> 1)
-        {
-            Destroy(this.gameObject);
-        }
+        target = GameObject.Find(Names.PLAYERHOLDER);
+        myRigidbody = GetComponent<Rigidbody2D>();
+        if (myRigidbody == null)
+            myRigidbody = gameObject.AddComponent<Rigidbody2D>();
+        pidController = this.GetComponent<PIDController>();
+        pidController.enabled = true;
+        pidController.destinationTransform = target.transform;
+        Invoke("Track", invulnerabilitytime);
     }
 
+    void Update()
+    {
+        switch(state)
+        {
+            case State.BLOWINGUP:
+                myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                break;
+            default:
+                UpdatePose();
+                break;
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss") && Time.time -starttime > invulnerabilitytime )
+        if (state != State.TRACKING)
+            return;
+        pidController.enabled = false;
+        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
+        state = State.BLOWINGUP;
+        Invoke("BlowUp", .2f);
+    }
+
+    public void BlowUp()
+    {
+        Vector3 explosionPos = transform.position;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, explosiveRadius);
+        foreach (Collider2D hit in colliders)
         {
-            Debug.Log("Getting hit");
-            Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
-            boss.TakeDamage();
-            Destroy(this.gameObject);
+            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                // First calculate the direction
+                Vector2 explosiveForce = hit.transform.position - explosionPos;
+                // Normalize it and apply scalar
+                explosiveForce = explosionPower * explosiveForce.normalized;
+                // Apply it
+                rb.AddForce(explosiveForce, ForceMode2D.Impulse);
+            }
         }
-        else if (other.tag == "Player" )
-        {
-        }
-        else if(other.tag == "Wall")
-        {
-            myRigidbody.velocity *= 0;
-        }
+        //Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
+        //boss.TakeDamage();
+
+        Destroy(this.gameObject, .5f);
+    }
+
+    //code that makes it face where its going
+    private void UpdatePose()
+    {
+        Vector3 vectorToTarget = myRigidbody.velocity;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+    }
+
+    private void Track()
+    {
+        state = State.TRACKING;
     }
 
 

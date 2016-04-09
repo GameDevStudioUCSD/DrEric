@@ -7,6 +7,8 @@ public class SaplingSpawner : MonoBehaviour {
     // Heights corresponding to short, middle, and tall trees
     public static List<float> Heights = new List<float>{-2.0f, -8.0f, -14.0f};
 
+    public List<SaplingSpawner> saplingSpawners = new List<SaplingSpawner>();
+
     public Animator happyButtonAnimator = null;
 
     public GameObject sapling = null; //prefab to spawn
@@ -15,8 +17,11 @@ public class SaplingSpawner : MonoBehaviour {
     //distance between a spot in the past and the analagous spot in the present
     public float distanceToPresent = -100;
 
+    // Is button pressable or not
+    public bool pressable = true;
+
     // The height of the corresponding tree
-    public float treeHeight = 0.0f;
+    private float treeHeight = 0.0f;
 
     private float startTime = 0; //time switch last hit
     private AudioSource aSource;
@@ -36,24 +41,34 @@ public class SaplingSpawner : MonoBehaviour {
     {
         if (startTime != 0 && (Time.time - startTime) >= cooldown)
             startTime = 0;
+
+        // If button is not active, then set the animation to down state
+        if (!pressable)
+        {
+            happyButtonAnimator.SetBool("pressed", true);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "Player")
         {
-            if (Time.time > 2 && startTime == 0)
+            if (pressable)
             {
-                spawn();
-                happyButtonAnimator.SetBool("pressed", true);
-                aSource.Play();
+                if (Time.time > 2 && startTime == 0)
+                {
+                    spawn();
+                    happyButtonAnimator.SetBool("pressed", true);
+                    aSource.Play();
+
+                    // Disable all sapling spawners if this one is pressed
+                    foreach(SaplingSpawner sapling in saplingSpawners)
+                    {
+                        sapling.setPressable(false);
+                    }
+                } 
             }
         }
-    }
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        Debug.Log("Hello");
     }
 
     void spawn()
@@ -73,5 +88,10 @@ public class SaplingSpawner : MonoBehaviour {
     void pressEnd()
     {
         happyButtonAnimator.SetBool("pressed", false);
+    }
+
+    public void setPressable(bool flag)
+    {
+        this.pressable = flag;
     }
 }

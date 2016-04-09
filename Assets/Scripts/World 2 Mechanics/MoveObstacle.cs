@@ -7,8 +7,8 @@ public class MoveObstacle : Triggerable {
     public bool startAtLoweredPosition = true;
 
     // The end positions of raising or lowering
-    public Vector2 raisedPosition;
-    public Vector2 loweredPosition;
+    public Vector3 raisedPosition;
+    public Vector3 loweredPosition;
 
     // Rate at which obstacle should lerp
     public float moveRate = 0.1f;
@@ -20,7 +20,7 @@ public class MoveObstacle : Triggerable {
     private State currentState = State.Initial;
 
     // The position the obstacle is currently at if it is going from lowering to raising or vice versa
-    private Vector2 intermediatePosition;
+    private Vector3 intermediatePosition;
 
     // Used by lerp to determine how much the object has moved
     private float positionFraction = 0.0f;
@@ -86,7 +86,7 @@ public class MoveObstacle : Triggerable {
         if (positionFraction < 1.0)
         {
             positionFraction += Time.deltaTime * moveRate;
-            this.transform.position = Vector2.Lerp(intermediatePosition, raisedPosition, positionFraction);
+            this.transform.position = Vector3.Lerp(intermediatePosition, raisedPosition, positionFraction);
         }
         else
         {
@@ -99,7 +99,7 @@ public class MoveObstacle : Triggerable {
         if (positionFraction < 1.0)
         {
             positionFraction += Time.deltaTime * moveRate;
-            this.transform.position = Vector2.Lerp(intermediatePosition, loweredPosition, positionFraction);
+            this.transform.position = Vector3.Lerp(intermediatePosition, loweredPosition, positionFraction);
         }
         else
         {

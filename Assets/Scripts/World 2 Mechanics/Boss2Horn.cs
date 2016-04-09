@@ -27,11 +27,15 @@ public class Boss2Horn : MonoBehaviour {
 
     void Update()
     {
-        //code that makes it face where its going
-        Vector3 vectorToTarget = myRigidbody.velocity;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        switch(state)
+        {
+            case State.BLOWINGUP:
+                myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                break;
+            default:
+                UpdatePose();
+                break;
+        }
     }
 
     public void BlowUp()
@@ -39,8 +43,16 @@ public class Boss2Horn : MonoBehaviour {
         state = State.BLOWINGUP;
         pidController.enabled = false;
         this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
-        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Destroy(this.gameObject,1f);
+        Destroy(this.gameObject,.5f);
+    }
+
+    //code that makes it face where its going
+    void UpdatePose()
+    {
+        Vector3 vectorToTarget = myRigidbody.velocity;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -48,13 +60,19 @@ public class Boss2Horn : MonoBehaviour {
         if (state != State.TRACKING)
             return;
         Vector3 explosionPos = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosiveRadius);
-        foreach (Collider hit in colliders)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, explosiveRadius);
+        foreach (Collider2D hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null)
-                rb.AddExplosionForce(explosionPower, explosionPos, explosiveRadius, 3.0F);
+            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+            Debug.Log(hit + " got hit by the explosion!");
+            if (rb != null) {
+                // First calculate the direction
+                Vector2 explosiveForce = hit.transform.position - explosionPos;
+                // Normalize it and apply scalar
+                explosiveForce = explosionPower * explosiveForce.normalized;
+                // Apply it
+                rb.AddForce(explosiveForce, ForceMode2D.Impulse);
+            }
         }
         myRigidbody.velocity *= 0;
         BlowUp();

@@ -16,7 +16,7 @@ public class Boss2Script : MonoBehaviour {
     public float hornInitialForce = 10;
     public float chargeScalar = 10;
 
-    private ArrayList missleList = new ArrayList();
+    private ArrayList missileList = new ArrayList();
 
     private int maxHP;
     private float startTime;
@@ -75,13 +75,12 @@ public class Boss2Script : MonoBehaviour {
             return;
         if (Time.time - startTime > hornDelay && hornsFired <= maxHP - health+hornNumber)
         {
-            GameObject newMissle = Instantiate(horn);//make horn & initialize variables
-            Boss2Horn missleScript = newMissle.GetComponent<Boss2Horn>();
-            missleScript.enabled = true;
-            missleList.Add(missleScript);
-            newMissle.transform.position = horn.transform.position;
-            newMissle.transform.rotation = horn.transform.rotation;
-            missleScript.target = target;
+            GameObject newMissile = Instantiate(horn);//make horn & initialize variables
+            Missile missile = newMissile.GetComponent<Missile>();
+            missile.enabled = true;
+            missileList.Add(missile);
+            newMissile.transform.position = horn.transform.position;
+            newMissile.transform.rotation = horn.transform.rotation;
 
             float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
             Vector2 force = new Vector2(hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)),
@@ -91,7 +90,7 @@ public class Boss2Script : MonoBehaviour {
             Debug.Log(force);
             hornsFired++;
             startTime = Time.time;
-            newMissle.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+            newMissile.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
 
         }
     }
@@ -109,17 +108,14 @@ public class Boss2Script : MonoBehaviour {
 
     void DestroyAllHorns()
     {
-        foreach (Boss2Horn horn in missleList)
-        {
-            horn.BlowUp();
-        }
-        missleList.Clear();
+        foreach (Missile m in missileList)
+            m.BlowUp();
+        missileList.Clear();
     }
 
     public void TakeDamage()//get hit
     {
         health--;
-        DestroyAllHorns();
         if (health == 0)
         {
             Destroy(this.gameObject);

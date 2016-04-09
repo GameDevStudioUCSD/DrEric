@@ -2353,6 +2353,21 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 406956, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
   m_PrefabInternal: {fileID: 1131598095}
+--- !u!114 &716271596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716271593}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ffe762e2dc2284ab0beab030875c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  invulnerabilitytime: 0.1
+  explosiveRadius: 4
+  explosionPower: 15
 --- !u!1 &720324157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,6 +3807,7 @@ GameObject:
   - 114: {fileID: 1127293013}
   - 60: {fileID: 1127293014}
   - 114: {fileID: 1127293018}
+  - 114: {fileID: 1127293019}
   m_Layer: 0
   m_Name: FishBoss
   m_TagString: Boss
@@ -3830,8 +3846,8 @@ MonoBehaviour:
   target: {fileID: 960584918}
   horn: {fileID: 716271593}
   health: 15
-  hornNumber: 5
-  scaleIncrement: 1.01
+  hornNumber: 20
+  scaleIncrement: 1.001
   bloatTime: 3
   hornDelay: 2
   hornInitialForce: 10
@@ -3937,6 +3953,33 @@ MonoBehaviour:
   circleTime: 2
   returnTime: 1
   maxDistance: 40
+--- !u!114 &1127293019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1127293011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a45e0f16cf1a2941841a12465523035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventList:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1127293013}
+        m_MethodName: TakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1001 &1131598095
 Prefab:
   m_ObjectHideFlags: 0
@@ -4005,7 +4048,24 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11473706, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473706, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
+      propertyPath: invulnerabilitytime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473706, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
+      propertyPath: explosionPower
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473706, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
+      propertyPath: explosiveRadius
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11473706, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0af1c4da3255b624eb390252f7502318, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1141901960

@@ -5,16 +5,15 @@ public class Boss2Script : MonoBehaviour {
     public enum State { TRACKING, BLOATING,MOVING,DANMAKU, DEFLATING };
     private State state;
     public GameObject target;
-    public GameObject horn;
+    public GameObject missile;
     public int health = 3;
     public int hornNumber = 5;
 
-	public float scaleIncrement = 5;
-	public float bloatTime = 2;
+	public float localScaleIncrementScalar = 1.005f;
+	public float timeToBloat = 2;
 
-    public float hornDelay;
-    public float hornInitialForce = 10;
-    public float chargeScalar = 10;
+    public float fireRate = 1f;
+    public float chargingForceScalar = 10;
 
     private ArrayList missileList = new ArrayList();
 
@@ -64,7 +63,7 @@ public class Boss2Script : MonoBehaviour {
 
     void Deflate()
     {
-        transform.localScale = (1.0f / scaleIncrement) * transform.localScale;
+        transform.localScale = (1.0f / localScaleIncrementScalar) * transform.localScale;
     }
 
     void Track()
@@ -73,14 +72,14 @@ public class Boss2Script : MonoBehaviour {
         myRigidBody.velocity *= 0;
         if (RespawnController.IsDead())
             return;
-        if (Time.time - startTime > hornDelay && hornsFired <= maxHP - health+hornNumber)
+        if (Time.time - startTime > fireRate && hornsFired <= maxHP - health+hornNumber)
         {
-            GameObject newMissile = Instantiate(horn);//make horn & initialize variables
+            GameObject newMissile = Instantiate(this.missile);//make horn & initialize variables
             Missile missile = newMissile.GetComponent<Missile>();
             missile.enabled = true;
             missileList.Add(missile);
-            newMissile.transform.position = horn.transform.position;
-            newMissile.transform.rotation = horn.transform.rotation;
+            newMissile.transform.position = this.missile.transform.position;
+            newMissile.transform.rotation = this.missile.transform.rotation;
             hornsFired++;
             startTime = Time.time;
         }
@@ -125,9 +124,9 @@ public class Boss2Script : MonoBehaviour {
 	// called at every frame when state is BLOATING
     void Bloat()
     {
-        transform.localScale = scaleIncrement * transform.localScale; //= new Vector3 (transform.localScale.x * scaleIncrement, 
+        transform.localScale = localScaleIncrementScalar * transform.localScale; //= new Vector3 (transform.localScale.x * scaleIncrement, 
 			//transform.localScale.y * scaleIncrement, transform.localScale.z);
-		if (Time.time - startTime >= bloatTime) 
+		if (Time.time - startTime >= timeToBloat) 
 		{
 			state = State.MOVING;
             startTime = Time.time;
@@ -138,11 +137,11 @@ public class Boss2Script : MonoBehaviour {
 
     void Move()
     {
-        Vector3 direction = chargeScalar * (target.transform.position - transform.position).normalized;
+        Vector3 direction = chargingForceScalar * (target.transform.position - transform.position).normalized;
         Debug.Log("Trying to move towards: " + direction);
         myRigidBody.AddForce(direction, ForceMode2D.Impulse);
 		state = State.DEFLATING;
-		Invoke ("ReturnToWaiting", bloatTime);
+		Invoke ("ReturnToWaiting", timeToBloat);
         
     }
     void FireDanmaku()

@@ -12,6 +12,7 @@ public class Missile : MonoBehaviour {
     private int speed = 100;
     private Rigidbody2D myRigidbody;
     private PIDController pidController;
+    private Collider2D myCollider;
     private enum State { LAUNCHING, TRACKING, BLOWINGUP}
     private State state = State.LAUNCHING;
 
@@ -19,6 +20,7 @@ public class Missile : MonoBehaviour {
     {
         target = GameObject.Find(Names.PLAYERHOLDER);
         myRigidbody = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<Collider2D>();
         if (myRigidbody == null)
             myRigidbody = gameObject.AddComponent<Rigidbody2D>();
         myRigidbody.AddForce(initialForce* transform.right, ForceMode2D.Impulse);
@@ -86,6 +88,7 @@ public class Missile : MonoBehaviour {
     {
         state = State.TRACKING;
         pidController.enabled = true;
+        myCollider.enabled = true;
     }
 
 

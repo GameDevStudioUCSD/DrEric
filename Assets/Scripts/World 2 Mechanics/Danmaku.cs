@@ -12,8 +12,8 @@ public class Danmaku : MonoBehaviour {
     public float maxDistance = 1000;
 
 
-    enum State { Circling, Returning }
-    State state = State.Circling;
+    public enum State { Circling, Returning }
+    public State state = State.Circling;
     List<PIDController> pidControllers;
     List<GameObject> bulletInstances;
     float stateChangeTime = 0f;
@@ -30,6 +30,20 @@ public class Danmaku : MonoBehaviour {
             Spawn();
         if (Time.time - stateChangeTime > waitTime)
         {
+            DetermineTrackingType();
+            stateChangeTime = Time.time;
+            if(bulletInstances[0].GetComponent<Transform>().position.magnitude > maxDistance)
+            {
+                foreach (GameObject bullet in bulletInstances)
+                {
+                    bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    bullet.GetComponent<Transform>().position = transform.position;
+                }
+            }
+        }
+	}
+    void DetermineTrackingType()
+    {
             switch (state)
             {
                 case State.Circling:
@@ -45,17 +59,7 @@ public class Danmaku : MonoBehaviour {
                         pid.trackingType = PIDController.TrackingType.Transform;
                     break;
             }
-            stateChangeTime = Time.time;
-            if(bulletInstances[0].GetComponent<Transform>().position.magnitude > maxDistance)
-            {
-                foreach (GameObject bullet in bulletInstances)
-                {
-                    bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    bullet.GetComponent<Transform>().position = transform.position;
-                }
-            }
-        }
-	}
+    }
 
     void Spawn()
     {
@@ -79,6 +83,7 @@ public class Danmaku : MonoBehaviour {
             else
                 pid.destinationTransform = bulletInstances[i + 1].GetComponent<Transform>();
         }
+        DetermineTrackingType();
     }
 
 

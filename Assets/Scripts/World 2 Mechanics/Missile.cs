@@ -43,15 +43,20 @@ public class Missile : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        PrepareExplosion();
+    }
+
+    public void PrepareExplosion()
+    {
         if (state != State.TRACKING)
             return;
         pidController.enabled = false;
         this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
         state = State.BLOWINGUP;
-        Invoke("BlowUp", .2f);
+        Invoke("Explode", .2f);
     }
 
-    public void BlowUp()
+    public void Explode()
     {
         Vector3 explosionPos = transform.position;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, explosiveRadius);

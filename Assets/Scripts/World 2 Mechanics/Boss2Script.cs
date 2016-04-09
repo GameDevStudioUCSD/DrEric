@@ -99,7 +99,7 @@ public class Boss2Script : MonoBehaviour {
     void DestroyAllHorns()
     {
         foreach (Missile m in missileList)
-            m.BlowUp();
+            m.PrepareExplosion();
         missileList.Clear();
     }
 

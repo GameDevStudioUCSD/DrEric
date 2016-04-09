@@ -5,14 +5,15 @@ public class Boss2Horn : MonoBehaviour {
 
     public GameObject target;
     public float invulnerabilitytime;
+    public float explosiveRadius = 5.0F;
+    public float explosionPower = 10.0F;
+
     private int speed = 100;
     private Rigidbody2D myRigidbody;
     private PIDController pidController;
+    private enum State { LAUNCHING, TRACKING, BLOWINGUP}
+    private State state = State.LAUNCHING;
 
-    public float explosiveRadius = 5.0F;
-    public float explosionPower = 10.0F;
-    enum State { LAUNCHING, TRACKING, BLOWINGUP}
-    State state = State.LAUNCHING;
     void Start()
     {
         target = GameObject.Find(Names.PLAYERHOLDER);
@@ -37,24 +38,6 @@ public class Boss2Horn : MonoBehaviour {
                 break;
         }
     }
-
-    public void BlowUp()
-    {
-        state = State.BLOWINGUP;
-        pidController.enabled = false;
-        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
-        Destroy(this.gameObject,.5f);
-    }
-
-    //code that makes it face where its going
-    void UpdatePose()
-    {
-        Vector3 vectorToTarget = myRigidbody.velocity;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (state != State.TRACKING)
@@ -80,7 +63,24 @@ public class Boss2Horn : MonoBehaviour {
             //boss.TakeDamage();
     }
 
-    void Track()
+    private void BlowUp()
+    {
+        state = State.BLOWINGUP;
+        pidController.enabled = false;
+        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
+        Destroy(this.gameObject,.5f);
+    }
+
+    //code that makes it face where its going
+    private void UpdatePose()
+    {
+        Vector3 vectorToTarget = myRigidbody.velocity;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+    }
+
+    private void Track()
     {
         state = State.TRACKING;
     }

@@ -5,25 +5,25 @@ public class Boss2Script : MonoBehaviour {
     public enum State { TRACKING, BLOATING,MOVING,DANMAKU, DEFLATING };
     private State state;
     public GameObject target;
-    public GameObject horn;
+    public GameObject missile;
     public int health = 3;
     public int hornNumber = 5;
 
-	public float scaleIncrement = 5;
-	public float bloatTime = 2;
+	public float localScaleIncrementScalar = 1.005f;
+	public float timeToBloat = 2;
 
-    public float hornDelay;
-    public float hornInitialForce = 10;
-    public float chargeScalar = 10;
+    public float fireRate = 1f;
+    public float chargingForceScalar = 10;
+    public float invisibilityTime = 1;
+    public GameObject danmakuGenerator;
 
-    private ArrayList hornList = new ArrayList();
 
     private int maxHP;
     private float startTime;
     private int hornsFired;
+    private float lastHitTime = 0;
     private Vector3 originalScale;
     private Vector3 originalPosition;
-
     private Rigidbody2D myRigidBody;
 
     // Use this for initialization
@@ -64,7 +64,7 @@ public class Boss2Script : MonoBehaviour {
 
     void Deflate()
     {
-        transform.localScale = (1.0f / scaleIncrement) * transform.localScale;
+        transform.localScale = (1.0f / localScaleIncrementScalar) * transform.localScale;
     }
 
     void Track()
@@ -73,73 +73,67 @@ public class Boss2Script : MonoBehaviour {
         myRigidBody.velocity *= 0;
         if (RespawnController.IsDead())
             return;
-        if (Time.time - startTime > hornDelay && hornsFired <= maxHP - health+hornNumber)
+        if (Time.time - startTime > fireRate && hornsFired <= maxHP - health+hornNumber)
         {
-            GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
-            Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
-            hornList.Add(hornscript);
-            firedhorn.transform.position = horn.transform.position;
-            firedhorn.transform.rotation = horn.transform.rotation;
-            hornscript.target = target;
-            hornscript.Fired = true;
-            hornscript.starttime = Time.time;
-
-            float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
-            Vector2 force = new Vector2(hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)),
-                hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)))*transform.localScale.y;
-            Debug.Log(impulseradians);
-            Debug.Log(Mathf.Cos(impulseradians));
-            Debug.Log(force);
+            GameObject newMissile = Instantiate(this.missile);//make horn & initialize variables
+            Missile missile = newMissile.GetComponent<Missile>();
+            missile.enabled = true;
+            newMissile.transform.position = this.missile.transform.position;
+            newMissile.transform.rotation = this.missile.transform.rotation;
             hornsFired++;
             startTime = Time.time;
-            firedhorn.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
-
         }
     }
 
     public void Respawn()
     {
         DestroyAllHorns();
-        health = maxHP;
-        transform.position = originalPosition;
-        transform.localScale = originalScale;
-        startTime = Time.time;
         hornsFired = 0;
-        state = State.TRACKING;
     }
 
     void DestroyAllHorns()
     {
-        foreach (Boss2Horn horn in hornList)
+        foreach (Missile missile in FindObjectsOfType(typeof(Missile)) as Missile[])
         {
-            horn.Destroy();
+            missile.PrepareExplosion();
         }
-        hornList.Clear();
     }
 
     public void TakeDamage()//get hit
     {
+        if (Time.time - lastHitTime < invisibilityTime)
+            return;
+        lastHitTime = Time.time;
         health--;
-        DestroyAllHorns();
-        if (health == 0)
+        if (health <= 0)
         {
-            Destroy(this.gameObject);
+            state = State.DEFLATING;
+            Destroy(danmakuGenerator);
+            DestroyAllHorns();
+            Destroy(this.gameObject,5);
         }
-        else if (health > 1)
+        else if (health > 2)
         {//if living go to next state   
             startTime = Time.time;
-            state = State.BLOATING;
+            if(state == State.TRACKING)
+                state = State.BLOATING;
         }
         else
+        {
+            transform.localScale = originalScale;
+            Vector2 runAwayForce = new Vector2(10, 10);
+            myRigidBody.AddForce(runAwayForce, ForceMode2D.Impulse);
             state = State.DANMAKU;
+            FireDanmaku();
+        }
     }
 
 	// called at every frame when state is BLOATING
     void Bloat()
     {
-        transform.localScale = scaleIncrement * transform.localScale; //= new Vector3 (transform.localScale.x * scaleIncrement, 
+        transform.localScale = localScaleIncrementScalar * transform.localScale; //= new Vector3 (transform.localScale.x * scaleIncrement, 
 			//transform.localScale.y * scaleIncrement, transform.localScale.z);
-		if (Time.time - startTime >= bloatTime) 
+		if (Time.time - startTime >= timeToBloat) 
 		{
 			state = State.MOVING;
             startTime = Time.time;
@@ -150,24 +144,17 @@ public class Boss2Script : MonoBehaviour {
 
     void Move()
     {
-        Vector3 direction = chargeScalar * (target.transform.position - transform.position).normalized;
-        Debug.Log("Trying to move towards: " + direction);
+        Vector3 direction = chargingForceScalar * (target.transform.position - transform.position).normalized;
         myRigidBody.AddForce(direction, ForceMode2D.Impulse);
 		state = State.DEFLATING;
-		Invoke ("ReturnToWaiting", bloatTime);
+		Invoke ("ReturnToWaiting", timeToBloat);
         
     }
     void FireDanmaku()
     {
-        GetComponent<Danmaku>().enabled = true;
-        state = State.DEFLATING;
+        danmakuGenerator.GetComponent<Danmaku>().enabled = true;
+        //state = State.DEFLATING;
     }
-    /**void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Deadly")
-        {
-        }
-    }*/
 
 	void ReturnToWaiting() {
 		state = State.TRACKING;

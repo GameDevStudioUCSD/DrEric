@@ -14,15 +14,16 @@ public class Boss2Script : MonoBehaviour {
 
     public float fireRate = 1f;
     public float chargingForceScalar = 10;
+    public float invisibilityTime = 1;
+    public GameObject danmakuGenerator;
 
-    private ArrayList missileList = new ArrayList();
 
     private int maxHP;
     private float startTime;
     private int hornsFired;
+    private float lastHitTime = 0;
     private Vector3 originalScale;
     private Vector3 originalPosition;
-
     private Rigidbody2D myRigidBody;
 
     // Use this for initialization
@@ -77,7 +78,6 @@ public class Boss2Script : MonoBehaviour {
             GameObject newMissile = Instantiate(this.missile);//make horn & initialize variables
             Missile missile = newMissile.GetComponent<Missile>();
             missile.enabled = true;
-            missileList.Add(missile);
             newMissile.transform.position = this.missile.transform.position;
             newMissile.transform.rotation = this.missile.transform.rotation;
             hornsFired++;
@@ -88,37 +88,44 @@ public class Boss2Script : MonoBehaviour {
     public void Respawn()
     {
         DestroyAllHorns();
-        health = maxHP;
-        transform.position = originalPosition;
-        transform.localScale = originalScale;
-        startTime = Time.time;
         hornsFired = 0;
-        state = State.TRACKING;
     }
 
     void DestroyAllHorns()
     {
-        foreach (Missile m in missileList)
-            m.PrepareExplosion();
-        missileList.Clear();
+        foreach (Missile missile in FindObjectsOfType(typeof(Missile)) as Missile[])
+        {
+            missile.PrepareExplosion();
+        }
     }
 
     public void TakeDamage()//get hit
     {
-        health--;
-        if (state != State.TRACKING)
+        if (Time.time - lastHitTime < invisibilityTime)
             return;
-        if (health == 0)
+        lastHitTime = Time.time;
+        health--;
+        if (health <= 0)
         {
-            Destroy(this.gameObject);
+            state = State.DEFLATING;
+            Destroy(danmakuGenerator);
+            DestroyAllHorns();
+            Destroy(this.gameObject,5);
         }
-        else if (health > 1)
+        else if (health > 2)
         {//if living go to next state   
             startTime = Time.time;
-            state = State.BLOATING;
+            if(state == State.TRACKING)
+                state = State.BLOATING;
         }
         else
+        {
+            transform.localScale = originalScale;
+            Vector2 runAwayForce = new Vector2(10, 10);
+            myRigidBody.AddForce(runAwayForce, ForceMode2D.Impulse);
             state = State.DANMAKU;
+            FireDanmaku();
+        }
     }
 
 	// called at every frame when state is BLOATING
@@ -138,7 +145,6 @@ public class Boss2Script : MonoBehaviour {
     void Move()
     {
         Vector3 direction = chargingForceScalar * (target.transform.position - transform.position).normalized;
-        Debug.Log("Trying to move towards: " + direction);
         myRigidBody.AddForce(direction, ForceMode2D.Impulse);
 		state = State.DEFLATING;
 		Invoke ("ReturnToWaiting", timeToBloat);
@@ -146,15 +152,9 @@ public class Boss2Script : MonoBehaviour {
     }
     void FireDanmaku()
     {
-        GetComponent<Danmaku>().enabled = true;
-        state = State.DEFLATING;
+        danmakuGenerator.GetComponent<Danmaku>().enabled = true;
+        //state = State.DEFLATING;
     }
-    /**void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Deadly")
-        {
-        }
-    }*/
 
 	void ReturnToWaiting() {
 		state = State.TRACKING;

@@ -21,8 +21,8 @@ public class Danmaku : MonoBehaviour {
 
 	void Start() {
         waitTime = circleTime;
+        stateChangeTime = Time.time;
         Spawn();
-        
 	}
 	
 	void Update () {

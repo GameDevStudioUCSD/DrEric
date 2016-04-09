@@ -13,6 +13,7 @@ public class Missile : MonoBehaviour {
     private Rigidbody2D myRigidbody;
     private PIDController pidController;
     private Collider2D myCollider;
+    private AudioSource audioSrc;
     private enum State { LAUNCHING, TRACKING, BLOWINGUP}
     private State state = State.LAUNCHING;
 
@@ -21,6 +22,7 @@ public class Missile : MonoBehaviour {
         target = GameObject.Find(Names.PLAYERHOLDER);
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
+        audioSrc = GetComponent<AudioSource>(); 
         if (myRigidbody == null)
             myRigidbody = gameObject.AddComponent<Rigidbody2D>();
         myRigidbody.AddForce(initialForce* transform.right, ForceMode2D.Impulse);
@@ -60,6 +62,7 @@ public class Missile : MonoBehaviour {
     {
         Vector3 explosionPos = transform.position;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, explosiveRadius);
+        audioSrc.Play();
         foreach (Collider2D hit in colliders)
         {
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();

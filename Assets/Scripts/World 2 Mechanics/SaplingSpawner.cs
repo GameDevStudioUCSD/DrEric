@@ -51,6 +51,11 @@ public class SaplingSpawner : MonoBehaviour {
         }
     }
 
+    void OnCollisionExit2D(Collision2D other)
+    {
+        Debug.Log("Hello");
+    }
+
     void spawn()
     {
         startTime = Time.time;

@@ -81,17 +81,8 @@ public class Boss2Script : MonoBehaviour {
             missileList.Add(missile);
             newMissile.transform.position = horn.transform.position;
             newMissile.transform.rotation = horn.transform.rotation;
-
-            float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
-            Vector2 force = new Vector2(hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)),
-                hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)))*transform.localScale.y;
-            Debug.Log(impulseradians);
-            Debug.Log(Mathf.Cos(impulseradians));
-            Debug.Log(force);
             hornsFired++;
             startTime = Time.time;
-            newMissile.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
-
         }
     }
 
@@ -116,6 +107,8 @@ public class Boss2Script : MonoBehaviour {
     public void TakeDamage()//get hit
     {
         health--;
+        if (state != State.TRACKING)
+            return;
         if (health == 0)
         {
             Destroy(this.gameObject);

@@ -2368,6 +2368,7 @@ MonoBehaviour:
   invulnerabilitytime: 0.1
   explosiveRadius: 4
   explosionPower: 15
+  initialForce: 10
 --- !u!1 &720324157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,10 +3802,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1127293017}
+  - 114: {fileID: 1127293013}
   - 50: {fileID: 1127293016}
   - 114: {fileID: 1127293015}
   - 114: {fileID: 1127293012}
-  - 114: {fileID: 1127293013}
   - 60: {fileID: 1127293014}
   - 114: {fileID: 1127293018}
   - 114: {fileID: 1127293019}
@@ -3847,7 +3848,7 @@ MonoBehaviour:
   horn: {fileID: 716271593}
   health: 15
   hornNumber: 20
-  scaleIncrement: 1.001
+  scaleIncrement: 1.005
   bloatTime: 3
   hornDelay: 2
   hornInitialForce: 10

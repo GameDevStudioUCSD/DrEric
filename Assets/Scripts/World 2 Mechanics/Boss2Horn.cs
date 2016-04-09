@@ -42,13 +42,21 @@ public class Boss2Horn : MonoBehaviour {
     {
         if (state != State.TRACKING)
             return;
+        pidController.enabled = false;
+        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
+        state = State.BLOWINGUP;
+        Invoke("BlowUp", .2f);
+    }
+
+    public void BlowUp()
+    {
         Vector3 explosionPos = transform.position;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, explosiveRadius);
         foreach (Collider2D hit in colliders)
         {
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
-            Debug.Log(hit + " got hit by the explosion!");
-            if (rb != null) {
+            if (rb != null)
+            {
                 // First calculate the direction
                 Vector2 explosiveForce = hit.transform.position - explosionPos;
                 // Normalize it and apply scalar
@@ -57,18 +65,10 @@ public class Boss2Horn : MonoBehaviour {
                 rb.AddForce(explosiveForce, ForceMode2D.Impulse);
             }
         }
-        myRigidbody.velocity *= 0;
-        BlowUp();
-            //Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
-            //boss.TakeDamage();
-    }
+        //Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
+        //boss.TakeDamage();
 
-    private void BlowUp()
-    {
-        state = State.BLOWINGUP;
-        pidController.enabled = false;
-        this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
-        Destroy(this.gameObject,.5f);
+        Destroy(this.gameObject, .5f);
     }
 
     //code that makes it face where its going

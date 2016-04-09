@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 143870}
   m_LocalRotation: {x: 0, y: 0, z: -0.19509035, w: 0.9807853}
   m_LocalPosition: {x: 0.23, y: 0.92, z: 1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 475916}
   m_Father: {fileID: 0}
@@ -204,7 +204,7 @@ MonoBehaviour:
   target: {fileID: 0}
   invulnerabilitytime: 5
   explosiveRadius: 4
-  explosionPower: 15
+  explosionPower: 5
   initialForce: 0
 --- !u!114 &11433048
 MonoBehaviour:
@@ -287,6 +287,18 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 35ea02ea0957ccf4d8b595588cfb7a7f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: explosionPower
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 143870}

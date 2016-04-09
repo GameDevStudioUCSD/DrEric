@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class Boss2Script : MonoBehaviour {
     public enum State { TRACKING, BLOATING,MOVING,DANMAKU, DEFLATING };
-    private State state;
+    public State state;
     public GameObject target;
     public GameObject missile;
     public int health = 3;
@@ -70,9 +70,9 @@ public class Boss2Script : MonoBehaviour {
     void Track()
     {
         // fire a horn for every damage, starting 1
-        myRigidBody.velocity *= 0;
         if (RespawnController.IsDead())
             return;
+        myRigidBody.velocity *= 0;
         if (Time.time - startTime > fireRate && hornsFired <= maxHP - health+hornNumber)
         {
             GameObject newMissile = Instantiate(this.missile);//make horn & initialize variables
@@ -88,6 +88,9 @@ public class Boss2Script : MonoBehaviour {
     public void Respawn()
     {
         DestroyAllHorns();
+        RunAway();
+        if (health < maxHP || (state == State.DANMAKU && health < 2 ))
+            health++;
         hornsFired = 0;
     }
 
@@ -110,19 +113,19 @@ public class Boss2Script : MonoBehaviour {
             state = State.DEFLATING;
             Destroy(danmakuGenerator);
             DestroyAllHorns();
-            Destroy(this.gameObject,5);
+            Destroy(this.gameObject, 5);
         }
-        else if (health > 2)
+        else if (health > Mathf.Ceil(maxHP * .2f))
         {//if living go to next state   
-            startTime = Time.time;
             if(state == State.TRACKING)
+            {
+                startTime = Time.time;
                 state = State.BLOATING;
+            }
         }
         else
         {
             transform.localScale = originalScale;
-            Vector2 runAwayForce = new Vector2(10, 10);
-            myRigidBody.AddForce(runAwayForce, ForceMode2D.Impulse);
             state = State.DANMAKU;
             FireDanmaku();
         }
@@ -131,8 +134,7 @@ public class Boss2Script : MonoBehaviour {
 	// called at every frame when state is BLOATING
     void Bloat()
     {
-        transform.localScale = localScaleIncrementScalar * transform.localScale; //= new Vector3 (transform.localScale.x * scaleIncrement, 
-			//transform.localScale.y * scaleIncrement, transform.localScale.z);
+        transform.localScale = localScaleIncrementScalar * transform.localScale;
 		if (Time.time - startTime >= timeToBloat) 
 		{
 			state = State.MOVING;
@@ -148,16 +150,24 @@ public class Boss2Script : MonoBehaviour {
         myRigidBody.AddForce(direction, ForceMode2D.Impulse);
 		state = State.DEFLATING;
 		Invoke ("ReturnToWaiting", timeToBloat);
-        
     }
     void FireDanmaku()
     {
         danmakuGenerator.GetComponent<Danmaku>().enabled = true;
-        //state = State.DEFLATING;
+        if(Time.time - startTime > 1 )
+        {
+            startTime = Time.time;
+            RunAway();
+        }
     }
 
-	void ReturnToWaiting() {
+    void ReturnToWaiting() {
 		state = State.TRACKING;
 	}
+    void RunAway()
+    {
+        Vector2 runAwayForce = new Vector2(10, 10);
+        myRigidBody.AddForce(runAwayForce, ForceMode2D.Impulse);
+    }
 
 }

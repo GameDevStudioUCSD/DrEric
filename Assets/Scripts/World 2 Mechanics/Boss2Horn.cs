@@ -3,71 +3,68 @@ using System.Collections;
 
 public class Boss2Horn : MonoBehaviour {
 
-    public float starttime;
     public GameObject target;
     public float invulnerabilitytime;
-    public bool Fired;
     private int speed = 100;
     private Rigidbody2D myRigidbody;
-	// Use this for initialization
-	void Start () {
-        if(Fired)
-        {
-            gameObject.AddComponent<Rigidbody2D>();
-        }
-        if(target == null)
-        {
-            target = GameObject.Find(Names.PLAYERHOLDER);
-        }
-        myRigidbody = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (Fired)
-        {   //turn on PIDcontroller when fired
-            PIDController pid = this.GetComponent<PIDController>();
-            pid.enabled = true;
-            pid.destinationTransform = target.transform;
+    private PIDController pidController;
 
-            //code that makes it face where its going
-            Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-            Vector3 vectorToTarget = rigid.velocity;
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
-        }
+    public float explosiveRadius = 5.0F;
+    public float explosionPower = 10.0F;
+    enum State { LAUNCHING, TRACKING, BLOWINGUP}
+    State state = State.LAUNCHING;
+    void Start()
+    {
+        target = GameObject.Find(Names.PLAYERHOLDER);
+        myRigidbody = GetComponent<Rigidbody2D>();
+        if (myRigidbody == null)
+            myRigidbody = gameObject.AddComponent<Rigidbody2D>();
+        pidController = this.GetComponent<PIDController>();
+        pidController.enabled = true;
+        pidController.destinationTransform = target.transform;
+        Invoke("Track", invulnerabilitytime);
     }
 
-    public void Destroy()
+    void Update()
     {
+        //code that makes it face where its going
+        Vector3 vectorToTarget = myRigidbody.velocity;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+    }
 
+    public void BlowUp()
+    {
+        state = State.BLOWINGUP;
+        pidController.enabled = false;
         this.GetComponentInChildren<Animator>().SetBool("Exploded", true);
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        float timepenis = Time.time;
-        Debug.Log( Time.time - timepenis);
-        if (Time.time - timepenis> 1)
-        {
-            Destroy(this.gameObject);
-        }
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Destroy(this.gameObject,1f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss") && Time.time -starttime > invulnerabilitytime )
+        if (state != State.TRACKING)
+            return;
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosiveRadius);
+        foreach (Collider hit in colliders)
         {
-            Debug.Log("Getting hit");
-            Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
-            boss.TakeDamage();
-            Destroy(this.gameObject);
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(explosionPower, explosionPos, explosiveRadius, 3.0F);
         }
-        else if (other.tag == "Player" )
-        {
-        }
-        else if(other.tag == "Wall")
-        {
-            myRigidbody.velocity *= 0;
-        }
+        myRigidbody.velocity *= 0;
+        BlowUp();
+            //Boss2Script boss = other.gameObject.GetComponent<Boss2Script>();
+            //boss.TakeDamage();
+    }
+
+    void Track()
+    {
+        state = State.TRACKING;
     }
 
 

@@ -16,7 +16,7 @@ public class Boss2Script : MonoBehaviour {
     public float hornInitialForce = 10;
     public float chargeScalar = 10;
 
-    private ArrayList hornList = new ArrayList();
+    private ArrayList missleList = new ArrayList();
 
     private int maxHP;
     private float startTime;
@@ -75,14 +75,13 @@ public class Boss2Script : MonoBehaviour {
             return;
         if (Time.time - startTime > hornDelay && hornsFired <= maxHP - health+hornNumber)
         {
-            GameObject firedhorn = Instantiate(horn);//make horn & initialize variables
-            Boss2Horn hornscript = firedhorn.GetComponent<Boss2Horn>();
-            hornList.Add(hornscript);
-            firedhorn.transform.position = horn.transform.position;
-            firedhorn.transform.rotation = horn.transform.rotation;
-            hornscript.target = target;
-            hornscript.Fired = true;
-            hornscript.starttime = Time.time;
+            GameObject newMissle = Instantiate(horn);//make horn & initialize variables
+            Boss2Horn missleScript = newMissle.GetComponent<Boss2Horn>();
+            missleScript.enabled = true;
+            missleList.Add(missleScript);
+            newMissle.transform.position = horn.transform.position;
+            newMissle.transform.rotation = horn.transform.rotation;
+            missleScript.target = target;
 
             float impulseradians = horn.transform.rotation.eulerAngles.z;//fire horn out of head
             Vector2 force = new Vector2(hornInitialForce * Mathf.Abs(Mathf.Cos(impulseradians)),
@@ -92,7 +91,7 @@ public class Boss2Script : MonoBehaviour {
             Debug.Log(force);
             hornsFired++;
             startTime = Time.time;
-            firedhorn.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+            newMissle.AddComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
 
         }
     }
@@ -110,11 +109,11 @@ public class Boss2Script : MonoBehaviour {
 
     void DestroyAllHorns()
     {
-        foreach (Boss2Horn horn in hornList)
+        foreach (Boss2Horn horn in missleList)
         {
-            horn.Destroy();
+            horn.BlowUp();
         }
-        hornList.Clear();
+        missleList.Clear();
     }
 
     public void TakeDamage()//get hit

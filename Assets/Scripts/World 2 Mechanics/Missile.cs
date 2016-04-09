@@ -7,6 +7,7 @@ public class Missile : MonoBehaviour {
     public float invulnerabilitytime;
     public float explosiveRadius = 5.0F;
     public float explosionPower = 10.0F;
+    public float initialForce = 2;
 
     private int speed = 100;
     private Rigidbody2D myRigidbody;
@@ -20,8 +21,8 @@ public class Missile : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
         if (myRigidbody == null)
             myRigidbody = gameObject.AddComponent<Rigidbody2D>();
+        myRigidbody.AddForce(initialForce* transform.right, ForceMode2D.Impulse);
         pidController = this.GetComponent<PIDController>();
-        pidController.enabled = true;
         pidController.destinationTransform = target.transform;
         Invoke("Track", invulnerabilitytime);
     }
@@ -84,6 +85,7 @@ public class Missile : MonoBehaviour {
     private void Track()
     {
         state = State.TRACKING;
+        pidController.enabled = true;
     }
 
 

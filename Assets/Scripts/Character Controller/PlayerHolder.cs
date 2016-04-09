@@ -14,7 +14,7 @@ public class PlayerHolder : MonoBehaviour {
 
     private GameObject drEric;
     private GameObject squidLauncher;
-    private GameObject gameCamera;
+    public GameObject gameCamera;
     private OrientWithGravity cameraOrienter;
 
 	/**

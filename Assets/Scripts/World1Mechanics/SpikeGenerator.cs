@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[ExecuteInEditMode]
 public class SpikeGenerator : MonoBehaviour {
 	
 	public GameObject spike;

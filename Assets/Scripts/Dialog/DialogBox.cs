@@ -244,7 +244,7 @@ public class DialogBox : MonoBehaviour {
 
     bool IsPunctuation(string str)
     {
-        return (str == "." || str == "?" || str == "!");
+        return (str == "." || str == "?" );
     }
 
     public bool HasFinished()

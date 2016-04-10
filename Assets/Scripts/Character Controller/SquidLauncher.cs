@@ -43,8 +43,7 @@ public class SquidLauncher : MonoBehaviour
     public enum State { NORMAL, GRABBED };
     public State state = State.NORMAL;
     private int grabSprite = 0; //grabbing sprite for current vector
-
-    private const float xOffset = -.1f; //compensates for sprite assymetry
+    
     private float maxSpeed; //calculated from FlingObject
 
     private GameObject drEric = null;
@@ -250,33 +249,33 @@ public class SquidLauncher : MonoBehaviour
         {
             case 1:
                 sprite.sprite = pastSprites ? launchPastSprite1 : launchPresentSprite1;
-                launchingSprite.localPosition = new Vector3(xOffset, .64f, 0);
-                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
+                launchingSprite.localPosition = new Vector3(pastSprites ? -0.5f : 0.1f, pastSprites ? 1.54f : .64f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 0.4f : 0.58034f, pastSprites ? 0.4f : 0.58034f, 0.29017f);
                 break;
             case 2:
                 sprite.sprite = pastSprites ? launchPastSprite2 : launchPresentSprite2;
-                launchingSprite.localPosition = new Vector3(xOffset, 1.13f, 0);
-                launchingSprite.transform.localScale = new Vector3 (pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
+                launchingSprite.localPosition = new Vector3(pastSprites ? -0.5f : 0.1f, pastSprites ? 2.03f : 1.13f, 0);
+                launchingSprite.transform.localScale = new Vector3 (pastSprites ? 0.4f : 0.58034f, pastSprites ? 0.4f : 0.58034f, 0.29017f);
                 break;
             case 3:
                 sprite.sprite = pastSprites ? launchPastSprite3 : launchPresentSprite3;
-                launchingSprite.localPosition = new Vector3(xOffset, 1.62f, 0);
-                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
+                launchingSprite.localPosition = new Vector3(pastSprites ? -0.5f : 0.1f, pastSprites ? 2.52f : 1.62f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 0.4f : 0.58034f, pastSprites ? 0.4f : 0.58034f, 0.29017f);
                 break;
             case 4:
                 sprite.sprite = pastSprites ? launchPastSprite4 : launchPresentSprite4;
-                launchingSprite.localPosition = new Vector3(xOffset, pastSprites ? 1.91f : 2.41f, 0);
-                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
+                launchingSprite.localPosition = new Vector3(pastSprites ? -0.5f : 0.1f, pastSprites ? 2.81f : 2.41f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 0.4f : 0.58034f, pastSprites ? 0.4f : 0.58034f, 0.29017f);
                 break;
             case 5:
                 sprite.sprite = pastSprites ? launchPastSprite5 : launchPresentSprite5;
-                launchingSprite.localPosition = new Vector3(xOffset, pastSprites ? 2.59f : 3.39f, 0);
-                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
+                launchingSprite.localPosition = new Vector3(pastSprites ? -0.5f : 0.1f, pastSprites ? 3.49f : 3.39f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 0.4f : 0.58034f, pastSprites ? 0.4f : 0.58034f, 0.29017f);
                 break;
             case 6:
                 sprite.sprite = pastSprites ? launchPastSprite6 : launchPresentSprite6;
-                launchingSprite.localPosition = new Vector3(xOffset, pastSprites ? 3.00f : 4.20f, 0);
-                launchingSprite.transform.localScale = new Vector3(pastSprites ? 1.2f : 0.58034f, pastSprites ? 1.2f : 0.58034f, 0.29017f);
+                launchingSprite.localPosition = new Vector3(pastSprites ? -0.5f : 0.1f, pastSprites ? 3.90f : 4.20f, 0);
+                launchingSprite.transform.localScale = new Vector3(pastSprites ? 0.4f : 0.58034f, pastSprites ? 0.4f : 0.58034f, 0.29017f);
                 break;
         }
     }

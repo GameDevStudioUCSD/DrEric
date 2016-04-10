@@ -9,6 +9,8 @@ public class SaplingSpawner : MonoBehaviour {
 
     public List<SaplingSpawner> saplingSpawners = new List<SaplingSpawner>();
 
+    public GameObject leftTree;
+
     public Animator happyButtonAnimator = null;
 
     public GameObject sapling = null; //prefab to spawn
@@ -74,8 +76,17 @@ public class SaplingSpawner : MonoBehaviour {
     void spawn()
     {
         startTime = Time.time;
+        // Sapling spawned
         GameObject spawned = (GameObject)Transform.Instantiate(sapling,
             transform.GetChild(0).position, sapling.transform.rotation);
+        // Make sapling able to go through left tree boundary
+        Collider2D[] saplingColliders = spawned.GetComponents<Collider2D>(); // Get all colliders on sapling (it has more than one)
+        // Make all colliders on sapling ignore the tree collider
+        for (int i = 0; i < saplingColliders.Length; i++)
+        {
+            Physics2D.IgnoreCollision(saplingColliders[i], leftTree.GetComponent<Collider2D>()); 
+        }
+
         Vector3 treePosition = transform.GetChild(0).position;
         treePosition.y = treeHeight;
         GameObject spawnedTree = (GameObject)Transform.Instantiate(tree,

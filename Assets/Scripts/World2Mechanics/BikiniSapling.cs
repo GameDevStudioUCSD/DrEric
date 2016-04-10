@@ -27,6 +27,13 @@ public class BikiniSapling : MonoBehaviour {
 		}
 	}
 
+	public void killSapling ()
+	{
+		if (presentTree != null)
+			presentTree.killTree ();
+
+		Destroy (this);
+	}
 	void DehydrateSapling()
 	{
 		if (presentTree != null)
@@ -39,6 +46,7 @@ public class BikiniSapling : MonoBehaviour {
 		if (presentTree != null)
 			presentTree.plantTree();
 		this.GetComponent<Rigidbody2D>().isKinematic = false;
+		this.GetComponent<Rigidbody2D> ().AddForce (0.03f * Vector2.up, ForceMode2D.Impulse);
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {

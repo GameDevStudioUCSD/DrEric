@@ -19,6 +19,7 @@ public class TimePortal : MonoBehaviour
     private bool onTree = false;
     private RhythmController rhythmController;
     private Rigidbody2D drEricRB;
+    private GameObject timeIndicator;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class TimePortal : MonoBehaviour
         timeBetweenTeleportation = audioSource.clip.length / 2;
         rhythmController = RhythmController.GetController();
         squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
+        timeIndicator = GameObject.Find("TimeIndicator");
     }
        
     void OnTriggerEnter2D(Collider2D other)
@@ -54,6 +56,9 @@ public class TimePortal : MonoBehaviour
             drEricRB.velocity = Vector2.zero;
             drEricRB.angularVelocity = 0;
             drEricRB.gravityScale = 0;
+
+            if (timeIndicator != null)
+                timeIndicator.GetComponent<TimeIndicator>().ToggleTime();
 
         }
     }

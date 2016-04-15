@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PastParadoxGate : MonoBehaviour {
+public class PastParadoxGate : Triggerable {
 	
 	public bool isOpen;
 	public float speed = .01f;
@@ -35,8 +35,7 @@ public class PastParadoxGate : MonoBehaviour {
 		}
 	}
 
-	public void Move() {
-		Debug.Log ("Sup");
+	public override void Trigger() {
 		if (isOpen) {
 			Close ();
 		} else {

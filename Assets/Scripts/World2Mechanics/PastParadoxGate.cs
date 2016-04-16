@@ -4,35 +4,18 @@ using System.Collections;
 public class PastParadoxGate : Triggerable {
 	
 	public bool isOpen;
-	public float speed = .01f;
-	float isMoving;
-	float height;
+	//public float speed = .01f;
+	//float isMoving;
+	//float height;
 	public ParadoxCounter counter;
+	public GameObject doorClosed;
+	public GameObject doorOpen;
 
 	// Use this for initialization
 	void Start () {
-		if (isOpen) {
-			height = 0;
-		} else {
-			height = 5;
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (isMoving != 0) {
-			transform.position += Vector3.up * speed * isMoving;
-			height += speed * isMoving;
-			if (height <= 0.0) {
-				height = 0;
-				isMoving = 0;
-				isOpen = true;
-			} else if (height >= 5.0) {
-				height = 5;
-				isMoving = 0;
-				isOpen = false;
-			}
-		}
+		doorOpen.SetActive(false);
+		doorClosed.SetActive(true);
+		isOpen = false;
 	}
 
 	public override void Trigger() {
@@ -44,12 +27,18 @@ public class PastParadoxGate : Triggerable {
 	}
 
 	public void Open() {
-		isMoving = -1;
+		doorOpen.SetActive(true);
+		doorClosed.SetActive(false);
+		isOpen = true;
+
 		counter.Decrement ();
 	}
 
 	public void Close() {
-		isMoving = 1;
+		doorOpen.SetActive(false);
+		doorClosed.SetActive(true);
+		isOpen = false;
+
 		counter.Increment ();
 	}
 }

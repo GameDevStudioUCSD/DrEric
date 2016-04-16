@@ -20,6 +20,8 @@ public class PIDController : MonoBehaviour {
 
     public float maximumImpulse = 1.0f;
     public float minimumImpulse = 0f;
+    public float maxVelocity = 100000f;
+    public float velocityDeviation = 0f;
 
     public float impuseRate;
 
@@ -43,14 +45,20 @@ public class PIDController : MonoBehaviour {
     private Rigidbody rb3D;
     private Rigidbody2D rb2D;
     private bool is2DObj;
+    private float velocityLB;
+    private float velocityUB;
 
 	void Start () {
         lastUpdate = Time.time;
         inverseDeltaTime = 1.0f / impuseRate;
         SetupRigidBody();
+        velocityLB = (1.0f-velocityDeviation) * maxVelocity;
+        velocityUB = (1.0f+velocityDeviation) * maxVelocity;
 	}
 	
 	void Update () {
+        if (rb2D.velocity.magnitude > maxVelocity)
+            rb2D.velocity = Random.Range(velocityLB, velocityUB ) * rb2D.velocity.normalized;
         if(Time.time - lastUpdate > impuseRate)
         {
             Vector3 impulseVect = CalculatePID();

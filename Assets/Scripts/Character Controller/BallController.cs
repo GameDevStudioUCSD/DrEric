@@ -14,6 +14,7 @@ public class BallController : MonoBehaviour {
     public SpriteRenderer sprite;
     public float landTolerance = 1.1f; //landing error tolerance
     public float spawnGracePeriod = 1.0f; //TODO: this currently does nothing
+	public bool inWater = false;
 
     public enum State { SPAWNING, IDLE, STUCK, LANDING }
     public State state = State.SPAWNING;
@@ -195,7 +196,8 @@ public class BallController : MonoBehaviour {
         for (int i = 0; i < detector.GetLength(0); i++)
         {
             if (detector[i].collider.gameObject.name != Names.DRERIC
-                && detector[i].collider.gameObject.name != Names.SQUIDLAUNCHER) 
+                && detector[i].collider.gameObject.name != Names.SQUIDLAUNCHER
+                && detector[i].collider.tag != Names.WATER) 
                 return true;
         }
         return false;

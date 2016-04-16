@@ -13,7 +13,7 @@ public class AnalyticsLogger : MonoBehaviour {
 
     private Dictionary<string, object> log;
     private bool hasCompleted = false;
-    public string randHash = "TURK_";
+    public string randHash = "http://bit.ly/DrEricSurvey";
     public Text displayHash;
 
 
@@ -21,13 +21,16 @@ public class AnalyticsLogger : MonoBehaviour {
 	void Start() {
         DontDestroyOnLoad(this.gameObject);
         SetupLoggingDict();
-        for (int i = 0; i < 4; i++)
-        {
+        displayHash.text += randHash;
+	}
+	
+	void CreateRandomHash() {
+		for (int i = 0; i < 4; i++)
+		{
             randHash += (char)((int)Random.Range(65, 90));
         }
         randHash += (int)Random.Range(0, 9);
         randHash += (int)Random.Range(0, 9);
-        displayHash.text += randHash;
 	}
 
     void OnLevelWasLoaded(int level)

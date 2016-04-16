@@ -25,7 +25,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 406584}
-  - 61: {fileID: 6132514}
+  - 58: {fileID: 5882608}
   - 114: {fileID: 11408208}
   m_Layer: 0
   m_Name: Loader
@@ -53,14 +53,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.2, y: -5.25, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 22.5, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 406584}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6132514
-BoxCollider2D:
+--- !u!58 &5882608
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.6}
+  m_Radius: 0.38
 --- !u!95 &9577820
 Animator:
   serializedVersion: 3
@@ -82,7 +82,7 @@ Animator:
   m_GameObject: {fileID: 123250}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bdf8424f963be5e448757c7169a0fd40, type: 2}
+  m_Controller: {fileID: 9100000, guid: 144fcc980a54e43c0a6fcbaa0f82f2ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a33081c1c2f23c4898b900630957c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  world: 0
-  nextLevel: 2
+  world: 1
+  nextLevel: 11
   victoryScreen: {fileID: 149042, guid: f8979b212aa4eed43adaf54a86b3adce, type: 2}
   countOut: {fileID: 0}
 --- !u!212 &21229402
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 455f106d365a4cd40b4ea23c66b341b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 693f66e334a20544eab7861c58fab9b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,7 +141,28 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 693f66e334a20544eab7861c58fab9b6,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 0.38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123250}

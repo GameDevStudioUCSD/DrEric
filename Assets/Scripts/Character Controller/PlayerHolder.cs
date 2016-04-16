@@ -14,7 +14,7 @@ public class PlayerHolder : MonoBehaviour {
 
     private GameObject drEric;
     private GameObject squidLauncher;
-    private GameObject gameCamera;
+    public GameObject gameCamera;
     private OrientWithGravity cameraOrienter;
 
 	/**
@@ -39,8 +39,10 @@ public class PlayerHolder : MonoBehaviour {
      */
 	void Update () {
         cameraOrienter.CheckOrientation();
-        if (drEric == null)
+        if (drEric == null) {
             drEric = GameObject.Find(Names.DRERIC);
+            transform.parent = null;
+        }
         if (drEric != null) {
             Vector3 squidPos = squidLauncher.transform.position;
             transform.position = drEric.transform.position;

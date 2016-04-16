@@ -157,7 +157,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -248,6 +248,7 @@ MonoBehaviour:
   sprite: {fileID: 21242376}
   landTolerance: 1.1
   spawnGracePeriod: 1
+  inWater: 0
   state: 0
   numParticlesOnCollision: 5
   outOfBoundsRegion: 200
@@ -548,6 +549,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Offset.x
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

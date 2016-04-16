@@ -88,7 +88,6 @@ public class RespawnController : MonoBehaviour {
 			currentPlayer = (GameObject)Instantiate (player, transform.position, Quaternion.identity);
             if (slowMusicOnDeath)
                 rhythmController.SwitchToChannel(1);
-            Debug.Log ("DrEric has spawned");
             GameObject playerHolder = GameObject.Find("Player Holder");
             if (playerHolder != null)
             {
@@ -122,5 +121,9 @@ public class RespawnController : MonoBehaviour {
         if (obj != null)
             return obj.GetComponent<RespawnController>();
         return null;
+    }
+    public static bool IsDead()
+    {
+        return GetRespawnController().isDead;
     }
 }

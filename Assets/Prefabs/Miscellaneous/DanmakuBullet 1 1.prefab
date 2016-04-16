@@ -78,7 +78,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -125,7 +125,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Time: 2
-  m_StartWidth: 0.3
+  m_StartWidth: 1.6
   m_EndWidth: 0.1
   m_Colors:
     m_Color[0]:
@@ -156,13 +156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a68defb856d81d4b93eb2905f3ca3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kP: 2
-  kI: 0.1
+  kP: 1
+  kI: 1
   kD: 1
-  maximumImpulse: 10
+  maximumImpulse: 100
   minimumImpulse: 0
   impuseRate: 0.5
-  trackingType: 0
+  trackingType: 1
   destinationTransform: {fileID: 0}
   destinationVector: {x: 0, y: 0, z: 0}
 --- !u!114 &11478782
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf70a128c2f2814499f071ca44fa8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpDuration: 1
+  lerpDuration: 0.1
   trail: {fileID: 9667520}
   is2D: 0
   isText: 0
@@ -190,35 +190,7 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: m_Name
-      value: Level5Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maximumImpulse
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: lerpDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_StartWidth
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: kI
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: kP
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: trackingType
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

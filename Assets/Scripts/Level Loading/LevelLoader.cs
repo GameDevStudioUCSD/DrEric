@@ -27,7 +27,16 @@ public class LevelLoader : MonoBehaviour {
     private const int SPACE_8 = 9;
     private const int SPACE_9 = 10;
     private const int SPACE_BOSS = 11;
-    private const int SPACE_BONUS = 12;
+    private const int WATER_1 = 12;
+    private const int WATER_2 = 13;
+    private const int WATER_3 = 14;
+    private const int WATER_4 = 15;
+	private const int WATER_5 = 16;
+	private const int WATER_6 = 17;
+    private const int WATER_7 = 18;
+    private const int WATER_8 = 19;
+    private const int WATER_BOSS = 20;
+    private const int SPACE_BONUS = 21;
 
     public World world;
     public Level level;
@@ -46,6 +55,10 @@ public class LevelLoader : MonoBehaviour {
         {
             case World.Space:
                 LoadSpaceLevel(level);
+                Physics2D.gravity = -9.81f * Vector2.up;
+                break;
+            case World.Water:
+                LoadWaterLevel(level);
                 Physics2D.gravity = -9.81f * Vector2.up;
                 break;
             case World.MainMenu:
@@ -80,6 +93,24 @@ public class LevelLoader : MonoBehaviour {
                 return new LevelInfo(World.Space, Level.Nine);
             case SPACE_BOSS:
                 return new LevelInfo(World.Space, Level.Boss);
+            case WATER_1:
+                return new LevelInfo(World.Water, Level.One);
+            case WATER_2:
+                return new LevelInfo(World.Water, Level.Two);
+            case WATER_3:
+                return new LevelInfo(World.Water, Level.Three);
+            case WATER_4:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_5:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_6:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_7:
+                return new LevelInfo(World.Water, Level.Four);
+			case WATER_8:
+                return new LevelInfo(World.Water, Level.Four);
+            case WATER_BOSS:
+                return new LevelInfo(World.Water, Level.Four);
             case SPACE_BONUS:
                 return new LevelInfo(World.Space, Level.Bonus);
             case MAIN_MENU:
@@ -132,8 +163,48 @@ public class LevelLoader : MonoBehaviour {
         }
     }
 
-	// Used for stage panel generator.
-	public void setLevel( World world, Level level){
+    public static void LoadWaterLevel(Level level)
+    {
+        switch (level)
+        {
+            case Level.One:
+                SceneManager.LoadScene(WATER_1);
+                break;
+            case Level.Two:
+                SceneManager.LoadScene(WATER_2);
+                break;
+            case Level.Three:
+                SceneManager.LoadScene(WATER_3);
+                break;
+            case Level.Four:
+                SceneManager.LoadScene(WATER_4);
+                break;
+			case Level.Five:
+				SceneManager.LoadScene (WATER_5);
+				break;
+			case Level.Six:
+				SceneManager.LoadScene (WATER_6);
+				break;
+            case Level.Seven:
+                SceneManager.LoadScene(WATER_7);
+                break;
+			case Level.Eight:
+                SceneManager.LoadScene(WATER_8);
+                break;
+            case Level.Boss:
+                SceneManager.LoadScene(WATER_BOSS);
+                break;
+            case Level.Bonus:
+                SceneManager.LoadScene(SPACE_BONUS);
+                break;
+            default:
+                Debug.LogError("Tried to load a Water level that has not been implemented!");
+                break;
+        }
+    }
+
+    // Used for stage panel generator.
+    public void setLevel( World world, Level level){
 		this.world = world;
 		this.level = level;
 	}
@@ -164,5 +235,5 @@ public class LevelLoader : MonoBehaviour {
 	}
 }
 
-public enum World { Space, MainMenu, Intro }
+public enum World { Space, Water, MainMenu, Intro }
 public enum Level { One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Boss, Bonus }

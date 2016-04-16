@@ -33,12 +33,13 @@ function UnityProgress(dom) {
 
     this.Update = function () {
         var percent = (this.progress * 100).toFixed(0);
-        if (percent >= 97) {
+        if (percent >= 98) {
             bsod.style.display = "block";
         }
         else {
             //loading.innerHTML = percent + "%";
             //messages.innerHTML = this.message;
+
             var scale = (percent * percent / 4);
             if (scale < 150)
                 scale = 150;

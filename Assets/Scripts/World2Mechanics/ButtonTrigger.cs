@@ -20,7 +20,7 @@ public class ButtonTrigger : MonoBehaviour {
 
     public Animator happyButtonAnimator = null;
 
-    private List<Triggerable> triggerableScriptList = new List<Triggerable>();
+    protected List<Triggerable> triggerableScriptList = new List<Triggerable>();
 
 	// Use this for initialization
 	void Start () {

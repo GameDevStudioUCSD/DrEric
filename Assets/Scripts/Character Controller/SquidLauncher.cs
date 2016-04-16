@@ -13,6 +13,8 @@ public class SquidLauncher : MonoBehaviour
     public int maxJumps = 2; //max times allowed to jump without landing
     public float maxGrabTime = 3; //max seconds DrEric can be held
 
+    public float sensitivity;
+
     public float grabRange = 2; //max distance from player to allow grab
     public float rotationSpeed = 5; //speed of rotation around held DrEric
     public float rotationOffset = 0; //aesthetic change in direction
@@ -161,8 +163,8 @@ public class SquidLauncher : MonoBehaviour
     void CalculateMaxSpeed()
     {
         FlingObject fo = drEric.GetComponent<FlingObject>();
-        float x = fo.maxXSpeed;
-        float y = fo.maxYSpeed;
+        float x = sensitivity * fo.maxXSpeed;
+        float y = sensitivity * fo.maxYSpeed;
         maxSpeed = new Vector2(x, y).magnitude;
     }
 
@@ -228,13 +230,9 @@ public class SquidLauncher : MonoBehaviour
     {
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(
             initialVector, Input.mousePosition);
-        float magnitude = 3 * deltaVector.magnitude;
+        float magnitude = sensitivity * deltaVector.magnitude;
         int numOfSprites = 6;
-        for (int i = 1; i <= numOfSprites; i++)
-        {
-            if (magnitude >= (i * maxSpeed) / numOfSprites)
-                grabSprite = i;
-        }
+        grabSprite = (int)(magnitude * numOfSprites / maxSpeed);
     }
 
     /**

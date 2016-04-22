@@ -27,6 +27,8 @@ public class RaiseWater : Triggerable {
 
     public bool raised;
 
+    public ParadoxCounter counter;
+
     // Use this for initialization
     void Start()
     {
@@ -93,6 +95,7 @@ public class RaiseWater : Triggerable {
         else
         {
             currentState = State.Raised;
+            counter.Decrement();
         }
     }
 
@@ -106,6 +109,7 @@ public class RaiseWater : Triggerable {
         else
         {
             currentState = State.Lowered;
+            counter.Increment();
         }
     }
 }

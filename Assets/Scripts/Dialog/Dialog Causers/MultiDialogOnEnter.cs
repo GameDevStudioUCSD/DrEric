@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
@@ -6,6 +7,7 @@ public class MultiDialogOnEnter : MonoBehaviour {
 
     public DialogBox dialogBox;
     public DialogCharacterPair[] dialogs;
+    public UnityEvent onExit;
     public bool appendText;
     public bool destroyOnEnter = true;
     public bool pauseWhenActivated;
@@ -37,6 +39,7 @@ public class MultiDialogOnEnter : MonoBehaviour {
         }
         else if( (hasActivated && dialogPairs.Count == 0 ) && destroyOnEnter )
         {
+            dialogBox.onExit = onExit;
             Destroy(this.gameObject);
         }
 	}

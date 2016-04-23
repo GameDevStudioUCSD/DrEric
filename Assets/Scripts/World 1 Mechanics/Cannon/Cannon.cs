@@ -12,6 +12,7 @@ public class Cannon : MonoBehaviour {
 	public int time; //the time between shots
 	public float bulletSpeed; //Speed of the cannonballs
 	private int curTime; //running count of time until next shot
+	public DeathCount deathCount;
 
 	public float rotation; //Amount the cannon rotates each frame
 	public float fireAngle; //Cannon fires every n degrees; disabled if 0
@@ -47,6 +48,7 @@ public class Cannon : MonoBehaviour {
         GameObject myBullet = (GameObject)GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
         Bullet thisBullet = myBullet.GetComponent<Bullet>();
         float angle = this.transform.eulerAngles.z;
+
         if(myBullet.GetComponent<Rigidbody2D>() == null)
         {
             myBullet.AddComponent<Rigidbody2D>();

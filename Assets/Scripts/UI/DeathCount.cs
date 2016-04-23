@@ -6,14 +6,17 @@ public class DeathCount : MonoBehaviour {
 
 	// Use this for initialization
     public int deathCount = 0;
-    public const string label = "Death Count: ";
+    public string label = "Death Count: ";
     public Text text;
+	public static DeathCount singleton;
     private RandomRotations rotator;
     private Color originalColor;
 	void Start () {
         UpdateCount();
         rotator = GetComponent<RandomRotations>();
         originalColor = text.color;
+		label = text.text;
+		singleton = this;
 	}
 
     public void Increment()
@@ -23,6 +26,9 @@ public class DeathCount : MonoBehaviour {
         deathCount++;
         UpdateCount();
     }
+	public static void IncrementDC() {
+		singleton.Increment ();
+	}
     private void UpdateCount()
     {
         text.text = label + deathCount;
@@ -34,7 +40,7 @@ public class DeathCount : MonoBehaviour {
     }
     public static int GetDeathCount()
     {
-        GameObject counter = GameObject.Find("DeathCount");
+		GameObject counter = DeathCount.singleton.gameObject;
         if(counter != null)
             return counter.GetComponent<DeathCount>().deathCount;
         return -1;

@@ -10,7 +10,9 @@ public class MultiDialogOnEnter : MonoBehaviour {
     public bool destroyOnEnter = true;
     public bool pauseWhenActivated;
     public bool randomizeText = false; // Randomize which dialog is played
-
+    public float SecondsWait;
+    
+    
     public string triggerTag = "Player";
 
     private Queue dialogPairs;
@@ -58,8 +60,15 @@ public class MultiDialogOnEnter : MonoBehaviour {
                     hasActivated = true;
                 }
             }
+            timeDelayDialog();
         }
     }
+    
+    IEnumerator timeDelayDialog()
+    {
+        yield return new WaitForSeconds(SecondsWait);
+    }
+    
 }
 
 [System.Serializable]

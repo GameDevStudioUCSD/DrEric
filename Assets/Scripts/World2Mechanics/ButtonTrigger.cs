@@ -21,6 +21,7 @@ public class ButtonTrigger : MonoBehaviour {
     public Animator happyButtonAnimator = null;
 
     protected List<Triggerable> triggerableScriptList = new List<Triggerable>();
+    private AudioSource aSource;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +38,8 @@ public class ButtonTrigger : MonoBehaviour {
         {
             triggerableScriptList.Add(triggerTarget.GetComponent<Triggerable>());
         }
+
+		aSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -51,7 +54,7 @@ public class ButtonTrigger : MonoBehaviour {
             foreach (Triggerable triggerScript in triggerableScriptList)
             {
                 triggerScript.Trigger();
-
+				aSource.Play();
                 // Animation state change
                 happyButtonAnimator.SetBool("pressed", true);
             }

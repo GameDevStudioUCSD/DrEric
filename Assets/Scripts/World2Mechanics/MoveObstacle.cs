@@ -11,7 +11,7 @@ public class MoveObstacle : Triggerable {
     public Vector3 loweredPosition;
 
     // Rate at which obstacle should lerp
-    public float moveRate = 0.1f;
+    public float moveRate = 0f;
 
     // States this obstacle can be in
     enum State { Initial, Raised, Lowered, Raising, Lowering };
@@ -24,6 +24,8 @@ public class MoveObstacle : Triggerable {
 
     // Used by lerp to determine how much the object has moved
     private float positionFraction = 0.0f;
+
+    public ActivateSaplingSpawners activateButtons;
 
     // Use this for initialization
     void Start()
@@ -91,6 +93,7 @@ public class MoveObstacle : Triggerable {
         else
         {
             currentState = State.Raised;
+            activateButtons.Activate();
         }
     }
 
@@ -103,7 +106,9 @@ public class MoveObstacle : Triggerable {
         }
         else
         {
-            currentState = State.Lowered;
+			intermediatePosition = this.transform.position;
+        	positionFraction = 0.0f;
+            currentState = State.Raising;
         }
     }
 }

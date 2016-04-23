@@ -244,7 +244,7 @@ public class DialogBox : MonoBehaviour {
 
     bool IsPunctuation(string str)
     {
-        return (str == "." || str == "?" || str == "!");
+        return (str == "." || str == "?" );
     }
 
     public bool HasFinished()
@@ -272,6 +272,17 @@ public class DialogBox : MonoBehaviour {
        	wordList = dialog.Split(' ');
     }
 
+	public string GetText()
+	{
+		return string.Copy (dialog);
+
+	}
+		
+	public Sprite GetImage()
+	{
+		return characterImage.sprite;
+	}
+
     public void SetImage(Sprite image)
     {
         float lScale = characterImage.rectTransform.localScale.magnitude;
@@ -285,6 +296,15 @@ public class DialogBox : MonoBehaviour {
 
         characterImage.sprite = image;
     }
+
+	public AudioClip GetAudioClip()
+	{
+		return chipSource.clip;
+	}
+	public float GetClipLength()
+	{
+		return chipLength;
+	}
 
     public void SetAudioClip( AudioClip clip )
     {

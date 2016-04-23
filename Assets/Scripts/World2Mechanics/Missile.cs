@@ -8,6 +8,7 @@ public class Missile : MonoBehaviour {
     public float explosiveRadius = 5.0F;
     public float explosionPower = 10.0F;
     public float initialForce = 2;
+    public Boss2Script boss;
 
     private int speed = 100;
     private Rigidbody2D myRigidbody;
@@ -79,7 +80,8 @@ public class Missile : MonoBehaviour {
             if (listener != null)
                 listener.eventList.Invoke();
         }
-
+        if (boss != null)
+            boss.DecrementHornCount();
         Destroy(this.gameObject, .5f);
     }
 

@@ -1,21 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BikiniSapling : MonoBehaviour {
+[RequireComponent(typeof(SliderJoint2D))]
+public class BikiniSapling : Triggerable {
 
-	public BikiniTree presentTree;
-	public bool saplingHydrated = false;
+    [SerializeField]
+    public BikiniTree presentTree;
+
+    public GameObject water;
+    public float maxSurfaceHeight;
+    public float maxWaterHeight;
+    public bool saplingOnWater = true;
+    public bool saplingHydrated = false;
 	public bool playerOnTop = false;
-	private float prevX;
 
-	// Use this for initialization
-	void Start () {
-		prevX = this.transform.position.x;
+
+    private float prevX;
+    private SliderJoint2D slider;
+
+    // Use this for initialization
+    void Start () {
+        prevX = this.transform.position.x;
 		if (saplingHydrated)
 			HydrateSapling();
 		else
 			DehydrateSapling();
-	}
+
+        // Initializing the slider for x-axis locking
+        slider = this.GetComponent<SliderJoint2D>();
+        slider.connectedAnchor = new Vector2(this.transform.position.x, maxSurfaceHeight);
+
+        slider.enableCollision = true;
+        slider.enabled = false;
+        slider.angle = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,7 +43,17 @@ public class BikiniSapling : MonoBehaviour {
 			presentTree.shiftX(currX - prevX);
 			prevX = currX;
 		}
-	}
+
+        // Check condition for the axis lock
+        if (water.transform.position.y >= maxWaterHeight && this.transform.position.y >= maxSurfaceHeight)
+        {
+            slider.enabled = true;
+            this.GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+        else {
+            slider.enabled = false;
+        }
+    }
 
 	public void killSapling ()
 	{
@@ -34,11 +62,13 @@ public class BikiniSapling : MonoBehaviour {
 
 		Destroy (this);
 	}
+
 	void DehydrateSapling()
 	{
 		if (presentTree != null)
 			presentTree.killTree();
-		this.GetComponent<Rigidbody2D>().isKinematic = true;
+        if (this.saplingOnWater)
+            this.GetComponent<Rigidbody2D>().isKinematic = true;
 	}
 
 	void HydrateSapling()
@@ -78,4 +108,12 @@ public class BikiniSapling : MonoBehaviour {
 			playerOnTop = false;
 		}
 	}
+
+    public sealed override void Trigger()
+    {
+        slider.enabled = false;
+        saplingOnWater = !saplingOnWater;
+        this.GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+
 }

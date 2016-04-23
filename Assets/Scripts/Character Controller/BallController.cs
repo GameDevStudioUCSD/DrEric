@@ -46,7 +46,7 @@ public class BallController : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
 		pSys = GetComponent<ParticleSystem> ();
-        respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
+        respawner = RespawnController.singleton;
         squid = GameObject.Find("Player Holder/Squid Launcher").GetComponent<SquidLauncher>();
     }
 
@@ -201,5 +201,10 @@ public class BallController : MonoBehaviour {
                 return true;
         }
         return false;
+    }
+
+    public void Die()
+    {
+        respawner.kill();
     }
 }

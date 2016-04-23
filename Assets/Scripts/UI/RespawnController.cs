@@ -16,6 +16,7 @@ public class RespawnController : MonoBehaviour {
 	public GameObject player;
     public UnityEvent spawnEvents;
     public UnityEvent deathEvents;
+    public static RespawnController singleton;
 	private GameObject currentPlayer = null;
     private GameObject playerHolder;
     private GameObject squidLauncher;
@@ -30,6 +31,7 @@ public class RespawnController : MonoBehaviour {
         playerHolder = GameObject.Find(Names.PLAYERHOLDER);
         squidLauncher = playerHolder.transform.Find(Names.SQUIDLAUNCHER).gameObject;
         squidLauncher.GetComponent<FollowObject>().movementSpeed *= deathSpeedBoost;
+        singleton = this;
 		Respawn(); //initial creation of DrEric
         if (playerHolder == null)
         {

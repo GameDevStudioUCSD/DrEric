@@ -9,6 +9,11 @@ public class MultiDialogOnEnter : MonoBehaviour {
     public bool appendText;
     public bool destroyOnEnter = true;
     public bool pauseWhenActivated;
+    public bool randomizeText = false; // Randomize which dialog is played
+    public float SecondsWait;
+    
+    
+    public string triggerTag = "Player";
 
     private Queue dialogPairs;
     private bool hasActivated = false;
@@ -38,15 +43,32 @@ public class MultiDialogOnEnter : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player" && dialogPairs.Count == 0 )
+        if (collider.tag == triggerTag && dialogPairs.Count == 0 )
         {
-            foreach(DialogCharacterPair d in dialogs)
+            if(randomizeText)
             {
-                dialogPairs.Enqueue(d);
-                hasActivated = true;
+                // Queue up random dialog
+                int index = Random.Range(0, dialogs.Length);
+                dialogPairs.Enqueue(dialogs[index]);
             }
+            else
+            {
+                // Queue up all dialogs
+                foreach (DialogCharacterPair d in dialogs)
+                {
+                    dialogPairs.Enqueue(d);
+                    hasActivated = true;
+                }
+            }
+            timeDelayDialog();
         }
     }
+    
+    IEnumerator timeDelayDialog()
+    {
+        yield return new WaitForSeconds(SecondsWait);
+    }
+    
 }
 
 [System.Serializable]

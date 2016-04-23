@@ -1414,6 +1414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0323d04ae21f804594763372946da6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  drEric: {fileID: 0}
+  stageGroup: {fileID: 0}
 --- !u!1 &418976296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +1927,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 194616, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8261844, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257576, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257576, guid: 7baee4d302239e8479bef5a5f51d5439, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3359,7 +3378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d66730d8207b44cbd6080e3cde668f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  world: 0
+  world: 1
   level: 0
 --- !u!1 &785669274
 GameObject:

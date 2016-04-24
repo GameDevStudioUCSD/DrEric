@@ -5,17 +5,19 @@ using System.Collections;
 public class DeathCount : MonoBehaviour {
 
 	// Use this for initialization
-    public int deathCount = 0;
-    public string label = "Death Count: ";
+    public string label = "Organism Death Count: ";
     public Text text;
 	public static DeathCount singleton;
     private RandomRotations rotator;
     private Color originalColor;
+	private int deathCount;
+
 	void Start () {
         UpdateCount();
         rotator = GetComponent<RandomRotations>();
         originalColor = text.color;
 		label = text.text;
+		deathCount = 0;
 		singleton = this;
 	}
 

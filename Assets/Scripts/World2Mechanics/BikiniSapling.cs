@@ -54,14 +54,7 @@ public class BikiniSapling : Triggerable {
             slider.enabled = false;
         }
     }
-
-	public void killSapling ()
-	{
-		if (presentTree != null)
-			presentTree.killTree ();
-
-		Destroy (this);
-	}
+		
 
 	void DehydrateSapling()
 	{
@@ -111,9 +104,21 @@ public class BikiniSapling : Triggerable {
 
     public sealed override void Trigger()
     {
-        slider.enabled = false;
+		if (slider != null) {
+			slider.enabled = false;
+		}
         saplingOnWater = !saplingOnWater;
         this.GetComponent<Rigidbody2D>().isKinematic = false;
     }
+
+
+	// If this object is destroyed, then destroy the present tree
+	void OnDestroy()
+	{
+		if(presentTree != null)
+		{
+			Destroy(presentTree.gameObject);
+		}
+	}
 
 }

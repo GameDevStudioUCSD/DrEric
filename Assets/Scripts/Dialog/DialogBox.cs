@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 using System.Linq;
 
@@ -46,6 +47,7 @@ public class DialogBox : MonoBehaviour {
     //fast mode multiplier
     public int speedmultiplier;
     public Image characterImage;
+    public UnityEvent onExit;
     // The list of words to display to the user
     string[] wordList;
     // The current index of wordList
@@ -152,7 +154,10 @@ public class DialogBox : MonoBehaviour {
     void DeactiveObject()
     { 
 		if(HasFinished())
+        {
+            onExit.Invoke();
         	this.gameObject.SetActive(false);
+        }
     }
 
     public void ClearText()

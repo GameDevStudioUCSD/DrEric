@@ -33,10 +33,10 @@ public class BirdPlatform : MonoBehaviour {
 		if (coll.gameObject.tag =="Player" && !(isFalling)){
 			//let the platform start falling
 			isFalling = true;
-			Debug.Log ("hi");
 			anim.SetBool ("isFalling", true);
 			//will reset after a certain time
 			Invoke("ResetPosition", resetDelay);
+			DeathCount.IncrementDC ();
 		}
 	}
 	// Update is called once per frame

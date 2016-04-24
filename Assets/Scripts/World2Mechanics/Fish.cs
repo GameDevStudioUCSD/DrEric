@@ -12,6 +12,7 @@ public class Fish : MonoBehaviour {
     public int health;
     public FishSchool schoolOfFish;
     public int MAXHEIGHT;
+
 	// Use this for initialization
 	void Start () {
 		dietime = Time.time;
@@ -35,7 +36,8 @@ public class Fish : MonoBehaviour {
 			{
 				schoolOfFish.KillAFish();
 			}
-            Destroy(this.gameObject);
+			//DeathCount.IncrementDC ();
+            //Destroy(this.gameObject);
         }
         if (transform.position.y > MAXHEIGHT) GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-2), ForceMode2D.Impulse) ;
     }
@@ -59,8 +61,9 @@ public class Fish : MonoBehaviour {
 				{
 					schoolOfFish.KillAFish();
 				}
-           		Destroy(this.gameObject);
-    		}
-    	}
+			}
+			DeathCount.IncrementDC ();
+			Destroy(this.gameObject);
+		}
     }
 }

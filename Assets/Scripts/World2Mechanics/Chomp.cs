@@ -13,6 +13,16 @@ public class Chomp : MonoBehaviour {
 
 
     Quaternion initialQuarternion, destinationQuarternion;
+    public void OpenMouth()
+    {
+        if (state == State.CLOSED)
+            Eat();
+    }
+    public void CloseMouth()
+    {
+        if (state == State.OPEN)
+            Eat();
+    }
 	void Start () {
         initialQuarternion = transform.rotation;
         destinationQuarternion = Quaternion.Euler(openRotation);

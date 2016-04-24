@@ -35,16 +35,16 @@ public class TriggerStove : Triggerable {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
-	void OnCollisionEnter2D (Collision2D other)
-	{
-		if (other.collider.tag == "Sapling") {
 
-			Debug.Log ("Collided with sapling");
-			if (currentState == State.Lit)
-				other.gameObject.GetComponent<BikiniSapling> ().killSapling ();
+	// When object enters collider
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.tag == "Sapling" && lit) 
+		{
+			Debug.Log ("Triggered");
+			Destroy (other.gameObject);
 		}
 	}
 

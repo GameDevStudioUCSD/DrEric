@@ -9,11 +9,13 @@ public class CameraMover : MonoBehaviour {
     public Camera otherCamera;
 
     private Camera savedCamera;
+    private Vector3 startPos;
 
     // Unity Methods
     void Start()
     {
         savedCamera = Camera.main;
+        startPos = transform.position;
     }
 
     void OnTriggerEnter2D(Collider2D col )
@@ -23,8 +25,7 @@ public class CameraMover : MonoBehaviour {
         switch (movementType)
         {
             case MoveAfter.TimePasses:
-                ActivateOtherCamera();
-                Invoke("ReactivateSavedCamera", returnTime);
+                ActivateOtherWithTimer();
                 break;
             case MoveAfter.EventFired:
                 ActivateOtherCamera();
@@ -43,6 +44,12 @@ public class CameraMover : MonoBehaviour {
     {
         savedCamera.enabled = false;
         otherCamera.gameObject.SetActive(true);
+    }
+
+    public void ActivateOtherWithTimer()
+    {
+        ActivateOtherCamera();
+        Invoke("ReactivateSavedCamera", returnTime);
     }
 
     // Sets the Platform "zoomer" to zoom out with speed equal to the 

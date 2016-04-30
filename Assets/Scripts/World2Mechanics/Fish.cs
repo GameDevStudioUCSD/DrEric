@@ -34,6 +34,7 @@ public class Fish : MonoBehaviour {
 		{
 			if (schoolOfFish != null)
 			{
+				Debug.Log("KILLING FISH");
 				schoolOfFish.KillAFish();
 			}
 			//DeathCount.IncrementDC ();
@@ -54,16 +55,20 @@ public class Fish : MonoBehaviour {
     {
     	if (col.gameObject.tag == "Player")
     	{
+			Debug.Log("HITTING FISH");
+
     		health--;
     		if (health <= 0)
     		{
 				if (schoolOfFish != null)
 				{
+					Debug.Log("KILLING FISH");
 					schoolOfFish.KillAFish();
 				}
+				DeathCount.IncrementDC ();
+				Destroy(this.gameObject);
 			}
-			DeathCount.IncrementDC ();
-			Destroy(this.gameObject);
+
 		}
     }
 }

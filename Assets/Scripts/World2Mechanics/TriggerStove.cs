@@ -9,6 +9,7 @@ public class TriggerStove : Triggerable {
 	// public fields for the lit and unlit sprites
 	public Sprite spriteLit;
 	public Sprite spriteUnlit;
+	public DialogBox dialogBox;
 
 	// reference to the current sprite
 	private Sprite currentSprite;
@@ -46,6 +47,10 @@ public class TriggerStove : Triggerable {
 			Debug.Log ("Triggered");
 			Destroy (other.gameObject);
 		}
+
+		if (other.tag == "Player" && lit) {
+			dialogBox.DisplayText ("Oops");
+		}
 	}
 
 	public override void Trigger ()
@@ -55,11 +60,13 @@ public class TriggerStove : Triggerable {
 		if (currentState == State.Lit) {
 			currentSprite = spriteUnlit;
 			currentState = State.Unlit;
+			lit = false;
 		} 
 
 		else {
 			currentSprite = spriteLit;
 			currentState = State.Lit;
+			lit = true;
 		}
 			
 		spriterenderer.sprite = currentSprite;

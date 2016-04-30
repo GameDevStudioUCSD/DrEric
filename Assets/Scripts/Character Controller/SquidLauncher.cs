@@ -285,7 +285,7 @@ public class SquidLauncher : MonoBehaviour
      */
     private void Rotate()
     {
-        initialVector = activeCamera.WorldToScreenPoint(transform.position);
+        initialVector = Camera.main.WorldToScreenPoint(transform.position);
         deltaVector = drEric.GetComponent<FlingObject>().CalculateDelta(
             initialVector, Input.mousePosition);
 

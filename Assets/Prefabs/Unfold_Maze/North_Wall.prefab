@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 461810}
   - 33: {fileID: 3381940}
-  - 65: {fileID: 6556644}
   - 23: {fileID: 2394838}
+  - 60: {fileID: 6059342}
   m_Layer: 0
   m_Name: InnerWall
   m_TagString: Untagged
@@ -92,18 +92,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141426}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6556644
-BoxCollider:
+--- !u!60 &6059342
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141426}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5}
+      - {x: 0.47552827, y: 0.15450849}
+      - {x: 0.2938926, y: -0.40450853}
+      - {x: -0.29389268, y: -0.40450847}
+      - {x: -0.47552824, y: 0.15450856}
 --- !u!114 &11459536
 MonoBehaviour:
   m_ObjectHideFlags: 1

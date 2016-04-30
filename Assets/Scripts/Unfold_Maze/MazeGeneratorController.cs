@@ -46,6 +46,7 @@ public class MazeGeneratorController : MonoBehaviour {
     private MazeGenerator generator;
     private SortedDictionary<string, GameObject> westWalls;
     private GameObject innerWall;
+    private Vector3 center;
     public MazeGeneratorController(AlgorithmChoice algorithm)
     {
         algorithm = this.algorithm;
@@ -55,6 +56,7 @@ public class MazeGeneratorController : MonoBehaviour {
         //Creates the walls matrix
         walls = new Square[Rows,Cols];
         
+        center  = new Vector3(wallSize * Rows / 2, wallSize * Cols / 2,0 );
         // Add new algorithm cases here
         switch(algorithm)
         {
@@ -166,8 +168,10 @@ public class MazeGeneratorController : MonoBehaviour {
         GameObject floor;
         NetworkView nView;
         Vector3 position = new Vector3((Rows*wallSize/2), 0 , (Cols*wallSize/2));
+        position -= center;
         floor = (GameObject)GameObject.Instantiate(Floor, position, Quaternion.identity);
         RemoveCloneFromName(floor);
+        floor.GetComponent<Transform>().parent = this.transform;
         floor.GetComponent<EditFloor>().ModifyFloorSize(wallSize, Rows, Cols );
     }
     public void ApplyWallTexture( GameObject currentWall)
@@ -198,29 +202,26 @@ public class MazeGeneratorController : MonoBehaviour {
 
                 }
                 curr = walls[r, c];
-                pos = new Vector3(curr.getRow() * wallSize, 1, wallSize * curr.getCol());
+                pos = new Vector3(curr.getRow() * wallSize, wallSize * curr.getCol(), 1);
+                pos -= center; 
                 if(curr.hasNorth)
                 {
                     objToInstantiate = (GameObject) GameObject.Instantiate(NorthWall, pos, rot);
-                    ApplyWallTexture(objToInstantiate);
                     instatiationList.Push(objToInstantiate);
                 }
                 if (curr.hasSouth)
                 {
                     objToInstantiate = (GameObject)GameObject.Instantiate(SouthWall, pos, rot);
-                    ApplyWallTexture(objToInstantiate);
                     instatiationList.Push(objToInstantiate);
                 }
                 if (curr.hasEast)
                 {
                     objToInstantiate = (GameObject)GameObject.Instantiate(EastWall, pos, rot);
-                    ApplyWallTexture(objToInstantiate);
                     instatiationList.Push(objToInstantiate);
                 }
                 if (curr.hasWest)
                 {
                     objToInstantiate = (GameObject)GameObject.Instantiate(WestWall, pos, rot);
-                    ApplyWallTexture(objToInstantiate);
                     instatiationList.Push(objToInstantiate);
                     westWalls.Add(curr.ToString(), objToInstantiate);
                 }
@@ -238,6 +239,7 @@ public class MazeGeneratorController : MonoBehaviour {
                 {
                     objToInstantiate = (GameObject)instatiationList.Pop();
                     RemoveCloneFromName(objToInstantiate);
+                    objToInstantiate.GetComponent<Transform>().parent = this.transform;
                 }
             }
         }

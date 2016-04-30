@@ -62,7 +62,7 @@ public class ButtonTrigger : MonoBehaviour {
     }
 
     // Animation Event
-    void pressEnd()
+    public void pressEnd()
     {
         happyButtonAnimator.SetBool("pressed", false);
     }

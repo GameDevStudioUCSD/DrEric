@@ -21,4 +21,7 @@ public abstract class Triggerable : MonoBehaviour {
      * to cause the obstacle to lower/raise.
      */
     public abstract void Trigger();
+
+	public virtual void Trigger(bool b) {
+	}
 }

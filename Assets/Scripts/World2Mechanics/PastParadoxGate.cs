@@ -26,19 +26,29 @@ public class PastParadoxGate : Triggerable {
 		}
 	}
 
+	public override void Trigger(bool b) {
+		if (b) {
+			Open ();
+		} else {
+			Close ();
+		}
+	}
+
 	public void Open() {
+		if (!isOpen)
+			counter.Decrement ();
 		doorOpen.SetActive(true);
 		doorClosed.SetActive(false);
 		isOpen = true;
 
-		counter.Decrement ();
+
 	}
 
 	public void Close() {
+		if (isOpen)
+			counter.Increment ();
 		doorOpen.SetActive(false);
 		doorClosed.SetActive(true);
 		isOpen = false;
-
-		counter.Increment ();
 	}
 }

@@ -14,7 +14,7 @@ public class ChangeGravity : MonoBehaviour {
         
     }
 
-    void OnTriggerEnter2D (Collider2D other)
+    void OnTriggerStay2D (Collider2D other)
     {
         GameObject go = other.gameObject;
         if (go.tag == "Player")
@@ -23,6 +23,19 @@ public class ChangeGravity : MonoBehaviour {
             ResetGravity();
             Physics2D.gravity = Gravity;
             if(redirectMomentum)
+                RedirectMomentum.Redirect(go.GetComponent<Rigidbody2D>(), Gravity);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        GameObject go = other.gameObject;
+        if (go.tag == "Player")
+        {
+            go.GetComponent<BallController>().Land();
+            ResetGravity();
+            Physics2D.gravity = Gravity;
+            if (redirectMomentum)
                 RedirectMomentum.Redirect(go.GetComponent<Rigidbody2D>(), Gravity);
         }
     }

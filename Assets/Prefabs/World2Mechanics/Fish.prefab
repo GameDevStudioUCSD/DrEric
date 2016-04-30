@@ -15,6 +15,7 @@ GameObject:
   - 61: {fileID: 6118884}
   - 61: {fileID: 6150742}
   - 61: {fileID: 6125726}
+  - 114: {fileID: 11480664}
   m_Layer: 2
   m_Name: Fish
   m_TagString: Untagged
@@ -108,6 +109,7 @@ MonoBehaviour:
   secondsAliveOutOfWater: 5
   health: 10
   schoolOfFish: {fileID: 0}
+  MAXHEIGHT: 0
 --- !u!114 &11424688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,10 +126,24 @@ MonoBehaviour:
   kD: 0
   maximumImpulse: 0.1
   minimumImpulse: 0.01
+  maxVelocity: 100000
+  velocityDeviation: 0
   impuseRate: 1
   trackingType: 1
   destinationTransform: {fileID: 0}
   destinationVector: {x: 65, y: -4, z: 0}
+--- !u!114 &11480664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cc8992e1eec1c49b1b9c53300fbfed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 30
 --- !u!212 &21235800
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -181,6 +197,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: secondsAliveOutOfWater
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -13,9 +13,18 @@ public class PastParadoxGate : Triggerable {
 
 	// Use this for initialization
 	void Start () {
-		doorOpen.SetActive(false);
-		doorClosed.SetActive(true);
-		isOpen = false;
+		if (isOpen)
+		{
+			doorOpen.SetActive(true);
+			doorClosed.SetActive(false);
+			isOpen = true;
+		}
+		else
+		{
+			doorOpen.SetActive(false);
+			doorClosed.SetActive(true);
+			isOpen = false;
+		}
 	}
 
 	public override void Trigger() {

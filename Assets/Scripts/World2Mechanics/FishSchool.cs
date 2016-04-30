@@ -28,6 +28,7 @@ public class FishSchool : HasDialog {
 
 	public void KillAFish()
 	{
+		Debug.Log("KILL FISH");
 		numFish--;
 		if (numFish == 0)
 		{

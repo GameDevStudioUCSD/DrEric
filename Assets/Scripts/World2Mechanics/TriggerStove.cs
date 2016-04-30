@@ -9,6 +9,7 @@ public class TriggerStove : Triggerable {
 	// public fields for the lit and unlit sprites
 	public Sprite spriteLit;
 	public Sprite spriteUnlit;
+	public DialogBox dialogBox;
 
 	// reference to the current sprite
 	private Sprite currentSprite;
@@ -35,16 +36,20 @@ public class TriggerStove : Triggerable {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
-	void OnCollisionEnter2D (Collision2D other)
-	{
-		if (other.collider.tag == "Sapling") {
 
-			Debug.Log ("Collided with sapling");
-			if (currentState == State.Lit)
-				other.gameObject.GetComponent<BikiniSapling> ().killSapling ();
+	// When object enters collider
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.tag == "Sapling" && lit) 
+		{
+			Debug.Log ("Triggered");
+			Destroy (other.gameObject);
+		}
+
+		if (other.tag == "Player" && lit) {
+			dialogBox.DisplayText ("Oops");
 		}
 	}
 
@@ -55,11 +60,13 @@ public class TriggerStove : Triggerable {
 		if (currentState == State.Lit) {
 			currentSprite = spriteUnlit;
 			currentState = State.Unlit;
+			lit = false;
 		} 
 
 		else {
 			currentSprite = spriteLit;
 			currentState = State.Lit;
+			lit = true;
 		}
 			
 		spriterenderer.sprite = currentSprite;

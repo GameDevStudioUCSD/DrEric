@@ -15,7 +15,6 @@ GameObject:
   - 61: {fileID: 6118884}
   - 61: {fileID: 6150742}
   - 61: {fileID: 6125726}
-  - 114: {fileID: 11480664}
   m_Layer: 2
   m_Name: Fish
   m_TagString: Untagged
@@ -132,18 +131,6 @@ MonoBehaviour:
   trackingType: 1
   destinationTransform: {fileID: 0}
   destinationVector: {x: 65, y: -4, z: 0}
---- !u!114 &11480664
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0cc8992e1eec1c49b1b9c53300fbfed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 30
 --- !u!212 &21235800
 SpriteRenderer:
   m_ObjectHideFlags: 1

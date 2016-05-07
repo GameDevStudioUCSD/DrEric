@@ -16,6 +16,8 @@ public class ButtonExitDetector : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		button.endPress ();
+		if (other.tag != "DanmakuBullet") {
+			button.endPress ();
+		}
 	}
 }

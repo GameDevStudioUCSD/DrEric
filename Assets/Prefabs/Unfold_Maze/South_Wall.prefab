@@ -26,7 +26,7 @@ GameObject:
   - 4: {fileID: 429826}
   - 33: {fileID: 3309008}
   - 23: {fileID: 2346072}
-  - 60: {fileID: 6050402}
+  - 61: {fileID: 6133418}
   m_Layer: 0
   m_Name: InnerWall
   m_TagString: Untagged
@@ -54,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 10, z: 11}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 11, z: 11}
   m_Children: []
   m_Father: {fileID: 429524}
   m_RootOrder: 0
@@ -92,8 +92,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168732}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!60 &6050402
-PolygonCollider2D:
+--- !u!61 &6133418
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -104,13 +104,8 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.5}
-      - {x: 0.47552827, y: 0.15450849}
-      - {x: 0.2938926, y: -0.40450853}
-      - {x: -0.29389268, y: -0.40450847}
-      - {x: -0.47552824, y: 0.15450856}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!114 &11456594
 MonoBehaviour:
   m_ObjectHideFlags: 1

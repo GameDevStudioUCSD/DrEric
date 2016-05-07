@@ -18,9 +18,15 @@ public class SplatterCollision : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        // Where the collision happened
-        ContactPoint2D contactPoint = other.contacts[0];
+        if(other.gameObject.tag == "Player")
+        {
+            // Where the collision happened
+            ContactPoint2D contactPoint = other.contacts[0];
+            Vector2 collisionPoint = contactPoint.point;
 
-        // TODO: Instantiate splatter
+            GameObject newSplatter = (GameObject)Instantiate(splatter, new Vector3(collisionPoint.x, collisionPoint.y, 0.0f), Quaternion.identity);
+            float angle = Random.RandomRange(0.0f, 359.0f);
+            newSplatter.transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), angle);
+        }
     }
 }

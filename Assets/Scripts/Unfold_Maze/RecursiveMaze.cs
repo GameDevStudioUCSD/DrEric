@@ -15,11 +15,17 @@ public class RecursiveMaze : MazeGenerator {
         exit = end;
         createSquares(false);
         constructOutterWalls();
-        generateMaze(0, 0, Rows , Cols);
+        generateMaze(0, 0, Rows, Cols);
+        if (!hasExit )
+        {
+            walls[0, 0].exit = true;
+            hasExit = true;
+
+        }
     }
     private void constructOutterWalls()
     {
-        for(int r = 0; r < Rows; r++)
+        for (int r = 0; r < Rows; r++)
         {
             walls[r, 0].hasWest = true;
             walls[r, Cols - 1].hasEast = true;
@@ -73,14 +79,6 @@ public class RecursiveMaze : MazeGenerator {
             hasEntrance = true;
         }
             
-        else
-        {
-            if (!hasExit  && r0 > (Rows*.8) && c0 > (Cols*.8))
-            { 
-                walls[r0, c0].exit = true;
-                hasExit = true;
-        
-            }
-        }
+           
     }
 }

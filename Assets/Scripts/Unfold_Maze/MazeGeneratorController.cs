@@ -38,6 +38,7 @@ public class MazeGeneratorController : MonoBehaviour {
     public bool debug_ON = false;
     [Range (1, 100)]
     public int spawningRate = 1;
+    public float realScale = 0.5f;
 
     private Square[,] walls;
     private Square exit;
@@ -202,7 +203,7 @@ public class MazeGeneratorController : MonoBehaviour {
 
                 }
                 curr = walls[r, c];
-                pos = new Vector3(curr.getRow() * wallSize, wallSize * curr.getCol(), 1);
+                pos = new Vector3(curr.getRow() * wallSize, wallSize * curr.getCol(), -1);
                 pos -= center; 
                 if(curr.hasNorth)
                 {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
@@ -6,22 +7,30 @@ public class MultiDialogOnEnter : MonoBehaviour {
 
     public DialogBox dialogBox;
     public DialogCharacterPair[] dialogs;
+    public UnityEvent onExit;
     public bool appendText;
     public bool destroyOnEnter = true;
     public bool pauseWhenActivated;
     public bool randomizeText = false; // Randomize which dialog is played
-
+    public float cooldown = 0.0f; // How long until the dialog can be triggered again
+    public float SecondsWait;
+    
     public string triggerTag = "Player";
 
     private Queue dialogPairs;
     private bool hasActivated = false;
 
+    private float nextCooldownTime; // The next time dialog can be triggered
+
     void Start()
     {
         dialogPairs = new Queue();
+
+        nextCooldownTime = Time.time; // Initialize
     }
 
 	void Update () {
+        
         if(dialogPairs.Count != 0 && !dialogBox.gameObject.activeSelf )
         {
             DialogCharacterPair dialogPair;
@@ -35,12 +44,24 @@ public class MultiDialogOnEnter : MonoBehaviour {
         }
         else if( (hasActivated && dialogPairs.Count == 0 ) && destroyOnEnter )
         {
+            dialogBox.onExit = onExit;
             Destroy(this.gameObject);
         }
 	}
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        // Check if dialog is cooling down
+        if (Time.time < nextCooldownTime)
+        {
+            // Dialog is still cooling down, don't allow triggering
+            return;
+        }
+        else
+        {
+            nextCooldownTime = Time.time + cooldown;
+        }
+
         if (collider.tag == triggerTag && dialogPairs.Count == 0 )
         {
             if(randomizeText)
@@ -58,8 +79,15 @@ public class MultiDialogOnEnter : MonoBehaviour {
                     hasActivated = true;
                 }
             }
+            timeDelayDialog();
         }
     }
+    
+    IEnumerator timeDelayDialog()
+    {
+        yield return new WaitForSeconds(SecondsWait);
+    }
+    
 }
 
 [System.Serializable]

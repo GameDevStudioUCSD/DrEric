@@ -20,7 +20,7 @@ public class ButtonTrigger : MonoBehaviour {
 
     public Animator happyButtonAnimator = null;
 
-    private List<Triggerable> triggerableScriptList = new List<Triggerable>();
+    protected List<Triggerable> triggerableScriptList = new List<Triggerable>();
     private AudioSource aSource;
 
 	// Use this for initialization
@@ -62,7 +62,7 @@ public class ButtonTrigger : MonoBehaviour {
     }
 
     // Animation Event
-    void pressEnd()
+    public void pressEnd()
     {
         happyButtonAnimator.SetBool("pressed", false);
     }

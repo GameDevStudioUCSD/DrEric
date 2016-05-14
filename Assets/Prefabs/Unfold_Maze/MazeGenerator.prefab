@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &124738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 438888}
+  - 114: {fileID: 11476058}
+  m_Layer: 0
+  m_Name: MazeGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438888
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11476058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40680c84acd15c843886bc0f097dc77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rows: 10
+  Cols: 10
+  wallSize: 10
+  algorithm: 1
+  NorthWall: {fileID: 120060, guid: d872a9e2f041b1c4fb15a50721ae67ac, type: 2}
+  SouthWall: {fileID: 195070, guid: 32638616db37ae34090700e0f22a61e8, type: 2}
+  EastWall: {fileID: 163314, guid: ff630099d1a181741a4b522276b7f03f, type: 2}
+  WestWall: {fileID: 117130, guid: 9526f364b5194c54895e4917ac6f2c8b, type: 2}
+  Floor: {fileID: 173526, guid: dd049a55b3bd8064a94619f47e15b2a0, type: 2}
+  Player: {fileID: 0}
+  ExitMarker: {fileID: 145810, guid: 8f4eda29e359e7b41ba4fcdc0a378414, type: 2}
+  DebugSphere: {fileID: 145810, guid: 8f4eda29e359e7b41ba4fcdc0a378414, type: 2}
+  spawnList: []
+  debug_ON: 1
+  spawningRate: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 124738}
+  m_IsPrefabParent: 1

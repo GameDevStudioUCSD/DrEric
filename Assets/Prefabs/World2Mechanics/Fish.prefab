@@ -108,6 +108,7 @@ MonoBehaviour:
   secondsAliveOutOfWater: 5
   health: 10
   schoolOfFish: {fileID: 0}
+  MAXHEIGHT: 0
 --- !u!114 &11424688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +125,8 @@ MonoBehaviour:
   kD: 0
   maximumImpulse: 0.1
   minimumImpulse: 0.01
+  maxVelocity: 100000
+  velocityDeviation: 0
   impuseRate: 1
   trackingType: 1
   destinationTransform: {fileID: 0}
@@ -181,6 +184,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: secondsAliveOutOfWater
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

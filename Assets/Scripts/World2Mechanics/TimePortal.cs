@@ -6,6 +6,7 @@ public class TimePortal : MonoBehaviour
 {
     public GameObject destination;
     public float timeBetweenTeleportation = 2f;
+    
 
     public Material presentSkybox; //present
     public Material pastSkybox; //past

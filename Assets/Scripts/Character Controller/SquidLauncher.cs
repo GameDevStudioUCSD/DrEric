@@ -49,6 +49,7 @@ public class SquidLauncher : MonoBehaviour
     private float maxSpeed; //calculated from FlingObject
 
     private GameObject drEric = null;
+    private RespawnController spawner = null;
     private OrientWithGravity orient;
     private Transform idleSprite;
     private Transform pastSprite;
@@ -69,6 +70,7 @@ public class SquidLauncher : MonoBehaviour
         launchingSprite = transform.Find("Launching Sprite");
         destRotation = transform.rotation;
         orient = GetComponent<OrientWithGravity>();
+        spawner = GameObject.Find(Names.RESPAWNER).GetComponent<RespawnController>();
     }
 
     /**
@@ -82,6 +84,7 @@ public class SquidLauncher : MonoBehaviour
         if (state != State.GRABBED)
             orient.CheckOrientation();
 
+        FindDrEric();
         if (drEric != null)
         {
             if (state == State.GRABBED)
@@ -104,7 +107,6 @@ public class SquidLauncher : MonoBehaviour
         else
         {
             state = State.NORMAL;
-            FindDrEric();
         }
     }
 
@@ -141,14 +143,13 @@ public class SquidLauncher : MonoBehaviour
      */
     void FindDrEric()
     {
-        try
+        drEric = spawner.GetDrEric();
+        if (drEric != null)
         {
-            drEric = GameObject.Find(Names.PLAYERHOLDER).transform.Find(
-                Names.DRERIC).gameObject;
             CalculateMaxSpeed();
             GetComponent<FollowObject>().followTarget = drEric;
         }
-        catch //fails to find DrEric while dead
+        else //fails to find DrEric while dead
         {
             //follow player holder instead
             GetComponent<FollowObject>().followTarget =
@@ -315,6 +316,16 @@ public class SquidLauncher : MonoBehaviour
         deltaVector = grabSprite == 6 ? maxSpeed * deltaVector.normalized : deltaVector; 
         drEric.GetComponent<FlingObject>().Fling(deltaVector);
         state = State.NORMAL;
+    }
+
+    /**
+     * Description: Releases DrEric on the spot. Used on death if DrEric is not
+     *              destroyed.
+     */
+    public void DropDrEric()
+    {
+        deltaVector = new Vector2(0, 0);
+        Launch();
     }
 
     /**

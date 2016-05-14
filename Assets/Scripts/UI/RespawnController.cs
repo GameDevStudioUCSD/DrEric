@@ -13,6 +13,7 @@ public class RespawnController : MonoBehaviour {
 	public float respawnTime;
     public float deathSpeedBoost = 2;
     public bool slowMusicOnDeath = true;
+    public bool destroyOnDeath = true;
 	public GameObject player;
     public UnityEvent spawnEvents;
     public UnityEvent deathEvents;
@@ -58,14 +59,28 @@ public class RespawnController : MonoBehaviour {
 		if (currentPlayer != null) { //prevents attempting to delete null
             if (currentPlayer.GetComponent<BallController>().state == BallController.State.SPAWNING)
                 return;
-			Destroy (currentPlayer.gameObject);
-			isDead = true;
-			respawnTimer = 0;
+
+            isDead = true;
+            respawnTimer = 0;
 
             //return camera to original position
             Vector3 squidPos = squidLauncher.transform.position;
+            Vector3 playerPos = currentPlayer.transform.position;
             playerHolder.transform.position = transform.position;
             squidLauncher.transform.position = squidPos;
+            currentPlayer.transform.position = playerPos;
+
+            if (destroyOnDeath)
+            {
+                Destroy(currentPlayer.gameObject);
+            }
+            else
+            {
+                currentPlayer.transform.SetParent(null);
+                squidLauncher.GetComponent<SquidLauncher>().DropDrEric();
+                currentPlayer.tag = "Untagged";
+                currentPlayer = null;
+            }
 
             if(slowMusicOnDeath)
                 rhythmController.SwitchToChannel(2);
@@ -127,5 +142,9 @@ public class RespawnController : MonoBehaviour {
     public static bool IsDead()
     {
         return GetRespawnController().isDead;
+    }
+    public GameObject GetDrEric()
+    {
+        return currentPlayer;
     }
 }

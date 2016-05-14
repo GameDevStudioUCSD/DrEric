@@ -14,6 +14,7 @@ public class PlayerHolder : MonoBehaviour {
 
     private GameObject drEric;
     private GameObject squidLauncher;
+    private RespawnController spawner;
     public GameObject gameCamera;
     private OrientWithGravity cameraOrienter;
 
@@ -23,7 +24,7 @@ public class PlayerHolder : MonoBehaviour {
 	void Start () {
         squidLauncher = transform.Find(Names.SQUIDLAUNCHER).gameObject;
         gameCamera = transform.Find(Names.CAMERA).gameObject;
-        drEric = GameObject.Find(Names.DRERIC);
+        spawner = GameObject.Find(Names.RESPAWNER).GetComponent<RespawnController>();
         cameraOrienter = gameCamera.GetComponent<OrientWithGravity>();
         if (!enableDrEricCamera)
         {
@@ -39,8 +40,8 @@ public class PlayerHolder : MonoBehaviour {
      */
 	void Update () {
         cameraOrienter.CheckOrientation();
+        drEric = spawner.GetDrEric();
         if (drEric == null) {
-            drEric = GameObject.Find(Names.DRERIC);
             transform.parent = null;
         }
         if (drEric != null) {

@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ChaseCamera : MonoBehaviour {
     public float speed = 0.5f;
     public float finalX = 100f;
     public bool active = false;
 
-    private GameObject playerHolder;
-    private SquidLauncher squid;
-    private Camera camera;
-    private GameObject boss;
-    private GameObject walls;
-    private float lastUpdate;
-    private Vector3 startPos;
-    
-	void Start () {
+    protected GameObject playerHolder;
+    protected SquidLauncher squid;
+    protected Camera camera;
+    protected GameObject boss;
+    protected GameObject walls;
+    protected float lastUpdate;
+    protected Vector3 startPos;
+
+    protected void Start() {
         playerHolder = GameObject.Find(Names.PLAYERHOLDER);
         squid = playerHolder.GetComponentInChildren<SquidLauncher>();
         camera = this.transform.FindChild("Camera").gameObject.GetComponent<Camera>();
@@ -23,28 +22,24 @@ public class ChaseCamera : MonoBehaviour {
         startPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
 
         if (active) Activate();
-        else
-        {
+        else {
             boss.SetActive(false);
             walls.SetActive(false);
         }
-	}
-	
-	void Update ()
-    {
+    }
+
+    void Update() {
         if (active && transform.localPosition.x < finalX)
             transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
         lastUpdate = Time.time;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
+    void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player")
             Activate();
     }
 
-    public void Activate()
-    {
+    public void Activate() {
         active = true;
         boss.SetActive(true);
         playerHolder.GetComponent<PlayerHolder>().enableDrEricCamera = false;
@@ -56,14 +51,12 @@ public class ChaseCamera : MonoBehaviour {
     }
 
 
-    public void Reset()
-    {
+    public void Reset() {
         transform.localPosition = new Vector3(startPos.x, startPos.y, startPos.z);
         Deactivate();
     }
 
-    void Deactivate()
-    {
+    void Deactivate() {
         active = false;
         boss.SetActive(false);
         playerHolder.GetComponent<PlayerHolder>().enableDrEricCamera = true;

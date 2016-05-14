@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class TimeObject : MonoBehaviour {
+namespace Assets.Scripts.World2Mechanics {
+    public class TimeObject : MonoBehaviour {
 
-	public GameObject presentObject;
-	public GameObject pastObject;
-	//public enum TimeZone {Past, Present};
-	//public TimeZone currentTime = TimeZone.Present;
+        public GameObject presentObject;
+        public GameObject pastObject;
+        //public enum TimeZone {Past, Present};
+        //public TimeZone currentTime = TimeZone.Present;
 	
-	// Use this for initialization
-	void Start () {
+        // Use this for initialization
+        void Start () {
 	
-	}
+        }
 	
-	// Update is called once per frame
-	void Update () {
+        // Update is called once per frame
+        void Update () {
 	
-	}
+        }
 	
-	//Swaps the times
-	/*void ChangeTime ()
+        //Swaps the times
+        /*void ChangeTime ()
 	{
 		if (currentTime == TimeZone.Present)
 		{
@@ -30,4 +30,5 @@ public class TimeObject : MonoBehaviour {
 			currentTime = TimeZone.Present;
 		}
 	}*/
+    }
 }

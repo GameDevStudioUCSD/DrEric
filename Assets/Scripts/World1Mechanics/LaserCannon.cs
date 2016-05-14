@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts.World2Mechanics;
 
 public class LaserCannon : MonoBehaviour
 {

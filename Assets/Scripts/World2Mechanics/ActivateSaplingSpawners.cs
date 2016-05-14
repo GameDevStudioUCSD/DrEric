@@ -1,25 +1,28 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic; // For List<T>
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-/// <summary>
-/// 
-/// ActivateSaplingSpawners
-/// 
-/// Used in World 2 Waterfall scene.
-/// When obstacle button is pressed, all sapling spawners become pressable.
-/// 
-/// </summary>
+// For List<T>
 
-public class ActivateSaplingSpawners : MonoBehaviour {
+namespace Assets.Scripts.World2Mechanics {
+    /// <summary>
+    /// 
+    /// ActivateSaplingSpawners
+    /// 
+    /// Used in World 2 Waterfall scene.
+    /// When obstacle button is pressed, all sapling spawners become pressable.
+    /// 
+    /// </summary>
 
-    public List<SaplingSpawner> saplingSpawners = new List<SaplingSpawner>();
+    public class ActivateSaplingSpawners : MonoBehaviour {
 
-    public void Activate()
-    {
-        foreach(SaplingSpawner saplingSpawner in saplingSpawners)
+        public List<SaplingSpawner> saplingSpawners = new List<SaplingSpawner>();
+
+        public void Activate()
         {
-            saplingSpawner.setPressable(true);
+            foreach(SaplingSpawner saplingSpawner in saplingSpawners)
+            {
+                saplingSpawner.setPressable(true);
+            }
         }
     }
 }

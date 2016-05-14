@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38, y: 1, z: -1}
+  m_LocalPosition: {x: 51, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 449690}
@@ -178,10 +178,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
-  platform: {fileID: 0}
   timeBetweenTeleportation: 2
   presentSkybox: {fileID: 2100000, guid: e40fee7baeeca43498dec2ffde6a4581, type: 2}
   pastSkybox: {fileID: 2100000, guid: 85534340a6e6341e4a5f0f78438593fd, type: 2}
+  onTeleport:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &11479054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,6 +203,7 @@ MonoBehaviour:
   circleTime: 2
   returnTime: 1
   maxDistance: 1000
+  state: 0
 --- !u!212 &21210994
 SpriteRenderer:
   m_ObjectHideFlags: 1

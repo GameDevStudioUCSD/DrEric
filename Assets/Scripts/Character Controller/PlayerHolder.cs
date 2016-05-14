@@ -24,7 +24,7 @@ public class PlayerHolder : MonoBehaviour {
 	void Start () {
         squidLauncher = transform.Find(Names.SQUIDLAUNCHER).gameObject;
         gameCamera = transform.Find(Names.CAMERA).gameObject;
-        spawner = GameObject.Find(Names.RESPAWNER).GetComponent<RespawnController>();
+        spawner = RespawnController.GetRespawnController();
         cameraOrienter = gameCamera.GetComponent<OrientWithGravity>();
         if (!enableDrEricCamera)
         {

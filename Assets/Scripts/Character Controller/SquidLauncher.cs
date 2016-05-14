@@ -70,7 +70,7 @@ public class SquidLauncher : MonoBehaviour
         launchingSprite = transform.Find("Launching Sprite");
         destRotation = transform.rotation;
         orient = GetComponent<OrientWithGravity>();
-        spawner = GameObject.Find(Names.RESPAWNER).GetComponent<RespawnController>();
+        spawner = RespawnController.GetRespawnController();
     }
 
     /**

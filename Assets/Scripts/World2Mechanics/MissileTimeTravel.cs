@@ -8,6 +8,7 @@ public class MissileTimeTravel : MonoBehaviour {
     public float explosionPower = 1F;
     public float initialForce = 2;
     public Boss2Script boss;
+    public int life = 100;
 
     private int speed = 100;
     private float angle = 0f;
@@ -45,7 +46,11 @@ public class MissileTimeTravel : MonoBehaviour {
     }
 
     void Update() {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, .05f);
+        transform.Translate(.1f * Mathf.Cos(angle),.1f * Mathf.Sin(angle), 0);
+
+        if (--life < 0) {
+            PrepareExplosion();
+        }
 
         switch (state) {
             //case State.BLOWINGUP:
@@ -59,12 +64,12 @@ public class MissileTimeTravel : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         //PrepareExplosion();
-        Debug.Log(other.tag);
+        Debug.Log("Trigger Enter! on" + other);
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "WallFloor") {
-            
+        if (col.gameObject.tag == "WallFloor" || col.gameObject.tag == "Gate") {
+            PrepareExplosion();
         }
     }
 
@@ -103,7 +108,6 @@ public class MissileTimeTravel : MonoBehaviour {
     //code that makes it face where its going
     private void UpdatePose() {
         Vector3 vectorToTarget = myRigidbody.velocity;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
     }

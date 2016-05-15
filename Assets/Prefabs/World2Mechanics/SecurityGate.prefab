@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &143942
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 461972}
-  - 61: {fileID: 6105868}
-  m_Layer: 0
-  m_Name: GateCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &149680
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +12,7 @@ GameObject:
   - 114: {fileID: 11439530}
   m_Layer: 0
   m_Name: SecurityGate
-  m_TagString: Untagged
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +60,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474258}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &461346
 Transform:
   m_ObjectHideFlags: 1
@@ -88,19 +72,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474258}
-  m_RootOrder: 2
---- !u!4 &461972
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 474258}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &474258
 Transform:
   m_ObjectHideFlags: 1
@@ -108,28 +80,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -27, y: -6, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 461972}
   - {fileID: 433268}
   - {fileID: 461346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6105868
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143942}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
 --- !u!114 &11439530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2fc270570b24617891a7c6d40a331b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gateCollider: {fileID: 143942}
+  gateCollider: {fileID: 0}
   gateInitialSprite: {fileID: 185078}
   gateDestroyedSprite: {fileID: 191536}
   destroyed: 0

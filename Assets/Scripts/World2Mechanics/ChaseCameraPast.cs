@@ -18,7 +18,7 @@ public class ChaseCameraPast : MonoBehaviour {
         squid = playerHolder.GetComponentInChildren<SquidLauncher>();
         camera = this.transform.FindChild("Camera").gameObject.GetComponent<Camera>();
         boss = this.transform.FindChild("FishBoss").gameObject;
-        missileSpawner = this.transform.FindChild("MissileSpawner").gameObject;
+        missileSpawner = boss.transform.FindChild("MissileSpawner").gameObject;
         startPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
 
         if (active) Activate();
@@ -28,8 +28,8 @@ public class ChaseCameraPast : MonoBehaviour {
     }
 
     void Update() {
-        if (active && transform.localPosition.x < finalX)
-            transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
+       // if (active && transform.localPosition.x < finalX)
+         //   transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
         lastUpdate = Time.time;
     }
 

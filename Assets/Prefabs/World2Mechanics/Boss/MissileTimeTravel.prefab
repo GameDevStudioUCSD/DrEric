@@ -27,9 +27,9 @@ GameObject:
   - 4: {fileID: 499118}
   - 60: {fileID: 6065420}
   - 114: {fileID: 11450304}
-  - 114: {fileID: 11495866}
   - 50: {fileID: 5078564}
   - 82: {fileID: 8251286}
+  - 114: {fileID: 11458830}
   m_Layer: 0
   m_Name: MissileTimeTravel
   m_TagString: Missile
@@ -73,7 +73,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -204,7 +204,7 @@ MonoBehaviour:
   kP: 1
   kI: 0
   kD: 0.3
-  maximumImpulse: 2
+  maximumImpulse: 0
   minimumImpulse: 0
   maxVelocity: 100000
   velocityDeviation: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   trackingType: 0
   destinationTransform: {fileID: 0}
   destinationVector: {x: 0, y: 0, z: 0}
---- !u!114 &11495866
+--- !u!114 &11458830
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -220,15 +220,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 143870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ffe762e2dc2284ab0beab030875c40, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e031caa20642c04db68d83565444550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  invulnerabilitytime: 5
-  explosiveRadius: 4
-  explosionPower: 5
-  initialForce: 0
+  invulnerabilitytime: 0
+  explosiveRadius: 1
+  explosionPower: 1
+  initialForce: 2
   boss: {fileID: 0}
+  life: 200
 --- !u!212 &21262460
 SpriteRenderer:
   m_ObjectHideFlags: 1

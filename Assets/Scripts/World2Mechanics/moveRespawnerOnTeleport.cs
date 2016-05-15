@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class moveRespawnerOnTeleport : MonoBehaviour {
+public class moveRespawnerOnTeleport : MonoBehaviour  {
 
     private Vector3 respawnerPresentPosition;
     private Vector3 respawnerPastPosition;
@@ -22,6 +22,11 @@ public class moveRespawnerOnTeleport : MonoBehaviour {
     void Update () {
 	
 	}
+
+    public bool getIfPresent()
+    {
+        return isInPresent;
+    }
 
     public void callOnTeleport()
     {

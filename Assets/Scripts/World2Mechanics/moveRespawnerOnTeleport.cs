@@ -5,8 +5,8 @@ public class moveRespawnerOnTeleport : MonoBehaviour {
 
     private Vector3 respawnerPresentPosition;
     private Vector3 respawnerPastPosition;
-    public float respawnerPastX;
-    public float respawnerPastY;
+    public float pastTranslateX;
+    public float pastTranslateY;
     private bool isInPresent;
     private RespawnController respawner;
 
@@ -15,7 +15,7 @@ public class moveRespawnerOnTeleport : MonoBehaviour {
         isInPresent = true;
         respawner = RespawnController.GetRespawnController();
         respawnerPresentPosition = respawner.transform.position;
-        respawnerPastPosition = new Vector3(respawnerPastX, respawnerPastY, 0);
+        respawnerPastPosition = new Vector3(respawnerPresentPosition.x + pastTranslateX, respawnerPresentPosition.y + pastTranslateY, 0);
     }
 
     // Update is called once per frame
@@ -34,6 +34,5 @@ public class moveRespawnerOnTeleport : MonoBehaviour {
             respawner.transform.position = respawnerPresentPosition;
         }
         isInPresent = !isInPresent;
-        
     }
 }

@@ -5,6 +5,7 @@ public class Eye : MonoBehaviour {
 
 	public MotherSquid squid;
 	bool open;
+	public 
 
 	// Use this for initialization
 	void Start () {
@@ -17,9 +18,10 @@ public class Eye : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.tag == "Player") {
+		if (other.tag == "Player" && squid.state == MotherSquid.SquidState.Neutral) {
 			open = false;
-			squid.checkIfOpen ();
+			squid.getHit ();
+			this.gameObject.SetActive(false);
 		}
 	}
 

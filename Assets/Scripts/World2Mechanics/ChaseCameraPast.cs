@@ -4,6 +4,17 @@ public class ChaseCameraPast : MonoBehaviour {
     public float speed = 0.5f;
     public float finalX = 100f;
     public bool active = false;
+    public float movingSpeed = .05f;
+
+    public enum Stage {
+        INITIAL,
+        INITIAL_AFTER,
+        TO_RIGHT,
+        TO_UP,
+        FINISH
+    };
+
+    public Stage stage = Stage.INITIAL;
 
     protected GameObject playerHolder;
     protected SquidLauncher squid;
@@ -31,11 +42,34 @@ public class ChaseCameraPast : MonoBehaviour {
        // if (active && transform.localPosition.x < finalX)
          //   transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
         lastUpdate = Time.time;
+
+        switch (stage) {
+            case Stage.INITIAL_AFTER:
+                transform.Translate(70, -20, 0);
+                stage = Stage.TO_RIGHT;
+                break;
+            case Stage.TO_RIGHT:
+                transform.Translate(movingSpeed, 0,0);
+                if (transform.position.x > 114) {
+                    stage = Stage.TO_UP;
+                }
+                break;
+            case Stage.TO_UP:
+                transform.Translate(0,movingSpeed, 0);
+                if (transform.position.y > -3) {
+                    stage = Stage.FINISH;
+                }
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player")
+        if (other.tag == "Player") {
             Activate();
+            if (other.transform.position.x > 95) {
+                this.stage = Stage.INITIAL_AFTER;
+            }
+        }
     }
 
     public void Activate() {

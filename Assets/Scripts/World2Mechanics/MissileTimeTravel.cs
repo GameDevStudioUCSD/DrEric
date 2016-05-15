@@ -63,8 +63,9 @@ public class MissileTimeTravel : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        //PrepareExplosion();
-        Debug.Log("Trigger Enter! on" + other);
+        if (other.name == "Squid Launcher") {
+     //       PrepareExplosion();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col) {

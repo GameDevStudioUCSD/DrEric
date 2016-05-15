@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 474258}
   - 114: {fileID: 11492970}
   - 114: {fileID: 11439530}
+  - 61: {fileID: 6129708}
   m_Layer: 0
   m_Name: SecurityGate
   m_TagString: Gate
@@ -87,6 +88,20 @@ Transform:
   - {fileID: 461346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &6129708
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.31, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 9, y: 8}
 --- !u!114 &11439530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +143,7 @@ MonoBehaviour:
   gateCollider: {fileID: 0}
   gateInitialSprite: {fileID: 185078}
   gateDestroyedSprite: {fileID: 191536}
+  health: 2
   destroyed: 0
 --- !u!212 &21287312
 SpriteRenderer:

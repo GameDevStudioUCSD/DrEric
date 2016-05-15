@@ -6,6 +6,7 @@ namespace Assets.Scripts.World2Mechanics {
         public GameObject gateCollider;
         public GameObject gateInitialSprite;
         public GameObject gateDestroyedSprite;
+        public int health = 2;
         public bool destroyed;
 
 
@@ -15,19 +16,19 @@ namespace Assets.Scripts.World2Mechanics {
             {
                 gateInitialSprite.SetActive(false);
                 gateDestroyedSprite.SetActive(true);
-                gateCollider.SetActive(false);
+                this.GetComponent<Collider2D>().isTrigger = true;
             }
             else
             {
                 gateInitialSprite.SetActive(true);
                 gateDestroyedSprite.SetActive(false);
-     //           gateCollider.SetActive(true);
             }
         }
 	
         // Update is called once per frame
         public void DestroyGate () {
-            destroyed = true;
+            if (--health < 0)
+                destroyed = true;
         }
 
     }

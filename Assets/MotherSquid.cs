@@ -6,7 +6,7 @@ public class MotherSquid : MonoBehaviour {
 
 	public List<Eye> eyes;
 	public enum SquidState {
-		Neutral, Angry
+		Attacking, Recovering, Neutral
 	};
 	public SquidState state {get; set;}
 
@@ -17,7 +17,10 @@ public class MotherSquid : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (state == SquidState.Neutral) {
+			state = SquidState.Attacking;
+			StartCoroutine (attackSequence (eyesOpen ()));
+		}
 	}
 
 	public void getHit() {
@@ -25,8 +28,7 @@ public class MotherSquid : MonoBehaviour {
 		if (eyeCount == 0) {
 			Debug.Log ("ded");
 		} else {
-			state = SquidState.Angry;
-			StartCoroutine(fireMissles (eyeCount));
+			state = SquidState.Attacking;
 		}
 	}
 
@@ -39,13 +41,37 @@ public class MotherSquid : MonoBehaviour {
 		return ret;
 	}
 
+	IEnumerator armAttack() {
+		Debug.Log ("AAAAARM");
+		yield return null;
+	}
+
+	IEnumerator rest() {
+		state = SquidState.Recovering;
+		Debug.Log ("REEEEEST");
+		yield return new WaitForSeconds (5f);
+		state = SquidState.Neutral;
+	}
+
+	IEnumerator attackSequence(int count) {
+		StartCoroutine(fireMissles (count));
+		Debug.Log ("WAIT " + (count / 2 + 2));
+		yield return new WaitForSeconds (count / 2 + 2);
+		StartCoroutine(fireMissles (count));
+		Debug.Log ("WAIT" + (count / 2 + 2));
+		yield return new WaitForSeconds (count / 2 + 2);
+		StartCoroutine(armAttack ());
+		yield return new WaitForSeconds (count / 2 + 2);
+		StartCoroutine (rest());
+	}
+
 	IEnumerator fireMissles(int count) {
+		state = SquidState.Attacking;
 		for (int i = 0; i < count; i++) {
 			fireMissle ();
 			Debug.Log ("MISSILE");
 			yield return new WaitForSeconds (0.5f);
 		}
-		state = SquidState.Neutral;
 	}
 
 	void fireMissle() {}

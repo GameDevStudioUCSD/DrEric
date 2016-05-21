@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Boss2Dialog))]
 public class Boss2Script : MonoBehaviour {
     public enum State { TRACKING, BLOATING,MOVING,DANMAKU, DEFLATING, IDLE, DYING };
@@ -72,6 +73,10 @@ public class Boss2Script : MonoBehaviour {
             default:
                 break;
                
+        }
+        if (health < 0)
+        {
+            SceneManager.LoadScene(1);
         }
 	}
 

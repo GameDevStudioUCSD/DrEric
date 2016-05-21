@@ -32,8 +32,15 @@ public class ChaseCamera : MonoBehaviour {
 	
 	void Update ()
     {
-        if (active && transform.localPosition.x < finalX)
+        float xPos = transform.localPosition.x;
+        if (active && xPos < finalX)
+        {
             transform.Translate(speed * (Time.time - lastUpdate), 0, 0);
+            float y = 7.6493f * Mathf.Sin(0.21308f * (xPos - 17) + 1.5984f) + 1.5984f;
+            Vector3 lastPos = boss.transform.localPosition;
+            boss.transform.Translate(0, y - lastPos.y, 0);
+
+        }
         lastUpdate = Time.time;
     }
 

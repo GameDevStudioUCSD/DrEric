@@ -19,6 +19,7 @@ public class Boss2Script : MonoBehaviour {
     public float invisibilityTime = 1;
     public Text healthLabel;
     public GameObject danmakuGenerator;
+    public Chomp chompingScript;
 
 
     private int hornsFired;
@@ -90,6 +91,8 @@ public class Boss2Script : MonoBehaviour {
         // fire a horn for every damage, starting 1
         if (RespawnController.IsDead())
             return;
+
+        chompingScript.CloseMouth();
         myRigidBody.velocity *= 0;
         if (Time.time - startTime > fireRate && hornsFired < hornNumber)
         {

@@ -3,19 +3,21 @@ using System.Collections;
 
 public class BikiniSapling : MonoBehaviour {
 
-	public BikiniTree presentTree;
-	public bool saplingHydrated = false;
-	public bool playerOnTop = false;
-	private float prevX;
+    [SerializeField]
+    public BikiniTree presentTree;
+    public bool playerOnTop = false;
+    public bool saplingOnWater = true;
+    public bool saplingHydrated = false;
+    private float prevX;
 
-	// Use this for initialization
-	void Start () {
-		prevX = this.transform.position.x;
+    void Start () {
+        prevX = this.transform.position.x;
 		if (saplingHydrated)
 			HydrateSapling();
 		else
 			DehydrateSapling();
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,20 +27,15 @@ public class BikiniSapling : MonoBehaviour {
 			presentTree.shiftX(currX - prevX);
 			prevX = currX;
 		}
-	}
+    }
+		
 
-	public void killSapling ()
-	{
-		if (presentTree != null)
-			presentTree.killTree ();
-
-		Destroy (this);
-	}
 	void DehydrateSapling()
 	{
 		if (presentTree != null)
 			presentTree.killTree();
-		this.GetComponent<Rigidbody2D>().isKinematic = true;
+        if (this.saplingOnWater)
+            this.GetComponent<Rigidbody2D>().isKinematic = true;
 	}
 
 	void HydrateSapling()
@@ -78,4 +75,14 @@ public class BikiniSapling : MonoBehaviour {
 			playerOnTop = false;
 		}
 	}
+
+	// If this object is destroyed, then destroy the present tree
+	void OnDestroy()
+	{
+		if(presentTree != null)
+		{
+			Destroy(presentTree.gameObject);
+		}
+	}
+
 }

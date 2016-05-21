@@ -32,6 +32,7 @@ GameObject:
   - 82: {fileID: 8215760}
   - 96: {fileID: 9676546}
   - 114: {fileID: 11463748}
+  - 114: {fileID: 11473392}
   m_Layer: 0
   m_Name: DrEric
   m_TagString: Player
@@ -269,6 +270,33 @@ MonoBehaviour:
   isText: 0
   isRenderer: 0
   isTrail: 1
+--- !u!114 &11473392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a45e0f16cf1a2941841a12465523035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventList:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11422930}
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &11496850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +350,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: eventList.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -553,6 +585,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: eventList.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11422930}
+    - target: {fileID: 0}
+      propertyPath: eventList.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Die
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: eventList.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

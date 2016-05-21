@@ -15,17 +15,7 @@ public class ActivateSaplingSpawners : MonoBehaviour {
 
     public List<SaplingSpawner> saplingSpawners = new List<SaplingSpawner>();
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnCollisionEnter2D(Collision2D other)
+    public void Activate()
     {
         foreach(SaplingSpawner saplingSpawner in saplingSpawners)
         {

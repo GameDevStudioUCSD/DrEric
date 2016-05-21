@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class TimePortal : MonoBehaviour
 {
     public GameObject destination;
     public float timeBetweenTeleportation = 2f;
+    
 
     public Material presentSkybox; //present
     public Material pastSkybox; //past
+    public UnityEvent onTeleport;
 
     private Transform drEricTransform;
     private Transform playerHolderTrans;
@@ -74,6 +77,7 @@ public class TimePortal : MonoBehaviour
         playerHolderTrans.position = dest;
         ChangeSkybox();
         ChangeSong();
+        onTeleport.Invoke();
         Invoke("ReenableTrail", drEricTrail.time);
         Invoke("ShutoffDestAnimation", timeBetweenTeleportation);
         portalDanmaku.Deactive();

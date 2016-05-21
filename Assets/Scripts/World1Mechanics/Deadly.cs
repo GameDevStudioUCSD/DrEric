@@ -10,7 +10,7 @@ public class Deadly : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		respawner = GameObject.Find("Respawner/Spawner").GetComponent<RespawnController>();
+		respawner = RespawnController.GetRespawnController();
 	}
 	
 	// Update is called once per frame

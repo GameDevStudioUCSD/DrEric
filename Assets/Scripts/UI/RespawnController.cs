@@ -41,6 +41,7 @@ public class RespawnController : MonoBehaviour {
             throw new System.Exception("No Player Holder!");
         }
         playerHolder.transform.position = transform.position;
+        squidLauncher.transform.position = transform.position;
         RegisterSpawnEvent(spawnEvents);
         RegisterDeathEvent(deathEvents);
 	}
@@ -110,10 +111,8 @@ public class RespawnController : MonoBehaviour {
 
             //return playerHolder (with camera) to spawn point
             Vector3 squidPos = squidLauncher.transform.position;
-            //Vector3 playerPos = currentPlayer.transform.position;
             playerHolder.transform.position = transform.position;
             squidLauncher.transform.position = squidPos;
-            //currentPlayer.transform.position = playerPos;
 
             //reset game to living state
             isDead = false;

@@ -2,12 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class TimeIndicator : MonoBehaviour
 {
     public bool isPast = false;
     public const string present = "Present";
     public const string past = "Past";
     public Text text;
+    private MoveRespawnerOnTeleport respawnerMoveScript;
+    void start()
+    {
+        respawnerMoveScript = RespawnController.GetRespawnController().GetComponent<MoveRespawnerOnTeleport>();
+    }
+
 
     public void ToggleTime()
     {
@@ -17,8 +24,25 @@ public class TimeIndicator : MonoBehaviour
 
     public void ForcePresent()
     {
-        if (!isPast) return;
-        isPast = false;
-        text.text = present;
+        //If respawner is possibly in past, use the state from the move script instead
+        if (!respawnerMoveScript)
+        {
+            if (respawnerMoveScript.getIfPresent())
+            {
+                text.text = present;
+                isPast = false;
+            }
+            else
+            {
+                text.text = past;
+                isPast = true;
+            }
+        }
+        else
+        {
+           if (!isPast) return;
+            isPast = false;
+            text.text = present;
+        }
     }
 }

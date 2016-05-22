@@ -72,7 +72,7 @@ public class Boss1 : MonoBehaviour
         state = STATE.IDLE;
         transform.position = startVector;
         victorycontroller.GetComponentInParent<SpriteRenderer>().enabled = false;
-        victorycontroller.GetComponent<BoxCollider2D>().enabled = false;
+        victorycontroller.GetComponent<CircleCollider2D>().enabled = false;
         gravity = GRAVITY.DOWN;
     }
 

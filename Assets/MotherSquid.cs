@@ -55,10 +55,10 @@ public class MotherSquid : MonoBehaviour {
 
 	IEnumerator attackSequence(int count) {
 		StartCoroutine(fireMissles (count));
-		Debug.Log ("WAIT " + (count / 2 + 2));
+		//Debug.Log ("WAIT " + (count / 2 + 2));
 		yield return new WaitForSeconds (count / 2 + 2);
 		StartCoroutine(fireMissles (count));
-		Debug.Log ("WAIT" + (count / 2 + 2));
+		//Debug.Log ("WAIT" + (count / 2 + 2));
 		yield return new WaitForSeconds (count / 2 + 2);
 		StartCoroutine(armAttack ());
 		yield return new WaitForSeconds (count / 2 + 2);
@@ -69,7 +69,6 @@ public class MotherSquid : MonoBehaviour {
 		state = SquidState.Attacking;
 		for (int i = 0; i < count; i++) {
 			fireMissle ();
-			Debug.Log ("MISSILE");
 			yield return new WaitForSeconds (0.5f);
 		}
 	}

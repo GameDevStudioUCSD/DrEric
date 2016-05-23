@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class MotherSquid : MonoBehaviour {
 
 	public List<Eye> eyes;
+	public List<TentacleAttack> tentacles;
 	public enum SquidState {
 		Attacking, Recovering, Neutral
 	};
@@ -42,7 +43,21 @@ public class MotherSquid : MonoBehaviour {
 	}
 
 	IEnumerator armAttack() {
-		Debug.Log ("AAAAARM");
+		Debug.Log("ATTACKINGGGGGG");
+		int left = Random.Range(0,6);
+		int right = Random.Range(0,6);
+
+		while (right == left)
+		{
+			right = Random.Range(0,6);
+		}
+
+		TentacleAttack leftArm = tentacles[left];
+		TentacleAttack rightArm = tentacles[right];
+
+		leftArm.startAttack();
+		rightArm.startAttack();
+
 		yield return null;
 	}
 

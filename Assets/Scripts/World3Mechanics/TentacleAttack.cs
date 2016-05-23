@@ -8,12 +8,12 @@ public class TentacleAttack : MonoBehaviour
 	public enum State { ATTACKING, RETREATING, LOOKING, STALLING, STOP };
 	public PlayerHolder drEric;
 	public RespawnController respawner;
-	public Collider2D tentacle;
 	public Vector3 startVector = new Vector2(0, 0);
 	public Vector3 endVector = new Vector2(0, 0);
 	public State state;
 	public float movementTime = 2;
-	public float waitTime = 1;
+	public float lookTime = 1;
+	public float stallTime = 1;
 
 	public State startState = State.STOP;
 
@@ -24,7 +24,7 @@ public class TentacleAttack : MonoBehaviour
         startVector = this.transform.position;
     }
 
-	void Update () {
+	void FixedUpdate () {
         switch(state){
             case State.LOOKING:
                 Looking();
@@ -38,7 +38,15 @@ public class TentacleAttack : MonoBehaviour
             case State.RETREATING:
             	Lerping(true);
             	break;
+            case State.STOP:
+            	Stopped();
+            	break;
         }
+	}
+
+	public void startAttack() {
+		state = State.LOOKING;
+		this.gameObject.SetActive(true);
 	}
 
 	void OnTriggerStay2D(Collider2D other)
@@ -63,7 +71,7 @@ public class TentacleAttack : MonoBehaviour
 		this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 		Debug.Log(this.transform.eulerAngles);
-        if(Time.time - startTime > waitTime)
+        if(Time.time - startTime > lookTime)
         {
             startTime = Time.time;
             state = State.ATTACKING;
@@ -72,7 +80,7 @@ public class TentacleAttack : MonoBehaviour
 
 	void Stalling()
     {
-        if(Time.time - startTime > waitTime)
+        if(Time.time - startTime > stallTime)
         {
             startTime = Time.time;
             state = State.RETREATING;
@@ -106,5 +114,10 @@ public class TentacleAttack : MonoBehaviour
             float lerpVal = (Time.time - startTime) / movementTime;
             transform.position = Vector3.Lerp(beginCoord, endCoord, lerpVal);
         }
+    }
+
+    void Stopped()
+    {
+    	this.gameObject.SetActive(false);
     }
 }

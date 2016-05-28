@@ -220,6 +220,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 442648, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -251,6 +255,38 @@ Prefab:
     - target: {fileID: 442648, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ResetGravity
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403208, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}
+      propertyPath: deathEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20601150be23c684c80ff5d76c19f2ac, type: 2}

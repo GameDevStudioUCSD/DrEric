@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class MotherSquid : MonoBehaviour {
 
 	public List<Eye> eyes;
+	public List<TentacleAttack> tentacles;
 	public enum SquidState {
 		Attacking, Recovering, Neutral
 	};
@@ -42,7 +43,21 @@ public class MotherSquid : MonoBehaviour {
 	}
 
 	IEnumerator armAttack() {
-		Debug.Log ("AAAAARM");
+		Debug.Log("ATTACKINGGGGGG");
+		int left = Random.Range(0,6);
+		int right = Random.Range(0,6);
+
+		while (right == left)
+		{
+			right = Random.Range(0,6);
+		}
+
+		TentacleAttack leftArm = tentacles[left];
+		TentacleAttack rightArm = tentacles[right];
+
+		leftArm.startAttack();
+		rightArm.startAttack();
+
 		yield return null;
 	}
 
@@ -55,10 +70,10 @@ public class MotherSquid : MonoBehaviour {
 
 	IEnumerator attackSequence(int count) {
 		StartCoroutine(fireMissles (count));
-		Debug.Log ("WAIT " + (count / 2 + 2));
+		//Debug.Log ("WAIT " + (count / 2 + 2));
 		yield return new WaitForSeconds (count / 2 + 2);
 		StartCoroutine(fireMissles (count));
-		Debug.Log ("WAIT" + (count / 2 + 2));
+		//Debug.Log ("WAIT" + (count / 2 + 2));
 		yield return new WaitForSeconds (count / 2 + 2);
 		StartCoroutine(armAttack ());
 		yield return new WaitForSeconds (count / 2 + 2);
@@ -69,7 +84,6 @@ public class MotherSquid : MonoBehaviour {
 		state = SquidState.Attacking;
 		for (int i = 0; i < count; i++) {
 			fireMissle ();
-			Debug.Log ("MISSILE");
 			yield return new WaitForSeconds (0.5f);
 		}
 	}

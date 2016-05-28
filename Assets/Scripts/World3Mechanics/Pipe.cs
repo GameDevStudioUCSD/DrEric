@@ -46,11 +46,13 @@ public class Pipe : MonoBehaviour {
 	{
 		this.dir = dir;
 		this.enterDir = enterDir;
-		Start ();
+		this.exit = exit;
 		straight = sprites [0];
 		bend = sprites [1];
 		threeWay = sprites [2];
 		fourWay = sprites [3];
+
+		Start ();
 	}
 
 	// returns a random pipe with certain number of openings
@@ -118,6 +120,19 @@ public class Pipe : MonoBehaviour {
 			}
 		}
 
+	}
+
+	// returns an array of the exit directions
+	public int[] getExitDirections ()
+	{
+		Debug.Log ("Exits = " + exit);
+		int[] exitReturn = new int[exit.Length];
+
+		for (int i = 0; i < exit.Length; i++) {
+			exitReturn [i] = exit [i];
+		}
+
+		return exitReturn;
 	}
 
 

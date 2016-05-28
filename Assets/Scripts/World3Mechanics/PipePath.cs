@@ -74,25 +74,88 @@ public class PipePath : MonoBehaviour {
 	// connect is the pipe touching this pipe
 	private void placePipe ()
 	{
-		int i, j;
+		int i, j, k, newi, newj;
+		int[] exit;
+		int direction;
 		Pipe script;
-		Vector3 position;
+		Vector3 position; 
 
-		for (i = 0; i < height; i++) {
-			for (j = 0; j < width; j++) {
+		i = 0;
+		j = 0;
 
-				if (i == 0 && j == 0)
-					continue;
-
-				grid [i, j] = GameObject.Instantiate (piece);
+		while (true){
 				script = grid [i, j].GetComponent<Pipe> ();
-				script.initPipe (Random.Range (0, 4), pipesprites);
-				script.setSprite ();
-				position = new Vector3 (i * 0.3f, j * 0.3f);
-				grid [i, j].transform.position = position;
+				exit = script.getExitDirections ();
+				exit = flipExits (exit);
 
+				for (k = 0; k < exit.Length; k++) {
+
+					direction = exit [k];	
+					newi = i;
+					newj = j;
+
+					if (direction == 1) {
+						switch (k) {
+						case UP:
+							if (i + 1 < height) {
+								newi = i + 1;
+							}
+							break;
+						case DOWN:
+							if (i - 1 >= 0) {
+								newi = i - 1;
+							}
+							break;
+						case LEFT:
+							if (j - 1 >= 0) {
+								newj = j - 1;
+							}
+							break;
+
+						case RIGHT:
+							if (j + 1 < width) {
+								newj = j + 1;
+							}
+							break;
+						}
+					}
+
+					if (grid [newi, newj] == null) {
+						Debug.Log ("Placing tile at " + newi + "," + newj);
+						grid [newi, newj] = GameObject.Instantiate (piece);
+					}
+					script = grid [newi, newj].GetComponent<Pipe> ();
+					script.initPipe (k, pipesprites);
+					script.setSprite ();
+					position = new Vector3 (newi * 0.3f, newj * 0.3f);
+					grid [newi, newj].transform.position = position;
+				}
+			}
+	}
+
+	private int [] flipExits (int [] exits)
+	{
+		int i;
+		for (i = 0; i < exits.Length; i++) {
+			if (exits [i] == UP) {
+				exits [i] = DOWN;
+				continue;
+			}
+			if (exits [i] == DOWN) {
+				exits [i] = UP;
+				continue;
+			}
+			if (exits [i] == LEFT) {
+				exits [i] = RIGHT;
+				continue;
+			}
+			if (exits [i] == RIGHT) {
+				exits [i] = LEFT;
+				continue;
 			}
 		}
+
+		return exits;
 	}
 }
 

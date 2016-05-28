@@ -76,6 +76,10 @@ public class MotherSquid : MonoBehaviour {
 			eyes[i].state = Eye.EyeState.open;
 		}
 		yield return new WaitForSeconds (5f);
+		for (int i = 0; i < eyes.Count; i++)
+		{
+			eyes[i].state = Eye.EyeState.closed;
+		}
 		state = SquidState.Neutral;
 	}
 

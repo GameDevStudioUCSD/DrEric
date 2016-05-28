@@ -45,7 +45,9 @@ public class TentacleAttack : MonoBehaviour
 	}
 
 	public void startAttack() {
+		Debug.Log ("Start");
 		state = State.LOOKING;
+		startTime = Time.time;
 		this.gameObject.SetActive(true);
 	}
 
@@ -60,7 +62,7 @@ public class TentacleAttack : MonoBehaviour
 	void Looking()
     {
     	endVector = drEric.transform.position;
-		Debug.Log(this.transform.eulerAngles);
+		//Debug.Log(this.transform.eulerAngles);
 		//this.transform.eulerAngles = new Vector3(0,0,(90 * Mathf.Atan2(endVector.x - startVector.x, endVector.y - startVector.y) / Mathf.PI));
 
 		// Opposite of the direction tentacle is moving
@@ -70,7 +72,7 @@ public class TentacleAttack : MonoBehaviour
 
 		this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-		Debug.Log(this.transform.eulerAngles);
+		//Debug.Log(this.transform.eulerAngles);
         if(Time.time - startTime > lookTime)
         {
             startTime = Time.time;

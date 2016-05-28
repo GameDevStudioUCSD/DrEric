@@ -7,13 +7,18 @@ public class MotherSquid : MonoBehaviour {
 	public List<Eye> eyes;
 	public List<TentacleAttack> tentacles;
 	public enum SquidState {
-		Attacking, Recovering, Neutral
+		Attacking, Recovering, Neutral, Dead
 	};
 	public SquidState state {get; set;}
+
+	public SpriteRenderer bossBody;
+	public SpriteRenderer deadBody;
 
 	// Use this for initialization
 	void Start () {
 		state = SquidState.Neutral;
+		bossBody.enabled = true;
+		deadBody.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -22,12 +27,16 @@ public class MotherSquid : MonoBehaviour {
 			state = SquidState.Attacking;
 			StartCoroutine (attackSequence (eyesOpen ()));
 		}
+		else if (state == SquidState.Dead) {
+			bossBody.enabled = false;
+			deadBody.enabled = true;
+		}
 	}
 
 	public void getHit() {
 		int eyeCount = eyesOpen ();
 		if (eyeCount == 0) {
-			Debug.Log ("ded");
+			state = SquidState.Dead;
 		} else {
 			state = SquidState.Attacking;
 		}
@@ -43,7 +52,6 @@ public class MotherSquid : MonoBehaviour {
 	}
 
 	IEnumerator armAttack() {
-		Debug.Log("ATTACKINGGGGGG");
 		int left = Random.Range(0,6);
 		int right = Random.Range(0,6);
 
@@ -63,7 +71,10 @@ public class MotherSquid : MonoBehaviour {
 
 	IEnumerator rest() {
 		state = SquidState.Recovering;
-		Debug.Log ("REEEEEST");
+		for (int i = 0; i < eyes.Count; i++)
+		{
+			eyes[i].state = Eye.EyeState.open;
+		}
 		yield return new WaitForSeconds (5f);
 		state = SquidState.Neutral;
 	}

@@ -20,21 +20,18 @@ public class Eye : MonoBehaviour {
 	void Update () {
 		if (state == EyeState.closed)
 		{
-			Debug.Log("CLOSED");
 			eyeOpen.enabled = false;
 			eyeClosed.enabled = true;
 			eyeDamaged.enabled = false;
 		}
 		else if (state == EyeState.open)
 		{
-			Debug.Log("OPEN");
 			eyeOpen.enabled = true;
 			eyeClosed.enabled = false;
 			eyeDamaged.enabled = false;
 		}
 		else if (state == EyeState.damaged)
 		{
-			Debug.Log("DAMAGED");
 			eyeOpen.enabled = false;
 			eyeClosed.enabled = false;
 			eyeDamaged.enabled = true;
@@ -48,10 +45,10 @@ public class Eye : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.tag == "Player" && squid.state == MotherSquid.SquidState.Recovering && state == EyeState.open) {
+		if (other.tag == "Player" && state == EyeState.open) {
+			Debug.Log("HIT");
 			state = EyeState.damaged;
 			squid.getHit ();
-			this.gameObject.SetActive(false);
 		}
 	}
 

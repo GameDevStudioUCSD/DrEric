@@ -580,6 +580,10 @@ Prefab:
       propertyPath: m_Name
       value: Eye (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
@@ -1435,7 +1439,12 @@ Prefab:
       propertyPath: m_Name
       value: Eye (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &394952673 stripped
@@ -3901,15 +3910,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22481256, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -127.833336
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22444402, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.x
@@ -3933,47 +3942,47 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22427028, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 63.916668
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -127.833336
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22436790, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 63.916668
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11493484, guid: b6d5643c0c9b82244a41284c98261649, type: 2}
       propertyPath: dialog
@@ -5358,7 +5367,12 @@ Prefab:
       propertyPath: m_Name
       value: Eye (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1410983273 stripped
@@ -5688,7 +5702,12 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1447480603 stripped
@@ -6099,6 +6118,10 @@ Prefab:
       propertyPath: m_Name
       value: Eye (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
@@ -6418,6 +6441,24 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1653915272 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 188324, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+  m_PrefabInternal: {fileID: 394952672}
+--- !u!58 &1653915273
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1653915272}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1 &1654423386
 GameObject:
   m_ObjectHideFlags: 0
@@ -7305,6 +7346,10 @@ Prefab:
       propertyPath: m_Name
       value: Eye (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
@@ -7361,6 +7406,10 @@ Prefab:
       propertyPath: m_Name
       value: Eye (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 11482076, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
+      propertyPath: squid
+      value: 
+      objectReference: {fileID: 1478806630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a376775f3f29854eba0b19fbdacaa5f, type: 2}
   m_IsPrefabParent: 0
@@ -7396,7 +7445,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1820496252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:

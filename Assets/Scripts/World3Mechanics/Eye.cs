@@ -18,7 +18,7 @@ public class Eye : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.tag == "Player" && squid.state == MotherSquid.SquidState.Neutral) {
+		if (other.tag == "Player" && squid.state == MotherSquid.SquidState.Recovering) {
 			open = false;
 			squid.getHit ();
 			this.gameObject.SetActive(false);

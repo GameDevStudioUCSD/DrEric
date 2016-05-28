@@ -73,7 +73,7 @@ public class MotherSquid : MonoBehaviour {
 		yield return null;
 	}
 
-	IEnumerator rest() {
+	public IEnumerator rest() {
 		state = SquidState.Recovering;
 		for (int i = 0; i < eyes.Count; i++)
 		{
@@ -98,7 +98,6 @@ public class MotherSquid : MonoBehaviour {
 		yield return new WaitForSeconds (count / 2 + 2);
 		StartCoroutine(armAttack ());
 		yield return new WaitForSeconds (count / 2 + 2);
-		StartCoroutine (rest());
 	}
 
 	IEnumerator fireMissles(int count) {

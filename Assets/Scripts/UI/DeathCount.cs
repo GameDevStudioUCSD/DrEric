@@ -11,15 +11,15 @@ public class DeathCount : MonoBehaviour {
     private RandomRotations rotator;
     private Color originalColor;
 	private int deathCount;
+    private bool setText = false;
 
 	void Start () {
         UpdateCount();
         rotator = GetComponent<RandomRotations>();
         originalColor = text.color;
-		label = text.text;
 		deathCount = 0;
 		singleton = this;
-	}
+    }
 
     public void Increment()
     {
@@ -33,6 +33,11 @@ public class DeathCount : MonoBehaviour {
 	}
     private void UpdateCount()
     {
+        if (setText == false)
+        {
+            label = text.text;
+            setText = true;
+        }
         text.text = label + deathCount;
     }
     public void ReturnToNormal()

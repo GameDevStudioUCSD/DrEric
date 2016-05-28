@@ -153,7 +153,7 @@ public class SquidLauncher : MonoBehaviour
         {
             //follow player holder instead
             GetComponent<FollowObject>().followTarget =
-                transform.parent.gameObject;
+                RespawnController.GetRespawnController().gameObject;
         }
     }
 

@@ -15,12 +15,14 @@ public class RespawnController : MonoBehaviour {
     public bool slowMusicOnDeath = true;
     public bool destroyOnDeath = true;
 	public GameObject player;
+    public GameObject splatter;
     public UnityEvent spawnEvents;
     public UnityEvent deathEvents;
     public static RespawnController singleton;
 	private GameObject currentPlayer = null;
     private GameObject playerHolder;
     private GameObject squidLauncher;
+    private GameObject currSplat;
     private List<UnityEvent> onSpawnList;
     private List<UnityEvent> onDeathList;
     protected RhythmController rhythmController;
@@ -39,6 +41,7 @@ public class RespawnController : MonoBehaviour {
             throw new System.Exception("No Player Holder!");
         }
         playerHolder.transform.position = transform.position;
+        squidLauncher.transform.position = transform.position;
         RegisterSpawnEvent(spawnEvents);
         RegisterDeathEvent(deathEvents);
 	}
@@ -63,12 +66,15 @@ public class RespawnController : MonoBehaviour {
             isDead = true;
             respawnTimer = 0;
 
-            //return camera to original position
-            Vector3 squidPos = squidLauncher.transform.position;
-            Vector3 playerPos = currentPlayer.transform.position;
-            playerHolder.transform.position = transform.position;
-            squidLauncher.transform.position = squidPos;
-            currentPlayer.transform.position = playerPos;
+            //splatter
+            if (currSplat == null)
+                currSplat = (GameObject) Instantiate(splatter, currentPlayer.transform.position, Quaternion.identity);
+            else
+            {
+                currSplat.SetActive(true);
+                currSplat.transform.position = currentPlayer.transform.position;
+                currSplat.GetComponent<SplatterGrowth>().ResetSplatter();
+            }
 
             if (destroyOnDeath)
             {
@@ -100,18 +106,32 @@ public class RespawnController : MonoBehaviour {
 	 * Spawns a new DrEric for the player to control. Only one DrEric can exist at once.
 	 */
 	public void Respawn() {
-		if (currentPlayer == null) { //DrEric must not already exist
-			isDead = false;
-			currentPlayer = (GameObject)Instantiate (player, transform.position, Quaternion.identity);
+		if (currentPlayer == null)
+        { //DrEric must not already exist
+
+            //return playerHolder (with camera) to spawn point
+            Vector3 squidPos = squidLauncher.transform.position;
+            playerHolder.transform.position = transform.position;
+            squidLauncher.transform.position = squidPos;
+
+            //reset game to living state
+            isDead = false;
             if (slowMusicOnDeath)
                 rhythmController.SwitchToChannel(1);
-            GameObject playerHolder = GameObject.Find("Player Holder");
+
+            //remove death splatter
+            if (currSplat != null)
+                currSplat.SetActive(false);
+
+            //restore player
+            currentPlayer = (GameObject)Instantiate(player, transform.position, Quaternion.identity);
             if (playerHolder != null)
             {
                 currentPlayer.transform.parent = playerHolder.transform;
                 currentPlayer.transform.localPosition = Vector3.zero;
             }
-            if(onSpawnList != null)
+
+            if (onSpawnList != null)
             foreach (UnityEvent e in onSpawnList)
             {
                 e.Invoke();

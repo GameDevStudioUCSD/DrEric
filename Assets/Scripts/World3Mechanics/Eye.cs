@@ -20,23 +20,26 @@ public class Eye : MonoBehaviour {
 	void Update () {
 		if (state == EyeState.closed)
 		{
+			Debug.Log("CLOSED");
 			eyeOpen.enabled = false;
 			eyeClosed.enabled = true;
 			eyeDamaged.enabled = false;
 		}
-		if (state == EyeState.open)
+		else if (state == EyeState.open)
 		{
+			Debug.Log("OPEN");
 			eyeOpen.enabled = true;
 			eyeClosed.enabled = false;
 			eyeDamaged.enabled = false;
 		}
-		if (state == EyeState.damaged)
+		else if (state == EyeState.damaged)
 		{
+			Debug.Log("DAMAGED");
 			eyeOpen.enabled = false;
 			eyeClosed.enabled = false;
 			eyeDamaged.enabled = true;
 		}
-		if (state == EyeState.closed)
+		else if (state == EyeState.gone)
 		{
 			eyeOpen.enabled = false;
 			eyeClosed.enabled = false;

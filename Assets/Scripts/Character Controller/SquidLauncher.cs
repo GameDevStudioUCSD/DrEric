@@ -44,7 +44,7 @@ public class SquidLauncher : MonoBehaviour
 
     public enum State { NORMAL, GRABBED };
     public State state = State.NORMAL;
-    private int grabSprite = 0; //grabbing sprite for current vector
+    public int grabSprite = 0; //grabbing sprite for current vector
     
     private float maxSpeed; //calculated from FlingObject
 
@@ -313,7 +313,8 @@ public class SquidLauncher : MonoBehaviour
     private void Launch()
     {
         drEric.GetComponent<Rigidbody2D>().gravityScale = 1;
-        deltaVector = grabSprite == 6 ? maxSpeed * deltaVector.normalized : deltaVector; 
+        grabSprite = grabSprite >= 6 ? 6 : grabSprite;
+        deltaVector = (grabSprite+1)/7.0f * maxSpeed * deltaVector.normalized; 
         drEric.GetComponent<FlingObject>().Fling(deltaVector);
         state = State.NORMAL;
     }

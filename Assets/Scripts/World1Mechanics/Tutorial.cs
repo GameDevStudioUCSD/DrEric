@@ -31,7 +31,6 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void Update () {
-		Debug.Log (savedPosMag - squidT.position.magnitude);
         switch (state)
         {
             case State.Waiting:

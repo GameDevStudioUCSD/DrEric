@@ -30,12 +30,16 @@ public class MotherSquid : MonoBehaviour {
 		else if (state == SquidState.Dead) {
 			bossBody.enabled = false;
 			deadBody.enabled = true;
+			for (int i = 0; i < eyes.Count; i++)
+			{
+				eyes[i].state = Eye.EyeState.gone;
+			}
 		}
 	}
 
 	public void getHit() {
 		int eyeCount = eyesOpen ();
-		if (eyeCount == 0) {
+		if (eyeCount == eyes.Count) {
 			state = SquidState.Dead;
 		} else {
 			state = SquidState.Attacking;
@@ -45,7 +49,7 @@ public class MotherSquid : MonoBehaviour {
 	public int eyesOpen() {
 		int ret = 0;
 		foreach (Eye e in eyes) {
-			if (e.isOpen ())
+			if (e.state == Eye.EyeState.damaged)
 				ret++;
 		}
 		return ret;
@@ -69,16 +73,18 @@ public class MotherSquid : MonoBehaviour {
 		yield return null;
 	}
 
-	IEnumerator rest() {
+	public IEnumerator rest() {
 		state = SquidState.Recovering;
 		for (int i = 0; i < eyes.Count; i++)
 		{
-			eyes[i].state = Eye.EyeState.open;
+			if (eyes[i].state == Eye.EyeState.closed)
+				eyes[i].state = Eye.EyeState.open;
 		}
-		yield return new WaitForSeconds (5f);
+		yield return new WaitForSeconds (6f);
 		for (int i = 0; i < eyes.Count; i++)
 		{
-			eyes[i].state = Eye.EyeState.closed;
+			if (eyes[i].state == Eye.EyeState.open)
+				eyes[i].state = Eye.EyeState.closed;
 		}
 		state = SquidState.Neutral;
 	}
@@ -92,7 +98,6 @@ public class MotherSquid : MonoBehaviour {
 		yield return new WaitForSeconds (count / 2 + 2);
 		StartCoroutine(armAttack ());
 		yield return new WaitForSeconds (count / 2 + 2);
-		StartCoroutine (rest());
 	}
 
 	IEnumerator fireMissles(int count) {

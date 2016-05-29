@@ -11,6 +11,7 @@ public class TentacleAttack : MonoBehaviour
 	public Vector3 startVector = new Vector2(0, 0);
 	public Vector3 endVector = new Vector2(0, 0);
 	public State state;
+	public MotherSquid squidBoss;
 	public float movementTime = 2;
 	public float lookTime = 1;
 	public float stallTime = 1;
@@ -85,6 +86,7 @@ public class TentacleAttack : MonoBehaviour
         if(Time.time - startTime > stallTime)
         {
             startTime = Time.time;
+			squidBoss.StartCoroutine(squidBoss.rest());
             state = State.RETREATING;
         }
     }

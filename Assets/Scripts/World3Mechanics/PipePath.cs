@@ -57,103 +57,105 @@ public class PipePath : MonoBehaviour {
 		grid = new GameObject[height, width];
 		grid [0,0] = startPipe;
 
-		placePipe ();
+		placePipe (1, 0, LEFT);
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-
-		return;
-	}
-
+	void Update () { return; }
 
 	// places a pipe on the grid
 	// place is the pipe to be places
 	// connect is the pipe touching this pipe
-	private void placePipe ()
+	private void placePipe (int x, int y, int enterDir)
 	{
-		int i, j, k, newi, newj;
+		int i;
 		int[] exit;
 		int direction;
+
 		Pipe script;
 		Vector3 position; 
 
-		i = 0;
-		j = 0;
+		// *******************************************
+		// base cases 
+		// *******************************************
 
-		while (true){
-				script = grid [i, j].GetComponent<Pipe> ();
-				exit = script.getExitDirections ();
-				exit = flipExits (exit);
 
-				for (k = 0; k < exit.Length; k++) {
+		if (x < 0 || x >= height)
+			return;
 
-					direction = exit [k];	
-					newi = i;
-					newj = j;
+		if (y < 0 || y >= width)
+			return;
 
-					if (direction == 1) {
-						switch (k) {
-						case UP:
-							if (i + 1 < height) {
-								newi = i + 1;
-							}
-							break;
-						case DOWN:
-							if (i - 1 >= 0) {
-								newi = i - 1;
-							}
-							break;
-						case LEFT:
-							if (j - 1 >= 0) {
-								newj = j - 1;
-							}
-							break;
+		if (grid [x, y] != null)
+			return;
 
-						case RIGHT:
-							if (j + 1 < width) {
-								newj = j + 1;
-							}
-							break;
-						}
-					}
+		/************************************************/
 
-					if (grid [newi, newj] == null) {
-						Debug.Log ("Placing tile at " + newi + "," + newj);
-						grid [newi, newj] = GameObject.Instantiate (piece);
-					}
-					script = grid [newi, newj].GetComponent<Pipe> ();
-					script.initPipe (k, pipesprites);
-					script.setSprite ();
-					position = new Vector3 (newi * 0.3f, newj * 0.3f);
-					grid [newi, newj].transform.position = position;
+
+		// initializing game object pipe 
+		grid [x, y] = GameObject.Instantiate (piece);
+
+		// getting the script 
+		script = grid [x, y].GetComponent<Pipe> ();
+
+		// initializing and setting sprite
+		script.initPipe (enterDir, pipesprites);
+		script.setSprite ();
+
+		// setting position
+		position = new Vector3 (x * 0.3f, y * -0.3f);
+		grid [x, y].transform.position = position;
+
+		// getting the exit directions and flipping to get the new
+		// enter directions for the new pipes
+		exit = script.getExitDirections ();
+		exit = flipExits (exit);
+
+		for (i = 0; i < exit.Length; i++) {
+
+			if (exit [i] == 1) {
+
+				// recursive calls based on directions
+				switch (i) {
+
+				case UP:
+					placePipe (x + 1, y, UP);
+					break;
+
+				case DOWN:
+					placePipe (x - 1, y, DOWN);
+					break;
+
+				case LEFT:
+					placePipe (x, y - 1, LEFT);
+					break;
+
+				case RIGHT:
+					placePipe (x, y + 1, RIGHT);
+					break;
+
 				}
 			}
+		}
+
+
 	}
+
 
 	private int [] flipExits (int [] exits)
 	{
-		int i;
-		for (i = 0; i < exits.Length; i++) {
-			if (exits [i] == UP) {
-				exits [i] = DOWN;
-				continue;
-			}
-			if (exits [i] == DOWN) {
-				exits [i] = UP;
-				continue;
-			}
-			if (exits [i] == LEFT) {
-				exits [i] = RIGHT;
-				continue;
-			}
-			if (exits [i] == RIGHT) {
-				exits [i] = LEFT;
-				continue;
-			}
-		}
+		int temp;
+
+		// swapping left/right and up/down 
+
+		temp = exits [DOWN];
+		exits [DOWN] = exits [UP];
+		exits [UP] = temp;
+
+		temp = exits [LEFT];
+		exits [LEFT] = exits [RIGHT];
+		exits [RIGHT] = temp;
 
 		return exits;
 	}
